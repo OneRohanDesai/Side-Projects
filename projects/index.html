@@ -390,6 +390,38 @@
       letter-spacing: 0.02em;
     }
 
+    .personal-card {
+      cursor: default;
+      opacity: 0.72;
+    }
+
+    .personal-card:hover {
+      background: transparent;
+      padding-left: 4px;
+    }
+
+    .personal-card:hover::before {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .personal-card .ledger-name.masked,
+    .personal-card .ledger-blurb.masked {
+      font-family: var(--mono);
+      letter-spacing: 0.18em;
+      color: var(--dim);
+    }
+
+    .personal-card .ledger-name.masked {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .personal-card .card-action {
+      color: var(--dim);
+      font-size: 0.75rem;
+    }
+
     @media (max-width: 640px) {
       .ledger-row {
         grid-template-columns: 36px 1fr;
@@ -985,10 +1017,9 @@
 
     const FILTERS = [
       { id: "all", label: "All" },
-      { id: "active", label: "Active" },
-      { id: "completed", label: "Completed" },
-      { id: "playground", label: "Playground" },
+      { id: "personal", label: "Personal" },
       { id: "private", label: "Private" },
+      { id: "public", label: "Public" },
     ];
 
     const STATUS_CLASS = {
@@ -1001,6 +1032,7 @@
       playground: "playground",
       private: "private",
       postponed: "private",
+      personal: "private",
     };
 
     const STATUS_LABEL = {
@@ -1013,6 +1045,7 @@
       playground: "Playground",
       private: "Private",
       postponed: "Postponed",
+      personal: "Hidden",
     };
 
     function toast(msg) {
@@ -1045,39 +1078,45 @@
 
     function matchesFilter(item, filter) {
       if (filter === "all") return true;
-      if (filter === "private") return item.visibility === "private";
-      if (filter === "playground") return item.status === "playground";
-      if (filter === "active") {
-        return ["active", "live", "live-soon", "public"].includes(item.status)
-          && item.visibility !== "private";
-      }
-      if (filter === "completed") {
-        return ["completed", "archived"].includes(item.status);
-      }
-      return true;
+      return item.visibility === filter;
     }
 
     function matchesQuery(item, q) {
       if (!q) return true;
+      // Personal rows are fully masked — never match search by real identity
+      if (item.visibility === "personal" || item.hidden) {
+        return "*********".includes(q) || q === "*";
+      }
       const hay = [
         item.name,
         item.blurb,
         ...(item.tags || []),
         item.status,
+        item.visibility,
       ].join(" ").toLowerCase();
       return hay.includes(q);
     }
 
+    /** Importance order: personal → private → public (each pre-sorted in JSON) */
     function allItems() {
       if (!state.data) return [];
-      return [
-        ...state.data.projects.map((p) => ({ ...p, _kind: "public" })),
-        ...state.data.private.map((p) => ({ ...p, _kind: "private" })),
-      ];
+      const personal = (state.data.personal || []).map((p) => ({ ...p, _kind: "personal" }));
+      const priv = (state.data.private || []).map((p) => ({ ...p, _kind: "private" }));
+      const pub = (state.data.public || state.data.projects || []).map((p) => ({
+        ...p,
+        _kind: "public",
+        visibility: p.visibility || "public",
+      }));
+      return [...personal, ...priv, ...pub];
     }
 
     function findProject(id) {
-      return state.data.projects.find((p) => p.id === id);
+      const list = state.data.public || state.data.projects || [];
+      return list.find((p) => p.id === id);
+    }
+
+    function findPrivate(id) {
+      return (state.data.private || []).find((p) => p.id === id);
     }
 
     /* ── Routing (path-based under /projects) ──
@@ -1153,26 +1192,30 @@
         (i) => matchesFilter(i, state.filter) && matchesQuery(i, q)
       );
 
-      const publicItems = items.filter((i) => i.visibility !== "private");
+      // Preserve catalog order (personal → private → public)
+      const personalItems = items.filter((i) => i.visibility === "personal");
       const privateItems = items.filter((i) => i.visibility === "private");
+      const publicItems = items.filter((i) => i.visibility === "public");
 
       let html = "";
+      let n = 0;
 
       if (!items.length) {
         html = `<p class="loading">No projects match.</p>`;
-      } else if (state.filter === "private") {
-        html = privateItems.length
-          ? `<div class="section-label">Private — contact for access</div><div class="ledger">${privateItems.map((item, i) => ledgerRowHtml(item, i)).join("")}</div>`
-          : `<p class="loading">No private projects match.</p>`;
       } else {
-        if (publicItems.length) {
-          html += `<div class="section-label">Open source &amp; browsable</div><div class="ledger">`;
-          html += publicItems.map((item, i) => ledgerRowHtml(item, i)).join("");
+        if (personalItems.length) {
+          html += `<div class="section-label">Personal · non-public</div><div class="ledger">`;
+          html += personalItems.map((item) => ledgerRowHtml(item, n++)).join("");
           html += `</div>`;
         }
-        if (privateItems.length && state.filter === "all") {
-          html += `<div class="section-label">Private — contact for access</div><div class="ledger">`;
-          html += privateItems.map((item, i) => ledgerRowHtml(item, i)).join("");
+        if (privateItems.length) {
+          html += `<div class="section-label">Private · code on request</div><div class="ledger">`;
+          html += privateItems.map((item) => ledgerRowHtml(item, n++)).join("");
+          html += `</div>`;
+        }
+        if (publicItems.length) {
+          html += `<div class="section-label">Public · free to clone &amp; use</div><div class="ledger">`;
+          html += publicItems.map((item) => ledgerRowHtml(item, n++)).join("");
           html += `</div>`;
         }
       }
@@ -1181,22 +1224,50 @@
     }
 
     function ledgerRowHtml(item, index) {
+      const isPersonal = item.visibility === "personal" || item.hidden;
       const isPrivate = item.visibility === "private";
-      const tags = (item.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-      const files = item.fileCount != null
+      const isPublic = item.visibility === "public" || item.browsable;
+      const tags = isPersonal
+        ? ""
+        : (item.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+      const files = isPublic && item.fileCount != null
         ? `<span class="file-count">${item.fileCount} files</span>`
         : "";
-      const action = isPrivate
-        ? `<span class="card-action">Email for source</span>`
-        : "";
+      const action = isPersonal
+        ? `<span class="card-action">Hidden</span>`
+        : isPrivate
+          ? `<span class="card-action">Email for source</span>`
+          : `<span class="card-action" style="color:var(--ok)">Browse</span>`;
       const num = String(index + 1).padStart(2, "0");
+      const name = isPersonal ? "*********" : item.name;
+      const blurb = isPersonal ? "*********" : item.blurb;
+      const rowClass = [
+        "ledger-row",
+        isPersonal ? "personal-card" : "",
+        isPrivate ? "private-card" : "",
+      ].filter(Boolean).join(" ");
+
+      if (isPersonal) {
+        return `
+          <div class="${rowClass}" aria-hidden="true" title="Personal project — hidden">
+            <span class="ledger-idx">${num}</span>
+            <div class="ledger-main">
+              <span class="ledger-name masked">${escapeHtml(name)}</span>
+              <span class="ledger-blurb masked">${escapeHtml(blurb)}</span>
+            </div>
+            <div class="ledger-side">
+              ${statusBadge("personal")}
+              ${action}
+            </div>
+          </div>`;
+      }
 
       return `
-        <button type="button" class="ledger-row ${isPrivate ? "private-card" : ""}" data-open="${escapeHtml(item.id)}" data-private="${isPrivate}">
+        <button type="button" class="${rowClass}" data-open="${escapeHtml(item.id)}" data-visibility="${escapeHtml(item.visibility)}">
           <span class="ledger-idx">${num}</span>
           <div class="ledger-main">
-            <span class="ledger-name">${escapeHtml(item.name)}</span>
-            <span class="ledger-blurb">${escapeHtml(item.blurb)}</span>
+            <span class="ledger-name">${escapeHtml(name)}</span>
+            <span class="ledger-blurb">${escapeHtml(blurb)}</span>
             <div class="ledger-meta">${tags}</div>
           </div>
           <div class="ledger-side">
@@ -1210,7 +1281,7 @@
     /* ── Browser ── */
     function showBrowser(id, filePath) {
       const project = findProject(id);
-      const privateItem = state.data.private.find((p) => p.id === id);
+      const privateItem = findPrivate(id);
 
       $("homeView").style.display = "none";
       $("siteFooter").style.display = "none";
@@ -1218,10 +1289,10 @@
       const browser = $("browserView");
       browser.classList.add("open");
 
-      // Project list sidebar
+      // Sidebar: public projects only (browsable code)
       const q = state.query.trim().toLowerCase();
-      const list = state.data.projects.filter((p) => matchesQuery(p, q));
-      $("projList").innerHTML = list.map((p) => `
+      const pubList = (state.data.public || state.data.projects || []).filter((p) => matchesQuery(p, q));
+      $("projList").innerHTML = pubList.map((p) => `
         <button type="button" class="proj-item ${p.id === id ? "active" : ""}" data-open="${escapeHtml(p.id)}">
           <span class="n">${escapeHtml(p.name)}</span>
           <span class="b">${escapeHtml(p.blurb)}</span>
@@ -1229,9 +1300,9 @@
       `).join("");
 
       if (privateItem && !project) {
-        // private detail only
         browser.classList.remove("mode-code");
         browser.classList.add("mode-browse");
+        $("paneList").style.display = "";
         $("paneDetail").style.display = "";
         $("paneTree").style.display = "none";
         $("paneCode").style.display = "none";
