@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-turkmenistan
+data:
+  population: "6500000"

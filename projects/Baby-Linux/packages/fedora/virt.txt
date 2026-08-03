@@ -1,0 +1,8 @@
+@virtualization
+qemu-kvm
+virt-manager
+virt-viewer
+libvirt
+libvirt-daemon-kvm
+bridge-utils
+edk2-ovmf

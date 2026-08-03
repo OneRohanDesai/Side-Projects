@@ -1,0 +1,1 @@
+"""Telemetry Playground application package."""

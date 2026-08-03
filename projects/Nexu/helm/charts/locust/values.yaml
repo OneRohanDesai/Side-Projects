@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: "<ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/nexu-demo-locust-load"
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8089

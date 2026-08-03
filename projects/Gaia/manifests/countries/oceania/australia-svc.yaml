@@ -1,0 +1,18 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: australia-metrics
+  labels:
+    app: country-sim
+    country: australia
+
+spec:
+  selector:
+    app: country-sim
+    country: australia
+
+  ports:
+  - name: metrics
+    port: 8080
+    targetPort: 8080

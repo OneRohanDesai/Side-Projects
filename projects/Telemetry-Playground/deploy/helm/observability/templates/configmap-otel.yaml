@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-collector-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: otel-collector
+data:
+  collector.yaml: |
+{{ .Files.Get "files/otel/collector.yaml" | nindent 4 }}

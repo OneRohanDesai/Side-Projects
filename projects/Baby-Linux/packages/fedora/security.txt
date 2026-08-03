@@ -1,0 +1,13 @@
+age
+gnupg2
+nmap
+tcpdump
+wireshark-cli
+strace
+lsof
+ShellCheck
+fail2ban
+lynis
+clamav
+clamav-update
+openssl

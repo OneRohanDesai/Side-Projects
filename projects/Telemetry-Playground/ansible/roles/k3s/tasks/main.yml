@@ -1,0 +1,10 @@
+- name: Install K3s
+  shell: |
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION={{ k3s_version }} sh -
+
+- name: Wait for node
+  command: kubectl get nodes
+  register: nodecheck
+  retries: 20
+  delay: 5
+  until: nodecheck.rc == 0

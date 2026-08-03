@@ -1,0 +1,991 @@
+countries:
+
+- name: Argentina
+  continent: southamerica
+  population: 46000000
+  growth_rate: 0.000008
+
+- name: Bolivia
+  continent: southamerica
+  population: 12400000
+  growth_rate: 0.000014
+
+- name: Brazil
+  continent: southamerica
+  population: 203000000
+  growth_rate: 0.000006
+
+- name: Chile
+  continent: southamerica
+  population: 19600000
+  growth_rate: 0.000004
+
+- name: Colombia
+  continent: southamerica
+  population: 52300000
+  growth_rate: 0.000010
+
+- name: Ecuador
+  continent: southamerica
+  population: 18100000
+  growth_rate: 0.000012
+
+- name: Guyana
+  continent: southamerica
+  population: 820000
+  growth_rate: 0.000012
+
+- name: Paraguay
+  continent: southamerica
+  population: 6800000
+  growth_rate: 0.000013
+
+- name: Peru
+  continent: southamerica
+  population: 34000000
+  growth_rate: 0.000010
+
+- name: Suriname
+  continent: southamerica
+  population: 630000
+  growth_rate: 0.000010
+
+- name: Uruguay
+  continent: southamerica
+  population: 3500000
+  growth_rate: 0.000002
+
+- name: Venezuela
+  continent: southamerica
+  population: 28800000
+  growth_rate: 0.000006
+
+- name: AntiguaAndBarbuda
+  continent: northamerica
+  population: 94000
+  growth_rate: 0.000009
+
+- name: Bahamas
+  continent: northamerica
+  population: 410000
+  growth_rate: 0.000008
+
+- name: Barbados
+  continent: northamerica
+  population: 281000
+  growth_rate: 0.000002
+
+- name: Belize
+  continent: northamerica
+  population: 420000
+  growth_rate: 0.000014
+
+- name: Canada
+  continent: northamerica
+  population: 41000000
+  growth_rate: 0.000011
+
+- name: CostaRica
+  continent: northamerica
+  population: 5200000
+  growth_rate: 0.000010
+
+- name: Cuba
+  continent: northamerica
+  population: 11000000
+  growth_rate: -0.000002
+
+- name: Dominica
+  continent: northamerica
+  population: 72000
+  growth_rate: 0.000006
+
+- name: DominicanRepublic
+  continent: northamerica
+  population: 11300000
+  growth_rate: 0.000010
+
+- name: ElSalvador
+  continent: northamerica
+  population: 6400000
+  growth_rate: 0.000004
+
+- name: Grenada
+  continent: northamerica
+  population: 126000
+  growth_rate: 0.000007
+
+- name: Guatemala
+  continent: northamerica
+  population: 18100000
+  growth_rate: 0.000018
+
+- name: Haiti
+  continent: northamerica
+  population: 11700000
+  growth_rate: 0.000013
+
+- name: Honduras
+  continent: northamerica
+  population: 10500000
+  growth_rate: 0.000016
+
+- name: Jamaica
+  continent: northamerica
+  population: 2830000
+  growth_rate: 0.000003
+
+- name: Mexico
+  continent: northamerica
+  population: 129000000
+  growth_rate: 0.000011
+
+- name: Nicaragua
+  continent: northamerica
+  population: 7000000
+  growth_rate: 0.000012
+
+- name: Panama
+  continent: northamerica
+  population: 4500000
+  growth_rate: 0.000014
+
+- name: SaintKittsAndNevis
+  continent: northamerica
+  population: 47000
+  growth_rate: 0.000008
+
+- name: SaintLucia
+  continent: northamerica
+  population: 180000
+  growth_rate: 0.000007
+
+- name: SaintVincentAndTheGrenadines
+  continent: northamerica
+  population: 110000
+  growth_rate: 0.000006
+
+- name: TrinidadAndTobago
+  continent: northamerica
+  population: 1530000
+  growth_rate: 0.000004
+
+- name: UnitedStates
+  continent: northamerica
+  population: 336000000
+  growth_rate: 0.000009
+
+- name: Algeria
+  continent: africa
+  population: 45600000
+  growth_rate: 0.000015
+
+- name: Angola
+  continent: africa
+  population: 37000000
+  growth_rate: 0.000032
+
+- name: Benin
+  continent: africa
+  population: 14000000
+  growth_rate: 0.000028
+
+- name: Botswana
+  continent: africa
+  population: 2700000
+  growth_rate: 0.000018
+
+- name: BurkinaFaso
+  continent: africa
+  population: 23500000
+  growth_rate: 0.000029
+
+- name: Burundi
+  continent: africa
+  population: 13500000
+  growth_rate: 0.000031
+
+- name: CaboVerde
+  continent: africa
+  population: 600000
+  growth_rate: 0.000013
+
+- name: Cameroon
+  continent: africa
+  population: 29000000
+  growth_rate: 0.000026
+
+- name: CentralAfricanRepublic
+  continent: africa
+  population: 5200000
+  growth_rate: 0.000024
+
+- name: Chad
+  continent: africa
+  population: 18200000
+  growth_rate: 0.000033
+
+- name: Comoros
+  continent: africa
+  population: 900000
+  growth_rate: 0.000021
+
+- name: DemocraticRepublicOfTheCongo
+  continent: africa
+  population: 102000000
+  growth_rate: 0.000033
+
+- name: RepublicOfTheCongo
+  continent: africa
+  population: 6200000
+  growth_rate: 0.000027
+
+- name: Djibouti
+  continent: africa
+  population: 1150000
+  growth_rate: 0.000020
+
+- name: Egypt
+  continent: africa
+  population: 111000000
+  growth_rate: 0.000019
+
+- name: EquatorialGuinea
+  continent: africa
+  population: 1700000
+  growth_rate: 0.000022
+
+- name: Eritrea
+  continent: africa
+  population: 3600000
+  growth_rate: 0.000018
+
+- name: Eswatini
+  continent: africa
+  population: 1200000
+  growth_rate: 0.000014
+
+- name: Ethiopia
+  continent: africa
+  population: 128000000
+  growth_rate: 0.000024
+
+- name: Gabon
+  continent: africa
+  population: 2500000
+  growth_rate: 0.000020
+
+- name: Gambia
+  continent: africa
+  population: 2800000
+  growth_rate: 0.000027
+
+- name: Ghana
+  continent: africa
+  population: 34000000
+  growth_rate: 0.000021
+
+- name: Guinea
+  continent: africa
+  population: 14000000
+  growth_rate: 0.000026
+
+- name: GuineaBissau
+  continent: africa
+  population: 2100000
+  growth_rate: 0.000024
+
+- name: IvoryCoast
+  continent: africa
+  population: 31000000
+  growth_rate: 0.000023
+
+- name: Kenya
+  continent: africa
+  population: 55000000
+  growth_rate: 0.000021
+
+- name: Lesotho
+  continent: africa
+  population: 2300000
+  growth_rate: 0.000011
+
+- name: Liberia
+  continent: africa
+  population: 5500000
+  growth_rate: 0.000024
+
+- name: Libya
+  continent: africa
+  population: 7000000
+  growth_rate: 0.000015
+
+- name: Madagascar
+  continent: africa
+  population: 31000000
+  growth_rate: 0.000025
+
+- name: Malawi
+  continent: africa
+  population: 21000000
+  growth_rate: 0.000028
+
+- name: Mali
+  continent: africa
+  population: 24000000
+  growth_rate: 0.000031
+
+- name: Mauritania
+  continent: africa
+  population: 4900000
+  growth_rate: 0.000027
+
+- name: Mauritius
+  continent: africa
+  population: 1300000
+  growth_rate: 0.000002
+
+- name: Morocco
+  continent: africa
+  population: 38000000
+  growth_rate: 0.000010
+
+- name: Mozambique
+  continent: africa
+  population: 35000000
+  growth_rate: 0.000028
+
+- name: Namibia
+  continent: africa
+  population: 2700000
+  growth_rate: 0.000016
+
+- name: Niger
+  continent: africa
+  population: 27000000
+  growth_rate: 0.000037
+
+- name: Nigeria
+  continent: africa
+  population: 223000000
+  growth_rate: 0.000026
+
+- name: Rwanda
+  continent: africa
+  population: 14000000
+  growth_rate: 0.000021
+
+- name: SaoTomeAndPrincipe
+  continent: africa
+  population: 230000
+  growth_rate: 0.000020
+
+- name: Senegal
+  continent: africa
+  population: 18500000
+  growth_rate: 0.000025
+
+- name: Seychelles
+  continent: africa
+  population: 100000
+  growth_rate: 0.000008
+
+- name: SierraLeone
+  continent: africa
+  population: 8600000
+  growth_rate: 0.000024
+
+- name: Somalia
+  continent: africa
+  population: 18000000
+  growth_rate: 0.000029
+
+- name: SouthAfrica
+  continent: africa
+  population: 61000000
+  growth_rate: 0.000010
+
+- name: SouthSudan
+  continent: africa
+  population: 11500000
+  growth_rate: 0.000026
+
+- name: Sudan
+  continent: africa
+  population: 48000000
+  growth_rate: 0.000024
+
+- name: Tanzania
+  continent: africa
+  population: 67000000
+  growth_rate: 0.000028
+
+- name: Togo
+  continent: africa
+  population: 9000000
+  growth_rate: 0.000024
+
+- name: Tunisia
+  continent: africa
+  population: 12300000
+  growth_rate: 0.000009
+
+- name: Uganda
+  continent: africa
+  population: 50000000
+  growth_rate: 0.000031
+
+- name: Zambia
+  continent: africa
+  population: 21000000
+  growth_rate: 0.000028
+
+- name: Zimbabwe
+  continent: africa
+  population: 16600000
+  growth_rate: 0.000017
+
+- name: Australia
+  continent: oceania
+  population: 27000000
+  growth_rate: 0.000011
+
+- name: Fiji
+  continent: oceania
+  population: 930000
+  growth_rate: 0.000007
+
+- name: Kiribati
+  continent: oceania
+  population: 135000
+  growth_rate: 0.000016
+
+- name: MarshallIslands
+  continent: oceania
+  population: 42000
+  growth_rate: 0.000012
+
+- name: Micronesia
+  continent: oceania
+  population: 115000
+  growth_rate: 0.000010
+
+- name: Nauru
+  continent: oceania
+  population: 13000
+  growth_rate: 0.000010
+
+- name: NewZealand
+  continent: oceania
+  population: 5200000
+  growth_rate: 0.000009
+
+- name: Palau
+  continent: oceania
+  population: 18000
+  growth_rate: 0.000006
+
+- name: PapuaNewGuinea
+  continent: oceania
+  population: 10400000
+  growth_rate: 0.000020
+
+- name: Samoa
+  continent: oceania
+  population: 225000
+  growth_rate: 0.000011
+
+- name: SolomonIslands
+  continent: oceania
+  population: 740000
+  growth_rate: 0.000022
+
+- name: Tonga
+  continent: oceania
+  population: 107000
+  growth_rate: 0.000010
+
+- name: Tuvalu
+  continent: oceania
+  population: 11000
+  growth_rate: 0.000009
+
+- name: Vanuatu
+  continent: oceania
+  population: 340000
+  growth_rate: 0.000021
+
+- name: Albania
+  continent: europe
+  population: 2800000
+  growth_rate: -0.000004
+
+- name: Andorra
+  continent: europe
+  population: 81000
+  growth_rate: 0.000004
+
+- name: Austria
+  continent: europe
+  population: 9100000
+  growth_rate: 0.000002
+
+- name: Belarus
+  continent: europe
+  population: 9100000
+  growth_rate: -0.000005
+
+- name: Belgium
+  continent: europe
+  population: 11800000
+  growth_rate: 0.000004
+
+- name: BosniaAndHerzegovina
+  continent: europe
+  population: 3200000
+  growth_rate: -0.000007
+
+- name: Bulgaria
+  continent: europe
+  population: 6700000
+  growth_rate: -0.000010
+
+- name: Croatia
+  continent: europe
+  population: 3900000
+  growth_rate: -0.000008
+
+- name: Cyprus
+  continent: europe
+  population: 1250000
+  growth_rate: 0.000006
+
+- name: Czechia
+  continent: europe
+  population: 10900000
+  growth_rate: 0.000002
+
+- name: Denmark
+  continent: europe
+  population: 6000000
+  growth_rate: 0.000003
+
+- name: Estonia
+  continent: europe
+  population: 1350000
+  growth_rate: -0.000002
+
+- name: Finland
+  continent: europe
+  population: 5600000
+  growth_rate: -0.000002
+
+- name: France
+  continent: europe
+  population: 65000000
+  growth_rate: 0.000003
+
+- name: Germany
+  continent: europe
+  population: 84000000
+  growth_rate: 0.000001
+
+- name: Greece
+  continent: europe
+  population: 10300000
+  growth_rate: -0.000004
+
+- name: Hungary
+  continent: europe
+  population: 9600000
+  growth_rate: -0.000005
+
+- name: Iceland
+  continent: europe
+  population: 390000
+  growth_rate: 0.000008
+
+- name: Ireland
+  continent: europe
+  population: 5300000
+  growth_rate: 0.000012
+
+- name: Italy
+  continent: europe
+  population: 59000000
+  growth_rate: -0.000006
+
+- name: Kosovo
+  continent: europe
+  population: 1800000
+  growth_rate: -0.000002
+
+- name: Latvia
+  continent: europe
+  population: 1850000
+  growth_rate: -0.000006
+
+- name: Liechtenstein
+  continent: europe
+  population: 40000
+  growth_rate: 0.000004
+
+- name: Lithuania
+  continent: europe
+  population: 2800000
+  growth_rate: -0.000006
+
+- name: Luxembourg
+  continent: europe
+  population: 670000
+  growth_rate: 0.000013
+
+- name: Malta
+  continent: europe
+  population: 540000
+  growth_rate: 0.000006
+
+- name: Moldova
+  continent: europe
+  population: 2500000
+  growth_rate: -0.000007
+
+- name: Monaco
+  continent: europe
+  population: 39000
+  growth_rate: 0.000003
+
+- name: Montenegro
+  continent: europe
+  population: 620000
+  growth_rate: -0.000003
+
+- name: Netherlands
+  continent: europe
+  population: 17900000
+  growth_rate: 0.000004
+
+- name: NorthMacedonia
+  continent: europe
+  population: 2100000
+  growth_rate: -0.000004
+
+- name: Norway
+  continent: europe
+  population: 5600000
+  growth_rate: 0.000008
+
+- name: Poland
+  continent: europe
+  population: 37700000
+  growth_rate: -0.000004
+
+- name: Portugal
+  continent: europe
+  population: 10300000
+  growth_rate: -0.000002
+
+- name: Romania
+  continent: europe
+  population: 19000000
+  growth_rate: -0.000006
+
+- name: Russia
+  continent: europe
+  population: 144000000
+  growth_rate: -0.000003
+
+- name: SanMarino
+  continent: europe
+  population: 34000
+  growth_rate: 0.000002
+
+- name: Serbia
+  continent: europe
+  population: 6600000
+  growth_rate: -0.000006
+
+- name: Slovakia
+  continent: europe
+  population: 5500000
+  growth_rate: -0.000002
+
+- name: Slovenia
+  continent: europe
+  population: 2100000
+  growth_rate: 0.000001
+
+- name: Spain
+  continent: europe
+  population: 48000000
+  growth_rate: 0.000003
+
+- name: Sweden
+  continent: europe
+  population: 10600000
+  growth_rate: 0.000006
+
+- name: Switzerland
+  continent: europe
+  population: 8900000
+  growth_rate: 0.000006
+
+- name: Ukraine
+  continent: europe
+  population: 36000000
+  growth_rate: -0.000010
+
+- name: UnitedKingdom
+  continent: europe
+  population: 68000000
+  growth_rate: 0.000004
+
+- name: VaticanCity
+  continent: europe
+  population: 800
+  growth_rate: 0.000000
+
+- name: Afghanistan
+  continent: asia
+  population: 42000000
+  growth_rate: 0.000024
+
+- name: Armenia
+  continent: asia
+  population: 2800000
+  growth_rate: -0.000003
+
+- name: Azerbaijan
+  continent: asia
+  population: 10200000
+  growth_rate: 0.000006
+
+- name: Bahrain
+  continent: asia
+  population: 1500000
+  growth_rate: 0.000009
+
+- name: Bangladesh
+  continent: asia
+  population: 173000000
+  growth_rate: 0.000010
+
+- name: Bhutan
+  continent: asia
+  population: 790000
+  growth_rate: 0.000011
+
+- name: Brunei
+  continent: asia
+  population: 460000
+  growth_rate: 0.000008
+
+- name: Cambodia
+  continent: asia
+  population: 17000000
+  growth_rate: 0.000012
+
+- name: China
+  continent: asia
+  population: 1410000000
+  growth_rate: -0.000002
+
+- name: Cyprus
+  continent: asia
+  population: 1250000
+  growth_rate: 0.000006
+
+- name: Georgia
+  continent: asia
+  population: 3700000
+  growth_rate: -0.000004
+
+- name: India
+  continent: asia
+  population: 1430000000
+  growth_rate: 0.000011
+
+- name: Indonesia
+  continent: asia
+  population: 277000000
+  growth_rate: 0.000010
+
+- name: Iran
+  continent: asia
+  population: 89000000
+  growth_rate: 0.000007
+
+- name: Iraq
+  continent: asia
+  population: 45000000
+  growth_rate: 0.000023
+
+- name: Israel
+  continent: asia
+  population: 9900000
+  growth_rate: 0.000016
+
+- name: Japan
+  continent: asia
+  population: 124000000
+  growth_rate: -0.000006
+
+- name: Jordan
+  continent: asia
+  population: 11300000
+  growth_rate: 0.000014
+
+- name: Kazakhstan
+  continent: asia
+  population: 20000000
+  growth_rate: 0.000010
+
+- name: Kuwait
+  continent: asia
+  population: 4400000
+  growth_rate: 0.000013
+
+- name: Kyrgyzstan
+  continent: asia
+  population: 7100000
+  growth_rate: 0.000018
+
+- name: Laos
+  continent: asia
+  population: 7600000
+  growth_rate: 0.000015
+
+- name: Lebanon
+  continent: asia
+  population: 5500000
+  growth_rate: -0.000002
+
+- name: Malaysia
+  continent: asia
+  population: 34000000
+  growth_rate: 0.000012
+
+- name: Maldives
+  continent: asia
+  population: 520000
+  growth_rate: 0.000010
+
+- name: Mongolia
+  continent: asia
+  population: 3500000
+  growth_rate: 0.000014
+
+- name: Myanmar
+  continent: asia
+  population: 55000000
+  growth_rate: 0.000009
+
+- name: Nepal
+  continent: asia
+  population: 30500000
+  growth_rate: 0.000010
+
+- name: NorthKorea
+  continent: asia
+  population: 26000000
+  growth_rate: 0.000004
+
+- name: Oman
+  continent: asia
+  population: 4700000
+  growth_rate: 0.000015
+
+- name: Pakistan
+  continent: asia
+  population: 241000000
+  growth_rate: 0.000022
+
+- name: Palestine
+  continent: asia
+  population: 5400000
+  growth_rate: 0.000018
+
+- name: Philippines
+  continent: asia
+  population: 118000000
+  growth_rate: 0.000014
+
+- name: Qatar
+  continent: asia
+  population: 2700000
+  growth_rate: 0.000017
+
+- name: SaudiArabia
+  continent: asia
+  population: 36000000
+  growth_rate: 0.000013
+
+- name: Singapore
+  continent: asia
+  population: 5900000
+  growth_rate: 0.000009
+
+- name: SouthKorea
+  continent: asia
+  population: 51700000
+  growth_rate: -0.000006
+
+- name: SriLanka
+  continent: asia
+  population: 22000000
+  growth_rate: 0.000003
+
+- name: Syria
+  continent: asia
+  population: 23500000
+  growth_rate: 0.000018
+
+- name: Taiwan
+  continent: asia
+  population: 23500000
+  growth_rate: -0.000002
+
+- name: Tajikistan
+  continent: asia
+  population: 10300000
+  growth_rate: 0.000025
+
+- name: Thailand
+  continent: asia
+  population: 71000000
+  growth_rate: -0.000001
+
+- name: TimorLeste
+  continent: asia
+  population: 1400000
+  growth_rate: 0.000020
+
+- name: Turkey
+  continent: asia
+  population: 86000000
+  growth_rate: 0.000007
+
+- name: Turkmenistan
+  continent: asia
+  population: 6500000
+  growth_rate: 0.000013
+
+- name: UnitedArabEmirates
+  continent: asia
+  population: 10000000
+  growth_rate: 0.000014
+
+- name: Uzbekistan
+  continent: asia
+  population: 36000000
+  growth_rate: 0.000018
+
+- name: Vietnam
+  continent: asia
+  population: 100000000
+  growth_rate: 0.000009
+
+- name: Yemen
+  continent: asia
+  population: 35000000
+  growth_rate: 0.000021

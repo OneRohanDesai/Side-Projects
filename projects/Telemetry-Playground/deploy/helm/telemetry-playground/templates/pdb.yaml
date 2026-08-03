@@ -1,0 +1,21 @@
+{{- if .Values.pdb.enabled }}
+{{- $minAvailable := .Values.pdb.minAvailable | int }}
+{{- $receiverReplicas := .Values.replicas.receiver | int }}
+{{- if gt $receiverReplicas 1 }}
+{{- if ge $minAvailable $receiverReplicas }}
+{{- $minAvailable = sub $receiverReplicas 1 }}
+{{- end }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: receiver
+  namespace: {{ include "telemetry.namespace" . }}
+  labels:
+    {{- include "telemetry.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ $minAvailable }}
+  selector:
+    matchLabels:
+      app: receiver
+{{- end }}
+{{- end }}

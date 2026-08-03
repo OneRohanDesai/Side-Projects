@@ -1,0 +1,11 @@
+# Virtualization (Arch)
+qemu-desktop
+virt-manager
+virt-viewer
+libvirt
+dnsmasq
+vde2
+bridge-utils
+iptables-nft
+edk2-ovmf
+dmidecode

@@ -1,0 +1,17 @@
+prometheus
+grafana
+mtr
+iperf3
+nmap
+tcpdump
+traceroute
+bind-utils
+whois
+htop
+btop
+iotop
+sysstat
+lsof
+strace
+rclone
+restic

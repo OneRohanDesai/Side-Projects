@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-saintkittsandnevis
+data:
+  population: "47000"

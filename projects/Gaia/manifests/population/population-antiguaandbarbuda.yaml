@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-antiguaandbarbuda
+data:
+  population: "94000"

@@ -1,0 +1,30 @@
+services:
+  app01:
+    image: geerlingguy/docker-ubuntu2404-ansible:latest
+    container_name: grounds-app01
+    hostname: app01
+    privileged: true
+    command: ["/lib/systemd/systemd"]
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroup: host
+
+  app02:
+    image: geerlingguy/docker-ubuntu2404-ansible:latest
+    container_name: grounds-app02
+    hostname: app02
+    privileged: true
+    command: ["/lib/systemd/systemd"]
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroup: host
+
+  db01:
+    image: geerlingguy/docker-ubuntu2404-ansible:latest
+    container_name: grounds-db01
+    hostname: db01
+    privileged: true
+    command: ["/lib/systemd/systemd"]
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroup: host

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: {{ include "telemetry.namespace" . }}
+  labels:
+    {{- include "telemetry.labels" . | nindent 4 }}
+    app: redis
+spec:
+  replicas: {{ .Values.replicas.redis }}
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+        {{- include "telemetry.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: redis
+          image: {{ .Values.image.redis }}
+          imagePullPolicy: IfNotPresent
+          args:
+            - redis-server
+            - --save
+            - ""
+            - --appendonly
+            - "no"
+          ports:
+            - name: redis
+              containerPort: 6379
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: {{ .Values.resources.redis.requests.cpu }}
+              memory: {{ .Values.resources.redis.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.redis.limits.cpu }}
+              memory: {{ .Values.resources.redis.limits.memory }}

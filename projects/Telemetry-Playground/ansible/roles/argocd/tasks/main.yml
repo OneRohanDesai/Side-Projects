@@ -1,0 +1,18 @@
+- name: Create namespace
+  command: kubectl create namespace argocd --dry-run=client -o yaml
+  register: ns
+
+- name: Apply namespace
+  shell: echo '{{ ns.stdout }}' | kubectl apply -f -
+
+- name: Install ArgoCD
+  command: >
+    kubectl apply
+    -n argocd
+    -f https://raw.githubusercontent.com/argoproj/argo-cd/{{ argocd_version }}/manifests/install.yaml
+
+- name: Wait for ArgoCD
+  command: >
+    kubectl rollout status deployment/argocd-server
+    -n argocd
+    --timeout=300s

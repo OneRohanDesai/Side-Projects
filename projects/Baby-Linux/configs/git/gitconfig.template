@@ -1,0 +1,46 @@
+# Baby Linux — gitconfig template
+# Placeholders replaced at install time, or edit manually.
+
+[user]
+	name = @GIT_NAME@
+	email = @GIT_EMAIL@
+
+[core]
+	editor = nvim
+	autocrlf = input
+	pager = less -FRX
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+	default = simple
+
+[fetch]
+	prune = true
+
+[color]
+	ui = auto
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch
+	ci = commit
+	lg = log --oneline --graph --decorate -20
+	last = log -1 HEAD
+	unstage = reset HEAD --
+	amend = commit --amend --no-edit
+
+[diff]
+	algorithm = histogram
+
+[merge]
+	conflictstyle = zdiff3
+
+[credential]
+	helper = cache --timeout=28800

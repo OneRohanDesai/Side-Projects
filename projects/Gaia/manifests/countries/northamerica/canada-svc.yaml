@@ -1,0 +1,18 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: canada-metrics
+  labels:
+    app: country-sim
+    country: canada
+
+spec:
+  selector:
+    app: country-sim
+    country: canada
+
+  ports:
+  - name: metrics
+    port: 8080
+    targetPort: 8080

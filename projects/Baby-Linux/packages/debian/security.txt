@@ -1,0 +1,17 @@
+ufw
+age
+gnupg
+nmap
+tcpdump
+tshark
+strace
+lsof
+shellcheck
+fail2ban
+lynis
+clamav
+clamav-daemon
+openssl
+git
+curl
+# trivy/cosign often via official installers

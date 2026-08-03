@@ -1,0 +1,24 @@
+services:
+  git-server:
+    image: alpine/git:latest
+    container_name: grounds-git-server
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        apk add --no-cache git-daemon openssh bash 2>/dev/null || true
+        mkdir -p /git /repos
+        # seed bare repos used by scenarios
+        for r in nimbus app-config backend frontend; do
+          if [ ! -d /repos/$$r.git ]; then
+            git init --bare /repos/$$r.git
+          fi
+        done
+        echo "Git lab ready" > /repos/READY
+        sleep infinity
+    volumes:
+      - git-repos:/repos
+      - ../../state/workspaces:/workspaces
+    working_dir: /repos
+
+volumes:
+  git-repos:

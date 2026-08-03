@@ -1,0 +1,39 @@
+replicas:
+  generator: 5
+  receiver: 5
+  dashboard: 2
+  nginx: 2
+  redis: 1
+
+imagePullPolicy: IfNotPresent
+
+config:
+  environment: prod
+  region: cloud
+  logLevel: INFO
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 15
+  targetCPUUtilizationPercentage: 60
+
+pdb:
+  enabled: true
+  minAvailable: 2
+
+resources:
+  generator:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  receiver:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi

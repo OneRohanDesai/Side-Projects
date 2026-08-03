@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>Kitchen Station — The Table</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Station <span id="station-name">—</span></h1>
+      <div class="meta"><span class="live-dot"></span> Tickets only — no simulation</div>
+    </div>
+    <div class="meta">
+      <select class="staff-select" id="station-select"></select>
+      <nav class="role-nav">
+        <a href="/">Hub</a>
+        <a href="/expeditor">Expeditor</a>
+        <a href="/station" class="active">Station</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="stat-row" id="stats"></div>
+    <div class="grid grid-2">
+      <div class="panel">
+        <h2>Pending</h2>
+        <div id="pending"></div>
+      </div>
+      <div class="panel">
+        <h2>Cooking</h2>
+        <div id="cooking"></div>
+      </div>
+    </div>
+  </main>
+
+  <audio id="ding" preload="auto"><source src="/static/sounds/ding.mp3" type="audio/mpeg" /></audio>
+  <audio id="bell" preload="auto"><source src="/static/sounds/bell.mp3" type="audio/mpeg" /></audio>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    let station = params.get("station") || localStorage.getItem("station") || "grill";
+    let prevPending = 0;
+
+    const STATION_META = {
+      grill: { name: "Grill", color: "#ef4444" },
+      saute: { name: "Sauté", color: "#f59e0b" },
+      sauce: { name: "Sauce", color: "#8b5cf6" },
+      fry: { name: "Fry", color: "#f97316" },
+      cold: { name: "Cold / Garde Manger", color: "#22c55e" },
+      pastry: { name: "Pastry", color: "#ec4899" },
+      beverage: { name: "Beverage", color: "#06b6d4" },
+    };
+
+    function tableLabel(tid) {
+      return (TT.state.tables || []).find((t) => t.id === tid)?.number || tid;
+    }
+
+    function setupSelect() {
+      const stations = TT.state.stations?.length
+        ? TT.state.stations
+        : Object.entries(STATION_META).map(([id, v]) => ({ id, name: v.name }));
+      const sel = document.getElementById("station-select");
+      sel.innerHTML = stations.map((s) =>
+        `<option value="${s.id}" ${s.id === station ? "selected" : ""}>${s.name}</option>`
+      ).join("");
+      sel.onchange = () => {
+        station = sel.value;
+        localStorage.setItem("station", station);
+        history.replaceState(null, "", `/station?station=${station}`);
+        render();
+      };
+      const meta = STATION_META[station] || { name: station };
+      document.getElementById("station-name").textContent = meta.name;
+      document.title = `${meta.name} — The Table`;
+    }
+
+    async function startTicket(id) {
+      await TT.api(`/tickets/${id}/start`, { method: "POST" });
+      TT.play("ding");
+    }
+    async function completeTicket(id) {
+      await TT.api(`/tickets/${id}/complete`, { method: "POST" });
+      TT.play("bell");
+      TT.toast("Ticket done");
+    }
+
+    function ticketCard(t) {
+      let remain = t.duration;
+      let over = false;
+      if (t.status === "cooking" && t.started_at) {
+        const elapsed = Math.floor((Date.now() - new Date(t.started_at).getTime()) / 1000);
+        remain = t.duration - elapsed;
+        over = remain < 0;
+      }
+      const isRefire = (t.task || "").includes("REFIRE");
+      return `
+        <div class="ticket-card ${t.status}">
+          <div class="head">
+            <strong>${tableLabel(t.table_id)}</strong>
+            <span class="time-chip">${t.status === "cooking" ? "cooking" : "queued"}</span>
+          </div>
+          <div style="font-size:1.05rem;font-weight:600">${t.dish_name}</div>
+          <div style="color:var(--muted);margin:.25rem 0">${t.task}${isRefire ? ' <span style="color:var(--hot)">↻</span>' : ""}</div>
+          <div class="timer ${over ? "over" : ""}">${over ? "OVER " + TT.fmtTimer(-remain) : TT.fmtTimer(remain)}</div>
+          <div class="actions">
+            ${t.status === "pending" ? `<button class="primary" onclick="startTicket('${t.id}').catch(e=>TT.toast(e.message))">Start</button>` : ""}
+            ${t.status === "cooking" ? `<button class="good" onclick="completeTicket('${t.id}').catch(e=>TT.toast(e.message))">Done</button>` : ""}
+            ${t.status === "pending" ? `<button class="good" onclick="completeTicket('${t.id}').catch(e=>TT.toast(e.message))">Done (skip timer)</button>` : ""}
+          </div>
+        </div>`;
+    }
+
+    function myTickets() {
+      // Prefer tickets from state; filter by station and open
+      const fromTickets = (TT.state.tickets || []).filter(
+        (t) => t.station === station && ["pending", "cooking"].includes(t.status)
+      );
+      if (fromTickets.length) return fromTickets;
+      // Fallback: dig from orders
+      const out = [];
+      (TT.state.orders || []).forEach((o) => {
+        (o.tickets || []).forEach((t) => {
+          if (t.station === station && ["pending", "cooking"].includes(t.status)) out.push(t);
+        });
+      });
+      return out;
+    }
+
+    function render() {
+      setupSelect();
+      const list = myTickets();
+      const pending = list.filter((t) => t.status === "pending");
+      const cooking = list.filter((t) => t.status === "cooking");
+      if (pending.length > prevPending) TT.play("ding");
+      prevPending = pending.length;
+
+      document.getElementById("stats").innerHTML = `
+        <div class="stat"><div class="label">Pending</div><div class="value">${pending.length}</div></div>
+        <div class="stat"><div class="label">Cooking</div><div class="value">${cooking.length}</div></div>
+        <div class="stat"><div class="label">Station</div><div class="value" style="font-size:1.1rem">${(STATION_META[station]||{}).name || station}</div></div>
+      `;
+      document.getElementById("pending").innerHTML = pending.map(ticketCard).join("") || `<div class="empty">No tickets</div>`;
+      document.getElementById("cooking").innerHTML = cooking.map(ticketCard).join("") || `<div class="empty">Idle</div>`;
+    }
+
+    TT.on("change", render);
+    TT.on("tickets_updated", (d) => { TT.state.tickets = d; render(); });
+    TT.bootstrap();
+    setInterval(render, 1000); // live countdown
+  </script>
+</body>
+</html>

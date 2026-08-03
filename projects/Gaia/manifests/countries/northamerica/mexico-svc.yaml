@@ -1,0 +1,18 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mexico-metrics
+  labels:
+    app: country-sim
+    country: mexico
+
+spec:
+  selector:
+    app: country-sim
+    country: mexico
+
+  ports:
+  - name: metrics
+    port: 8080
+    targetPort: 8080

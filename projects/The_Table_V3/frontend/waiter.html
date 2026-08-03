@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>Waiter — The Table</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Waiter <span id="who">—</span></h1>
+      <div class="meta"><span class="live-dot"></span> Orders · Run food · Bills</div>
+    </div>
+    <div class="meta">
+      <select class="staff-select" id="waiter-select"></select>
+      <nav class="role-nav">
+        <a href="/">Hub</a>
+        <a href="/floor">Floor</a>
+        <a href="/waiter" class="active">Waiter</a>
+        <a href="/expeditor">Expeditor</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="tabs">
+      <button class="active" data-tab="run">Run food</button>
+      <button data-tab="tables">My tables</button>
+      <button data-tab="order">New order</button>
+    </div>
+
+    <section id="tab-run"></section>
+    <section id="tab-tables" hidden></section>
+    <section id="tab-order" hidden></section>
+  </main>
+
+  <audio id="bell" preload="auto"><source src="/static/sounds/bell.mp3" type="audio/mpeg" /></audio>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    let waiterId = localStorage.getItem("waiterId") || "";
+    let cart = []; // {menu_id, name, price, qty, notes}
+    let orderTableId = new URLSearchParams(location.search).get("table") || "";
+    let prevReady = 0;
+
+    function myTables() {
+      return (TT.state.assignments || [])
+        .filter((a) => a.waiter_id === waiterId)
+        .map((a) => a.table_id);
+    }
+
+    function tableName(id) {
+      return (TT.state.tables || []).find((t) => t.id === id)?.number || id;
+    }
+
+    function fillWaiters() {
+      const waiters = (TT.state.staff || []).filter((s) => s.role === "waiter");
+      const sel = document.getElementById("waiter-select");
+      sel.innerHTML = waiters.map((w) =>
+        `<option value="${w.id}" ${w.id === waiterId ? "selected" : ""}>${w.name} (${w.id})</option>`
+      ).join("");
+      if (!waiterId && waiters[0]) {
+        waiterId = waiters[0].id;
+        localStorage.setItem("waiterId", waiterId);
+        sel.value = waiterId;
+      }
+      const me = waiters.find((w) => w.id === waiterId);
+      document.getElementById("who").textContent = me ? me.name : waiterId;
+    }
+
+    document.getElementById("waiter-select").onchange = (e) => {
+      waiterId = e.target.value;
+      localStorage.setItem("waiterId", waiterId);
+      render();
+    };
+
+    document.querySelectorAll(".tabs button").forEach((b) => {
+      b.onclick = () => {
+        document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        ["run", "tables", "order"].forEach((t) => {
+          document.getElementById("tab-" + t).hidden = t !== b.dataset.tab;
+        });
+        render();
+      };
+    });
+
+    async function pickup(oid) {
+      await TT.api(`/orders/${oid}/pickup?waiter_id=${encodeURIComponent(waiterId)}`, { method: "POST" });
+      TT.toast("Picked up");
+    }
+    async function deliver(oid) {
+      await TT.api(`/orders/${oid}/deliver`, { method: "POST" });
+      TT.toast("Delivered");
+    }
+    async function refire(oid) {
+      const note = prompt("Refire reason?", "Guest not satisfied") || "Refire";
+      await TT.api(`/orders/${oid}/refire`, { method: "POST", body: { note } });
+      TT.toast("Refire sent to kitchen");
+    }
+
+    function renderRun() {
+      const mine = myTables();
+      const ready = (TT.state.orders || []).filter(
+        (o) => o.status === "ready_for_pickup" && (mine.includes(o.table_id) || !mine.length)
+      );
+      const delivering = (TT.state.orders || []).filter(
+        (o) => o.status === "delivering" && o.delivered_by === waiterId
+      );
+
+      if (ready.length > prevReady) TT.play("bell");
+      prevReady = ready.length;
+
+      document.getElementById("tab-run").innerHTML = `
+        <div class="grid grid-2">
+          <div class="panel">
+            <h2>Ready for pickup (${ready.length})</h2>
+            ${ready.length ? ready.map((o) => `
+              <div class="order-card ${o.priority ? "priority" : ""}">
+                <div class="head">
+                  <strong>${o.table_number || tableName(o.table_id)}</strong>
+                  <span class="time-chip">${TT.timeAgo(o.qc_at || o.ready_at)}</span>
+                </div>
+                <ul class="item-list">${(o.items||[]).map(i => `<li><span>${i.name}</span><span>${TT.fmtMoney(i.price)}</span></li>`).join("")}</ul>
+                <div class="actions">
+                  <button class="primary" onclick="pickup('${o.id}')">Pickup</button>
+                </div>
+              </div>`).join("") : `<div class="empty">No plates waiting</div>`}
+          </div>
+          <div class="panel">
+            <h2>In hand (${delivering.length})</h2>
+            ${delivering.length ? delivering.map((o) => `
+              <div class="order-card">
+                <div class="head">
+                  <strong>${o.table_number || tableName(o.table_id)}</strong>
+                  <span class="status-pill delivering">delivering</span>
+                </div>
+                <ul class="item-list">${(o.items||[]).map(i => `<li>${i.name}</li>`).join("")}</ul>
+                <div class="actions">
+                  <button class="good" onclick="deliver('${o.id}')">Mark delivered</button>
+                  <button class="warn" onclick="refire('${o.id}')">Request refire</button>
+                </div>
+              </div>`).join("") : `<div class="empty">Nothing in transit</div>`}
+          </div>
+        </div>`;
+    }
+
+    function renderTables() {
+      const mine = myTables();
+      const tables = (TT.state.tables || []).filter((t) => mine.includes(t.id));
+      document.getElementById("tab-tables").innerHTML = `
+        <div class="tables-grid">
+          ${tables.map((t) => {
+            const open = (TT.state.orders || []).filter(
+              (o) => o.table_id === t.id && !["delivered", "cancelled"].includes(o.status)
+            );
+            return `
+              <div class="table-card ${t.status}" onclick="startOrderFor('${t.id}')">
+                <h3>${t.number.replace("Table ","T")}</h3>
+                <div class="seats">${t.status === "occupied" ? t.pax + " pax" : t.status}</div>
+                ${open.map(o => `<span class="badge">${TT.statusLabel(o.status)}</span>`).join("")}
+              </div>`;
+          }).join("") || `<div class="empty">No tables assigned to you</div>`}
+        </div>`;
+    }
+
+    function startOrderFor(tid) {
+      orderTableId = tid;
+      document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("active"));
+      document.querySelector('[data-tab="order"]').classList.add("active");
+      document.getElementById("tab-run").hidden = true;
+      document.getElementById("tab-tables").hidden = true;
+      document.getElementById("tab-order").hidden = false;
+      cart = [];
+      renderOrder();
+    }
+
+    function addToCart(menuId) {
+      const m = (TT.state.menu || []).find((x) => x.id === menuId);
+      if (!m || !m.available) return;
+      const ex = cart.find((c) => c.menu_id === menuId);
+      if (ex) ex.qty += 1;
+      else cart.push({ menu_id: m.id, name: m.name, price: m.price, qty: 1, notes: "" });
+      renderOrder();
+    }
+
+    function changeQty(menuId, d) {
+      const ex = cart.find((c) => c.menu_id === menuId);
+      if (!ex) return;
+      ex.qty += d;
+      if (ex.qty <= 0) cart = cart.filter((c) => c.menu_id !== menuId);
+      renderOrder();
+    }
+
+    async function submitOrder() {
+      if (!orderTableId) throw new Error("Pick a table first");
+      if (!cart.length) throw new Error("Cart is empty");
+      const items = cart.flatMap((c) =>
+        // API expands qty; send as qty on line
+        [{ menu_id: c.menu_id, qty: c.qty, notes: c.notes || "" }]
+      );
+      await TT.api("/orders", {
+        method: "POST",
+        body: {
+          table_id: orderTableId,
+          waiter_id: waiterId,
+          items,
+          notes: "",
+        },
+      });
+      cart = [];
+      TT.toast("Order sent to expeditor");
+      document.querySelector('[data-tab="run"]').click();
+    }
+
+    function renderOrder() {
+      const occupied = (TT.state.tables || []).filter((t) => t.status === "occupied");
+      const mine = myTables();
+      const options = occupied.filter((t) => !mine.length || mine.includes(t.id));
+      const menu = (TT.state.menu || []).filter((m) => m.available);
+      const byCat = {};
+      menu.forEach((m) => { (byCat[m.category] ||= []).push(m); });
+      const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+
+      document.getElementById("tab-order").innerHTML = `
+        <div class="field" style="margin-bottom:1rem">
+          <label style="color:var(--muted);font-size:.8rem">Table</label>
+          <select class="staff-select" id="order-table" style="width:100%;max-width:320px">
+            <option value="">Select occupied table…</option>
+            ${options.map((t) =>
+              `<option value="${t.id}" ${t.id===orderTableId?"selected":""}>${t.number} (${t.pax} pax)</option>`
+            ).join("")}
+          </select>
+        </div>
+        ${Object.entries(byCat).map(([cat, items]) => `
+          <h2 style="color:var(--muted);font-size:.8rem;letter-spacing:.08em;margin:1rem 0 .5rem;text-transform:uppercase">${cat}</h2>
+          <div class="menu-pick">
+            ${items.map((m) => `
+              <button class="item" onclick="addToCart('${m.id}')">
+                <div class="cat">${m.station}</div>
+                <strong>${m.name}</strong>
+                <div>${TT.fmtMoney(m.price)}</div>
+              </button>`).join("")}
+          </div>`).join("")}
+        <div style="height:80px"></div>
+        <div class="cart-bar">
+          <div>
+            <strong>${cart.reduce((s,c)=>s+c.qty,0)} items</strong>
+            · ${TT.fmtMoney(total)}
+            <div style="font-size:.8rem;color:var(--muted)">${cart.map(c=>`${c.qty}× ${c.name}`).join(", ") || "Cart empty"}</div>
+          </div>
+          <div class="actions">
+            ${cart.map(c => `
+              <span class="qty-row">
+                <button onclick="changeQty('${c.menu_id}',-1)">−</button>
+                <span>${c.qty}</span>
+                <button onclick="changeQty('${c.menu_id}',1)">+</button>
+              </span>`).join("")}
+            <button class="primary" onclick="submitOrder().catch(e=>TT.toast(e.message))">Send order</button>
+          </div>
+        </div>`;
+      const sel = document.getElementById("order-table");
+      if (sel) sel.onchange = (e) => { orderTableId = e.target.value; };
+    }
+
+    function render() {
+      fillWaiters();
+      renderRun();
+      renderTables();
+      if (!document.getElementById("tab-order").hidden) renderOrder();
+    }
+
+    TT.on("change", render);
+    TT.bootstrap().then(() => {
+      if (orderTableId) startOrderFor(orderTableId);
+    });
+  </script>
+</body>
+</html>

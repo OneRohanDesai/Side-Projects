@@ -1,0 +1,8 @@
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+SESSION_SECRET=generate_a_long_random_string
+# Optional: paste a refresh token after first owner login to keep the public catalog fresh
+# SPOTIFY_OWNER_REFRESH=
+# Local dev uses HTTPS (required by Spotify for localhost redirect URIs)
+APP_URL=https://localhost:5173
+SPOTIFY_REDIRECT_URI=https://localhost:5173/api/auth/callback

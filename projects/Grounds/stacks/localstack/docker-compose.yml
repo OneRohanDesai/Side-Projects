@@ -1,0 +1,24 @@
+services:
+  localstack:
+    image: localstack/localstack:3.7
+    container_name: grounds-localstack
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=s3,ec2,iam,sts,lambda,dynamodb,sqs,sns,kms,logs,cloudwatch,apigateway,events,ssm,secretsmanager,rds,ecr,elb,elbv2,cloudformation,route53,acm
+      - DEBUG=0
+      - PERSISTENCE=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LAMBDA_RUNTIME_EXECUTOR=docker
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  localstack-data:

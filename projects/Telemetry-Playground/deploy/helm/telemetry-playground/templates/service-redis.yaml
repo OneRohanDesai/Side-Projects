@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: {{ include "telemetry.namespace" . }}
+  labels:
+    {{- include "telemetry.labels" . | nindent 4 }}
+    app: redis
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: redis
+  ports:
+    - name: redis
+      port: 6379
+      targetPort: redis
+      protocol: TCP

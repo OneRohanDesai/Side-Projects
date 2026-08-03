@@ -1,0 +1,108 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Send Rate by Generator",
+      "gridPos": { "h": 9, "w": 16, "x": 0, "y": 0 },
+      "id": 1,
+      "targets": [
+        {
+          "expr": "sum by (generator) (rate(telemetry_packets_sent_total[1m]))",
+          "legendFormat": "{{generator}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "pps", "custom": { "drawStyle": "line", "lineInterpolation": "smooth", "fillOpacity": 15, "showPoints": "never" } },
+        "overrides": []
+      },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }
+    },
+    {
+      "type": "stat",
+      "title": "Active Requests",
+      "gridPos": { "h": 4, "w": 8, "x": 16, "y": 0 },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "sum(telemetry_active_requests{service=\"generator\"}) or vector(0)",
+          "refId": "A"
+        }
+      ],
+      "datasource": { "type": "prometheus", "uid": "prometheus" }
+    },
+    {
+      "type": "stat",
+      "title": "Send Errors / sec",
+      "gridPos": { "h": 5, "w": 8, "x": 16, "y": 4 },
+      "id": 3,
+      "targets": [
+        {
+          "expr": "sum(rate(telemetry_packets_send_errors_total[1m])) or vector(0)",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "ops", "decimals": 2 },
+        "overrides": []
+      },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }
+    },
+    {
+      "type": "timeseries",
+      "title": "Send Latency",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 9 },
+      "id": 4,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, sum by (le, generator) (rate(telemetry_send_latency_seconds_bucket[5m])))",
+          "legendFormat": "p50 {{generator}}",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum by (le, generator) (rate(telemetry_send_latency_seconds_bucket[5m])))",
+          "legendFormat": "p95 {{generator}}",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "s", "custom": { "drawStyle": "line", "lineInterpolation": "smooth", "fillOpacity": 8, "showPoints": "never" } },
+        "overrides": []
+      },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }
+    },
+    {
+      "type": "timeseries",
+      "title": "Malformed Packets",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 9 },
+      "id": 5,
+      "targets": [
+        {
+          "expr": "sum by (generator) (rate(telemetry_malformed_packets_total[1m]))",
+          "legendFormat": "{{generator}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "ops", "custom": { "drawStyle": "bars", "fillOpacity": 40, "showPoints": "never" } },
+        "overrides": []
+      },
+      "datasource": { "type": "prometheus", "uid": "prometheus" }
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": ["telemetry", "generator"],
+  "templating": { "list": [] },
+  "time": { "from": "now-15m", "to": "now" },
+  "timezone": "browser",
+  "title": "Generators",
+  "uid": "telemetry-generators",
+  "version": 1
+}

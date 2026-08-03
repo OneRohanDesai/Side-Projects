@@ -1,0 +1,51 @@
+# Kind / local development overrides.
+# Images are built by scripts/start.sh and loaded into the cluster.
+
+image:
+  generator: telemetry-generator
+  receiver: telemetry-receiver
+  dashboard: telemetry-dashboard
+  nginx: telemetry-nginx
+  redis: redis:7-alpine
+
+imageTag: local
+imagePullPolicy: Never
+
+replicas:
+  generator: 7
+  receiver: 3
+  dashboard: 1
+  nginx: 1
+  redis: 1
+
+ingress:
+  enabled: true
+  host: telemetry.local
+
+config:
+  environment: local
+  region: kind
+  logLevel: INFO
+
+autoscaling:
+  enabled: false
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+resources:
+  generator:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+  receiver:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi

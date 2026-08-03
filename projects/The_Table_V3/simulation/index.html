@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>Simulation Control — The Table</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+  <style>
+    .sim-banner {
+      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(120deg, #1a2740, #1c1530);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.2rem;
+    }
+    .sim-banner .title { font-size: 1.15rem; font-weight: 700; }
+    .sim-banner .sub { color: var(--muted); font-size: .9rem; margin-top: .25rem; max-width: 42rem; }
+    .sim-controls { display: flex; gap: .55rem; flex-wrap: wrap; align-items: center; }
+    .sim-controls button { min-width: 140px; font-weight: 600; padding: .85rem 1.2rem; font-size: 1rem; }
+    .sim-on { box-shadow: 0 0 0 2px rgba(34,197,94,.35); }
+    .log-box {
+      font-family: var(--mono);
+      font-size: .78rem;
+      line-height: 1.45;
+      max-height: 420px;
+      overflow: auto;
+      background: #0a0d12;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .75rem;
+    }
+    .log-line { padding: .2rem 0; border-bottom: 1px solid #1a2230; }
+    .log-line .ts { color: #64748b; margin-right: .45rem; }
+    .log-line.floor { color: #86efac; }
+    .log-line.waiter { color: #93c5fd; }
+    .log-line.expeditor { color: #fcd34d; }
+    .log-line.station { color: #fdba74; }
+    .log-line.info { color: #e2e8f0; }
+    .log-line.warn, .log-line.error { color: #fca5a5; }
+    .mini-tables {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+      gap: .35rem;
+    }
+    .mini-t {
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: .35rem .2rem;
+      text-align: center;
+      font-size: .72rem;
+      background: var(--bg2);
+    }
+    .mini-t.vacant { border-color: #166534; color: #86efac; }
+    .mini-t.occupied { border-color: #b91c1c; color: #fca5a5; }
+    .mini-t.dirty { border-color: #a16207; color: #fcd34d; }
+    .pipe {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .5rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 900px) { .pipe { grid-template-columns: repeat(2, 1fr); } }
+    .pipe .step {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .7rem;
+      text-align: center;
+    }
+    .pipe .step .n { font-size: 1.5rem; font-weight: 700; }
+    .pipe .step .l { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
+    .badge-sim {
+      display: inline-flex; align-items: center; gap: .35rem;
+      padding: .25rem .6rem; border-radius: 999px; font-size: .75rem;
+      background: #14532d; color: #bbf7d0; border: 1px solid #166534;
+    }
+    .badge-sim.off { background: #3f1d1d; color: #fecaca; border-color: #7f1d1d; }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Simulation <span>Control</span></h1>
+      <div class="meta">
+        <span class="live-dot"></span>
+        <span id="sim-badge" class="badge-sim off">OFF</span>
+        <span>Drives the real restaurant APIs</span>
+      </div>
+    </div>
+    <nav class="role-nav">
+      <a href="/">Hub</a>
+      <a href="/floor">Floor</a>
+      <a href="/waiter">Waiter</a>
+      <a href="/expeditor">Expeditor</a>
+      <a href="/station">Kitchen</a>
+      <a href="/executive">Executive</a>
+      <a href="/simulation" class="active">Simulation</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="sim-banner">
+      <div>
+        <div class="title">Full-restaurant service simulation</div>
+        <div class="sub">
+          Click <strong>Run the simulation</strong> to start medium-pace auto-service across floor,
+          waiters, expeditor, every kitchen station, QC, run food, and table turns.
+          Other open pages (/floor, /waiter, /station…) update live — same data, same WebSockets.
+          Simulation stays <strong>off</strong> until you start it.
+        </div>
+      </div>
+      <div class="sim-controls">
+        <button id="btn-run" class="primary good" onclick="startSim()">▶ Run the simulation</button>
+        <button id="btn-stop" class="danger" onclick="stopSim()" disabled>■ Stop</button>
+      </div>
+    </div>
+
+    <div class="stat-row" id="stats"></div>
+
+    <div class="pipe" id="pipeline"></div>
+
+    <div class="grid grid-2">
+      <div class="panel">
+        <h2>Floor map (live)</h2>
+        <div class="mini-tables" id="floor-mini"></div>
+      </div>
+      <div class="panel">
+        <h2>Active orders</h2>
+        <div id="orders-live"></div>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:1rem">
+      <div class="panel">
+        <h2>Kitchen tickets by station</h2>
+        <div id="stations-live"></div>
+      </div>
+      <div class="panel">
+        <h2>Event log</h2>
+        <div class="log-box" id="log"></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1rem">
+      <h2>Waiter run food</h2>
+      <div id="waiter-live"></div>
+    </div>
+  </main>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    let sim = { running: false, log: [], ticks: 0, actions: 0 };
+    const logLines = [];
+
+    async function startSim() {
+      try {
+        sim = await TT.api("/simulation/start", { method: "POST" });
+        TT.toast("Simulation running — open Floor / Kitchen to watch live");
+        applySimUi();
+        renderLog();
+      } catch (e) {
+        TT.toast(e.message || String(e));
+      }
+    }
+
+    async function stopSim() {
+      try {
+        sim = await TT.api("/simulation/stop", { method: "POST" });
+        TT.toast("Simulation stopped");
+        applySimUi();
+      } catch (e) {
+        TT.toast(e.message || String(e));
+      }
+    }
+
+    function applySimUi() {
+      const on = !!sim.running;
+      document.getElementById("btn-run").disabled = on;
+      document.getElementById("btn-stop").disabled = !on;
+      document.getElementById("btn-run").classList.toggle("sim-on", on);
+      const badge = document.getElementById("sim-badge");
+      badge.textContent = on ? "RUNNING · medium" : "OFF";
+      badge.classList.toggle("off", !on);
+    }
+
+    function pushLog(entry) {
+      if (!entry) return;
+      logLines.push(entry);
+      while (logLines.length > 200) logLines.shift();
+      renderLog();
+    }
+
+    function renderLog() {
+      const box = document.getElementById("log");
+      const lines = logLines.length ? logLines : (sim.log || []);
+      box.innerHTML = [...lines].slice(-100).reverse().map((e) => {
+        const t = (e.ts || "").slice(11, 19);
+        return `<div class="log-line ${e.level || "info"}"><span class="ts">${t}</span>${escapeHtml(e.message || "")}</div>`;
+      }).join("") || `<div class="empty" style="border:0">No events yet — click Run the simulation</div>`;
+      // keep near top (newest first)
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    function render() {
+      const tables = TT.state.tables || [];
+      const orderList = TT.state.orders || [];
+      const tickets = (() => {
+        const fromState = TT.state.tickets || [];
+        if (fromState.length) return fromState;
+        const out = [];
+        orderList.forEach((o) => (o.tickets || []).forEach((t) => out.push(t)));
+        return out;
+      })();
+
+      const active = orderList.filter((o) => !["delivered", "cancelled"].includes(o.status));
+      const counts = {
+        vacant: tables.filter((t) => t.status === "vacant").length,
+        occupied: tables.filter((t) => t.status === "occupied").length,
+        dirty: tables.filter((t) => t.status === "dirty").length,
+        submitted: active.filter((o) => o.status === "submitted").length,
+        kitchen: active.filter((o) => o.status === "in_kitchen").length,
+        ready: active.filter((o) => o.status === "ready").length,
+        pickup: active.filter((o) => o.status === "ready_for_pickup").length,
+        delivering: active.filter((o) => o.status === "delivering").length,
+        ticketsOpen: tickets.filter((t) => ["pending", "cooking"].includes(t.status)).length,
+      };
+
+      const a = TT.state.analytics || {};
+      document.getElementById("stats").innerHTML = `
+        <div class="stat"><div class="label">Sim ticks</div><div class="value">${sim.ticks || 0}</div></div>
+        <div class="stat"><div class="label">Sim actions</div><div class="value">${sim.actions || 0}</div></div>
+        <div class="stat"><div class="label">Occupied</div><div class="value">${counts.occupied}</div></div>
+        <div class="stat"><div class="label">Open tickets</div><div class="value">${counts.ticketsOpen}</div></div>
+        <div class="stat"><div class="label">Active orders</div><div class="value">${active.length}</div></div>
+        <div class="stat"><div class="label">Revenue today</div><div class="value">${TT.fmtMoney(a.revenue)}</div></div>
+      `;
+
+      document.getElementById("pipeline").innerHTML = `
+        <div class="step"><div class="n">${counts.submitted}</div><div class="l">Submitted</div></div>
+        <div class="step"><div class="n">${counts.kitchen}</div><div class="l">In kitchen</div></div>
+        <div class="step"><div class="n">${counts.ready}</div><div class="l">QC ready</div></div>
+        <div class="step"><div class="n">${counts.pickup}</div><div class="l">Pickup</div></div>
+        <div class="step"><div class="n">${counts.delivering}</div><div class="l">Delivering</div></div>
+      `;
+
+      document.getElementById("floor-mini").innerHTML = tables.map((t) => {
+        const num = (t.number || "").replace("Table ", "T");
+        return `<div class="mini-t ${t.status}" title="${t.number} · ${t.status}">${num}<br>${t.status === "occupied" ? t.pax + "p" : t.status[0]}</div>`;
+      }).join("");
+
+      document.getElementById("orders-live").innerHTML = active.length
+        ? active.slice(0, 20).map((o) => `
+          <div class="order-card ${o.priority ? "priority" : ""}" style="margin-bottom:.5rem">
+            <div class="head">
+              <strong>${o.table_number || o.table_id}</strong>
+              <span class="status-pill ${o.status}">${TT.statusLabel(o.status)}</span>
+            </div>
+            <div style="font-size:.85rem;color:var(--muted)">${(o.items || []).map((i) => i.name).join(", ")}</div>
+            <div style="font-size:.75rem;margin-top:.25rem">${TT.timeAgo(o.created_at)} ago · tickets ${
+              (o.tickets || []).filter((t) => t.status === "done").length
+            }/${(o.tickets || []).length}</div>
+          </div>`).join("")
+        : `<div class="empty">No active orders</div>`;
+
+      const bySt = {};
+      tickets.filter((t) => ["pending", "cooking"].includes(t.status)).forEach((t) => {
+        (bySt[t.station] ||= { pending: 0, cooking: 0 }).status = t.status;
+        bySt[t.station][t.status === "cooking" ? "cooking" : "pending"]++;
+      });
+      const stations = TT.state.stations?.length
+        ? TT.state.stations
+        : ["grill", "saute", "sauce", "fry", "cold", "pastry", "beverage"].map((id) => ({ id, name: id }));
+      document.getElementById("stations-live").innerHTML = `
+        <ul class="item-list">
+          ${stations.map((s) => {
+            const id = s.id || s;
+            const name = s.name || s;
+            const st = bySt[id] || { pending: 0, cooking: 0 };
+            return `<li><span><a href="/station?station=${id}">${name}</a></span>
+              <span>⏳ ${st.pending} · 🔥 ${st.cooking}</span></li>`;
+          }).join("")}
+        </ul>`;
+
+      const run = active.filter((o) => ["ready_for_pickup", "delivering"].includes(o.status));
+      document.getElementById("waiter-live").innerHTML = run.length
+        ? run.map((o) => `
+          <div class="order-card">
+            <strong>${o.table_number || o.table_id}</strong>
+            <span class="status-pill ${o.status}">${TT.statusLabel(o.status)}</span>
+            <span style="color:var(--muted);font-size:.85rem"> · waiter ${o.delivered_by || o.waiter_id || "—"}</span>
+          </div>`).join("")
+        : `<div class="empty">No plates in the pass / in hand</div>`;
+
+      applySimUi();
+    }
+
+    TT.on("change", render);
+    TT.on("simulation_status", (data) => {
+      sim = data || sim;
+      if (data?.log) {
+        data.log.forEach((e) => {
+          if (!logLines.find((x) => x.ts === e.ts && x.message === e.message)) logLines.push(e);
+        });
+      }
+      applySimUi();
+      render();
+      renderLog();
+    });
+    TT.on("simulation_log", (entry) => {
+      pushLog(entry);
+      // keep actions counter snappy
+      if (sim) sim.actions = (sim.actions || 0) + (entry?.level === "info" && entry.message?.includes("stopped") ? 0 : 0);
+    });
+    TT.on("analytics_updated", (a) => {
+      TT.state.analytics = a;
+      render();
+    });
+
+    TT.bootstrap().then(async () => {
+      try {
+        sim = await TT.api("/simulation");
+        (sim.log || []).forEach((e) => logLines.push(e));
+      } catch {}
+      try { TT.state.analytics = await TT.api("/analytics"); } catch {}
+      applySimUi();
+      render();
+      renderLog();
+      setInterval(async () => {
+        if (!sim.running) return;
+        try {
+          sim = await TT.api("/simulation");
+          applySimUi();
+        } catch {}
+        try { TT.state.analytics = await TT.api("/analytics"); } catch {}
+        // soft refresh tickets if WS missed
+        try {
+          const st = await TT.api("/state");
+          Object.assign(TT.state, st);
+          if (st.simulation) sim = st.simulation;
+          render();
+        } catch {}
+      }, 4000);
+    });
+  </script>
+</body>
+</html>

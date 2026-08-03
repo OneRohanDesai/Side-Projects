@@ -1,0 +1,17 @@
+apps/desktop/src-tauri/target
+apps/web/build/
+apps/web/.output
+build/
+data/*.db
+data/*.db-*
+dist/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.local
+*.log
+node_modules/
+.svelte-kit/
+.turbo
+.vite

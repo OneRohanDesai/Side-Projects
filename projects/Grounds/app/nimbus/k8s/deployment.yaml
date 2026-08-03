@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nimbus
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nimbus-config
+  namespace: nimbus
+data:
+  APP_ENV: "k8s"
+  LOG_LEVEL: "info"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nimbus-api
+  namespace: nimbus
+  labels:
+    app: nimbus-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nimbus-api
+  template:
+    metadata:
+      labels:
+        app: nimbus-api
+    spec:
+      containers:
+        - name: api
+          image: grounds-nimbus-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: nimbus-config
+          env:
+            - name: DATABASE_URL
+              value: postgresql+psycopg://nimbus:nimbus@nimbus-db:5432/nimbus
+            - name: REDIS_URL
+              value: redis://nimbus-redis:6379/0
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nimbus-api
+  namespace: nimbus
+spec:
+  selector:
+    app: nimbus-api
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30080
+  type: NodePort

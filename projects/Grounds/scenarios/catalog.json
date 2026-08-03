@@ -1,0 +1,2903 @@
+{
+  "version": 1,
+  "name": "Grounds",
+  "description": "Local practice arena: 50 AWS + 100 DevOps + SadServers troubleshooting",
+  "scenarios": [
+    {
+      "id": "aws-001",
+      "track": "aws",
+      "number": 1,
+      "title": "AWS Key Pair Creation",
+      "objective": "Complete the AWS task \u00abAWS Key Pair Creation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "ssh"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-002",
+      "track": "aws",
+      "number": 2,
+      "title": "Security Group Configuration",
+      "objective": "Complete the AWS task \u00abSecurity Group Configuration\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "networking",
+        "security"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-003",
+      "track": "aws",
+      "number": 3,
+      "title": "Subnet Setup",
+      "objective": "Complete the AWS task \u00abSubnet Setup\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "vpc",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-004",
+      "track": "aws",
+      "number": 4,
+      "title": "S3 Bucket Versioning",
+      "objective": "Complete the AWS task \u00abS3 Bucket Versioning\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "s3"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-005",
+      "track": "aws",
+      "number": 5,
+      "title": "GP3 EBS Volume Creation",
+      "objective": "Complete the AWS task \u00abGP3 EBS Volume Creation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ebs",
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-006",
+      "track": "aws",
+      "number": 6,
+      "title": "EC2 Instance Launch",
+      "objective": "Complete the AWS task \u00abEC2 Instance Launch\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-007",
+      "track": "aws",
+      "number": 7,
+      "title": "EC2 Instance Type Modification",
+      "objective": "Complete the AWS task \u00abEC2 Instance Type Modification\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-008",
+      "track": "aws",
+      "number": 8,
+      "title": "EC2 Stop Protection Setup",
+      "objective": "Complete the AWS task \u00abEC2 Stop Protection Setup\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-009",
+      "track": "aws",
+      "number": 9,
+      "title": "EC2 Termination Protection Setup",
+      "objective": "Complete the AWS task \u00abEC2 Termination Protection Setup\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-010",
+      "track": "aws",
+      "number": 10,
+      "title": "Elastic IP Association with EC2",
+      "objective": "Complete the AWS task \u00abElastic IP Association with EC2\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-011",
+      "track": "aws",
+      "number": 11,
+      "title": "Elastic Network Interface Attachment",
+      "objective": "Complete the AWS task \u00abElastic Network Interface Attachment\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-012",
+      "track": "aws",
+      "number": 12,
+      "title": "EBS Volume Attachment to EC2",
+      "objective": "Complete the AWS task \u00abEBS Volume Attachment to EC2\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ebs",
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-013",
+      "track": "aws",
+      "number": 13,
+      "title": "AMI Creation from EC2 Instance",
+      "objective": "Complete the AWS task \u00abAMI Creation from EC2 Instance\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "ami"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-014",
+      "track": "aws",
+      "number": 14,
+      "title": "EC2 Instance Termination",
+      "objective": "Complete the AWS task \u00abEC2 Instance Termination\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-015",
+      "track": "aws",
+      "number": 15,
+      "title": "EBS Volume Snapshot Creation",
+      "objective": "Complete the AWS task \u00abEBS Volume Snapshot Creation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ebs",
+        "backup"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-016",
+      "track": "aws",
+      "number": 16,
+      "title": "IAM User Creation",
+      "objective": "Complete the AWS task \u00abIAM User Creation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "iam"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-017",
+      "track": "aws",
+      "number": 17,
+      "title": "IAM Group Management",
+      "objective": "Complete the AWS task \u00abIAM Group Management\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "iam"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-018",
+      "track": "aws",
+      "number": 18,
+      "title": "Read-Only IAM Policy for EC2 Access",
+      "objective": "Complete the AWS task \u00abRead-Only IAM Policy for EC2 Access\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "iam"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-019",
+      "track": "aws",
+      "number": 19,
+      "title": "IAM Policy Attachment to User",
+      "objective": "Complete the AWS task \u00abIAM Policy Attachment to User\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "iam"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-020",
+      "track": "aws",
+      "number": 20,
+      "title": "IAM Role Creation for EC2",
+      "objective": "Complete the AWS task \u00abIAM Role Creation for EC2\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "iam",
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-021",
+      "track": "aws",
+      "number": 21,
+      "title": "EC2 Setup with Elastic IP for Hosting",
+      "objective": "Complete the AWS task \u00abEC2 Setup with Elastic IP for Hosting\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-022",
+      "track": "aws",
+      "number": 22,
+      "title": "Secure SSH Access Configuration for EC2",
+      "objective": "Complete the AWS task \u00abSecure SSH Access Configuration for EC2\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ec2",
+        "ssh",
+        "security"
+      ],
+      "needs": [
+        "localstack",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-023",
+      "track": "aws",
+      "number": 23,
+      "title": "S3 Bucket Data Migration Using AWS CLI",
+      "objective": "Complete the AWS task \u00abS3 Bucket Data Migration Using AWS CLI\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "s3",
+        "cli"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-024",
+      "track": "aws",
+      "number": 24,
+      "title": "Application Load Balancer Configuration",
+      "objective": "Complete the AWS task \u00abApplication Load Balancer Configuration\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "elb",
+        "ec2"
+      ],
+      "needs": [
+        "localstack",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-025",
+      "track": "aws",
+      "number": 25,
+      "title": "EC2 Monitoring with CloudWatch Alarm",
+      "objective": "Complete the AWS task \u00abEC2 Monitoring with CloudWatch Alarm\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "cloudwatch",
+        "monitoring"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-026",
+      "track": "aws",
+      "number": 26,
+      "title": "EC2 Web Server Setup with Nginx",
+      "objective": "Complete the AWS task \u00abEC2 Web Server Setup with Nginx\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "nginx",
+        "ec2"
+      ],
+      "needs": [
+        "nimbus",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-027",
+      "track": "aws",
+      "number": 27,
+      "title": "Public VPC Configuration with EC2 Access",
+      "objective": "Complete the AWS task \u00abPublic VPC Configuration with EC2 Access\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "vpc",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-028",
+      "track": "aws",
+      "number": 28,
+      "title": "Private Amazon ECR Repository Creation",
+      "objective": "Complete the AWS task \u00abPrivate Amazon ECR Repository Creation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ecr",
+        "docker"
+      ],
+      "needs": [
+        "localstack",
+        "docker"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-029",
+      "track": "aws",
+      "number": 29,
+      "title": "VPC Peering Between Public and Private Networks",
+      "objective": "Complete the AWS task \u00abVPC Peering Between Public and Private Networks\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "vpc",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-030",
+      "track": "aws",
+      "number": 30,
+      "title": "NAT Instance Setup for Private EC2 Internet Access",
+      "objective": "Complete the AWS task \u00abNAT Instance Setup for Private EC2 Internet Access\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "vpc",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-031",
+      "track": "aws",
+      "number": 31,
+      "title": "Private RDS Instance Configuration",
+      "objective": "Complete the AWS task \u00abPrivate RDS Instance Configuration\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "rds",
+        "database"
+      ],
+      "needs": [
+        "localstack",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-032",
+      "track": "aws",
+      "number": 32,
+      "title": "RDS Snapshot and Restoration",
+      "objective": "Complete the AWS task \u00abRDS Snapshot and Restoration\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ebs",
+        "backup"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-033",
+      "track": "aws",
+      "number": 33,
+      "title": "AWS Lambda Function Creation",
+      "objective": "Complete the AWS task \u00abAWS Lambda Function Creation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "lambda",
+        "serverless"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-034",
+      "track": "aws",
+      "number": 34,
+      "title": "Lambda Function Deployment Using CLI",
+      "objective": "Complete the AWS task \u00abLambda Function Deployment Using CLI\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "lambda",
+        "serverless"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-035",
+      "track": "aws",
+      "number": 35,
+      "title": "AWS Application Deployment and Management",
+      "objective": "Complete the AWS task \u00abAWS Application Deployment and Management\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "aws"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-036",
+      "track": "aws",
+      "number": 36,
+      "title": "EC2 Load Balancing with ALB",
+      "objective": "Complete the AWS task \u00abEC2 Load Balancing with ALB\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "elb",
+        "ec2"
+      ],
+      "needs": [
+        "localstack",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-037",
+      "track": "aws",
+      "number": 37,
+      "title": "EC2 Access Management with S3 IAM Roles",
+      "objective": "Complete the AWS task \u00abEC2 Access Management with S3 IAM Roles\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "iam",
+        "ec2"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-038",
+      "track": "aws",
+      "number": 38,
+      "title": "Containerized Application Deployment with ECS",
+      "objective": "Complete the AWS task \u00abContainerized Application Deployment with ECS\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ecs",
+        "docker"
+      ],
+      "needs": [
+        "localstack",
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-039",
+      "track": "aws",
+      "number": 39,
+      "title": "Static Website Hosting on Amazon S3",
+      "objective": "Complete the AWS task \u00abStatic Website Hosting on Amazon S3\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "s3",
+        "static"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-040",
+      "track": "aws",
+      "number": 40,
+      "title": "Troubleshooting EC2 Application Connectivity",
+      "objective": "Complete the AWS task \u00abTroubleshooting EC2 Application Connectivity\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "networking",
+        "debug"
+      ],
+      "needs": [
+        "nimbus",
+        "linux"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-041",
+      "track": "aws",
+      "number": 41,
+      "title": "Data Encryption with AWS KMS",
+      "objective": "Complete the AWS task \u00abData Encryption with AWS KMS\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "kms",
+        "security"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-042",
+      "track": "aws",
+      "number": 42,
+      "title": "NoSQL Database Management with DynamoDB",
+      "objective": "Complete the AWS task \u00abNoSQL Database Management with DynamoDB\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "dynamodb"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-043",
+      "track": "aws",
+      "number": 43,
+      "title": "Kubernetes Cluster Management with Amazon EKS",
+      "objective": "Complete the AWS task \u00abKubernetes Cluster Management with Amazon EKS\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "eks",
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-044",
+      "track": "aws",
+      "number": 44,
+      "title": "Auto Scaling Implementation for High Availability",
+      "objective": "Complete the AWS task \u00abAuto Scaling Implementation for High Availability\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "asg",
+        "ec2"
+      ],
+      "needs": [
+        "localstack",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-045",
+      "track": "aws",
+      "number": 45,
+      "title": "NAT Gateway Configuration for Private VPC Access",
+      "objective": "Complete the AWS task \u00abNAT Gateway Configuration for Private VPC Access\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "vpc",
+        "networking"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-046",
+      "track": "aws",
+      "number": 46,
+      "title": "Event-Driven Automation with S3 and Lambda",
+      "objective": "Complete the AWS task \u00abEvent-Driven Automation with S3 and Lambda\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "lambda",
+        "serverless"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-047",
+      "track": "aws",
+      "number": 47,
+      "title": "Reliable Messaging with SQS and SNS",
+      "objective": "Complete the AWS task \u00abReliable Messaging with SQS and SNS\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "sqs",
+        "sns"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-048",
+      "track": "aws",
+      "number": 48,
+      "title": "Infrastructure Automation with CloudFormation",
+      "objective": "Complete the AWS task \u00abInfrastructure Automation with CloudFormation\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "cloudformation",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-049",
+      "track": "aws",
+      "number": 49,
+      "title": "Centralized Audit Logging Across VPCs",
+      "objective": "Complete the AWS task \u00abCentralized Audit Logging Across VPCs\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "cloudtrail",
+        "logs"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "aws-050",
+      "track": "aws",
+      "number": 50,
+      "title": "EC2 Storage Expansion and Management",
+      "objective": "Complete the AWS task \u00abEC2 Storage Expansion and Management\u00bb using LocalStack (and Terraform/CLI where appropriate). Operate against the local Nimbus production stack when the task involves app hosting, load balancing, storage, or IAM for workloads.",
+      "skills": [
+        "ebs",
+        "ec2"
+      ],
+      "needs": [
+        "localstack",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-001",
+      "track": "devops",
+      "number": 1,
+      "title": "Linux User Creation with Non-Interactive Shell",
+      "objective": "Complete the DevOps task \u00abLinux User Creation with Non-Interactive Shell\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "users"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-002",
+      "track": "devops",
+      "number": 2,
+      "title": "Temporary User Account Setup with Expiry",
+      "objective": "Complete the DevOps task \u00abTemporary User Account Setup with Expiry\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "users"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-003",
+      "track": "devops",
+      "number": 3,
+      "title": "Secure Root SSH Access Configuration",
+      "objective": "Complete the DevOps task \u00abSecure Root SSH Access Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "ssh",
+        "security"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-004",
+      "track": "devops",
+      "number": 4,
+      "title": "Linux Script Permission Management",
+      "objective": "Complete the DevOps task \u00abLinux Script Permission Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "permissions"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-005",
+      "track": "devops",
+      "number": 5,
+      "title": "SELinux Installation and Configuration",
+      "objective": "Complete the DevOps task \u00abSELinux Installation and Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "security"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-006",
+      "track": "devops",
+      "number": 6,
+      "title": "Cron Job Scheduling in Linux",
+      "objective": "Complete the DevOps task \u00abCron Job Scheduling in Linux\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "cron"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-007",
+      "track": "devops",
+      "number": 7,
+      "title": "Linux SSH Authentication Setup",
+      "objective": "Complete the DevOps task \u00abLinux SSH Authentication Setup\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "ssh",
+        "security"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-008",
+      "track": "devops",
+      "number": 8,
+      "title": "Ansible Installation and Setup",
+      "objective": "Complete the DevOps task \u00abAnsible Installation and Setup\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "linux",
+        "ansible"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-009",
+      "track": "devops",
+      "number": 9,
+      "title": "MariaDB Troubleshooting and Recovery",
+      "objective": "Complete the DevOps task \u00abMariaDB Troubleshooting and Recovery\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "database",
+        "debug"
+      ],
+      "needs": [
+        "linux",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-010",
+      "track": "devops",
+      "number": 10,
+      "title": "Bash Scripting Fundamentals",
+      "objective": "Complete the DevOps task \u00abBash Scripting Fundamentals\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "bash",
+        "scripting"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-011",
+      "track": "devops",
+      "number": 11,
+      "title": "Apache Tomcat Installation and Configuration",
+      "objective": "Complete the DevOps task \u00abApache Tomcat Installation and Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "java",
+        "tomcat"
+      ],
+      "needs": [
+        "linux",
+        "docker"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-012",
+      "track": "devops",
+      "number": 12,
+      "title": "Linux Network Services Management",
+      "objective": "Complete the DevOps task \u00abLinux Network Services Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "networking",
+        "security"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-013",
+      "track": "devops",
+      "number": 13,
+      "title": "IPTables Firewall Configuration",
+      "objective": "Complete the DevOps task \u00abIPTables Firewall Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "networking",
+        "security"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-014",
+      "track": "devops",
+      "number": 14,
+      "title": "Linux Process Troubleshooting",
+      "objective": "Complete the DevOps task \u00abLinux Process Troubleshooting\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "debug"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-015",
+      "track": "devops",
+      "number": 15,
+      "title": "SSL Configuration for Nginx",
+      "objective": "Complete the DevOps task \u00abSSL Configuration for Nginx\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "nginx",
+        "tls"
+      ],
+      "needs": [
+        "nimbus",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-016",
+      "track": "devops",
+      "number": 16,
+      "title": "Nginx Load Balancer Configuration",
+      "objective": "Complete the DevOps task \u00abNginx Load Balancer Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "nginx",
+        "lb"
+      ],
+      "needs": [
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-017",
+      "track": "devops",
+      "number": 17,
+      "title": "PostgreSQL Installation and Setup",
+      "objective": "Complete the DevOps task \u00abPostgreSQL Installation and Setup\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "postgres",
+        "database"
+      ],
+      "needs": [
+        "nimbus",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-018",
+      "track": "devops",
+      "number": 18,
+      "title": "Database Server Configuration",
+      "objective": "Complete the DevOps task \u00abDatabase Server Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "postgres",
+        "database"
+      ],
+      "needs": [
+        "nimbus",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-019",
+      "track": "devops",
+      "number": 19,
+      "title": "Web Application Deployment",
+      "objective": "Complete the DevOps task \u00abWeb Application Deployment\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "deploy",
+        "web"
+      ],
+      "needs": [
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-020",
+      "track": "devops",
+      "number": 20,
+      "title": "Nginx and PHP-FPM Integration via Unix Socket",
+      "objective": "Complete the DevOps task \u00abNginx and PHP-FPM Integration via Unix Socket\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "nginx",
+        "php"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-021",
+      "track": "devops",
+      "number": 21,
+      "title": "Git Repository Setup on Storage Server",
+      "objective": "Complete the DevOps task \u00abGit Repository Setup on Storage Server\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-022",
+      "track": "devops",
+      "number": 22,
+      "title": "Git Repository Cloning on Storage Server",
+      "objective": "Complete the DevOps task \u00abGit Repository Cloning on Storage Server\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-023",
+      "track": "devops",
+      "number": 23,
+      "title": "Git Repository Forking",
+      "objective": "Complete the DevOps task \u00abGit Repository Forking\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-024",
+      "track": "devops",
+      "number": 24,
+      "title": "Git Branch Creation and Management",
+      "objective": "Complete the DevOps task \u00abGit Branch Creation and Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-025",
+      "track": "devops",
+      "number": 25,
+      "title": "Git Branch Merging",
+      "objective": "Complete the DevOps task \u00abGit Branch Merging\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-026",
+      "track": "devops",
+      "number": 26,
+      "title": "Git Remote Repository Management",
+      "objective": "Complete the DevOps task \u00abGit Remote Repository Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-027",
+      "track": "devops",
+      "number": 27,
+      "title": "Reverting Changes in Git",
+      "objective": "Complete the DevOps task \u00abReverting Changes in Git\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-028",
+      "track": "devops",
+      "number": 28,
+      "title": "Git Cherry-Pick Operations",
+      "objective": "Complete the DevOps task \u00abGit Cherry-Pick Operations\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-029",
+      "track": "devops",
+      "number": 29,
+      "title": "Pull Request Management in Git",
+      "objective": "Complete the DevOps task \u00abPull Request Management in Git\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-030",
+      "track": "devops",
+      "number": 30,
+      "title": "Git Hard Reset Operations",
+      "objective": "Complete the DevOps task \u00abGit Hard Reset Operations\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-031",
+      "track": "devops",
+      "number": 31,
+      "title": "Git Stash Workflow",
+      "objective": "Complete the DevOps task \u00abGit Stash Workflow\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-032",
+      "track": "devops",
+      "number": 32,
+      "title": "Git Rebase Operations",
+      "objective": "Complete the DevOps task \u00abGit Rebase Operations\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-033",
+      "track": "devops",
+      "number": 33,
+      "title": "Resolving Git Merge Conflicts",
+      "objective": "Complete the DevOps task \u00abResolving Git Merge Conflicts\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-034",
+      "track": "devops",
+      "number": 34,
+      "title": "Git Hooks Configuration",
+      "objective": "Complete the DevOps task \u00abGit Hooks Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "git"
+      ],
+      "needs": [
+        "git"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-035",
+      "track": "devops",
+      "number": 35,
+      "title": "Docker Installation and Service Management",
+      "objective": "Complete the DevOps task \u00abDocker Installation and Service Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-036",
+      "track": "devops",
+      "number": 36,
+      "title": "Nginx Container Deployment with Docker",
+      "objective": "Complete the DevOps task \u00abNginx Container Deployment with Docker\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-037",
+      "track": "devops",
+      "number": 37,
+      "title": "File Transfer to Docker Containers",
+      "objective": "Complete the DevOps task \u00abFile Transfer to Docker Containers\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-038",
+      "track": "devops",
+      "number": 38,
+      "title": "Docker Image Management",
+      "objective": "Complete the DevOps task \u00abDocker Image Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-039",
+      "track": "devops",
+      "number": 39,
+      "title": "Creating Docker Images from Containers",
+      "objective": "Complete the DevOps task \u00abCreating Docker Images from Containers\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-040",
+      "track": "devops",
+      "number": 40,
+      "title": "Docker EXEC Command Operations",
+      "objective": "Complete the DevOps task \u00abDocker EXEC Command Operations\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-041",
+      "track": "devops",
+      "number": 41,
+      "title": "Writing Dockerfiles",
+      "objective": "Complete the DevOps task \u00abWriting Dockerfiles\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-042",
+      "track": "devops",
+      "number": 42,
+      "title": "Docker Network Configuration",
+      "objective": "Complete the DevOps task \u00abDocker Network Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-043",
+      "track": "devops",
+      "number": 43,
+      "title": "Docker Port Mapping Configuration",
+      "objective": "Complete the DevOps task \u00abDocker Port Mapping Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-044",
+      "track": "devops",
+      "number": 44,
+      "title": "Docker Compose File Creation",
+      "objective": "Complete the DevOps task \u00abDocker Compose File Creation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-045",
+      "track": "devops",
+      "number": 45,
+      "title": "Dockerfile Troubleshooting and Optimization",
+      "objective": "Complete the DevOps task \u00abDockerfile Troubleshooting and Optimization\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-046",
+      "track": "devops",
+      "number": 46,
+      "title": "Application Deployment Using Docker Containers",
+      "objective": "Complete the DevOps task \u00abApplication Deployment Using Docker Containers\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-047",
+      "track": "devops",
+      "number": 47,
+      "title": "Python Application Deployment with Docker",
+      "objective": "Complete the DevOps task \u00abPython Application Deployment with Docker\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "docker",
+        "python"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-048",
+      "track": "devops",
+      "number": 48,
+      "title": "Kubernetes Pod Deployment",
+      "objective": "Complete the DevOps task \u00abKubernetes Pod Deployment\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-049",
+      "track": "devops",
+      "number": 49,
+      "title": "Kubernetes Deployment Management",
+      "objective": "Complete the DevOps task \u00abKubernetes Deployment Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-050",
+      "track": "devops",
+      "number": 50,
+      "title": "Kubernetes Resource Limit Configuration",
+      "objective": "Complete the DevOps task \u00abKubernetes Resource Limit Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-051",
+      "track": "devops",
+      "number": 51,
+      "title": "Kubernetes Rolling Updates",
+      "objective": "Complete the DevOps task \u00abKubernetes Rolling Updates\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-052",
+      "track": "devops",
+      "number": 52,
+      "title": "Kubernetes Deployment Rollback",
+      "objective": "Complete the DevOps task \u00abKubernetes Deployment Rollback\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-053",
+      "track": "devops",
+      "number": 53,
+      "title": "Resolving Kubernetes VolumeMount Issues",
+      "objective": "Complete the DevOps task \u00abResolving Kubernetes VolumeMount Issues\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-054",
+      "track": "devops",
+      "number": 54,
+      "title": "Kubernetes Shared Volume Configuration",
+      "objective": "Complete the DevOps task \u00abKubernetes Shared Volume Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-055",
+      "track": "devops",
+      "number": 55,
+      "title": "Kubernetes Sidecar Container Implementation",
+      "objective": "Complete the DevOps task \u00abKubernetes Sidecar Container Implementation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-056",
+      "track": "devops",
+      "number": 56,
+      "title": "Nginx Deployment on Kubernetes Cluster",
+      "objective": "Complete the DevOps task \u00abNginx Deployment on Kubernetes Cluster\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-057",
+      "track": "devops",
+      "number": 57,
+      "title": "Environment Variable Management in Linux",
+      "objective": "Complete the DevOps task \u00abEnvironment Variable Management in Linux\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux",
+        "env"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-058",
+      "track": "devops",
+      "number": 58,
+      "title": "Grafana Deployment on Kubernetes",
+      "objective": "Complete the DevOps task \u00abGrafana Deployment on Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-059",
+      "track": "devops",
+      "number": 59,
+      "title": "Kubernetes Deployment Troubleshooting",
+      "objective": "Complete the DevOps task \u00abKubernetes Deployment Troubleshooting\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-060",
+      "track": "devops",
+      "number": 60,
+      "title": "Persistent Volumes in Kubernetes",
+      "objective": "Complete the DevOps task \u00abPersistent Volumes in Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-061",
+      "track": "devops",
+      "number": 61,
+      "title": "Kubernetes Init Containers",
+      "objective": "Complete the DevOps task \u00abKubernetes Init Containers\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-062",
+      "track": "devops",
+      "number": 62,
+      "title": "Kubernetes Secret Management",
+      "objective": "Complete the DevOps task \u00abKubernetes Secret Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-063",
+      "track": "devops",
+      "number": 63,
+      "title": "Iron Gallery Application Deployment on Kubernetes",
+      "objective": "Complete the DevOps task \u00abIron Gallery Application Deployment on Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-064",
+      "track": "devops",
+      "number": 64,
+      "title": "Troubleshooting Python Applications on Kubernetes",
+      "objective": "Complete the DevOps task \u00abTroubleshooting Python Applications on Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-065",
+      "track": "devops",
+      "number": 65,
+      "title": "Redis Deployment on Kubernetes",
+      "objective": "Complete the DevOps task \u00abRedis Deployment on Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-066",
+      "track": "devops",
+      "number": 66,
+      "title": "MySQL Deployment on Kubernetes",
+      "objective": "Complete the DevOps task \u00abMySQL Deployment on Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-067",
+      "track": "devops",
+      "number": 67,
+      "title": "Guest Book Application Deployment on Kubernetes",
+      "objective": "Complete the DevOps task \u00abGuest Book Application Deployment on Kubernetes\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "kubernetes"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-068",
+      "track": "devops",
+      "number": 68,
+      "title": "Jenkins Server Setup",
+      "objective": "Complete the DevOps task \u00abJenkins Server Setup\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-069",
+      "track": "devops",
+      "number": 69,
+      "title": "Jenkins Plugin Installation and Management",
+      "objective": "Complete the DevOps task \u00abJenkins Plugin Installation and Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-070",
+      "track": "devops",
+      "number": 70,
+      "title": "Jenkins User Access Configuration",
+      "objective": "Complete the DevOps task \u00abJenkins User Access Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-071",
+      "track": "devops",
+      "number": 71,
+      "title": "Jenkins Job Configuration for Package Installation",
+      "objective": "Complete the DevOps task \u00abJenkins Job Configuration for Package Installation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-072",
+      "track": "devops",
+      "number": 72,
+      "title": "Jenkins Parameterized Build Setup",
+      "objective": "Complete the DevOps task \u00abJenkins Parameterized Build Setup\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-073",
+      "track": "devops",
+      "number": 73,
+      "title": "Jenkins Scheduled Job Automation",
+      "objective": "Complete the DevOps task \u00abJenkins Scheduled Job Automation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-074",
+      "track": "devops",
+      "number": 74,
+      "title": "Jenkins Database Backup Automation",
+      "objective": "Complete the DevOps task \u00abJenkins Database Backup Automation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-075",
+      "track": "devops",
+      "number": 75,
+      "title": "Jenkins Slave Node Configuration",
+      "objective": "Complete the DevOps task \u00abJenkins Slave Node Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-076",
+      "track": "devops",
+      "number": 76,
+      "title": "Jenkins Project Security Management",
+      "objective": "Complete the DevOps task \u00abJenkins Project Security Management\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-077",
+      "track": "devops",
+      "number": 77,
+      "title": "Jenkins Deployment Pipeline Creation",
+      "objective": "Complete the DevOps task \u00abJenkins Deployment Pipeline Creation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-078",
+      "track": "devops",
+      "number": 78,
+      "title": "Jenkins Conditional Pipeline Configuration",
+      "objective": "Complete the DevOps task \u00abJenkins Conditional Pipeline Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-079",
+      "track": "devops",
+      "number": 79,
+      "title": "Jenkins Deployment Job Automation",
+      "objective": "Complete the DevOps task \u00abJenkins Deployment Job Automation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-080",
+      "track": "devops",
+      "number": 80,
+      "title": "Jenkins Chained Build Configuration",
+      "objective": "Complete the DevOps task \u00abJenkins Chained Build Configuration\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-081",
+      "track": "devops",
+      "number": 81,
+      "title": "Jenkins Multistage Pipeline Setup",
+      "objective": "Complete the DevOps task \u00abJenkins Multistage Pipeline Setup\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "jenkins",
+        "ci"
+      ],
+      "needs": [
+        "jenkins"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-082",
+      "track": "devops",
+      "number": 82,
+      "title": "Ansible Inventory Creation for App Servers",
+      "objective": "Complete the DevOps task \u00abAnsible Inventory Creation for App Servers\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-083",
+      "track": "devops",
+      "number": 83,
+      "title": "Ansible Playbook Troubleshooting and Creation",
+      "objective": "Complete the DevOps task \u00abAnsible Playbook Troubleshooting and Creation\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-084",
+      "track": "devops",
+      "number": 84,
+      "title": "Data Transfer to App Servers Using Ansible",
+      "objective": "Complete the DevOps task \u00abData Transfer to App Servers Using Ansible\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-085",
+      "track": "devops",
+      "number": 85,
+      "title": "File Creation on App Servers with Ansible",
+      "objective": "Complete the DevOps task \u00abFile Creation on App Servers with Ansible\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-086",
+      "track": "devops",
+      "number": 86,
+      "title": "Ansible Ping Module Usage",
+      "objective": "Complete the DevOps task \u00abAnsible Ping Module Usage\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-087",
+      "track": "devops",
+      "number": 87,
+      "title": "Package Installation with Ansible",
+      "objective": "Complete the DevOps task \u00abPackage Installation with Ansible\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-088",
+      "track": "devops",
+      "number": 88,
+      "title": "Ansible Blockinfile Module Usage",
+      "objective": "Complete the DevOps task \u00abAnsible Blockinfile Module Usage\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-089",
+      "track": "devops",
+      "number": 89,
+      "title": "Service Management Using Ansible",
+      "objective": "Complete the DevOps task \u00abService Management Using Ansible\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-090",
+      "track": "devops",
+      "number": 90,
+      "title": "ACL Management with Ansible",
+      "objective": "Complete the DevOps task \u00abACL Management with Ansible\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-091",
+      "track": "devops",
+      "number": 91,
+      "title": "Ansible Lineinfile Module Usage",
+      "objective": "Complete the DevOps task \u00abAnsible Lineinfile Module Usage\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-092",
+      "track": "devops",
+      "number": 92,
+      "title": "Jinja2 Template Management with Ansible",
+      "objective": "Complete the DevOps task \u00abJinja2 Template Management with Ansible\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-093",
+      "track": "devops",
+      "number": 93,
+      "title": "Ansible Conditional Statements",
+      "objective": "Complete the DevOps task \u00abAnsible Conditional Statements\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "ansible"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-094",
+      "track": "devops",
+      "number": 94,
+      "title": "VPC Creation Using Terraform",
+      "objective": "Complete the DevOps task \u00abVPC Creation Using Terraform\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "terraform",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-095",
+      "track": "devops",
+      "number": 95,
+      "title": "Security Group Configuration with Terraform",
+      "objective": "Complete the DevOps task \u00abSecurity Group Configuration with Terraform\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "terraform",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-096",
+      "track": "devops",
+      "number": 96,
+      "title": "EC2 Instance Deployment Using Terraform",
+      "objective": "Complete the DevOps task \u00abEC2 Instance Deployment Using Terraform\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "terraform",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-097",
+      "track": "devops",
+      "number": 97,
+      "title": "IAM Policy Creation with Terraform",
+      "objective": "Complete the DevOps task \u00abIAM Policy Creation with Terraform\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "terraform",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-098",
+      "track": "devops",
+      "number": 98,
+      "title": "EC2 Deployment in Private VPC Subnet Using Terraform",
+      "objective": "Complete the DevOps task \u00abEC2 Deployment in Private VPC Subnet Using Terraform\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "terraform",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-099",
+      "track": "devops",
+      "number": 99,
+      "title": "IAM Policy Attachment for DynamoDB Access",
+      "objective": "Complete the DevOps task \u00abIAM Policy Attachment for DynamoDB Access\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "linux"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "devops-100",
+      "track": "devops",
+      "number": 100,
+      "title": "CloudWatch Alarm Configuration Using Terraform",
+      "objective": "Complete the DevOps task \u00abCloudWatch Alarm Configuration Using Terraform\u00bb entirely on local infrastructure. Use the Linux lab, Git lab, Docker, Kind, Jenkins, or Ansible targets as required. Prefer automating the fix so it could ship to production.",
+      "skills": [
+        "terraform",
+        "iac"
+      ],
+      "needs": [
+        "localstack"
+      ],
+      "difficulty": "medium",
+      "implemented": false,
+      "source": "Practice1.md"
+    },
+    {
+      "id": "sad-001",
+      "track": "sadservers",
+      "number": 1,
+      "title": "Broken Nginx \u2014 connection refused",
+      "objective": "Nginx is installed but not serving on port 80. Restore the site.",
+      "skills": [
+        "linux",
+        "nginx",
+        "debug"
+      ],
+      "needs": [
+        "linux",
+        "nimbus"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-002",
+      "track": "sadservers",
+      "number": 2,
+      "title": "Disk full \u2014 can't write logs",
+      "objective": "Application can't write logs because the disk is full (or inode exhaustion). Free space without deleting critical data.",
+      "skills": [
+        "linux",
+        "disk",
+        "debug"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-003",
+      "track": "sadservers",
+      "number": 3,
+      "title": "Permission denied on deploy path",
+      "objective": "Deploy user cannot write to the app directory. Fix ownership/permissions the least-privilege way.",
+      "skills": [
+        "linux",
+        "permissions"
+      ],
+      "needs": [
+        "linux",
+        "nimbus"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-004",
+      "track": "sadservers",
+      "number": 4,
+      "title": "Cron job not firing",
+      "objective": "A backup cron job never runs. Diagnose and fix scheduling/environment issues.",
+      "skills": [
+        "linux",
+        "cron"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-005",
+      "track": "sadservers",
+      "number": 5,
+      "title": "SSH lockout risk \u2014 fix sshd_config",
+      "objective": "sshd is misconfigured (bad PermitRootLogin / PasswordAuthentication / AllowUsers). Fix without locking yourself out.",
+      "skills": [
+        "linux",
+        "ssh",
+        "security"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-006",
+      "track": "sadservers",
+      "number": 6,
+      "title": "Port conflict \u2014 app won't bind",
+      "objective": "Nimbus API fails to start because something else holds port 8080. Identify and resolve.",
+      "skills": [
+        "linux",
+        "networking",
+        "debug"
+      ],
+      "needs": [
+        "linux",
+        "nimbus"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-007",
+      "track": "sadservers",
+      "number": 7,
+      "title": "DNS resolution broken in container",
+      "objective": "Container can't resolve external hostnames. Fix resolv.conf / Docker DNS.",
+      "skills": [
+        "docker",
+        "dns",
+        "debug"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-008",
+      "track": "sadservers",
+      "number": 8,
+      "title": "Postgres auth failed",
+      "objective": "App returns 500; Postgres rejects credentials after a secret rotation went wrong.",
+      "skills": [
+        "postgres",
+        "debug"
+      ],
+      "needs": [
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-009",
+      "track": "sadservers",
+      "number": 9,
+      "title": "OOM killer struck the worker",
+      "objective": "Background worker keeps dying. Find OOM evidence and constrain / fix memory use.",
+      "skills": [
+        "linux",
+        "memory",
+        "debug"
+      ],
+      "needs": [
+        "linux",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-010",
+      "track": "sadservers",
+      "number": 10,
+      "title": "TLS certificate expired",
+      "objective": "Nginx serves expired self-signed cert. Issue a new local cert and reload safely.",
+      "skills": [
+        "nginx",
+        "tls"
+      ],
+      "needs": [
+        "nimbus",
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-011",
+      "track": "sadservers",
+      "number": 11,
+      "title": "Half-open firewall",
+      "objective": "iptables allows SSH but blocks app traffic asymmetrically. Restore correct rules.",
+      "skills": [
+        "linux",
+        "firewall"
+      ],
+      "needs": [
+        "linux"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-012",
+      "track": "sadservers",
+      "number": 12,
+      "title": "Docker zombie \u2014 container restart loop",
+      "objective": "A compose service is crash-looping. Use logs/inspect to find the root cause and fix the image/config.",
+      "skills": [
+        "docker",
+        "debug"
+      ],
+      "needs": [
+        "docker",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-013",
+      "track": "sadservers",
+      "number": 13,
+      "title": "Kubernetes CrashLoopBackOff",
+      "objective": "Nimbus pod on Kind is CrashLoopBackOff. Diagnose events, logs, probes, and config.",
+      "skills": [
+        "kubernetes",
+        "debug"
+      ],
+      "needs": [
+        "kind",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-014",
+      "track": "sadservers",
+      "number": 14,
+      "title": "Kubernetes service has no endpoints",
+      "objective": "Service selector doesn't match pods. Traffic fails. Fix labels/selectors.",
+      "skills": [
+        "kubernetes",
+        "networking"
+      ],
+      "needs": [
+        "kind"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-015",
+      "track": "sadservers",
+      "number": 15,
+      "title": "Time drift breaks JWT auth",
+      "objective": "Auth tokens invalid due to clock skew in the lab container. Fix time sync.",
+      "skills": [
+        "linux",
+        "time",
+        "security"
+      ],
+      "needs": [
+        "linux",
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-016",
+      "track": "sadservers",
+      "number": 16,
+      "title": "SQS consumer lag (LocalStack)",
+      "objective": "Messages pile up; worker not consuming. Fix queue URL/permissions/env.",
+      "skills": [
+        "sqs",
+        "debug"
+      ],
+      "needs": [
+        "localstack",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-017",
+      "track": "sadservers",
+      "number": 17,
+      "title": "S3 access denied after IAM change",
+      "objective": "App lost S3 access after policy edit. Restore least-privilege access.",
+      "skills": [
+        "s3",
+        "iam",
+        "debug"
+      ],
+      "needs": [
+        "localstack",
+        "nimbus"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-018",
+      "track": "sadservers",
+      "number": 18,
+      "title": "Load balancer health checks failing",
+      "objective": "ALB/nginx upstream health checks fail. App is up but health path wrong.",
+      "skills": [
+        "lb",
+        "nginx",
+        "debug"
+      ],
+      "needs": [
+        "nimbus"
+      ],
+      "difficulty": "hard",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-019",
+      "track": "sadservers",
+      "number": 19,
+      "title": "Git detached HEAD on deploy server",
+      "objective": "Deploy server is in detached HEAD; releases can't pull. Fix branch tracking.",
+      "skills": [
+        "git",
+        "deploy"
+      ],
+      "needs": [
+        "git",
+        "linux"
+      ],
+      "difficulty": "easy",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    },
+    {
+      "id": "sad-020",
+      "track": "sadservers",
+      "number": 20,
+      "title": "Ansible unreachable hosts",
+      "objective": "Playbook fails on unreachable inventory hosts. Fix SSH keys/inventory.",
+      "skills": [
+        "ansible",
+        "ssh"
+      ],
+      "needs": [
+        "ansible"
+      ],
+      "difficulty": "medium",
+      "implemented": true,
+      "source": "Practice2.md / sadservers.com style"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+namespace: observability
+
+prometheus:
+  image: prom/prometheus
+  tag: v3.5.0
+  replicas: 1
+
+grafana:
+  image:
+    repository: grafana/grafana
+    tag: "12.0.2"
+  replicas: 1
+  adminUser: admin
+  adminPassword: admin
+
+loki:
+  image: grafana/loki:3.5.2
+  replicas: 1
+  service:
+    port: 3100
+  resources:
+    cpu: 100m
+    memory: 256Mi
+
+promtail:
+  image: grafana/promtail
+  tag: 3.5.2
+
+tempo:
+  image: grafana/tempo
+  tag: 2.8.1
+  replicas: 1
+
+otelCollector:
+  image: otel/opentelemetry-collector-contrib
+  tag: 0.130.0
+  replicas: 1
+
+service:
+  prometheus:
+    type: ClusterIP
+    port: 9090
+
+ingress:
+  prometheus:
+    enabled: true
+    host: prometheus.local
+
+resources:
+  prometheus:
+    cpu: 100m
+    memory: 512Mi
+
+storage:
+  prometheus:
+    enabled: false
+    size: 5Gi

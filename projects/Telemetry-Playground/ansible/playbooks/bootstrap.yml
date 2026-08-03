@@ -1,0 +1,18 @@
+- hosts: k3s
+
+  become: true
+
+  roles:
+    - common
+
+    - docker
+
+    - k3s
+
+    - helm
+
+    - argocd
+
+    - monitoring
+
+    - telemetry

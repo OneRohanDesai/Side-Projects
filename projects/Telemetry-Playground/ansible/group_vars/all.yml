@@ -1,0 +1,6 @@
+ansible_user: ubuntu
+ansible_become: true
+
+k3s_version: v1.34.1+k3s1
+helm_version: v3.19.0
+argocd_version: stable

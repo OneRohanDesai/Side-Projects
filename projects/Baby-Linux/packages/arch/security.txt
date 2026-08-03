@@ -1,0 +1,31 @@
+# ── DevSecOps / security (Arch official) ────────────────────────────────────
+trivy
+tfsec
+sops
+age
+ufw
+gnupg
+nmap
+tcpdump
+wireshark-cli
+strace
+lsof
+htop
+shellcheck
+# Secrets / policy
+vault
+# Static / secret scanning (when in repos)
+gitleaks
+# Containers security helpers
+cosign
+syft
+# Network
+fail2ban
+# Audit
+lynis
+# Optional heavy
+clamav
+clamav-update
+# SSL
+openssl
+# kube security often via binary: kubescape kube-bench kube-hunter

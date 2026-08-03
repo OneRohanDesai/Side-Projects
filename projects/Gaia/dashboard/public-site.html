@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Gaia | Rohan Desai</title>
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:#0b1020;
+color:#e6f1ff;
+margin:0;
+}
+
+header{
+background:#121a2b;
+padding:16px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+header h1{
+margin:0;
+font-size:20px;
+}
+
+.header-buttons{
+display:flex;
+gap:10px;
+}
+
+.header-btn{
+background:#1b2436;
+border:none;
+color:#e6f1ff;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+.header-btn:hover{
+background:#26324a;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+padding:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:360px 1fr;
+gap:20px;
+}
+
+.card{
+background:#121a2b;
+border-radius:8px;
+padding:20px;
+overflow:hidden;
+}
+
+.stats{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.stat{
+font-size:28px;
+font-weight:bold;
+}
+
+.updated{
+color:#8aa4c8;
+font-size:13px;
+margin-top:10px;
+}
+
+.search{
+margin-bottom:10px;
+}
+
+input{
+padding:10px;
+width:100%;
+border:none;
+border-radius:6px;
+background:#0b1020;
+color:#e6f1ff;
+font-size:15px;
+}
+
+.table-container{
+max-height:420px;
+overflow-y:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th{
+text-align:left;
+padding:12px;
+border-bottom:1px solid #2e3b55;
+position:sticky;
+top:0;
+background:#121a2b;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #1b2436;
+}
+
+tr:hover{
+background:#1b2436;
+}
+
+.population{
+font-weight:bold;
+}
+
+.events-container{
+max-height:720px;
+overflow-y:auto;
+}
+
+.event{
+color:#ff6b6b;
+margin-bottom:14px;
+line-height:1.5;
+}
+
+.event-date{
+font-size:12px;
+color:#8aa4c8;
+}
+
+.event-type{
+font-weight:bold;
+}
+
+.event-countries{
+color:#e6f1ff;
+}
+
+@media (max-width:900px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.events-container{
+max-height:420px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Gaia - Local K8s based global population simulator</h1>
+
+<div class="header-buttons">
+
+<button class="header-btn"
+onclick="window.open('./architecture.svg','_blank')">
+Architecture
+</button>
+
+<button class="header-btn"
+onclick="window.open('https://sr.ht/~ladybug/','_blank')">
+Sourcehut
+</button>
+
+<button class="header-btn"
+onclick="window.open('https://rohandesai.in','_blank')">
+Developer
+</button>
+
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div>
+
+<div class="card">
+
+<h3>World Statistics</h3>
+
+<div class="stats">
+
+<div>
+<div class="stat" id="worldPop">-</div>
+<div>World Population</div>
+</div>
+
+<div>
+<div class="stat" id="countryCount">-</div>
+<div>Countries</div>
+</div>
+
+</div>
+
+<div class="updated" id="lastUpdated"></div>
+
+</div>
+
+<div class="card">
+
+<h3>Countries</h3>
+
+<div class="search">
+<input id="search" placeholder="Search country...">
+</div>
+
+<div class="table-container">
+
+<table id="countryTable">
+
+<thead>
+<tr>
+<th>Country</th>
+<th>Population</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="card">
+
+<h3>Global Events</h3>
+
+<div id="events" class="events-container"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const DATA_URL="data.json?ts="+Date.now()
+
+let countries=[]
+
+async function loadData(){
+
+const res=await fetch(DATA_URL)
+const data=await res.json()
+
+countries=data.countries
+
+renderStats(data)
+renderCountries(countries)
+renderEvents(data)
+
+}
+
+function renderStats(data){
+
+let world=0
+
+data.countries.forEach(c=>world+=c.population)
+
+document.getElementById("worldPop").innerText=world.toLocaleString()
+
+document.getElementById("countryCount").innerText=data.countries.length
+
+if(data.date){
+document.getElementById("lastUpdated").innerText="Last updated: "+data.date
+}
+
+}
+
+function renderCountries(list){
+
+const tbody=document.querySelector("#countryTable tbody")
+
+tbody.innerHTML=""
+
+list
+.sort((a,b)=>b.population-a.population)
+.forEach(c=>{
+
+let row=document.createElement("tr")
+
+row.innerHTML=`
+<td>${c.name}</td>
+<td class="population">${c.population.toLocaleString()}</td>
+`
+
+tbody.appendChild(row)
+
+})
+
+}
+
+function renderEvents(data){
+
+const el=document.getElementById("events")
+
+el.innerHTML=""
+
+if(!data.recent_events || data.recent_events.length===0){
+el.innerHTML="No recent events."
+return
+}
+
+const grouped={}
+
+data.recent_events.forEach(e=>{
+
+const key=e.time+"-"+e.event
+
+if(!grouped[key]){
+grouped[key]={time:e.time,event:e.event,countries:[]}
+}
+
+grouped[key].countries.push(e.country)
+
+})
+
+Object.values(grouped)
+.reverse()
+.forEach(e=>{
+
+let div=document.createElement("div")
+div.className="event"
+
+div.innerHTML=`
+<div class="event-date">${e.time}</div>
+<div class="event-type">${e.event}</div>
+<div class="event-countries">${e.countries.join(", ")}</div>
+`
+
+el.appendChild(div)
+
+})
+
+}
+
+document.getElementById("search").addEventListener("input",(e)=>{
+
+let q=e.target.value.toLowerCase()
+
+let filtered=countries.filter(c=>
+c.name.toLowerCase().includes(q)
+)
+
+renderCountries(filtered)
+
+})
+
+loadData()
+
+setInterval(loadData,30000)
+
+</script>
+
+</body>
+
+</html>

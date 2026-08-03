@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Manwë | Vogue</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+background:#050505;
+font-family:Inter,sans-serif;
+overflow:hidden;
+height:100%;
+}
+
+.loader{
+position:fixed;
+inset:0;
+background:#040000;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+transition:1s ease;
+}
+
+.loader.hidden{
+opacity:0;
+pointer-events:none;
+}
+
+.loaderText{
+font-family:"Playfair Display",serif;
+font-size:clamp(2rem,4vw,4rem);
+letter-spacing:6px;
+color:#fff;
+animation:pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse{
+0%{opacity:.2;letter-spacing:6px}
+50%{opacity:1;letter-spacing:14px}
+100%{opacity:.2;letter-spacing:6px}
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+width:100vw;
+height:100vh;
+overflow:auto;
+}
+
+.tile{
+position:relative;
+aspect-ratio:1/1;
+overflow:hidden;
+cursor:pointer;
+user-select:none;
+}
+
+.tile img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:blur(22px) brightness(.45);
+transition:1s cubic-bezier(.2,.8,.2,1);
+}
+
+.tile:hover img{
+filter:blur(0px) brightness(1);
+}
+
+.titleLayer{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+font-family:"Playfair Display",serif;
+font-size:clamp(1.3rem,2vw,1.8rem);
+color:#fff;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(10px);
+transition:.5s;
+}
+
+.tile:hover .titleLayer{
+opacity:0;
+}
+
+.noteLayer{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+font-family:"Playfair Display",serif;
+font-size:clamp(1.1rem,1.4vw,1.3rem);
+line-height:1.7;
+color:#fff;
+opacity:0;
+background:rgba(10,0,0,.7);
+backdrop-filter:blur(30px);
+transition:.5s;
+pointer-events:none;
+}
+
+.tile.active img{
+filter:blur(26px) brightness(.35);
+}
+
+.tile.active .noteLayer{
+opacity:1;
+pointer-events:auto;
+}
+
+.headerBox{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-family:"Playfair Display",serif;
+font-size:clamp(1.2rem,2vw,2rem);
+letter-spacing:2px;
+color:white;
+background:linear-gradient(135deg,#200000,#050000);
+gap:12px;
+}
+
+.headerBox span:first-child{
+font-size:clamp(1.6rem,2.5vw,2.4rem);
+letter-spacing:3px;
+}
+
+.fade{
+position:fixed;
+inset:0;
+pointer-events:none;
+background:radial-gradient(circle at center,transparent 60%,#000 100%);
+mix-blend-mode:multiply;
+}
+</style>
+</head>
+
+<body>
+
+<div class="loader" id="loader">
+<div class="loaderText">LOADING</div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="fade"></div>
+
+<script>
+
+const items=[
+
+{title:"Oranges",img:"oranges.jpg",note:"Food favourite — oranges."},
+{title:"Most Beautiful Woman — Traditional",img:"sonam_bajwa.jpg",note:"Sonam Bajwa — peak elegance."},
+{title:"Dimples Supreme",img:"preity_zinta.jpg",note:"Preity Zinta — iconic charm."},
+{title:"Best Male Voice",img:"adnan_sami.jpg",note:"Adnan Sami — voice I can hear endlessly."},
+{title:"Best Female Voice",img:"lana_del_rey.jpg",note:"Lana Del Rey — timeless atmosphere."},
+{title:"Best Indian Face Card",img:"udita_goswami.jpg",note:"Udita Goswami — peak aesthetics."},
+{title:"Most Perfect Woman Overall",img:"cameron_nicole_kelly.jpg",note:"Cameron Nicole Kelly — overall perfection."},
+{title:"Best Female Model — 21st Century",img:"gigi_hadid.jpg",note:"Gigi Hadid — modern modelling dominance."},
+{title:"Best Female Model — 20th Century",img:"shalom_harlow.jpg",note:"Shalom Harlow — timeless presence."},
+{title:"Best Male Model — 21st Century",img:"francisco_lachowski.jpg",note:"Francisco Lachowski — unmatched aura."}
+
+];
+
+const grid=document.getElementById("grid");
+const loader=document.getElementById("loader");
+
+const header=document.createElement("div");
+header.className="tile headerBox";
+header.innerHTML=`
+<span>Manwë's Vogue</span>
+<div>Hover</div>
+<div>Click</div>
+<div>Double Click</div>
+`;
+grid.appendChild(header);
+
+let loadedImages=0;
+const totalImages=items.length;
+
+items.forEach(item=>{
+
+const tile=document.createElement("div");
+tile.className="tile";
+
+const img=new Image();
+img.src=item.img;
+img.loading="eager";
+
+img.onload=()=>{
+loadedImages++;
+if(loadedImages===totalImages){
+setTimeout(()=>loader.classList.add("hidden"),500);
+}
+};
+
+tile.appendChild(img);
+
+const title=document.createElement("div");
+title.className="titleLayer";
+title.innerText=item.title;
+
+const note=document.createElement("div");
+note.className="noteLayer";
+note.innerText=item.note;
+
+tile.appendChild(title);
+tile.appendChild(note);
+
+let clickTimer=null;
+
+tile.addEventListener("click",()=>{
+
+if(clickTimer!==null){
+clearTimeout(clickTimer);
+clickTimer=null;
+window.open(item.img,"_blank");
+return;
+}
+
+clickTimer=setTimeout(()=>{
+document.querySelectorAll(".tile").forEach(t=>{
+if(t!==tile)t.classList.remove("active");
+});
+tile.classList.toggle("active");
+clickTimer=null;
+},250);
+
+});
+
+grid.appendChild(tile);
+
+});
+
+document.body.addEventListener("click",e=>{
+if(!e.target.closest(".tile")){
+document.querySelectorAll(".tile").forEach(t=>t.classList.remove("active"));
+}
+});
+
+</script>
+
+</body>
+</html>

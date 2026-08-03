@@ -1,0 +1,109 @@
+# Baby Linux — zsh configuration
+# Deployed to ~/.zshrc
+
+# History search with arrow keys
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+
+# Completion
+autoload -Uz compinit && compinit -C
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Plugins (system packages or oh-my-zsh custom)
+# Arch: pacman -S zsh-autosuggestions zsh-syntax-highlighting
+for _plugin in \
+  /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+  "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+do
+  [[ -f "$_plugin" ]] && source "$_plugin"
+done
+unset _plugin
+
+# Aliases
+if command -v eza >/dev/null 2>&1; then
+  alias ls="eza --icons"
+  alias ll="eza -lah --icons"
+  alias la="eza -la --icons"
+  alias lt="eza --tree --level=2 --icons"
+else
+  alias ls="ls --color=auto"
+  alias ll="ls -lah --color=auto"
+fi
+
+alias grep="grep --color=auto"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias k="kubectl"
+alias kx="kubectx"
+alias kns="kubens"
+alias tf="terraform"
+alias tg="terragrunt"
+alias dc="docker compose"
+alias dps="docker ps"
+alias lg="lazygit"
+if command -v bat >/dev/null 2>&1; then
+  alias cat="bat --paging=never"
+elif command -v batcat >/dev/null 2>&1; then
+  alias cat="batcat --paging=never"
+fi
+
+# zoxide (smart cd)
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
+
+# starship prompt
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+# PATH
+export PATH="$HOME/.local/bin:$PATH"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+[[ -d "$HOME/go/bin" ]] && export PATH="$HOME/go/bin:$PATH"
+[[ -d "$HOME/.grok/bin" ]] && export PATH="$HOME/.grok/bin:$PATH"
+
+# Editor / pager
+export EDITOR="${EDITOR:-nvim}"
+export VISUAL="${VISUAL:-nvim}"
+export PAGER="${PAGER:-less}"
+
+# kubectl completion
+command -v kubectl >/dev/null 2>&1 && source <(kubectl completion zsh 2>/dev/null) || true
+
+# Handy functions
+mkcd() { mkdir -p "$1" && cd "$1" || return; }
+extract() {
+  if [[ -f "$1" ]]; then
+    case "$1" in
+      *.tar.bz2) tar xjf "$1" ;;
+      *.tar.gz)  tar xzf "$1" ;;
+      *.tar.xz)  tar xJf "$1" ;;
+      *.bz2)     bunzip2 "$1" ;;
+      *.gz)      gunzip "$1" ;;
+      *.tar)     tar xf "$1" ;;
+      *.tbz2)    tar xjf "$1" ;;
+      *.tgz)     tar xzf "$1" ;;
+      *.zip)     unzip "$1" ;;
+      *.7z)      7z x "$1" ;;
+      *) echo "cannot extract '$1'" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}

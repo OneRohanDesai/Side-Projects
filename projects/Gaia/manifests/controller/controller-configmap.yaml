@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: event-controller-code
+
+data:
+  controller.py: |
+    from kubernetes import client, config, watch
+
+    config.load_incluster_config()
+
+    api = client.CustomObjectsApi()
+    core = client.CoreV1Api()
+
+    w = watch.Watch()
+
+    for event in w.stream(
+        api.list_cluster_custom_object,
+        group="gaia.io",
+        version="v1",
+        plural="worldevents"):
+
+        obj = event["object"]
+        spec = obj["spec"]
+
+        countries = spec.get("countries", [])
+        impact = spec.get("impact", 0)
+
+        for c in countries:
+
+            name = f"population-{c}"
+
+            try:
+                cm = core.read_namespaced_config_map(name, "default")
+
+                pop = int(cm.data["population"])
+
+                new_pop = int(pop * (1 - impact))
+
+                cm.data["population"] = str(new_pop)
+
+                core.patch_namespaced_config_map(name, "default", cm)
+
+                print("Updated population:", name)
+
+            except Exception as e:
+                print("Error:", e)

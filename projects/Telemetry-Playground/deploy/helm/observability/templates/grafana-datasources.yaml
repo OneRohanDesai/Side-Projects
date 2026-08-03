@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: grafana
+data:
+  datasources.yaml: |
+{{ .Files.Get "files/grafana/datasources/datasources.yaml" | nindent 4 }}

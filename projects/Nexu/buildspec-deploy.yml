@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging into EKS...
+      - aws eks update-kubeconfig --region ap-south-1 --name nexu-demo-eks
+      - IMAGE=$(cat image.txt)
+  build:
+    commands:
+      - echo Updating manifest with new image...
+      - sed -i "s|<ECR_REPLACE_ME>:latest|$IMAGE|g" deploy/deployment.yaml
+  post_build:
+    commands:
+      - echo Applying manifest to cluster...
+      - kubectl apply -f deploy/deployment.yaml

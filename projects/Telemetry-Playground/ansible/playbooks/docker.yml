@@ -1,0 +1,14 @@
+- hosts: k3s
+
+  become: true
+
+  roles:
+    - docker
+
+---
+- hosts: telemetry
+
+  become: true
+
+  roles:
+    - docker

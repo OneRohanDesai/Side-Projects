@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-democraticrepublicofthecongo
+data:
+  population: "102000000"

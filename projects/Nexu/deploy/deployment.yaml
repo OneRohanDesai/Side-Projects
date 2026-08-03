@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexu-demo
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nexu-demo
+  template:
+    metadata:
+      labels:
+        app: nexu-demo
+    spec:
+      containers:
+        - name: nexu-demo
+          image: <ECR_REPLACE_ME>:latest
+          ports:
+            - containerPort: 80
+

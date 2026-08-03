@@ -1,0 +1,71 @@
+# Baby Linux — starship prompt (DevOps-friendly)
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$kubernetes\
+$aws\
+$gcloud\
+$azure\
+$docker_context\
+$terraform\
+$cmd_duration\
+$line_break\
+$character"""
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[git_status]
+style = "bold yellow"
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style) '
+symbol = "☸ "
+style = "bold blue"
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
+symbol = "☁️  "
+style = "bold yellow"
+disabled = false
+
+[gcloud]
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+disabled = false
+
+[azure]
+disabled = false
+
+[terraform]
+format = '[$symbol$workspace]($style) '
+disabled = false
+
+[docker_context]
+disabled = false
+
+[cmd_duration]
+min_time = 2_000
+format = "took [$duration](bold yellow) "
+
+[username]
+show_always = false
+style_user = "bold dimmed"
+format = "[$user]($style) "
+
+[hostname]
+ssh_only = true
+format = "at [$hostname](bold red) "

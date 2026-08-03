@@ -1,0 +1,61 @@
+# ── DevOps core (Arch official repos) ───────────────────────────────────────
+# Containers
+docker
+docker-compose
+docker-buildx
+# Kubernetes
+kubectl
+kubectx
+kustomize
+helm
+k9s
+stern
+# IaC / config
+terraform
+terragrunt
+tflint
+packer
+ansible
+ansible-lint
+# Platform
+argocd
+cilium-cli
+gitlab-runner
+consul
+nomad
+vault
+# CLI productivity
+git
+lazygit
+github-cli
+direnv
+just
+# Languages / build used by platform work
+cmake
+python-pip
+python-pipx
+nodejs
+npm
+go
+# Data / network utilities
+postgresql
+postgresql-libs
+bind
+socat
+openbsd-netcat
+dnsmasq
+rsync
+# Structured data
+jq
+yq
+# Container / image inspection
+skopeo
+buildah
+podman
+# Backup / transfer
+rclone
+restic
+# Shell / lint
+shellcheck
+# Local k8s (kind/k3d often via binary installer in module)
+minikube

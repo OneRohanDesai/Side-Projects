@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Just Orange — one perfect recipe from what you already have. Free, local, zero decision fatigue." />
+  <meta name="theme-color" content="#FF6B35" />
+  <title>Just Orange · Cook</title>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <style>
+    .hero-mini {
+      padding: 2.5rem 0 1.25rem;
+    }
+    .hero-mini h1 {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      margin: 0.75rem 0 0.5rem;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.5rem;
+      padding-bottom: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .panel-head h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+    .stat {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      text-align: center;
+    }
+    .stat b {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--orange);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .stat span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+    .step-list {
+      list-style: none;
+      counter-reset: step;
+      margin-top: 0.75rem;
+    }
+    .step-list li {
+      counter-increment: step;
+      position: relative;
+      padding: 0.85rem 0.85rem 0.85rem 3rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.5rem;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0.7rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: var(--orange-mist);
+      color: var(--orange);
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: grid;
+      place-items: center;
+    }
+    .step-list li.done {
+      background: var(--cream);
+      opacity: 0.65;
+      text-decoration: line-through;
+    }
+    .step-list li.done::before {
+      content: "✓";
+      background: var(--orange);
+      color: white;
+    }
+    .alt-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .pantry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-pill);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .tag button {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .check-item input { width: auto; accent-color: var(--orange); }
+    .check-item.done span { text-decoration: line-through; color: var(--muted); }
+    .hidden { display: none !important; }
+    .range-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    @media (max-width: 520px) {
+      .range-row { grid-template-columns: 1fr; }
+    }
+    .source-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange);
+      background: var(--orange-mist);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-pill);
+    }
+    .cook-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .cook-header h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .mobile-tabs { display: none; margin-bottom: 1rem; }
+    @media (max-width: 900px) {
+      .mobile-tabs { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+
+  <nav class="nav no-print">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../justorange.html">
+        <span class="brand-mark">🍊</span>
+        Just Orange
+      </a>
+      <div class="nav-links">
+        <a href="../justorange.html">Home</a>
+        <a href="live.html" class="active">Cook</a>
+        <a href="../cli/cli.html">CLI</a>
+      </div>
+      <button class="btn btn-ghost btn-sm no-print" type="button" id="btnSettings">Settings</button>
+    </div>
+  </nav>
+
+  <header class="wrap hero-mini no-print">
+    <span class="eyebrow">Zero decisions · Free local brain</span>
+    <h1 class="display">One perfect dish.</h1>
+    <p class="text-muted" style="max-width: 36rem; font-size: 1.05rem;">
+      Tell me what’s in your kitchen. I’ll pick <strong style="color:var(--ink)">exactly one</strong> recipe —
+      no lists, no scrolling, no decision fatigue. Runs free offline first.
+    </p>
+    <div class="stat-row" style="max-width: 420px;">
+      <div class="stat"><b id="statGen">0</b><span>Generated</span></div>
+      <div class="stat"><b id="statFav">0</b><span>Favorites</span></div>
+      <div class="stat"><b id="statPantry">0</b><span>Pantry</span></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tabs mobile-tabs no-print" role="tablist">
+      <button class="tab active" data-panel="form" type="button">Create</button>
+      <button class="tab" data-panel="result" type="button">Recipe</button>
+      <button class="tab" data-panel="side" type="button">Library</button>
+    </div>
+
+    <div class="layout">
+      <!-- FORM -->
+      <section class="card" id="panel-form">
+        <div class="panel-head">
+          <h2>Your kitchen</h2>
+          <button class="btn btn-ghost btn-sm" type="button" id="btnUsePantry">Use pantry</button>
+        </div>
+
+        <form id="cookForm" autocomplete="off">
+          <label class="field-label" for="ingredients">Ingredients</label>
+          <textarea id="ingredients" placeholder="tomato, rice, egg, garlic, soy sauce…" required></textarea>
+          <div class="chip-row" id="quickCombos"></div>
+
+          <label class="field-label">Taste</label>
+          <div class="chip-row" id="tasteChips">
+            <button type="button" class="chip active" data-taste="savory">Savory</button>
+            <button type="button" class="chip" data-taste="spicy">Spicy</button>
+            <button type="button" class="chip" data-taste="sweet">Sweet</button>
+            <button type="button" class="chip" data-taste="fresh">Fresh</button>
+            <button type="button" class="chip" data-taste="umami">Umami</button>
+            <button type="button" class="chip" data-taste="mild">Mild</button>
+            <button type="button" class="chip" data-taste="sour">Sour</button>
+          </div>
+          <input type="hidden" id="taste" value="savory" />
+
+          <div class="range-row mt-2">
+            <div>
+              <label class="field-label" for="prep">Max prep (min)</label>
+              <input type="number" id="prep" min="1" max="120" value="15" />
+            </div>
+            <div>
+              <label class="field-label" for="eat">Max total (min)</label>
+              <input type="number" id="eat" min="1" max="180" value="30" />
+            </div>
+          </div>
+
+          <label class="field-label" for="allergens">Allergens to avoid</label>
+          <input type="text" id="allergens" placeholder="nuts, dairy, gluten, shellfish…" />
+          <div class="chip-row" id="allergenChips">
+            <button type="button" class="chip" data-a="dairy">Dairy</button>
+            <button type="button" class="chip" data-a="gluten">Gluten</button>
+            <button type="button" class="chip" data-a="egg">Egg</button>
+            <button type="button" class="chip" data-a="peanut">Peanut</button>
+            <button type="button" class="chip" data-a="soy">Soy</button>
+            <button type="button" class="chip" data-a="shellfish">Shellfish</button>
+            <button type="button" class="chip" data-a="fish">Fish</button>
+          </div>
+
+          <label class="field-label" for="exclusions">Exclude ingredients</label>
+          <input type="text" id="exclusions" placeholder="onion, coriander, mushrooms…" />
+
+          <button class="btn btn-primary btn-block mt-3" type="submit" id="btnGenerate">
+            Generate my one recipe
+          </button>
+          <p class="text-sm text-muted text-center mt-2">
+            Free local engine · optional AI in Settings if you want wilder combos
+          </p>
+        </form>
+      </section>
+
+      <!-- RESULT + SIDE -->
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <section class="card" id="panel-result">
+          <div class="panel-head">
+            <h2>Your dish</h2>
+            <span class="source-pill" id="sourcePill">Waiting</span>
+          </div>
+
+          <div id="emptyResult" class="empty">
+            Your zero-decision recipe will appear here.<br />
+            Start with a quick combo or type what you have.
+          </div>
+
+          <div id="resultBody" class="hidden">
+            <div class="cook-header">
+              <h3 id="resultTitle"></h3>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnFav" title="Favorite">☆</button>
+            </div>
+            <div class="recipe-sheet" id="resultText"></div>
+
+            <div class="result-actions no-print">
+              <button class="btn btn-ghost btn-sm" type="button" id="btnCopy">Copy</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnPrint">Print</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnShare">Share</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnShop">+ Shopping list</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnCookMode">Cook mode</button>
+            </div>
+
+            <div id="altsWrap" class="hidden mt-2">
+              <p class="text-sm text-muted" style="font-weight:700;">Almost picked (we still chose one):</p>
+              <div class="alt-row" id="alts"></div>
+            </div>
+
+            <div id="cookMode" class="hidden mt-3">
+              <div class="panel-head">
+                <h2>Cook mode</h2>
+                <button class="btn btn-ghost btn-sm" type="button" id="btnCloseCook">Close</button>
+              </div>
+              <div class="timer-display" id="timerDisplay">05:00</div>
+              <div class="flex gap-sm justify-between mt-1 no-print" style="justify-content:center;">
+                <button class="btn btn-ghost btn-sm" type="button" data-timer="3">3m</button>
+                <button class="btn btn-ghost btn-sm" type="button" data-timer="5">5m</button>
+                <button class="btn btn-ghost btn-sm" type="button" data-timer="10">10m</button>
+                <button class="btn btn-primary btn-sm" type="button" id="btnTimerToggle">Start</button>
+              </div>
+              <ol class="step-list" id="stepList"></ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="card no-print" id="panel-side">
+          <div class="tabs" role="tablist" id="sideTabs">
+            <button class="tab active" type="button" data-side="history">History</button>
+            <button class="tab" type="button" data-side="favorites">Favorites</button>
+            <button class="tab" type="button" data-side="pantry">Pantry</button>
+            <button class="tab" type="button" data-side="shopping">Shop</button>
+          </div>
+
+          <div id="side-history" class="mt-2">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-muted">Last 50 recipes</span>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnClearHistory">Clear</button>
+            </div>
+            <div id="historyList"></div>
+          </div>
+
+          <div id="side-favorites" class="mt-2 hidden">
+            <div id="favList"></div>
+          </div>
+
+          <div id="side-pantry" class="mt-2 hidden">
+            <label class="field-label" for="pantryInput">Add pantry items</label>
+            <div class="flex gap-sm">
+              <input type="text" id="pantryInput" placeholder="rice, eggs, olive oil…" />
+              <button class="btn btn-primary btn-sm" type="button" id="btnAddPantry">Add</button>
+            </div>
+            <div class="pantry-tags" id="pantryTags"></div>
+          </div>
+
+          <div id="side-shopping" class="mt-2 hidden">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-muted">Checklist</span>
+              <button class="btn btn-ghost btn-sm" type="button" id="btnClearShop">Clear done</button>
+            </div>
+            <div id="shopList"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer wrap no-print">
+    <p>Just Orange · Free local recipes · Orange & white forever</p>
+    <p class="mt-1"><a href="../justorange.html">← Back home</a></p>
+  </footer>
+
+  <div class="toast-host" id="toasts"></div>
+
+  <!-- Settings modal -->
+  <div class="modal-backdrop hidden no-print" id="settingsModal">
+    <div class="modal" role="dialog" aria-labelledby="settingsTitle">
+      <div class="panel-head">
+        <h2 id="settingsTitle">Settings</h2>
+        <button class="btn btn-ghost btn-sm" type="button" id="btnCloseSettings">Close</button>
+      </div>
+      <p class="text-sm text-muted mb-2">
+        Everything works free offline. AI is optional and only used if you enable it.
+      </p>
+      <label class="field-label" for="useAi">AI fallback</label>
+      <select id="useAi">
+        <option value="false">Off — free local only (recommended)</option>
+        <option value="true">On — try cloud AI if local is weak</option>
+      </select>
+      <label class="field-label" for="openaiKey">OpenAI key (browser-only, never uploaded by us)</label>
+      <input type="password" id="openaiKey" placeholder="sk-… optional for direct client calls" autocomplete="off" />
+      <label class="field-label" for="apiUrl">Cloud API URL (Lambda)</label>
+      <input type="text" id="apiUrl" />
+      <button class="btn btn-primary btn-block mt-3" type="button" id="btnSaveSettings">Save</button>
+    </div>
+  </div>
+
+  <script src="../js/recipes.js"></script>
+  <script src="../js/engine.js"></script>
+  <script src="../js/storage.js"></script>
+  <script>
+    (function () {
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+      let current = null;
+      let timerId = null;
+      let timerLeft = 300;
+      let timerRunning = false;
+
+      const toast = (msg) => {
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.textContent = msg;
+        $("#toasts").appendChild(el);
+        setTimeout(() => el.remove(), 2800);
+      };
+
+      function refreshStats() {
+        const s = JustOrangeStorage.getStats();
+        const favs = JustOrangeStorage.getFavorites();
+        const pantry = JustOrangeStorage.getPantry();
+        $("#statGen").textContent = s.generated || 0;
+        $("#statFav").textContent = favs.length;
+        $("#statPantry").textContent = pantry.length;
+      }
+
+      // Quick combos
+      function renderCombos() {
+        const host = $("#quickCombos");
+        host.innerHTML = "";
+        JustOrangeEngine.listQuickCombos().forEach((c) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "chip";
+          b.textContent = c.label;
+          b.addEventListener("click", () => {
+            $("#ingredients").value = c.ingredients;
+            setTaste(c.taste === "mild" ? "mild" : c.taste);
+          });
+          host.appendChild(b);
+        });
+      }
+
+      function setTaste(t) {
+        $("#taste").value = t;
+        $$("#tasteChips .chip").forEach((c) => {
+          c.classList.toggle("active", c.dataset.taste === t || (t.includes(c.dataset.taste)));
+        });
+      }
+
+      $$("#tasteChips .chip").forEach((chip) => {
+        chip.addEventListener("click", () => setTaste(chip.dataset.taste));
+      });
+
+      $$("#allergenChips .chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          chip.classList.toggle("active");
+          const active = $$("#allergenChips .chip.active").map((c) => c.dataset.a);
+          const extra = $("#allergens").value
+            .split(",")
+            .map((s) => s.trim())
+            .filter((s) => s && !active.includes(s.toLowerCase()));
+          $("#allergens").value = [...active, ...extra].join(", ");
+        });
+      });
+
+      $("#btnUsePantry").addEventListener("click", () => {
+        const p = JustOrangeStorage.getPantry();
+        if (!p.length) return toast("Pantry is empty — add items in Library → Pantry");
+        $("#ingredients").value = p.join(", ");
+        toast("Loaded pantry into ingredients");
+      });
+
+      // Generate
+      async function generate(e) {
+        e && e.preventDefault();
+        const payload = {
+          ingredients: $("#ingredients").value.trim(),
+          taste: $("#taste").value,
+          prep: parseInt($("#prep").value, 10) || 15,
+          eat: parseInt($("#eat").value, 10) || 30,
+          allergens: $("#allergens").value.trim(),
+          exclusions: $("#exclusions").value.trim(),
+        };
+        if (!payload.ingredients) return toast("Add at least one ingredient");
+
+        const btn = $("#btnGenerate");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="loading-dot"></span> Cooking…';
+        $("#sourcePill").textContent = "Thinking";
+        $("#emptyResult").classList.add("hidden");
+        $("#resultBody").classList.remove("hidden");
+        $("#resultTitle").textContent = "Finding your one dish…";
+        $("#resultText").textContent = "Matching against the free local kitchen brain…";
+
+        try {
+          let result = JustOrangeEngine.generate(payload);
+          const settings = JustOrangeStorage.getSettings();
+
+          // Optional AI path (only if enabled and local is fallback-y)
+          if (
+            settings.useAiFallback === true ||
+            settings.useAiFallback === "true"
+          ) {
+            if (result.source === "local-fallback" || (result.score && result.score < 40)) {
+              const ai = await tryAi(payload, settings);
+              if (ai) result = ai;
+            }
+          }
+
+          if (result.error) {
+            $("#resultTitle").textContent = "Hmm";
+            $("#resultText").textContent = result.error;
+            $("#sourcePill").textContent = "Error";
+            return;
+          }
+
+          current = {
+            id: result.id,
+            name: result.name,
+            emoji: result.emoji,
+            recipe: result.recipe,
+            ingredients: payload.ingredients,
+            taste: payload.taste,
+            source: result.source,
+            meta: result.meta,
+          };
+
+          JustOrangeStorage.pushHistory(current);
+          renderResult(current, result);
+          renderHistory();
+          refreshStats();
+          // mobile switch to result
+          activateMobile("result");
+        } catch (err) {
+          $("#resultTitle").textContent = "Something broke";
+          $("#resultText").textContent = String(err.message || err);
+          $("#sourcePill").textContent = "Error";
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Generate my one recipe";
+        }
+      }
+
+      async function tryAi(payload, settings) {
+        // Prefer free Lambda if configured; else optional browser OpenAI
+        if (settings.apiUrl) {
+          try {
+            const res = await fetch(settings.apiUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+            if (data.recipe) {
+              return {
+                recipe: data.recipe,
+                source: data.source === "cache" ? "cloud-cache" : "cloud-ai",
+                name: data.recipe.split("\n")[0].slice(0, 60),
+                emoji: "✨",
+                id: "ai-" + Date.now(),
+                meta: {
+                  steps: data.recipe.split("\n").filter((l) => /^\d+\./.test(l.trim())),
+                  ingredients: JustOrangeEngine.parseList(payload.ingredients),
+                  missing: [],
+                  optional: [],
+                  tips: "",
+                  alternatives: [],
+                  total: payload.eat,
+                  prep: payload.prep,
+                  taste: [payload.taste],
+                },
+              };
+            }
+          } catch (_) { /* fall through */ }
+        }
+        if (settings.openaiKey) {
+          try {
+            const prompt = `Using only these exact ingredients: ${payload.ingredients}. Create one very short ${payload.taste} recipe. Prep ≤${payload.prep}min, ready to eat ≤${payload.eat}min. Never add anything else. Avoid: ${payload.allergens || "none"}. Never use: ${payload.exclusions || "none"}. Strict format: title line, then Ingredients with quantities, then Steps.`;
+            const res = await fetch("https://api.openai.com/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + settings.openaiKey,
+              },
+              body: JSON.stringify({
+                model: "gpt-4o-mini",
+                messages: [{ role: "user", content: prompt }],
+                max_tokens: 200,
+                temperature: 0.3,
+              }),
+            });
+            const data = await res.json();
+            const text = data.choices?.[0]?.message?.content?.trim();
+            if (text) {
+              return {
+                recipe: text,
+                source: "openai-direct",
+                name: text.split("\n")[0].slice(0, 60),
+                emoji: "✨",
+                id: "oai-" + Date.now(),
+                meta: {
+                  steps: text.split("\n").filter((l) => /^\d+\./.test(l.trim())),
+                  ingredients: JustOrangeEngine.parseList(payload.ingredients),
+                  missing: [],
+                  optional: [],
+                  tips: "",
+                  alternatives: [],
+                  total: payload.eat,
+                  prep: payload.prep,
+                  taste: [payload.taste],
+                },
+              };
+            }
+          } catch (_) { /* ignore */ }
+        }
+        return null;
+      }
+
+      function renderResult(entry, raw) {
+        $("#emptyResult").classList.add("hidden");
+        $("#resultBody").classList.remove("hidden");
+        $("#resultTitle").textContent = `${entry.emoji || "🍊"} ${entry.name}`;
+        $("#resultText").textContent = entry.recipe;
+        const srcMap = {
+          local: "Free local",
+          "local-fallback": "Improvised free",
+          "cloud-cache": "Cloud cache",
+          "cloud-ai": "Cloud AI",
+          "openai-direct": "OpenAI",
+        };
+        $("#sourcePill").textContent = srcMap[entry.source] || entry.source;
+        $("#btnFav").textContent = JustOrangeStorage.isFavorite(entry.id) ? "★" : "☆";
+
+        // alternatives
+        const alts = (entry.meta && entry.meta.alternatives) || [];
+        if (alts.length) {
+          $("#altsWrap").classList.remove("hidden");
+          $("#alts").innerHTML = "";
+          alts.forEach((a) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "chip";
+            b.textContent = `${a.emoji || ""} ${a.name}`.trim();
+            b.title = "We still only show one — this was runner-up";
+            $("#alts").appendChild(b);
+          });
+        } else {
+          $("#altsWrap").classList.add("hidden");
+        }
+
+        // cook steps
+        const steps = (entry.meta && entry.meta.steps) || [];
+        const list = $("#stepList");
+        list.innerHTML = "";
+        steps.forEach((s) => {
+          const li = document.createElement("li");
+          li.textContent = String(s).replace(/^\d+\.\s*/, "");
+          li.addEventListener("click", () => li.classList.toggle("done"));
+          list.appendChild(li);
+        });
+      }
+
+      $("#cookForm").addEventListener("submit", generate);
+
+      $("#btnFav").addEventListener("click", () => {
+        if (!current) return;
+        const on = JustOrangeStorage.toggleFavorite(current);
+        $("#btnFav").textContent = on ? "★" : "☆";
+        toast(on ? "Saved to favorites" : "Removed from favorites");
+        renderFavs();
+        refreshStats();
+      });
+
+      $("#btnCopy").addEventListener("click", async () => {
+        if (!current) return;
+        try {
+          await navigator.clipboard.writeText(current.recipe);
+          toast("Recipe copied");
+        } catch {
+          toast("Copy failed — select text manually");
+        }
+      });
+
+      $("#btnPrint").addEventListener("click", () => window.print());
+
+      $("#btnShare").addEventListener("click", async () => {
+        if (!current) return;
+        if (navigator.share) {
+          try {
+            await navigator.share({ title: current.name, text: current.recipe });
+            return;
+          } catch (_) {}
+        }
+        try {
+          await navigator.clipboard.writeText(current.recipe);
+          toast("Copied for sharing");
+        } catch {
+          toast("Share not supported");
+        }
+      });
+
+      $("#btnShop").addEventListener("click", () => {
+        if (!current || !current.meta) return toast("Generate a recipe first");
+        const need = JustOrangeEngine.shoppingList(
+          current.meta,
+          current.ingredients
+        );
+        if (!need.length) return toast("You already have everything!");
+        JustOrangeStorage.addShopping(need);
+        renderShop();
+        toast(`Added ${need.length} item(s) to shopping list`);
+        // switch side tab
+        setSide("shopping");
+      });
+
+      $("#btnCookMode").addEventListener("click", () => {
+        $("#cookMode").classList.toggle("hidden");
+      });
+      $("#btnCloseCook").addEventListener("click", () => {
+        $("#cookMode").classList.add("hidden");
+        stopTimer();
+      });
+
+      // Timer
+      function formatTime(s) {
+        const m = Math.floor(s / 60);
+        const ss = s % 60;
+        return String(m).padStart(2, "0") + ":" + String(ss).padStart(2, "0");
+      }
+      function renderTimer() {
+        $("#timerDisplay").textContent = formatTime(timerLeft);
+      }
+      function stopTimer() {
+        timerRunning = false;
+        if (timerId) clearInterval(timerId);
+        timerId = null;
+        $("#btnTimerToggle").textContent = "Start";
+      }
+      $$("[data-timer]").forEach((b) => {
+        b.addEventListener("click", () => {
+          timerLeft = parseInt(b.dataset.timer, 10) * 60;
+          renderTimer();
+          stopTimer();
+        });
+      });
+      $("#btnTimerToggle").addEventListener("click", () => {
+        if (timerRunning) {
+          stopTimer();
+          return;
+        }
+        timerRunning = true;
+        $("#btnTimerToggle").textContent = "Pause";
+        timerId = setInterval(() => {
+          timerLeft--;
+          if (timerLeft <= 0) {
+            timerLeft = 0;
+            renderTimer();
+            stopTimer();
+            toast("Timer done!");
+            try {
+              if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            } catch (_) {}
+            return;
+          }
+          renderTimer();
+        }, 1000);
+      });
+      renderTimer();
+
+      // Side panels
+      function setSide(name) {
+        $$("#sideTabs .tab").forEach((t) =>
+          t.classList.toggle("active", t.dataset.side === name)
+        );
+        ["history", "favorites", "pantry", "shopping"].forEach((n) => {
+          $("#side-" + n).classList.toggle("hidden", n !== name);
+        });
+      }
+      $$("#sideTabs .tab").forEach((t) =>
+        t.addEventListener("click", () => setSide(t.dataset.side))
+      );
+
+      function renderHistory() {
+        const list = JustOrangeStorage.getHistory();
+        const host = $("#historyList");
+        if (!list.length) {
+          host.innerHTML = '<div class="empty">No history yet.</div>';
+          return;
+        }
+        host.innerHTML = list
+          .map(
+            (h) => `
+          <div class="list-item">
+            <div>
+              <strong>${h.emoji || "🍊"} ${escapeHtml(h.name)}</strong>
+              <div class="text-sm text-muted">${new Date(h.ts).toLocaleString()} · ${escapeHtml(h.source || "")}</div>
+            </div>
+            <button class="btn btn-ghost btn-sm" data-load-history="${h.id}" type="button">Open</button>
+          </div>`
+          )
+          .join("");
+        host.querySelectorAll("[data-load-history]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const item = list.find((x) => x.id === btn.dataset.loadHistory);
+            if (!item) return;
+            current = item;
+            renderResult(item, item);
+            activateMobile("result");
+          });
+        });
+      }
+
+      function renderFavs() {
+        const list = JustOrangeStorage.getFavorites();
+        const host = $("#favList");
+        if (!list.length) {
+          host.innerHTML = '<div class="empty">Star a recipe to save it here.</div>';
+          return;
+        }
+        host.innerHTML = list
+          .map(
+            (h) => `
+          <div class="list-item">
+            <div><strong>${h.emoji || "🍊"} ${escapeHtml(h.name)}</strong></div>
+            <button class="btn btn-ghost btn-sm" data-load-fav="${h.id}" type="button">Open</button>
+          </div>`
+          )
+          .join("");
+        host.querySelectorAll("[data-load-fav]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const item = list.find((x) => x.id === btn.dataset.loadFav);
+            if (!item) return;
+            current = item;
+            renderResult(item, item);
+            activateMobile("result");
+          });
+        });
+      }
+
+      function renderPantry() {
+        const p = JustOrangeStorage.getPantry();
+        const host = $("#pantryTags");
+        host.innerHTML = p.length
+          ? p
+              .map(
+                (i) =>
+                  `<span class="tag">${escapeHtml(i)} <button type="button" data-rm="${escapeHtml(i)}" aria-label="Remove">×</button></span>`
+              )
+              .join("")
+          : '<span class="text-sm text-muted">Empty pantry</span>';
+        host.querySelectorAll("[data-rm]").forEach((b) => {
+          b.addEventListener("click", () => {
+            JustOrangeStorage.removeFromPantry(b.dataset.rm);
+            renderPantry();
+            refreshStats();
+          });
+        });
+      }
+
+      $("#btnAddPantry").addEventListener("click", () => {
+        const raw = $("#pantryInput").value;
+        const parts = JustOrangeEngine.parseList(raw);
+        if (!parts.length) return;
+        let p = JustOrangeStorage.getPantry();
+        parts.forEach((x) => {
+          if (!p.includes(x)) p.push(x);
+        });
+        JustOrangeStorage.setPantry(p);
+        $("#pantryInput").value = "";
+        renderPantry();
+        refreshStats();
+        toast("Pantry updated");
+      });
+
+      function renderShop() {
+        const list = JustOrangeStorage.getShopping();
+        const host = $("#shopList");
+        if (!list.length) {
+          host.innerHTML = '<div class="empty">Shopping list is empty.</div>';
+          return;
+        }
+        host.innerHTML = list
+          .map(
+            (i) => `
+          <label class="check-item ${i.done ? "done" : ""}">
+            <input type="checkbox" ${i.done ? "checked" : ""} data-shop="${escapeHtml(i.name)}" />
+            <span>${escapeHtml(i.name)}</span>
+          </label>`
+          )
+          .join("");
+        host.querySelectorAll("[data-shop]").forEach((cb) => {
+          cb.addEventListener("change", () => {
+            JustOrangeStorage.toggleShoppingItem(cb.dataset.shop);
+            renderShop();
+          });
+        });
+      }
+
+      $("#btnClearHistory").addEventListener("click", () => {
+        JustOrangeStorage.clearHistory();
+        renderHistory();
+        toast("History cleared");
+      });
+      $("#btnClearShop").addEventListener("click", () => {
+        JustOrangeStorage.clearShoppingDone();
+        renderShop();
+      });
+
+      function escapeHtml(s) {
+        return String(s || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      // Settings
+      function openSettings() {
+        const s = JustOrangeStorage.getSettings();
+        $("#useAi").value = String(s.useAiFallback === true || s.useAiFallback === "true");
+        $("#openaiKey").value = s.openaiKey || "";
+        $("#apiUrl").value = s.apiUrl || "";
+        $("#settingsModal").classList.remove("hidden");
+      }
+      $("#btnSettings").addEventListener("click", openSettings);
+      $("#btnCloseSettings").addEventListener("click", () =>
+        $("#settingsModal").classList.add("hidden")
+      );
+      $("#settingsModal").addEventListener("click", (e) => {
+        if (e.target.id === "settingsModal") $("#settingsModal").classList.add("hidden");
+      });
+      $("#btnSaveSettings").addEventListener("click", () => {
+        JustOrangeStorage.saveSettings({
+          useAiFallback: $("#useAi").value === "true",
+          openaiKey: $("#openaiKey").value.trim(),
+          apiUrl: $("#apiUrl").value.trim(),
+        });
+        $("#settingsModal").classList.add("hidden");
+        toast("Settings saved");
+      });
+
+      // Mobile panels
+      function activateMobile(name) {
+        $$(".mobile-tabs .tab").forEach((t) =>
+          t.classList.toggle("active", t.dataset.panel === name)
+        );
+        if (window.innerWidth > 900) return;
+        $("#panel-form").style.display = name === "form" ? "" : "none";
+        $("#panel-result").style.display = name === "result" ? "" : "none";
+        $("#panel-side").style.display = name === "side" ? "" : "none";
+      }
+      $$(".mobile-tabs .tab").forEach((t) =>
+        t.addEventListener("click", () => activateMobile(t.dataset.panel))
+      );
+
+      // Defaults from settings
+      const settings = JustOrangeStorage.getSettings();
+      $("#prep").value = settings.defaultPrep || 15;
+      $("#eat").value = settings.defaultEat || 30;
+      if (settings.defaultTaste) setTaste(settings.defaultTaste);
+
+      // Deep-link from landing: live.html#ing=tomato,rice
+      try {
+        const hash = location.hash.replace(/^#/, "");
+        const params = new URLSearchParams(hash.includes("=") ? hash : "");
+        const ing = params.get("ing") || new URLSearchParams(location.search).get("q");
+        if (ing) {
+          $("#ingredients").value = decodeURIComponent(ing);
+        }
+      } catch (_) {}
+
+      renderCombos();
+      renderHistory();
+      renderFavs();
+      renderPantry();
+      renderShop();
+      refreshStats();
+    })();
+  </script>
+</body>
+</html>

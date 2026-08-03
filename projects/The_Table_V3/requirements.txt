@@ -1,0 +1,5 @@
+# Python 3.12+ (tested on 3.14)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+pydantic>=2.11.0
+aiosqlite>=0.20.0

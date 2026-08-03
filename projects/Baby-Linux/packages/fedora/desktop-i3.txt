@@ -1,0 +1,23 @@
+# i3 + Xorg (Fedora)
+@base-x
+i3
+i3status
+dmenu
+rofi
+dunst
+kitty
+alacritty
+feh
+flameshot
+thunar
+xarchiver
+firefox
+mpv
+smplayer
+ranger
+sddm
+xss-lock
+arandr
+pavucontrol
+picom
+slock

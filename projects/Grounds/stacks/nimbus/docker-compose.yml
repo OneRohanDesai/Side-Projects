@@ -1,0 +1,107 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: grounds-nimbus-db
+    environment:
+      POSTGRES_USER: nimbus
+      POSTGRES_PASSWORD: nimbus
+      POSTGRES_DB: nimbus
+    ports:
+      - "5432:5432"
+    volumes:
+      - nimbus-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nimbus -d nimbus"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: grounds-nimbus-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: ../../app/nimbus
+      dockerfile: Dockerfile.api
+    image: grounds-nimbus-api:latest
+    container_name: grounds-nimbus-api
+    environment:
+      DATABASE_URL: postgresql+psycopg://nimbus:nimbus@postgres:5432/nimbus
+      REDIS_URL: redis://redis:6379/0
+      APP_ENV: local
+      LOG_LEVEL: info
+      S3_ENDPOINT: http://host.docker.internal:4566
+      S3_BUCKET: nimbus-assets
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: us-east-1
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  worker:
+    image: grounds-nimbus-api:latest
+    container_name: grounds-nimbus-worker
+    command: ["python", "-m", "worker.main"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://nimbus:nimbus@postgres:5432/nimbus
+      REDIS_URL: redis://redis:6379/0
+      APP_ENV: local
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: us-east-1
+      SQS_ENDPOINT: http://host.docker.internal:4566
+      SQS_QUEUE_URL: http://localhost:4566/000000000000/nimbus-jobs
+    depends_on:
+      api:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  web:
+    build:
+      context: ../../app/nimbus
+      dockerfile: Dockerfile.web
+    image: grounds-nimbus-web:latest
+    container_name: grounds-nimbus-web
+    environment:
+      API_URL: http://api:8080
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: grounds-nimbus-nginx
+    ports:
+      - "8088:80"
+      - "8443:443"
+    volumes:
+      - ../../app/nimbus/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ../../app/nimbus/nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - api
+      - web
+
+volumes:
+  nimbus-pg:

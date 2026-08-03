@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-saintvincentandthegrenadines
+data:
+  population: "110000"

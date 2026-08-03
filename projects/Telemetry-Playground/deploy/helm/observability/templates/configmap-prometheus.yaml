@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: prometheus
+data:
+  prometheus.yml: |
+{{ .Files.Get "files/prometheus/prometheus.yml" | nindent 4 }}

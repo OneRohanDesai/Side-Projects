@@ -1,0 +1,22 @@
+---
+- name: Deploy Observability Helm chart
+  ansible.builtin.command: >
+    helm upgrade --install observability
+    {{ playbook_dir }}/../deploy/helm/observability
+    -n observability
+    --create-namespace
+    --wait --timeout 10m
+  args:
+    chdir: "{{ playbook_dir }}/.."
+
+- name: Wait for core observability deployments
+  ansible.builtin.command: >
+    kubectl rollout status deployment/{{ item }}
+    -n observability
+    --timeout=300s
+  loop:
+    - grafana
+    - prometheus
+    - loki
+    - tempo
+    - otel-collector

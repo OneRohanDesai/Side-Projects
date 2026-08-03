@@ -1,0 +1,1 @@
+"""Control dashboard service."""

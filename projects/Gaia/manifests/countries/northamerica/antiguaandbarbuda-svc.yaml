@@ -1,0 +1,18 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: antiguaandbarbuda-metrics
+  labels:
+    app: country-sim
+    country: antiguaandbarbuda
+
+spec:
+  selector:
+    app: country-sim
+    country: antiguaandbarbuda
+
+  ports:
+  - name: metrics
+    port: 8080
+    targetPort: 8080

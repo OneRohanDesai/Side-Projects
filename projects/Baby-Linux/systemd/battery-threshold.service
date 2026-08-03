@@ -1,0 +1,12 @@
+[Unit]
+Description=Set ThinkPad battery charge thresholds (Baby Linux)
+# Protects battery health: start charging below 80%, stop at 90%
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo 80 > /sys/class/power_supply/BAT0/charge_start_threshold 2>/dev/null || true'
+ExecStart=/bin/sh -c 'echo 90 > /sys/class/power_supply/BAT0/charge_stop_threshold 2>/dev/null || true'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

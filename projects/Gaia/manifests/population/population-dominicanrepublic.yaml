@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-dominicanrepublic
+data:
+  population: "11300000"

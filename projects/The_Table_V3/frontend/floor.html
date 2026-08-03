@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>Floor Manager — The Table</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Floor <span>Manager</span></h1>
+      <div class="meta"><span class="live-dot"></span> Tap table · long-press for actions</div>
+    </div>
+    <nav class="role-nav">
+      <a href="/">Hub</a>
+      <a href="/floor" class="active">Floor</a>
+      <a href="/waiter">Waiter</a>
+      <a href="/expeditor">Expeditor</a>
+      <a href="/station">Kitchen</a>
+      <a href="/executive">Executive</a>
+      <a href="/simulation">Sim</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="stat-row" id="floor-stats"></div>
+    <div id="zones"></div>
+  </main>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    const ZONE_ORDER = ["main", "patio", "bar", "private"];
+
+    function orderForTable(tid) {
+      return (TT.state.orders || []).find(
+        (o) => o.table_id === tid && !["delivered", "cancelled"].includes(o.status)
+      );
+    }
+
+    function render() {
+      const tables = TT.state.tables || [];
+      const counts = { vacant: 0, occupied: 0, dirty: 0, reserved: 0 };
+      tables.forEach((t) => { counts[t.status] = (counts[t.status] || 0) + 1; });
+      document.getElementById("floor-stats").innerHTML = `
+        <div class="stat"><div class="label">Vacant</div><div class="value" style="color:var(--good)">${counts.vacant||0}</div></div>
+        <div class="stat"><div class="label">Occupied</div><div class="value" style="color:var(--bad)">${counts.occupied||0}</div></div>
+        <div class="stat"><div class="label">Dirty</div><div class="value" style="color:var(--warn)">${counts.dirty||0}</div></div>
+        <div class="stat"><div class="label">Active orders</div><div class="value">${(TT.state.orders||[]).filter(o=>!["delivered","cancelled"].includes(o.status)).length}</div></div>
+      `;
+
+      const byZone = {};
+      tables.forEach((t) => {
+        (byZone[t.zone] ||= []).push(t);
+      });
+      const zones = [...new Set([...ZONE_ORDER, ...Object.keys(byZone)])];
+
+      document.getElementById("zones").innerHTML = zones.map((z) => {
+        const list = byZone[z] || [];
+        if (!list.length) return "";
+        return `
+          <section class="zone-block">
+            <div class="zone-title">${z}</div>
+            <div class="tables-grid">
+              ${list.map((t) => {
+                const ord = orderForTable(t.id);
+                return `
+                  <div class="table-card ${t.status} ${ord ? "has-order" : ""}"
+                       data-id="${t.id}"
+                       onclick="openTable('${t.id}')">
+                    <h3>${t.number.replace("Table ", "T")}</h3>
+                    <div class="seats">${t.status === "occupied" ? `${t.pax}/${t.seats}` : `${t.seats} seats`}</div>
+                    ${t.status === "occupied" && t.occupied_at ? `<div class="seats">${TT.timeAgo(t.occupied_at)}</div>` : ""}
+                    ${ord ? `<span class="badge">${TT.statusLabel(ord.status)}</span>` : `<span class="badge">${t.status}</span>`}
+                  </div>`;
+              }).join("")}
+            </div>
+          </section>`;
+      }).join("");
+    }
+
+    async function openTable(id) {
+      const t = TT.state.tables.find((x) => x.id === id);
+      if (!t) return;
+      const ord = orderForTable(id);
+
+      if (t.status === "vacant" || t.status === "reserved") {
+        TT.modal({
+          title: `Seat ${t.number}`,
+          bodyHTML: `
+            <div class="field"><label>Party size (max ${t.seats})</label>
+              <input id="pax" type="number" min="1" max="${t.seats}" value="${Math.min(2, t.seats)}" />
+            </div>
+            <div class="field"><label>Notes</label>
+              <input id="notes" placeholder="allergy, high chair…" />
+            </div>`,
+          actions: [
+            { label: "Cancel", className: "ghost" },
+            {
+              label: "Seat guests",
+              className: "primary",
+              onClick: async (m) => {
+                const pax = parseInt(m.querySelector("#pax").value, 10);
+                const notes = m.querySelector("#notes").value;
+                await TT.api(`/tables/${id}/seat`, { method: "POST", body: { pax, notes } });
+                TT.toast(`${t.number} seated`);
+              },
+            },
+          ],
+        });
+        return;
+      }
+
+      if (t.status === "dirty") {
+        TT.modal({
+          title: `${t.number} is dirty`,
+          bodyHTML: `<p class="kicker">Mark clean when busser finishes.</p>`,
+          actions: [
+            { label: "Close", className: "ghost" },
+            {
+              label: "Mark clean",
+              className: "good",
+              onClick: async () => {
+                await TT.api(`/tables/${id}/clean`, { method: "POST" });
+                TT.toast(`${t.number} vacant`);
+              },
+            },
+          ],
+        });
+        return;
+      }
+
+      // occupied
+      let billHTML = "";
+      try {
+        const bill = await TT.api(`/tables/${id}/bill`);
+        billHTML = `<p><strong>Delivered total:</strong> ${TT.fmtMoney(bill.total)}</p>`;
+      } catch {}
+
+      TT.modal({
+        title: t.number,
+        bodyHTML: `
+          <p class="kicker">${t.pax} guests · seated ${TT.timeAgo(t.occupied_at)}
+            ${ord ? ` · order <span class="status-pill ${ord.status}">${TT.statusLabel(ord.status)}</span>` : " · no open order"}</p>
+          ${billHTML}
+          <p style="color:var(--muted);font-size:.85rem;margin-top:.5rem">Use Waiter tablet to take orders. Clear only when all orders are closed.</p>
+        `,
+        actions: [
+          { label: "Close", className: "ghost" },
+          {
+            label: "Open waiter",
+            className: "primary",
+            onClick: () => { location.href = `/waiter?table=${id}`; },
+          },
+          {
+            label: "Clear → dirty",
+            className: "warn",
+            onClick: async () => {
+              await TT.api(`/tables/${id}/clear?dirty=true`, { method: "POST" });
+              TT.toast(`${t.number} cleared`);
+            },
+          },
+        ],
+      });
+    }
+
+    TT.on("change", render);
+    TT.bootstrap();
+  </script>
+</body>
+</html>

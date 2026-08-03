@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gaia World Control</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+<h1>Gaia World Simulator</h1>
+
+<div class="top-buttons">
+<a href="http://localhost:3000" target="_blank">Grafana</a>
+</div>
+</header>
+
+
+<div class="layout">
+
+<div class="sidebar">
+
+<h3>Clusters</h3>
+<div id="clusters"></div>
+
+<h3>Countries</h3>
+<div id="countries"></div>
+
+</div>
+
+
+<div class="main">
+
+<div class="tabs">
+<button onclick="showTab('overview')">Overview</button>
+<button onclick="showTab('events')">Events</button>
+<button onclick="showTab('control')">Control</button>
+<button onclick="showTab('logs')">Logs</button>
+</div>
+
+
+<div id="overview" class="tab">
+<h2>World Status</h2>
+<div id="overview-data"></div>
+</div>
+
+
+<div id="events" class="tab">
+
+<h2>Trigger Event</h2>
+
+<select id="event"></select>
+<select id="country"></select>
+
+<input id="intensity" type="number" step="0.1" value="0.5">
+
+<button onclick="executeEvent()">Execute</button>
+
+<h3>Recent Events</h3>
+<div id="event-log"></div>
+
+</div>
+
+
+<div id="control" class="tab">
+
+<h2>Country Control</h2>
+
+<div id="country-controls"></div>
+
+</div>
+
+
+<div id="logs" class="tab">
+
+<h2>Country Logs</h2>
+
+<div id="country-logs"></div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

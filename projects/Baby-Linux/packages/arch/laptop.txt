@@ -1,0 +1,9 @@
+# Laptop / ThinkPad helpers (Arch)
+tlp
+tlp-rdw
+acpi
+brightnessctl
+powertop
+lm_sensors
+smartmontools
+fwupd

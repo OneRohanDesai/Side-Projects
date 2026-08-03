@@ -1,0 +1,3622 @@
+{
+  "date": "2026-03-16",
+  "countries": [
+    {
+      "name": "antiguaandbarbuda",
+      "continent": "northamerica",
+      "population": 0
+    },
+    {
+      "name": "australia",
+      "continent": "oceania",
+      "population": 27994341
+    },
+    {
+      "name": "bahamas",
+      "continent": "northamerica",
+      "population": 7189
+    },
+    {
+      "name": "barbados",
+      "continent": "northamerica",
+      "population": 5958
+    },
+    {
+      "name": "belize",
+      "continent": "northamerica",
+      "population": 92437
+    },
+    {
+      "name": "canada",
+      "continent": "northamerica",
+      "population": 26067923
+    },
+    {
+      "name": "costarica",
+      "continent": "northamerica",
+      "population": 964000
+    },
+    {
+      "name": "cuba",
+      "continent": "northamerica",
+      "population": 4873312
+    },
+    {
+      "name": "dominica",
+      "continent": "northamerica",
+      "population": 1151
+    },
+    {
+      "name": "dominicanrepublic",
+      "continent": "northamerica",
+      "population": 200190
+    },
+    {
+      "name": "elsalvador",
+      "continent": "northamerica",
+      "population": 1292690
+    },
+    {
+      "name": "fiji",
+      "continent": "oceania",
+      "population": 999438
+    },
+    {
+      "name": "grenada",
+      "continent": "northamerica",
+      "population": 2696
+    },
+    {
+      "name": "guatemala",
+      "continent": "northamerica",
+      "population": 3830978
+    },
+    {
+      "name": "haiti",
+      "continent": "northamerica",
+      "population": 306711
+    },
+    {
+      "name": "honduras",
+      "continent": "northamerica",
+      "population": 2198548
+    },
+    {
+      "name": "jamaica",
+      "continent": "northamerica",
+      "population": 57333
+    },
+    {
+      "name": "kiribati",
+      "continent": "oceania",
+      "population": 137147
+    },
+    {
+      "name": "marshallislands",
+      "continent": "oceania",
+      "population": 42089
+    },
+    {
+      "name": "mexico",
+      "continent": "northamerica",
+      "population": 56869396
+    },
+    {
+      "name": "micronesia",
+      "continent": "oceania",
+      "population": 118805
+    },
+    {
+      "name": "nauru",
+      "continent": "oceania",
+      "population": 13398
+    },
+    {
+      "name": "newzealand",
+      "continent": "oceania",
+      "population": 5317961
+    },
+    {
+      "name": "nicaragua",
+      "continent": "northamerica",
+      "population": 0
+    },
+    {
+      "name": "palau",
+      "continent": "oceania",
+      "population": 18579
+    },
+    {
+      "name": "panama",
+      "continent": "northamerica",
+      "population": 860585
+    },
+    {
+      "name": "papuanewguinea",
+      "continent": "oceania",
+      "population": 11331277
+    },
+    {
+      "name": "saintkittsandnevis",
+      "continent": "northamerica",
+      "population": 636
+    },
+    {
+      "name": "saintlucia",
+      "continent": "northamerica",
+      "population": 3160
+    },
+    {
+      "name": "saintvincentandthegrenadines",
+      "continent": "northamerica",
+      "population": 2292
+    },
+    {
+      "name": "samoa",
+      "continent": "oceania",
+      "population": 230079
+    },
+    {
+      "name": "solomonislands",
+      "continent": "oceania",
+      "population": 720867
+    },
+    {
+      "name": "tonga",
+      "continent": "oceania",
+      "population": 105439
+    },
+    {
+      "name": "trinidadandtobago",
+      "continent": "northamerica",
+      "population": 31745
+    },
+    {
+      "name": "tuvalu",
+      "continent": "oceania",
+      "population": 10768
+    },
+    {
+      "name": "unitedstates",
+      "continent": "northamerica",
+      "population": 152101953
+    },
+    {
+      "name": "vanuatu",
+      "continent": "oceania",
+      "population": 346625
+    }
+  ],
+  "continents": [
+    {
+      "name": "northamerica",
+      "population": 249770883
+    },
+    {
+      "name": "oceania",
+      "population": 47386813
+    }
+  ],
+  "recent_events": [
+    {
+      "time": "2026-03-16 08:49:05",
+      "country": "honduras",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:48:45",
+      "country": "grenada",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:49:05",
+      "country": "elsalvador",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:49:25",
+      "country": "dominica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:49:27",
+      "country": "saintlucia",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:49:46",
+      "country": "elsalvador",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:49:46",
+      "country": "grenada",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:00",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:01",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:01",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:01",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:01",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:01",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:02",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:02",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:02",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:02",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:03",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:03",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:03",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:06",
+      "country": "honduras",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:50:14",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:15",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:16",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:16",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:16",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:16",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:16",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:16",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:17",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:17",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:17",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:17",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:18",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:18",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:18",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:27",
+      "country": "jamaica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:50:29",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:30",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:31",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:32",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:32",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:32",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:33",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:33",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:33",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:33",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:33",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:44",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:45",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:45",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:45",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:45",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:45",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:45",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:46",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:47",
+      "country": "elsalvador",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:47",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:47",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:48",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:48",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:48",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:50:48",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:50:48",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 08:50:49",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:00",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:00",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:01",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:02",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:02",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:03",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:03",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:03",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:03",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:03",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:04",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:06",
+      "country": "canada",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:51:06",
+      "country": "costarica",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:15",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:16",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:17",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:17",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:17",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:17",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:18",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:18",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:18",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:18",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:19",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:19",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:19",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:26",
+      "country": "dominica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:51:30",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:31",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:31",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:31",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:32",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:32",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:32",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:33",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:33",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:34",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:34",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:34",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:46",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:46",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:46",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:46",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:47",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:47",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:48",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:47",
+      "country": "grenada",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:51:48",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:48",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:48",
+      "country": "trinidadandtobago",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:51:49",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:49",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:51:50",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:01",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:02",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:02",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:02",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:02",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:02",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:03",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:04",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:04",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:04",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:04",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:05",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:07",
+      "country": "honduras",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:52:16",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:17",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:17",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:17",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:18",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:18",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:18",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:19",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:19",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:19",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:20",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:20",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:27",
+      "country": "costarica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:52:28",
+      "country": "elsalvador",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:52:46",
+      "country": "mexico",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:52:46",
+      "country": "canada",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:52:47",
+      "country": "bahamas",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:52:47",
+      "country": "costarica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:52:48",
+      "country": "nicaragua",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:52:49",
+      "country": "trinidadandtobago",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:53:07",
+      "country": "honduras",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:53:09",
+      "country": "unitedstates",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:53:26",
+      "country": "dominicanrepublic",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:53:48",
+      "country": "bahamas",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:53:49",
+      "country": "nicaragua",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:54:08",
+      "country": "bahamas",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:54:08",
+      "country": "guatemala",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:54:09",
+      "country": "elsalvador",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:54:09",
+      "country": "panama",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:54:10",
+      "country": "saintvincentandthegrenadines",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:54:28",
+      "country": "honduras",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:54:30",
+      "country": "saintkittsandnevis",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:54:48",
+      "country": "costarica",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:55:08",
+      "country": "honduras",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:55:09",
+      "country": "bahamas",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:55:09",
+      "country": "panama",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:55:27",
+      "country": "barbados",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:55:28",
+      "country": "haiti",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:55:30",
+      "country": "nicaragua",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:56:06",
+      "country": "antiguaandbarbuda",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:56:11",
+      "country": "saintkittsandnevis",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:56:29",
+      "country": "bahamas",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:56:31",
+      "country": "trinidadandtobago",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:56:48",
+      "country": "dominica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:56:51",
+      "country": "trinidadandtobago",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:57:07",
+      "country": "belize",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:57:08",
+      "country": "canada",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:57:08",
+      "country": "guatemala",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:57:09",
+      "country": "costarica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:57:09",
+      "country": "jamaica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:57:11",
+      "country": "unitedstates",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:57:27",
+      "country": "cuba",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:57:30",
+      "country": "panama",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:57:31",
+      "country": "unitedstates",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:57:31",
+      "country": "saintlucia",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:57:48",
+      "country": "mexico",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:57:49",
+      "country": "dominica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:57:49",
+      "country": "haiti",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:57:50",
+      "country": "bahamas",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:58:06",
+      "country": "antiguaandbarbuda",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:58:07",
+      "country": "cuba",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 08:58:09",
+      "country": "costarica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:58:29",
+      "country": "dominica",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:58:31",
+      "country": "saintvincentandthegrenadines",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:58:48",
+      "country": "dominicanrepublic",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:58:52",
+      "country": "trinidadandtobago",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:59:08",
+      "country": "cuba",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 08:59:09",
+      "country": "mexico",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 08:59:29",
+      "country": "dominica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 08:59:29",
+      "country": "costarica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:00:01",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:01",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:02",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:02",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:02",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:02",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:02",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:02",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:03",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:03",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:03",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:03",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:03",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:04",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:04",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:04",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:05",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:05",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:05",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:05",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:05",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:06",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:06",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:09",
+      "country": "guatemala",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:00:09",
+      "country": "costarica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:00:10",
+      "country": "elsalvador",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:16",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:17",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:17",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:17",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:17",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:17",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:18",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:18",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:18",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:18",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:18",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:18",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:19",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:19",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:19",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:19",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:20",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:20",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:20",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:20",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:20",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:21",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:21",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:30",
+      "country": "panama",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:31",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:32",
+      "country": "saintvincentandthegrenadines",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:32",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:32",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:32",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:32",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:33",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:33",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:33",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:33",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:33",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:34",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:33",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:34",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:34",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:34",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:35",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:35",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:35",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:35",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:35",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:36",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:36",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:36",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:47",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:47",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:47",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:47",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:47",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:48",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:48",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:48",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:48",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:49",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:49",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:49",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:49",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:49",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:49",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:50",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:50",
+      "country": "honduras",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:50",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:50",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:00:50",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:51",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:51",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:00:51",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:00:52",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:02",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:02",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:03",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:03",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:03",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:03",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:04",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:04",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:04",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:04",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:04",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:05",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:05",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:05",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:06",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:06",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:06",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:07",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:07",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:07",
+      "country": "antiguaandbarbuda",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:10",
+      "country": "dominica",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:01:12",
+      "country": "unitedstates",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:13",
+      "country": "trinidadandtobago",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:01:17",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:17",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:18",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:18",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:19",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:19",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:19",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:19",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:19",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:19",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:20",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:20",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:21",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:21",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:21",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:21",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:21",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:22",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:22",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:29",
+      "country": "cuba",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:30",
+      "country": "guatemala",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:01:30",
+      "country": "canada",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:31",
+      "country": "nicaragua",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:01:32",
+      "country": "saintvincentandthegrenadines",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:01:33",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:33",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:34",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:34",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:35",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:35",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:36",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:36",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:36",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:36",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:37",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:37",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:48",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:48",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:49",
+      "country": "barbados",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:01:49",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:49",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:50",
+      "country": "canada",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:01:50",
+      "country": "jamaica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:01:50",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:50",
+      "country": "costarica",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:01:51",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:51",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:51",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:51",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:51",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:52",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:52",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:01:53",
+      "country": "saintkittsandnevis",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:02:03",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:03",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:05",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:05",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:05",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:06",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:06",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:06",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:07",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:07",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:07",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:08",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:12",
+      "country": "nicaragua",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:02:18",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:19",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:20",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:20",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:20",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:21",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:21",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:21",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:22",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:22",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:23",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:23",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:02:33",
+      "country": "unitedstates",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:02:51",
+      "country": "bahamas",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:02:53",
+      "country": "saintvincentandthegrenadines",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:03:10",
+      "country": "cuba",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:03:11",
+      "country": "grenada",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:03:30",
+      "country": "barbados",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:03:30",
+      "country": "guatemala",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:03:51",
+      "country": "bahamas",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:04:10",
+      "country": "jamaica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:04:11",
+      "country": "panama",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:04:11",
+      "country": "bahamas",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:04:13",
+      "country": "saintkittsandnevis",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:04:30",
+      "country": "haiti",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:04:30",
+      "country": "guatemala",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:04:32",
+      "country": "bahamas",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:04:51",
+      "country": "cuba",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:05:11",
+      "country": "guatemala",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:05:31",
+      "country": "elsalvador",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:05:51",
+      "country": "jamaica",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:05:51",
+      "country": "canada",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:05:52",
+      "country": "dominica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:05:53",
+      "country": "nicaragua",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:06:11",
+      "country": "jamaica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:06:14",
+      "country": "saintkittsandnevis",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:06:50",
+      "country": "mexico",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:06:54",
+      "country": "saintvincentandthegrenadines",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:07:31",
+      "country": "mexico",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:07:32",
+      "country": "panama",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:08:12",
+      "country": "grenada",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:08:30",
+      "country": "barbados",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:08:32",
+      "country": "jamaica",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:08:48",
+      "country": "belize",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:08:52",
+      "country": "bahamas",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:09:12",
+      "country": "cuba",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:09:34",
+      "country": "unitedstates",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:09:35",
+      "country": "saintkittsandnevis",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:09:53",
+      "country": "nicaragua",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:09:54",
+      "country": "trinidadandtobago",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:10:03",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:03",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:03",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:03",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:03",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:04",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:04",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:04",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:04",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:05",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:05",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:05",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:06",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:06",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:06",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:07",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:07",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:07",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:08",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:07",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:08",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:08",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:08",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:11",
+      "country": "mexico",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:10:18",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:18",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:18",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:18",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:19",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:19",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:19",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:19",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:19",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:20",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:20",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:21",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:21",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:21",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:21",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:22",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:22",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:22",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:23",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:23",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:23",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:24",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:23",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:31",
+      "country": "haiti",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:32",
+      "country": "guatemala",
+      "event": "LOCAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:33",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:33",
+      "country": "honduras",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:10:33",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:33",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:34",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:34",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:34",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:34",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:35",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:35",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:35",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:35",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:36",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:36",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:36",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:37",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:37",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:37",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:38",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:37",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:38",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:38",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:39",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:39",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:48",
+      "country": "canada",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:48",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:48",
+      "country": "cuba",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:49",
+      "country": "mexico",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:49",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:49",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:49",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:50",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:50",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:50",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:51",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:51",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:51",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:51",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:52",
+      "country": "unitedstates",
+      "event": "REGIONAL WILDFIRE"
+    },
+    {
+      "time": "2026-03-16 09:10:53",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:10:53",
+      "country": "bahamas",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:10:53",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:53",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:53",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:53",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:54",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:54",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:54",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:10:54",
+      "country": "nicaragua",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:03",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:04",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:04",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:05",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:05",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:05",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:06",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:06",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:06",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:07",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:07",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:08",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:08",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:08",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:08",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:08",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:09",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:09",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:09",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:10",
+      "country": "dominicanrepublic",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:12",
+      "country": "jamaica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:13",
+      "country": "elsalvador",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:11:18",
+      "country": "costarica",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:19",
+      "country": "belize",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:19",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:20",
+      "country": "guatemala",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:20",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:20",
+      "country": "honduras",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:21",
+      "country": "nicaragua",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:21",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:22",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:22",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:22",
+      "country": "elsalvador",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:23",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:23",
+      "country": "panama",
+      "event": "REGIONAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:23",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:23",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:23",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:24",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:24",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:24",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:32",
+      "country": "costarica",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:11:32",
+      "country": "jamaica",
+      "event": "MIGRATION SURGE"
+    },
+    {
+      "time": "2026-03-16 09:11:32",
+      "country": "guatemala",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:11:33",
+      "country": "honduras",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:11:33",
+      "country": "grenada",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:11:35",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:35",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:36",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:37",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:37",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:38",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:38",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:38",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:38",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:39",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:39",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:39",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:50",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:51",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:51",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:52",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:52",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:53",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:53",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:53",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:54",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:54",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:54",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:11:55",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:05",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:06",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:06",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:07",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:07",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:08",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:09",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:09",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:09",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:09",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:09",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:10",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:20",
+      "country": "bahamas",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:21",
+      "country": "antiguaandbarbuda",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:21",
+      "country": "barbados",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:22",
+      "country": "dominica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:22",
+      "country": "dominicanrepublic",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:24",
+      "country": "saintkittsandnevis",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:24",
+      "country": "grenada",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:24",
+      "country": "jamaica",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:24",
+      "country": "saintlucia",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:24",
+      "country": "trinidadandtobago",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:25",
+      "country": "saintvincentandthegrenadines",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:25",
+      "country": "haiti",
+      "event": "REGIONAL HURRICANE"
+    },
+    {
+      "time": "2026-03-16 09:12:31",
+      "country": "dominicanrepublic",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:12:32",
+      "country": "barbados",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:12:32",
+      "country": "costarica",
+      "event": "LOCAL EARTHQUAKE"
+    },
+    {
+      "time": "2026-03-16 09:12:34",
+      "country": "nicaragua",
+      "event": "LOCAL FLOOD"
+    },
+    {
+      "time": "2026-03-16 09:12:49",
+      "country": "antiguaandbarbud",
+      "event": null
+    }
+  ]
+}

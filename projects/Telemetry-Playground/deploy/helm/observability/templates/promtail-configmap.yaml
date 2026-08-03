@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: promtail-config
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: promtail
+data:
+  promtail.yaml: |
+    server:
+      http_listen_port: 9080
+      grpc_listen_port: 0
+
+    positions:
+      filename: /tmp/positions.yaml
+
+    clients:
+      - url: http://loki:3100/loki/api/v1/push
+        batchwait: 1s
+        batchsize: 1048576
+
+    scrape_configs:
+      # Reliable Kind/containerd path: /var/log/pods/<ns>_<pod>_<uid>/<container>/<n>.log
+      - job_name: pod-logs
+        static_configs:
+          - targets:
+              - localhost
+            labels:
+              job: podlogs
+              __path__: /var/log/pods/*/*/*.log
+        pipeline_stages:
+          - cri: {}
+          - regex:
+              source: filename
+              expression: '/var/log/pods/(?P<namespace>[^_]+)_(?P<pod>[^_]+)_[^/]+/(?P<container>[^/]+)/'
+          - labels:
+              namespace:
+              pod:
+              container:

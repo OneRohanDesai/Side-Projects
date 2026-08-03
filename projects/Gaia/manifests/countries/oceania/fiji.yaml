@@ -1,0 +1,60 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiji-sim
+  labels:
+    app: country-sim
+    country: fiji
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: country-sim
+      country: fiji
+
+  template:
+    metadata:
+      labels:
+        app: country-sim
+        country: fiji
+        continent: oceania
+
+    spec:
+      containers:
+      - name: simulator
+        image: gaia/country-sim:latest
+        imagePullPolicy: IfNotPresent
+
+        ports:
+        - containerPort: 8080
+          name: metrics
+
+        resources:
+          requests:
+            cpu: "5m"
+            memory: "8Mi"
+          limits:
+            cpu: "20m"
+            memory: "32Mi"
+
+        env:
+        - name: COUNTRY
+          value: "fiji"
+
+        - name: CONTINENT
+          value: "oceania"
+
+        - name: POPULATION
+          value: "999438"
+
+        - name: GROWTH_RATE
+          value: "0.01"
+
+        - name: REDIS_HOST
+          value: "host.docker.internal"
+
+        - name: REDIS_PORT
+          value: "6379"

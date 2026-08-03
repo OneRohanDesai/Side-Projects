@@ -1,0 +1,21 @@
+GPT command notes — Just Orange (token-efficient)
+
+Preferred model: gpt-4o-mini
+max_tokens: 150–180
+temperature: 0.3
+
+Example (replace API key):
+
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [{"role": "user", "content": "Using only: tomato,rice,egg. Short spicy recipe. Prep 10min, eat 15min. Skip nuts/onion. Output: TITLE then Ingredients (quantities) then Steps."}],
+    "max_tokens": 180,
+    "temperature": 0.3
+  }'
+
+Local free path (no GPT): open live/live.html — js/engine.js matches curated recipes in js/recipes.js.
+CLI path: cli/just-orange.sh → core/recipe_engine.sh
+Lambda path: live/lambda/handler.py

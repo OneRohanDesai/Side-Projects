@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: population-trinidadandtobago
+data:
+  population: "1530000"

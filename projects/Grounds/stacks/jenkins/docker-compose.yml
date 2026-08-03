@@ -1,0 +1,24 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: grounds-jenkins
+    privileged: true
+    user: root
+    ports:
+      - "18080:8080"
+      - "50000:50000"
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - CASC_JENKINS_CONFIG=/var/jenkins_home/casc.yaml
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - ./casc.yaml:/var/jenkins_home/casc.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/login"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  jenkins-data:

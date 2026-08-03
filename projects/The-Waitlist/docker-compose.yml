@@ -1,0 +1,17 @@
+services:
+  waitlist:
+    build: .
+    ports:
+      - "3001:3001"
+    volumes:
+      - waitlist-data:/data
+    environment:
+      PORT: "3001"
+      HOST: "0.0.0.0"
+      DATABASE_URL: /data/waitlist.db
+      # Set to your public origin if cookies need Secure over HTTPS reverse-proxy
+      # COOKIE_SECURE: "1"
+      # CORS_ORIGIN: "https://waitlist.example.com"
+
+volumes:
+  waitlist-data:

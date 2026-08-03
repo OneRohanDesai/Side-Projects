@@ -1,0 +1,16 @@
+Telemetry Playground installed.
+
+Namespace: {{ include "telemetry.namespace" . }}
+Release:   {{ .Release.Name }}
+
+Dashboard:
+  http://{{ .Values.ingress.host }}
+
+Services:
+  generator (StatefulSet): {{ .Values.replicas.generator }} replicas
+  receiver:                {{ .Values.replicas.receiver }} replicas
+  nginx / redis / dashboard
+
+Tips:
+  kubectl get pods -n {{ include "telemetry.namespace" . }}
+  kubectl logs -n {{ include "telemetry.namespace" . }} -l app=generator -f

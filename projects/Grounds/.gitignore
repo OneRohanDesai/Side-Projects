@@ -1,0 +1,14 @@
+state/
+progress/progress.json
+*.pyc
+__pycache__/
+.env
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+*.pem
+invoke*.json
+.DS_Store
+app/nimbus/nginx/certs/*.pem
+app/nimbus/nginx/certs/*.key

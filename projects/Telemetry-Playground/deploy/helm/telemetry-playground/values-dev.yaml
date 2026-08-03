@@ -1,0 +1,20 @@
+replicas:
+  generator: 2
+  receiver: 2
+  dashboard: 1
+  nginx: 1
+  redis: 1
+
+imageTag: latest
+imagePullPolicy: Always
+
+config:
+  environment: dev
+  region: cloud
+
+autoscaling:
+  enabled: false
+
+pdb:
+  enabled: true
+  minAvailable: 1

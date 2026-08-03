@@ -1,0 +1,7 @@
+apiVersion: v2
+name: telemetry-playground
+description: Full telemetry system (generator, receiver, redis, nginx, dashboard)
+type: application
+
+version: 0.1.0
+appVersion: "1.0"

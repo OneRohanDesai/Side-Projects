@@ -1,0 +1,56 @@
+version: 2
+
+updates:
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - github-actions
+
+  # Generator Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/docker/generator"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - docker
+
+  # Receiver Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/docker/receiver"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - docker
+
+  # Dashboard Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/docker/dashboard"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - docker
+
+  # Nginx Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/docker/nginx"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    labels:
+      - docker

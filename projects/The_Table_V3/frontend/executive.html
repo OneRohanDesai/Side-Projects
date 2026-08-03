@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>Executive — The Table</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Executive <span>Chef</span></h1>
+      <div class="meta"><span class="live-dot"></span> Menu · 86 · Analytics · Staff</div>
+    </div>
+    <nav class="role-nav">
+      <a href="/">Hub</a>
+      <a href="/floor">Floor</a>
+      <a href="/expeditor">Expeditor</a>
+      <a href="/executive" class="active">Executive</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="tabs">
+      <button class="active" data-tab="analytics">Analytics</button>
+      <button data-tab="menu">Menu</button>
+      <button data-tab="staff">Staff &amp; sections</button>
+    </div>
+
+    <section id="tab-analytics"></section>
+    <section id="tab-menu" hidden></section>
+    <section id="tab-staff" hidden></section>
+  </main>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    document.querySelectorAll(".tabs button").forEach((b) => {
+      b.onclick = () => {
+        document.querySelectorAll(".tabs button").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        ["analytics", "menu", "staff"].forEach((t) => {
+          document.getElementById("tab-" + t).hidden = t !== b.dataset.tab;
+        });
+        render();
+      };
+    });
+
+    async function refreshAnalytics() {
+      try {
+        TT.state.analytics = await TT.api("/analytics");
+      } catch {}
+    }
+
+    async function toggleItem(id) {
+      await TT.api(`/menu/${id}/toggle`, { method: "POST" });
+      TT.toast("Availability updated");
+    }
+
+    async function deleteItem(id) {
+      if (!confirm("Remove this dish from the menu?")) return;
+      await TT.api(`/menu/${id}`, { method: "DELETE" });
+    }
+
+    function addDish() {
+      TT.modal({
+        title: "Add dish",
+        bodyHTML: `
+          <div class="field"><label>Name</label><input id="n" /></div>
+          <div class="field"><label>Category</label>
+            <select id="c"><option>Mains</option><option>Starters</option><option>Desserts</option><option>Drinks</option></select>
+          </div>
+          <div class="field"><label>Price</label><input id="p" type="number" step="0.01" value="18" /></div>
+          <div class="field"><label>Primary station</label>
+            <select id="s">
+              <option value="grill">Grill</option>
+              <option value="saute">Sauté</option>
+              <option value="sauce">Sauce</option>
+              <option value="fry">Fry</option>
+              <option value="cold">Cold</option>
+              <option value="pastry">Pastry</option>
+              <option value="beverage">Beverage</option>
+            </select>
+          </div>
+          <div class="field"><label>Prep seconds</label><input id="d" type="number" value="300" /></div>
+          <div class="field"><label>Description</label><input id="desc" /></div>
+        `,
+        actions: [
+          { label: "Cancel", className: "ghost" },
+          {
+            label: "Save",
+            className: "primary",
+            onClick: async (m) => {
+              const name = m.querySelector("#n").value.trim();
+              if (!name) throw new Error("Name required");
+              const station = m.querySelector("#s").value;
+              const prep = parseInt(m.querySelector("#d").value, 10) || 300;
+              await TT.api("/menu", {
+                method: "POST",
+                body: {
+                  name,
+                  category: m.querySelector("#c").value,
+                  price: parseFloat(m.querySelector("#p").value) || 0,
+                  station,
+                  prep_secs: prep,
+                  description: m.querySelector("#desc").value,
+                  prep_steps: [{ task: `Prep ${name}`, station, duration: prep }],
+                },
+              });
+              TT.toast("Dish added");
+            },
+          },
+        ],
+      });
+    }
+
+    async function saveAssignments(waiterId) {
+      const boxes = document.querySelectorAll(`input[data-waiter="${waiterId}"]:checked`);
+      const table_ids = [...boxes].map((b) => b.value);
+      await TT.api("/assignments", {
+        method: "PUT",
+        body: { waiter_id: waiterId, table_ids },
+      });
+      TT.toast("Section saved");
+    }
+
+    function renderAnalytics() {
+      const a = TT.state.analytics || {};
+      document.getElementById("tab-analytics").innerHTML = `
+        <div class="stat-row">
+          <div class="stat"><div class="label">Revenue today</div><div class="value">${TT.fmtMoney(a.revenue)}</div></div>
+          <div class="stat"><div class="label">Orders delivered</div><div class="value">${a.orders_delivered ?? 0}</div></div>
+          <div class="stat"><div class="label">Active orders</div><div class="value">${a.orders_active ?? 0}</div></div>
+          <div class="stat"><div class="label">Avg fulfill (min)</div><div class="value">${a.avg_fulfillment_mins ?? "—"}</div></div>
+          <div class="stat"><div class="label">Tables open</div><div class="value">${a.tables_occupied ?? 0}</div></div>
+          <div class="stat"><div class="label">Kitchen tickets</div><div class="value">${a.tickets_open ?? 0}</div></div>
+        </div>
+        <div class="grid grid-2">
+          <div class="panel">
+            <h2>Top dishes today</h2>
+            <ul class="item-list">
+              ${(a.top_dishes || []).map((d) =>
+                `<li><span>${d.name}</span><span>${d.qty} · ${TT.fmtMoney(d.revenue)}</span></li>`
+              ).join("") || "<li>No sales yet</li>"}
+            </ul>
+          </div>
+          <div class="panel">
+            <h2>Station load</h2>
+            <ul class="item-list">
+              ${(a.stations || []).map((s) =>
+                `<li><span>${s.station}</span><span>⏳${s.pending||0} 🔥${s.cooking||0} ✓${s.done||0}</span></li>`
+              ).join("") || "<li>Quiet</li>"}
+            </ul>
+          </div>
+        </div>`;
+    }
+
+    function renderMenu() {
+      const menu = TT.state.menu || [];
+      document.getElementById("tab-menu").innerHTML = `
+        <div style="margin-bottom:1rem">
+          <button class="primary" onclick="addDish()">+ Add dish</button>
+        </div>
+        <div class="menu-grid">
+          ${menu.map((m) => `
+            <div class="dish-card ${m.available ? "" : "unavailable"}">
+              <div class="head" style="display:flex;justify-content:space-between;gap:.5rem">
+                <strong>${m.name}</strong>
+                <span class="price">${TT.fmtMoney(m.price)}</span>
+              </div>
+              <div style="color:var(--muted);font-size:.85rem;margin:.3rem 0">${m.category} · ${m.station} · ${m.prep_secs}s</div>
+              <p style="font-size:.9rem;margin-bottom:.5rem">${m.description || ""}</p>
+              <ul class="item-list">
+                ${(m.prep_steps || []).map((s) =>
+                  `<li><span>${s.task}</span><span>${s.station} · ${s.duration}s</span></li>`
+                ).join("")}
+              </ul>
+              <div class="actions">
+                <button class="${m.available ? "warn" : "good"}" onclick="toggleItem('${m.id}').catch(e=>TT.toast(e.message))">
+                  ${m.available ? "86 (unavailable)" : "Restore"}
+                </button>
+                <button class="danger" onclick="deleteItem('${m.id}').catch(e=>TT.toast(e.message))">Delete</button>
+              </div>
+            </div>`).join("")}
+        </div>`;
+    }
+
+    function renderStaff() {
+      const waiters = (TT.state.staff || []).filter((s) => s.role === "waiter");
+      const cooks = (TT.state.staff || []).filter((s) => s.role === "cook");
+      const tables = TT.state.tables || [];
+      const assigns = TT.state.assignments || [];
+
+      document.getElementById("tab-staff").innerHTML = `
+        <div class="grid grid-2">
+          <div class="panel">
+            <h2>Kitchen brigade</h2>
+            ${cooks.map((c) => `
+              <div class="waiter-card">
+                <strong>${c.name}</strong>
+                <span class="status-pill">${c.station || "—"}</span>
+                <div class="actions">
+                  <a class="btn primary" href="/station?station=${c.station || "grill"}">Open station</a>
+                </div>
+              </div>`).join("") || `<div class="empty">No cooks</div>`}
+          </div>
+          <div class="panel">
+            <h2>Waiter sections</h2>
+            ${waiters.map((w) => {
+              const mine = new Set(assigns.filter((a) => a.waiter_id === w.id).map((a) => a.table_id));
+              return `
+                <div class="waiter-card">
+                  <strong>${w.name}</strong> <span style="color:var(--muted)">${w.id}</span>
+                  <div style="max-height:140px;overflow:auto;margin:.5rem 0;display:grid;grid-template-columns:repeat(4,1fr);gap:.25rem;font-size:.8rem">
+                    ${tables.map((t) => `
+                      <label style="display:flex;gap:.25rem;align-items:center">
+                        <input type="checkbox" data-waiter="${w.id}" value="${t.id}" ${mine.has(t.id)?"checked":""} />
+                        ${t.number.replace("Table ","T")}
+                      </label>`).join("")}
+                  </div>
+                  <button class="primary" onclick="saveAssignments('${w.id}').catch(e=>TT.toast(e.message))">Save section</button>
+                </div>`;
+            }).join("")}
+          </div>
+        </div>`;
+    }
+
+    function render() {
+      if (!document.getElementById("tab-analytics").hidden) renderAnalytics();
+      if (!document.getElementById("tab-menu").hidden) renderMenu();
+      if (!document.getElementById("tab-staff").hidden) renderStaff();
+    }
+
+    TT.on("change", render);
+    TT.bootstrap().then(async () => {
+      await refreshAnalytics();
+      render();
+      setInterval(async () => {
+        await refreshAnalytics();
+        if (!document.getElementById("tab-analytics").hidden) renderAnalytics();
+      }, 10000);
+    });
+  </script>
+</body>
+</html>

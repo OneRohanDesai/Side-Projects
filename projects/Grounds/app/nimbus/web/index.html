@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nimbus — Grounds Production App</title>
+  <style>
+    :root { font-family: ui-sans-serif, system-ui, sans-serif; color: #e8eef7; background: #0b1220; }
+    body { max-width: 840px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { letter-spacing: -0.03em; }
+    .card { background: #121a2b; border: 1px solid #243049; border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0; }
+    .ok { color: #3ddc97; } .bad { color: #ff6b6b; } .dim { color: #8b9bb4; }
+    button { background: #3b82f6; color: white; border: 0; border-radius: 8px; padding: .55rem 1rem; cursor: pointer; }
+    button:hover { background: #2563eb; }
+    code { background: #1a2438; padding: .1rem .35rem; border-radius: 4px; }
+    ul { padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>Nimbus</h1>
+  <p class="dim">Local production order platform for Grounds practice scenarios.</p>
+  <div class="card">
+    <strong>API health:</strong> <span id="health">checking…</span>
+    <pre id="detail" class="dim"></pre>
+    <button id="order">Place sample order</button>
+    <pre id="orderOut"></pre>
+  </div>
+  <div class="card">
+    <h3>Useful endpoints</h3>
+    <ul>
+      <li><code>GET /health</code></li>
+      <li><code>GET /products</code></li>
+      <li><code>POST /orders</code></li>
+      <li><code>GET /metrics</code></li>
+    </ul>
+  </div>
+  <script>
+    const api = location.port === '3000' ? 'http://localhost:8080' : '';
+    async function refresh() {
+      try {
+        const r = await fetch(api + '/health');
+        const j = await r.json();
+        const el = document.getElementById('health');
+        el.textContent = j.status;
+        el.className = j.status === 'ok' ? 'ok' : 'bad';
+        document.getElementById('detail').textContent = JSON.stringify(j, null, 2);
+      } catch (e) {
+        document.getElementById('health').textContent = 'unreachable';
+        document.getElementById('health').className = 'bad';
+      }
+    }
+    document.getElementById('order').onclick = async () => {
+      const r = await fetch(api + '/orders', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({customer: 'grounds-student', items: [{product_id: 1, qty: 1}]})
+      });
+      document.getElementById('orderOut').textContent = await r.text();
+      refresh();
+    };
+    refresh();
+    setInterval(refresh, 5000);
+  </script>
+</body>
+</html>

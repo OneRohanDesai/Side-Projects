@@ -1,0 +1,1723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AESTHETE — Retro Music Explorer</title>
+  <meta name="description" content="Aesthete — vinyl-era music discovery powered by Spotify" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070707;
+      --bg-elevated: #0e0e0e;
+      --panel: #121212;
+      --panel-2: #181818;
+      --line: #2a2a2a;
+      --line-bright: #3d3d3d;
+      --text: #f2f2f0;
+      --muted: #8a8a86;
+      --accent: #d4a017;
+      --accent-soft: rgba(212, 160, 23, 0.14);
+      --accent-2: #00e6b8;
+      --danger: #ff5c5c;
+      --ok: #4ade80;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 160, 23, 0.08), transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(0, 230, 184, 0.04), transparent 50%),
+        var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sharp edges only — never round boxes */
+    button, input, .panel, .toast, .now-playing, .modal, .chip, .progress-track, .progress-fill {
+      border-radius: 0 !important;
+    }
+
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .shell {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+      flex: 1;
+    }
+
+    header.top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand h1 {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(1rem, 2.4vw, 1.35rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .brand .tag {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .brand .tag span { color: var(--accent); }
+
+    .status-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .status-pill .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--muted);
+      flex-shrink: 0;
+    }
+    .status-pill.ok .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+    .status-pill.warn .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+    .status-pill.err .dot { background: var(--danger); }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hint {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 12px;
+      line-height: 1.55;
+    }
+
+    button {
+      appearance: none;
+      background: transparent;
+      border: 1px solid var(--line-bright);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.8rem;
+      padding: 11px 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
+    }
+    button:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    button:active:not(:disabled) { transform: translateY(0); }
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #111;
+      font-weight: 600;
+    }
+    button.primary:hover:not(:disabled) {
+      background: #e4b31f;
+      color: #111;
+      border-color: #e4b31f;
+    }
+    button.ghost {
+      border-color: var(--line);
+      color: var(--muted);
+    }
+    button.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    button.icon-btn {
+      min-width: 44px;
+      padding: 10px 12px;
+    }
+
+    /* Vinyl stage */
+    .stage-wrap {
+      position: relative;
+      border: 1px solid var(--line);
+      background: #000;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .stage-wrap::after {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 3px;
+      opacity: 0.35;
+      z-index: 2;
+    }
+    #vinyl-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    #vinyl-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.92) contrast(1.05);
+    }
+    .stage-idle {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+      text-align: center;
+      padding: 24px;
+      transition: opacity 0.35s;
+    }
+    .stage-idle.hidden { opacity: 0; pointer-events: none; }
+    .stage-idle h2 {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    .stage-idle p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      max-width: 36ch;
+    }
+
+    .now-playing {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      width: min(380px, calc(100% - 32px));
+      background: rgba(10, 10, 10, 0.92);
+      border: 1px solid var(--line-bright);
+      padding: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: stretch;
+      z-index: 4;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+      transform: translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s, transform 0.28s;
+    }
+    .now-playing.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .now-playing img {
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      background: #1a1a1a;
+      flex-shrink: 0;
+    }
+    .now-playing .meta {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .now-playing .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .now-playing h2 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .now-playing p {
+      color: var(--muted);
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .now-playing .links {
+      margin-top: 2px;
+      font-size: 0.78rem;
+    }
+    .controls-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .controls-row button {
+      padding: 8px 10px;
+      font-size: 0.72rem;
+    }
+
+    .progress-wrap {
+      margin-top: 10px;
+    }
+    .progress-track {
+      height: 3px;
+      background: #2a2a2a;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.25s linear;
+    }
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.78rem;
+      padding: 18px 12px 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Toasts */
+    #toast-container {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: min(360px, calc(100vw - 32px));
+    }
+    .toast {
+      min-width: 220px;
+      padding: 12px 14px;
+      background: #141414;
+      border: 1px solid var(--line-bright);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast .title {
+      font-weight: 600;
+      font-size: 0.82rem;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .toast .body { color: #c8c8c4; font-size: 0.8rem; }
+    .toast.err { border-color: var(--danger); }
+    .toast.ok { border-color: var(--ok); }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      z-index: 9000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      width: min(520px, 100%);
+      background: var(--bg-elevated);
+      border: 1px solid var(--line-bright);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .modal h3 {
+      font-family: "Press Start 2P", monospace;
+      font-size: 0.75rem;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+    .modal p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+    }
+    .modal ol {
+      margin: 0 0 14px 1.1rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .modal ol li { margin-bottom: 6px; }
+    .modal label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .modal input {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid var(--line-bright);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .modal input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .modal .redirect-box {
+      background: #0a0a0a;
+      border: 1px solid var(--line);
+      padding: 10px;
+      font-size: 0.72rem;
+      word-break: break-all;
+      color: var(--accent-2);
+      margin-bottom: 14px;
+      user-select: all;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      header.top { grid-template-columns: 1fr; align-items: start; }
+      .status-bar { align-items: flex-start; }
+      .controls { grid-template-columns: 1fr; }
+      #vinyl-stage { aspect-ratio: 4 / 3; }
+      .now-playing {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: auto;
+      }
+      .now-playing img { width: 72px; height: 72px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <h1>AESTHETE</h1>
+        <div class="tag">Retro Music Explorer · <span>vinyl first</span></div>
+      </div>
+      <div class="status-bar">
+        <div id="auth-status" class="status-pill"><span class="dot"></span><span id="auth-status-text">Not connected</span></div>
+        <div id="player-status" class="status-pill"><span class="dot"></span><span id="player-status-text">Player idle</span></div>
+      </div>
+    </header>
+
+    <section class="panel controls" aria-label="Playback controls">
+      <div>
+        <div class="btn-row">
+          <button id="login-btn" class="primary" type="button">Connect Spotify</button>
+          <button id="logout-btn" class="ghost" type="button" hidden>Disconnect</button>
+          <button id="settings-btn" class="ghost" type="button">Setup</button>
+        </div>
+        <p class="hint" id="hint-text">
+          Connect Spotify Premium for full-track vinyl sessions. Free accounts get previews when available.
+        </p>
+      </div>
+      <div class="btn-row" role="group" aria-label="Playlists">
+        <button class="playlist-btn" data-playlist="english" type="button" disabled>English</button>
+        <button class="playlist-btn" data-playlist="hindi" type="button" disabled>Hindi</button>
+        <button class="playlist-btn" data-playlist="classical" type="button" disabled>Classical</button>
+      </div>
+    </section>
+
+    <div class="stage-wrap">
+      <div id="vinyl-stage">
+        <video
+          id="vinyl-video"
+          muted
+          playsinline
+          preload="auto"
+          poster=""
+        ></video>
+
+        <div id="stage-idle" class="stage-idle">
+          <div>
+            <h2>DROP THE NEEDLE</h2>
+            <p id="idle-copy">Connect Spotify, pick a crate, and let the vinyl spin while the track loads.</p>
+          </div>
+        </div>
+
+        <div id="now-playing" class="now-playing" aria-live="polite">
+          <img id="now-img" alt="Album art" src="" width="92" height="92" />
+          <div class="meta">
+            <div class="label">Now playing</div>
+            <h2 id="now-title">—</h2>
+            <p id="now-artist">—</p>
+            <p id="now-year">—</p>
+            <div class="links">
+              <a id="open-spotify" href="#" target="_blank" rel="noopener">Open in Spotify ↗</a>
+            </div>
+            <div class="controls-row">
+              <button id="pause-resume" type="button">Pause</button>
+              <button id="skip" type="button">Next</button>
+              <button id="stop-btn" type="button" class="ghost">Stop</button>
+            </div>
+            <div class="progress-wrap">
+              <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+              <div class="time-row">
+                <span id="time-cur">0:00</span>
+                <span id="time-dur">0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Aesthete · vinyl-era discovery · local single page</footer>
+
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <div id="setup-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="setup-title">
+    <div class="modal">
+      <h3 id="setup-title">Spotify setup</h3>
+      <p>Create a free Spotify Developer app, then paste the Client ID here. No backend required — PKCE runs in the browser.</p>
+      <ol>
+        <li>Open <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a></li>
+        <li>Create an app → add this Redirect URI exactly:</li>
+      </ol>
+      <div class="redirect-box" id="redirect-display"></div>
+      <label for="client-id-input">Client ID</label>
+      <input id="client-id-input" type="text" placeholder="e.g. 1a2b3c4d5e6f..." autocomplete="off" spellcheck="false" />
+      <p style="font-size:0.75rem;margin-top:-2px">Redirect URI is auto-detected from this page’s URL. Serve over http(s) — not file://.</p>
+      <div class="modal-actions">
+        <button id="setup-cancel" class="ghost" type="button">Close</button>
+        <button id="setup-save" class="primary" type="button">Save &amp; connect</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+
+    /* ── Config ─────────────────────────────────────────────── */
+    const PLAYLISTS = {
+      english:   { id: "2evMh8td9ke6CKFULUTYdh", label: "English" },
+      hindi:     { id: "0ACUE87L7WFk2DgVhRSHQb", label: "Hindi" },
+      classical: { id: "4A6P8UXesY5ugQWiDAg6Oa", label: "Classical" },
+    };
+    const SCOPES = [
+      "streaming",
+      "user-read-email",
+      "user-read-private",
+      "user-read-playback-state",
+      "user-modify-playback-state",
+      "playlist-read-private",
+      "playlist-read-collaborative",
+    ].join(" ");
+    const STORAGE = {
+      clientId: "aesthete_client_id",
+      tokens: "aesthete_tokens",
+      verifier: "aesthete_pkce_verifier",
+    };
+
+    /* Three-clip vinyl system:
+       in   → sleeve → platter → needle down → spin-up
+       loop → constant RPM (seamless loop while song plays)
+       out  → spin-down → needle up → back into sleeve */
+    const VINYL_SRC = {
+      in: "vinyl-in.mp4",
+      loop: "vinyl-loop.mp4",
+      out: "vinyl-out.mp4",
+    };
+
+    /* ── DOM ────────────────────────────────────────────────── */
+    const $ = (id) => document.getElementById(id);
+    const loginBtn = $("login-btn");
+    const logoutBtn = $("logout-btn");
+    const settingsBtn = $("settings-btn");
+    const playlistBtns = document.querySelectorAll(".playlist-btn");
+    const vinylVideo = $("vinyl-video");
+    const stageIdle = $("stage-idle");
+    const nowCard = $("now-playing");
+    const nowImg = $("now-img");
+    const nowTitle = $("now-title");
+    const nowArtist = $("now-artist");
+    const nowYear = $("now-year");
+    const openSpotify = $("open-spotify");
+    const pauseResumeBtn = $("pause-resume");
+    const skipBtn = $("skip");
+    const stopBtn = $("stop-btn");
+    const progressFill = $("progress-fill");
+    const timeCur = $("time-cur");
+    const timeDur = $("time-dur");
+    const toastContainer = $("toast-container");
+    const setupModal = $("setup-modal");
+    const clientIdInput = $("client-id-input");
+    const redirectDisplay = $("redirect-display");
+    const authStatus = $("auth-status");
+    const authStatusText = $("auth-status-text");
+    const playerStatus = $("player-status");
+    const playerStatusText = $("player-status-text");
+    const hintText = $("hint-text");
+    const idleCopy = $("idle-copy");
+
+    /* ── State ──────────────────────────────────────────────── */
+    let clientId = localStorage.getItem(STORAGE.clientId) || "";
+    let accessToken = null;
+    let refreshToken = null;
+    let expiresAt = 0;
+    let isPremium = false;
+    let displayName = "";
+
+    let spotifyPlayer = null;
+    let deviceId = null;
+    let playerReady = false;
+
+    let currentTrack = null;
+    let currentAudio = null; // HTMLAudioElement for previews
+    let mode = "idle"; // idle | full | preview
+    let activePlaylist = null;
+    let sequenceGen = 0; // cancel stale sequences
+    let progressTimer = null;
+    let endWatchTimer = null;
+    let isPaused = false;
+    let skipLock = false;
+    let stopLock = false;
+
+    /* Vinyl phase machine */
+    let vinylPhase = "idle"; // idle | in | loop | out
+    let vinylClip = ""; // current file basename
+    let vinylEndedHandler = null;
+
+    /* ── Utils ──────────────────────────────────────────────── */
+    function escapeHtml(s = "") {
+      return String(s).replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
+      );
+    }
+    function toast(title, body = "", ms = 3200, kind = "") {
+      const t = document.createElement("div");
+      t.className = "toast" + (kind ? " " + kind : "");
+      t.innerHTML = `<div class="title">${escapeHtml(title)}</div><div class="body">${escapeHtml(body)}</div>`;
+      toastContainer.appendChild(t);
+      requestAnimationFrame(() => t.classList.add("show"));
+      if (ms > 0) {
+        setTimeout(() => {
+          t.classList.remove("show");
+          setTimeout(() => t.remove(), 280);
+        }, ms);
+      }
+      return t;
+    }
+    function delay(ms) {
+      return new Promise((r) => setTimeout(r, ms));
+    }
+    function fmtTime(ms) {
+      if (!ms || ms < 0 || !isFinite(ms)) return "0:00";
+      const s = Math.floor(ms / 1000);
+      const m = Math.floor(s / 60);
+      const r = s % 60;
+      return m + ":" + String(r).padStart(2, "0");
+    }
+    function redirectUri() {
+      // Strip query/hash so OAuth returns cleanly to this page
+      return window.location.origin + window.location.pathname;
+    }
+    function setAuthUI(state, text) {
+      authStatus.className = "status-pill " + (state || "");
+      authStatusText.textContent = text;
+    }
+    function setPlayerUI(state, text) {
+      playerStatus.className = "status-pill " + (state || "");
+      playerStatusText.textContent = text;
+    }
+    function setPlaylistEnabled(on) {
+      playlistBtns.forEach((b) => { b.disabled = !on; });
+    }
+    function setActivePlaylistBtn(key) {
+      playlistBtns.forEach((b) => {
+        b.classList.toggle("active", b.dataset.playlist === key);
+      });
+    }
+
+    /* ── PKCE helpers ───────────────────────────────────────── */
+    function randomString(len = 64) {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
+      const arr = new Uint8Array(len);
+      crypto.getRandomValues(arr);
+      return Array.from(arr, (x) => chars[x % chars.length]).join("");
+    }
+    async function sha256base64url(str) {
+      const data = new TextEncoder().encode(str);
+      const hash = await crypto.subtle.digest("SHA-256", data);
+      const bytes = new Uint8Array(hash);
+      let bin = "";
+      bytes.forEach((b) => (bin += String.fromCharCode(b)));
+      return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    }
+
+    /* ── Auth ───────────────────────────────────────────────── */
+    function saveTokens() {
+      localStorage.setItem(
+        STORAGE.tokens,
+        JSON.stringify({ access: accessToken, refresh: refreshToken, expire: expiresAt })
+      );
+    }
+    function clearTokens() {
+      accessToken = null;
+      refreshToken = null;
+      expiresAt = 0;
+      localStorage.removeItem(STORAGE.tokens);
+    }
+    function loadTokensFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE.tokens);
+        if (!raw) return false;
+        const o = JSON.parse(raw);
+        accessToken = o.access || null;
+        refreshToken = o.refresh || null;
+        expiresAt = o.expire || 0;
+        return !!accessToken;
+      } catch {
+        return false;
+      }
+    }
+
+    async function ensureToken() {
+      if (!accessToken) throw new Error("Not connected to Spotify");
+      if (Date.now() < expiresAt - 30000) return accessToken;
+      if (!refreshToken) throw new Error("Session expired — connect again");
+      await refreshAccessToken();
+      return accessToken;
+    }
+
+    async function refreshAccessToken() {
+      if (!clientId || !refreshToken) throw new Error("Missing refresh credentials");
+      const body = new URLSearchParams({
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+        client_id: clientId,
+      });
+      const res = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+      const j = await res.json();
+      if (!res.ok) {
+        clearTokens();
+        throw new Error(j.error_description || j.error || "Token refresh failed");
+      }
+      accessToken = j.access_token;
+      if (j.refresh_token) refreshToken = j.refresh_token;
+      expiresAt = Date.now() + (j.expires_in || 3600) * 1000;
+      saveTokens();
+    }
+
+    async function startLogin() {
+      if (!clientId) {
+        openSetup(true);
+        return;
+      }
+      const verifier = randomString(64);
+      const challenge = await sha256base64url(verifier);
+      sessionStorage.setItem(STORAGE.verifier, verifier);
+
+      const params = new URLSearchParams({
+        client_id: clientId,
+        response_type: "code",
+        redirect_uri: redirectUri(),
+        scope: SCOPES,
+        code_challenge_method: "S256",
+        code_challenge: challenge,
+        // force account picker when reconnecting
+        show_dialog: "false",
+      });
+      window.location.href = "https://accounts.spotify.com/authorize?" + params.toString();
+    }
+
+    async function handleRedirect() {
+      const qp = new URLSearchParams(window.location.search);
+      const err = qp.get("error");
+      const code = qp.get("code");
+      if (err) {
+        history.replaceState({}, "", redirectUri());
+        toast("Login cancelled", err, 4000, "err");
+        return;
+      }
+      if (!code) return;
+
+      const verifier = sessionStorage.getItem(STORAGE.verifier);
+      sessionStorage.removeItem(STORAGE.verifier);
+      history.replaceState({}, "", redirectUri());
+
+      if (!verifier || !clientId) {
+        toast("Login incomplete", "Missing PKCE verifier or Client ID. Open Setup.", 5000, "err");
+        openSetup(false);
+        return;
+      }
+
+      try {
+        setAuthUI("warn", "Exchanging code…");
+        const body = new URLSearchParams({
+          grant_type: "authorization_code",
+          code,
+          redirect_uri: redirectUri(),
+          client_id: clientId,
+          code_verifier: verifier,
+        });
+        const res = await fetch("https://accounts.spotify.com/api/token", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body,
+        });
+        const j = await res.json();
+        if (!res.ok) throw new Error(j.error_description || j.error || "Token exchange failed");
+
+        accessToken = j.access_token;
+        refreshToken = j.refresh_token || null;
+        expiresAt = Date.now() + (j.expires_in || 3600) * 1000;
+        saveTokens();
+        toast("Connected", "Spotify session ready.", 2800, "ok");
+        await afterAuth();
+      } catch (e) {
+        console.error(e);
+        toast("Login failed", e.message || String(e), 6000, "err");
+        setAuthUI("err", "Login failed");
+      }
+    }
+
+    async function afterAuth() {
+      try {
+        await ensureToken();
+        await loadMe();
+        setPlaylistEnabled(true);
+        loginBtn.hidden = true;
+        logoutBtn.hidden = false;
+        hintText.textContent = isPremium
+          ? "Premium active — full tracks stream through the vinyl player."
+          : "Free account — previews play when Spotify provides one. Premium unlocks full tracks.";
+        idleCopy.textContent = "Pick a crate below. Vinyl spins, then the track drops.";
+        if (isPremium) {
+          await initPlayer();
+        } else {
+          setPlayerUI("warn", "Preview mode");
+        }
+      } catch (e) {
+        console.error(e);
+        toast("Auth error", e.message || String(e), 5000, "err");
+        logout();
+      }
+    }
+
+    async function loadMe() {
+      const token = await ensureToken();
+      const res = await fetch("https://api.spotify.com/v1/me", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      if (res.status === 401) {
+        await refreshAccessToken();
+        return loadMe();
+      }
+      if (!res.ok) throw new Error("Could not load Spotify profile");
+      const me = await res.json();
+      displayName = me.display_name || me.id || "user";
+      isPremium = me.product === "premium";
+      setAuthUI(isPremium ? "ok" : "warn", (isPremium ? "Premium · " : "Free · ") + displayName);
+    }
+
+    function logout() {
+      sequenceGen++;
+      stopAudioAndTimers();
+      if (spotifyPlayer) {
+        try { spotifyPlayer.disconnect(); } catch (_) {}
+        spotifyPlayer = null;
+      }
+      playerReady = false;
+      deviceId = null;
+      clearTokens();
+      isPremium = false;
+      displayName = "";
+      loginBtn.hidden = false;
+      logoutBtn.hidden = true;
+      setPlaylistEnabled(false);
+      setActivePlaylistBtn(null);
+      setAuthUI("", "Not connected");
+      setPlayerUI("", "Player idle");
+      hintText.textContent = "Connect Spotify Premium for full-track vinyl sessions. Free accounts get previews when available.";
+      idleCopy.textContent = "Connect Spotify, pick a crate, and let the vinyl spin while the track loads.";
+      currentTrack = null;
+      activePlaylist = null;
+      nowCard.classList.remove("visible");
+      showIdleStage();
+    }
+
+    /* ── Setup modal ────────────────────────────────────────── */
+    function openSetup(forceConnect) {
+      redirectDisplay.textContent = redirectUri();
+      clientIdInput.value = clientId || "";
+      setupModal.classList.add("open");
+      setupModal.dataset.forceConnect = forceConnect ? "1" : "0";
+      setTimeout(() => clientIdInput.focus(), 50);
+    }
+    function closeSetup() {
+      setupModal.classList.remove("open");
+    }
+    $("setup-cancel").addEventListener("click", closeSetup);
+    setupModal.addEventListener("click", (e) => {
+      if (e.target === setupModal) closeSetup();
+    });
+    $("setup-save").addEventListener("click", () => {
+      const v = clientIdInput.value.trim();
+      if (!v || v.length < 10) {
+        toast("Client ID required", "Paste your Spotify app Client ID.", 3500, "err");
+        return;
+      }
+      clientId = v;
+      localStorage.setItem(STORAGE.clientId, clientId);
+      closeSetup();
+      toast("Saved", "Client ID stored locally.", 2200, "ok");
+      if (setupModal.dataset.forceConnect === "1" || !accessToken) {
+        startLogin();
+      }
+    });
+
+    /* ── Spotify Web Playback SDK ───────────────────────────── */
+    window.onSpotifyWebPlaybackSDKReady = function () {
+      window.__spotifySDKReady = true;
+    };
+
+    function loadSpotifySDK() {
+      return new Promise((resolve, reject) => {
+        if (window.Spotify && window.__spotifySDKReady) return resolve();
+        if (!document.getElementById("spotify-sdk")) {
+          const s = document.createElement("script");
+          s.id = "spotify-sdk";
+          s.src = "https://sdk.scdn.co/spotify-player.js";
+          s.async = true;
+          s.onerror = () => reject(new Error("Failed to load Spotify SDK"));
+          document.head.appendChild(s);
+        }
+        const start = Date.now();
+        const check = setInterval(() => {
+          if (window.Spotify && window.__spotifySDKReady) {
+            clearInterval(check);
+            resolve();
+          } else if (Date.now() - start > 15000) {
+            clearInterval(check);
+            reject(new Error("Spotify SDK timeout"));
+          }
+        }, 40);
+      });
+    }
+
+    async function initPlayer() {
+      if (!accessToken || !isPremium) return;
+      setPlayerUI("warn", "Connecting player…");
+      await loadSpotifySDK();
+
+      if (spotifyPlayer) {
+        try { await spotifyPlayer.disconnect(); } catch (_) {}
+        spotifyPlayer = null;
+        playerReady = false;
+        deviceId = null;
+      }
+
+      spotifyPlayer = new Spotify.Player({
+        name: "Aesthete Vinyl",
+        getOAuthToken: async (cb) => {
+          try {
+            const t = await ensureToken();
+            cb(t);
+          } catch (e) {
+            console.warn("getOAuthToken", e);
+            cb(accessToken);
+          }
+        },
+        volume: 0.85,
+      });
+
+      spotifyPlayer.addListener("ready", ({ device_id }) => {
+        deviceId = device_id;
+        playerReady = true;
+        setPlayerUI("ok", "Vinyl player ready");
+        toast("Player ready", "Web Playback connected.", 2200, "ok");
+      });
+
+      spotifyPlayer.addListener("not_ready", () => {
+        playerReady = false;
+        setPlayerUI("err", "Player offline");
+      });
+
+      spotifyPlayer.addListener("initialization_error", ({ message }) => {
+        setPlayerUI("err", "Init error");
+        toast("Player error", message, 5000, "err");
+      });
+      spotifyPlayer.addListener("authentication_error", ({ message }) => {
+        setPlayerUI("err", "Auth error");
+        toast("Player auth", message, 5000, "err");
+      });
+      spotifyPlayer.addListener("account_error", ({ message }) => {
+        setPlayerUI("err", "Account error");
+        toast("Premium required", message || "Full playback needs Spotify Premium.", 5000, "err");
+        isPremium = false;
+      });
+
+      spotifyPlayer.addListener("player_state_changed", (state) => {
+        if (!state || mode !== "full") return;
+        isPaused = state.paused;
+        pauseResumeBtn.textContent = state.paused ? "Resume" : "Pause";
+        if (state.paused) pauseVinylVisual();
+        else resumeVinylVisual();
+        updateProgressFromState(state);
+      });
+
+      const ok = await spotifyPlayer.connect();
+      if (!ok) {
+        setPlayerUI("err", "Connect failed");
+        toast("Player", "Could not connect Web Playback SDK.", 4000, "err");
+      }
+    }
+
+    /* ── Track fetching ─────────────────────────────────────── */
+    async function spotifyFetch(path, opts = {}) {
+      const token = await ensureToken();
+      const res = await fetch("https://api.spotify.com/v1" + path, {
+        ...opts,
+        headers: {
+          ...(opts.headers || {}),
+          Authorization: "Bearer " + token,
+          ...(opts.body ? { "Content-Type": "application/json" } : {}),
+        },
+      });
+      if (res.status === 401) {
+        await refreshAccessToken();
+        return spotifyFetch(path, opts);
+      }
+      return res;
+    }
+
+    async function fetchRandomTrack(playlistKey) {
+      const pl = PLAYLISTS[playlistKey];
+      if (!pl) throw new Error("Unknown playlist");
+
+      // Page through up to 200 items for better randomness
+      let items = [];
+      let url = "/playlists/" + encodeURIComponent(pl.id) + "/tracks?limit=100&fields=items(track(id,name,artists,album,preview_url,external_urls,duration_ms,uri)),next";
+
+      for (let page = 0; page < 2; page++) {
+        const res = await spotifyFetch(url.startsWith("http") ? url.replace("https://api.spotify.com/v1", "") : url);
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error?.message || "Playlist fetch failed (" + res.status + ")");
+        }
+        const data = await res.json();
+        items = items.concat(data.items || []);
+        if (!data.next) break;
+        // data.next is absolute URL — strip host for spotifyFetch
+        url = data.next.replace("https://api.spotify.com/v1", "");
+      }
+
+      const tracks = items
+        .map((i) => i && i.track)
+        .filter((t) => t && t.id && !t.is_local);
+
+      if (!tracks.length) throw new Error("No playable tracks in this playlist");
+
+      const t = tracks[Math.floor(Math.random() * tracks.length)];
+      return {
+        id: t.id,
+        uri: t.uri || "spotify:track:" + t.id,
+        title: t.name || "Unknown",
+        artist: (t.artists || []).map((a) => a.name).join(", ") || "Unknown",
+        year: (t.album && t.album.release_date && t.album.release_date.split("-")[0]) || "",
+        image: (t.album && t.album.images && t.album.images[0] && t.album.images[0].url) || "",
+        spotify_url: (t.external_urls && t.external_urls.spotify) || ("https://open.spotify.com/track/" + t.id),
+        preview_url: t.preview_url || null,
+        duration_ms: t.duration_ms || 0,
+      };
+    }
+
+    /* ── Vinyl controller (in → loop → out) ─────────────────── */
+    function clearVinylEndedHandler() {
+      if (vinylEndedHandler) {
+        vinylVideo.removeEventListener("ended", vinylEndedHandler);
+        vinylEndedHandler = null;
+      }
+    }
+
+    function waitVinylEnded(gen) {
+      return new Promise((resolve) => {
+        clearVinylEndedHandler();
+        const done = () => {
+          clearVinylEndedHandler();
+          resolve(gen === sequenceGen);
+        };
+        vinylEndedHandler = done;
+        vinylVideo.addEventListener("ended", done, { once: true });
+        // Safety: if already ended / zero-length
+        if (vinylVideo.ended) {
+          done();
+          return;
+        }
+      });
+    }
+
+    function waitVinylReady() {
+      return new Promise((resolve) => {
+        if (vinylVideo.readyState >= 2) return resolve();
+        const onReady = () => {
+          vinylVideo.removeEventListener("loadeddata", onReady);
+          vinylVideo.removeEventListener("canplay", onReady);
+          resolve();
+        };
+        vinylVideo.addEventListener("loadeddata", onReady, { once: true });
+        vinylVideo.addEventListener("canplay", onReady, { once: true });
+        // Fallback timeout
+        setTimeout(resolve, 4000);
+      });
+    }
+
+    async function loadVinylClip(src, { loop = false } = {}) {
+      clearVinylEndedHandler();
+      vinylVideo.loop = !!loop;
+      const needsLoad = vinylClip !== src || !vinylVideo.currentSrc;
+      vinylClip = src;
+      if (needsLoad) {
+        vinylVideo.src = src;
+        vinylVideo.load();
+        await waitVinylReady();
+      } else {
+        try { vinylVideo.currentTime = 0; } catch (_) {}
+      }
+    }
+
+    async function playVinylIn(gen) {
+      if (gen !== sequenceGen) return false;
+      vinylPhase = "in";
+      stageIdle.classList.add("hidden");
+      await loadVinylClip(VINYL_SRC.in, { loop: false });
+      if (gen !== sequenceGen) return false;
+      try { vinylVideo.currentTime = 0; } catch (_) {}
+      try {
+        await vinylVideo.play();
+      } catch (e) {
+        console.warn("vinyl-in play", e);
+        return false;
+      }
+      const ok = await waitVinylEnded(gen);
+      return ok && gen === sequenceGen;
+    }
+
+    async function playVinylLoop(gen) {
+      if (gen !== sequenceGen) return false;
+      vinylPhase = "loop";
+      await loadVinylClip(VINYL_SRC.loop, { loop: true });
+      if (gen !== sequenceGen) return false;
+      try { vinylVideo.currentTime = 0; } catch (_) {}
+      try {
+        await vinylVideo.play();
+      } catch (e) {
+        console.warn("vinyl-loop play", e);
+        return false;
+      }
+      return true;
+    }
+
+    async function playVinylOut(gen) {
+      if (gen !== sequenceGen) return false;
+      // Only resleeve if something is on the platter / spinning
+      if (vinylPhase === "idle" && vinylClip === VINYL_SRC.out) {
+        return true;
+      }
+      if (vinylPhase === "idle" && !vinylClip) {
+        return true;
+      }
+      vinylPhase = "out";
+      await loadVinylClip(VINYL_SRC.out, { loop: false });
+      if (gen !== sequenceGen) return false;
+      try { vinylVideo.currentTime = 0; } catch (_) {}
+      try {
+        await vinylVideo.play();
+      } catch (e) {
+        console.warn("vinyl-out play", e);
+        vinylPhase = "idle";
+        return false;
+      }
+      const ok = await waitVinylEnded(gen);
+      if (gen === sequenceGen) {
+        vinylPhase = "idle";
+        try { vinylVideo.pause(); } catch (_) {}
+      }
+      return ok && gen === sequenceGen;
+    }
+
+    function pauseVinylVisual() {
+      if (vinylPhase === "loop" || vinylPhase === "in") {
+        try { vinylVideo.pause(); } catch (_) {}
+      }
+    }
+
+    function resumeVinylVisual() {
+      if (vinylPhase === "loop" || vinylPhase === "in") {
+        try { vinylVideo.play().catch(() => {}); } catch (_) {}
+      }
+    }
+
+    function showIdleStage() {
+      stageIdle.classList.remove("hidden");
+      // Park on first frame of "in" (record in sleeve)
+      clearVinylEndedHandler();
+      vinylPhase = "idle";
+      vinylClip = VINYL_SRC.in;
+      vinylVideo.loop = false;
+      vinylVideo.src = VINYL_SRC.in;
+      vinylVideo.load();
+      const park = () => {
+        try {
+          vinylVideo.pause();
+          vinylVideo.currentTime = 0;
+        } catch (_) {}
+      };
+      vinylVideo.addEventListener("loadeddata", park, { once: true });
+      setTimeout(park, 500);
+    }
+
+    function preloadVinylClips() {
+      [VINYL_SRC.in, VINYL_SRC.loop, VINYL_SRC.out].forEach((src) => {
+        const v = document.createElement("video");
+        v.preload = "auto";
+        v.muted = true;
+        v.src = src;
+        try { v.load(); } catch (_) {}
+      });
+    }
+
+    /* ── Audio / timers (no vinyl) ──────────────────────────── */
+    function stopAudioAndTimers() {
+      clearInterval(progressTimer);
+      progressTimer = null;
+      clearTimeout(endWatchTimer);
+      endWatchTimer = null;
+
+      if (currentAudio) {
+        try {
+          currentAudio.onended = null;
+          currentAudio.ontimeupdate = null;
+          currentAudio.pause();
+          currentAudio.src = "";
+        } catch (_) {}
+        currentAudio = null;
+      }
+
+      if (mode === "full" && spotifyPlayer) {
+        spotifyPlayer.pause().catch(() => {});
+      }
+
+      mode = "idle";
+      isPaused = false;
+      pauseResumeBtn.textContent = "Pause";
+      progressFill.style.width = "0%";
+      timeCur.textContent = "0:00";
+      timeDur.textContent = "0:00";
+    }
+
+    function applyTrackMeta(track) {
+      currentTrack = track;
+      nowImg.src = track.image || "";
+      nowTitle.textContent = track.title;
+      nowArtist.textContent = track.artist;
+      nowYear.textContent = track.year || "—";
+      openSpotify.href = track.spotify_url || "#";
+      nowCard.classList.add("visible");
+      timeDur.textContent = fmtTime(track.duration_ms);
+      progressFill.style.width = "0%";
+      timeCur.textContent = "0:00";
+      pauseResumeBtn.textContent = "Pause";
+    }
+
+    /* ── Playback core ──────────────────────────────────────── */
+    async function startSequence(playlistKey) {
+      if (!accessToken) {
+        toast("Connect first", "Log in with Spotify to spin a crate.", 3000, "err");
+        return;
+      }
+
+      const gen = ++sequenceGen;
+      const prevPhase = vinylPhase;
+      activePlaylist = playlistKey;
+      setActivePlaylistBtn(playlistKey);
+
+      // Kill current audio; vinyl continues so we can play "out"
+      stopAudioAndTimers();
+      setPlayerUI("warn", "Loading track…");
+      stageIdle.classList.add("hidden");
+
+      try {
+        // If a disc is on the platter / spinning, resleeve first
+        if (prevPhase === "loop" || prevPhase === "in") {
+          setPlayerUI("warn", "Resleeving…");
+          await playVinylOut(gen);
+          if (gen !== sequenceGen) return;
+        }
+
+        // Fetch track while starting the "in" animation
+        const trackPromise = fetchRandomTrack(playlistKey).catch((e) => {
+          throw e;
+        });
+
+        // Start sleeve→platter animation immediately
+        const inPromise = playVinylIn(gen);
+
+        let track;
+        try {
+          track = await trackPromise;
+        } catch (fetchErr) {
+          // Let "in" finish or cancel; show error
+          await inPromise.catch(() => {});
+          throw fetchErr;
+        }
+        if (gen !== sequenceGen) return;
+        applyTrackMeta(track);
+
+        // Wait for needle-down + spin-up to finish
+        const inOk = await inPromise;
+        if (gen !== sequenceGen) return;
+        if (!inOk) {
+          // Still try to play audio with loop if in failed mid-way
+          await playVinylLoop(gen);
+        } else {
+          await playVinylLoop(gen);
+        }
+        if (gen !== sequenceGen) return;
+
+        // Audio drops when constant spin begins
+        if (isPremium && playerReady && deviceId) {
+          await playFullTrack(track, gen);
+        } else if (isPremium && !playerReady) {
+          setPlayerUI("warn", "Waiting for player…");
+          const ready = await waitForPlayer(6000);
+          if (gen !== sequenceGen) return;
+          if (ready) await playFullTrack(track, gen);
+          else {
+            toast("Player not ready", "Trying preview fallback.", 3000);
+            await playPreview(track, gen);
+          }
+        } else {
+          await playPreview(track, gen);
+        }
+      } catch (err) {
+        if (gen !== sequenceGen) return;
+        console.error(err);
+        toast("Error", err.message || "Failed to start track", 5000, "err");
+        setPlayerUI("err", "Error");
+        nowCard.classList.remove("visible");
+        showIdleStage();
+      }
+    }
+
+    function waitForPlayer(ms) {
+      return new Promise((resolve) => {
+        if (playerReady && deviceId) return resolve(true);
+        const start = Date.now();
+        const iv = setInterval(() => {
+          if (playerReady && deviceId) {
+            clearInterval(iv);
+            resolve(true);
+          } else if (Date.now() - start > ms) {
+            clearInterval(iv);
+            resolve(false);
+          }
+        }, 100);
+      });
+    }
+
+    async function playFullTrack(track, gen) {
+      mode = "full";
+      setPlayerUI("ok", "Playing · full");
+      try {
+        let res = await spotifyFetch("/me/player/play?device_id=" + encodeURIComponent(deviceId), {
+          method: "PUT",
+          body: JSON.stringify({ uris: [track.uri] }),
+        });
+
+        if (res.status === 404 || res.status === 502) {
+          await spotifyFetch("/me/player", {
+            method: "PUT",
+            body: JSON.stringify({ device_ids: [deviceId], play: false }),
+          });
+          await delay(400);
+          if (gen !== sequenceGen) return;
+          res = await spotifyFetch("/me/player/play?device_id=" + encodeURIComponent(deviceId), {
+            method: "PUT",
+            body: JSON.stringify({ uris: [track.uri] }),
+          });
+        }
+
+        if (!res.ok && res.status !== 204) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error?.message || "Play failed (" + res.status + ")");
+        }
+
+        // Ensure loop is spinning under the track
+        if (vinylPhase !== "loop") await playVinylLoop(gen);
+        else resumeVinylVisual();
+
+        startFullProgressWatch(gen);
+      } catch (e) {
+        console.warn("full play failed", e);
+        toast("Full play failed", "Falling back to preview.", 3500, "err");
+        await playPreview(track, gen);
+      }
+    }
+
+    async function playPreview(track, gen) {
+      if (!track.preview_url) {
+        mode = "idle";
+        setPlayerUI("warn", "No preview");
+        toast(
+          "No preview",
+          isPremium
+            ? "Could not start full playback and no preview exists. Try Next."
+            : "Spotify has no preview for this track. Connect Premium or open in Spotify.",
+          4500,
+          "err"
+        );
+        // Resleeve then auto-advance
+        endWatchTimer = setTimeout(async () => {
+          if (gen !== sequenceGen) return;
+          await playVinylOut(gen);
+          if (gen === sequenceGen && activePlaylist) startSequence(activePlaylist);
+        }, 1200);
+        return;
+      }
+
+      mode = "preview";
+      setPlayerUI("warn", "Playing · preview");
+      currentAudio = new Audio(track.preview_url);
+      currentAudio.crossOrigin = "anonymous";
+      currentAudio.preload = "auto";
+
+      currentAudio.ontimeupdate = () => {
+        if (!currentAudio || gen !== sequenceGen) return;
+        const dur = (currentAudio.duration || 30) * 1000;
+        const cur = currentAudio.currentTime * 1000;
+        progressFill.style.width = Math.min(100, (cur / dur) * 100) + "%";
+        timeCur.textContent = fmtTime(cur);
+        timeDur.textContent = fmtTime(dur);
+      };
+
+      currentAudio.onended = () => {
+        if (gen !== sequenceGen) return;
+        scheduleNext(gen);
+      };
+
+      currentAudio.onerror = () => {
+        if (gen !== sequenceGen) return;
+        toast("Preview error", "Could not play audio preview.", 3500, "err");
+        scheduleNext(gen);
+      };
+
+      try {
+        await currentAudio.play();
+        if (vinylPhase !== "loop") await playVinylLoop(gen);
+        else resumeVinylVisual();
+        pauseResumeBtn.textContent = "Pause";
+      } catch (e) {
+        console.warn("preview blocked", e);
+        toast("Playback blocked", "Click Resume or pick the playlist again.", 4000, "err");
+        pauseResumeBtn.textContent = "Resume";
+      }
+    }
+
+    function startFullProgressWatch(gen) {
+      clearInterval(progressTimer);
+      clearTimeout(endWatchTimer);
+
+      let lastPos = 0;
+      let stuckNearEnd = 0;
+
+      progressTimer = setInterval(async () => {
+        if (gen !== sequenceGen || mode !== "full" || !spotifyPlayer) return;
+        try {
+          const state = await spotifyPlayer.getCurrentState();
+          if (!state) return;
+          updateProgressFromState(state);
+
+          const dur = state.duration || 0;
+          const pos = state.position || 0;
+
+          if (dur > 0 && pos >= dur - 900) {
+            stuckNearEnd++;
+            if (stuckNearEnd >= 2 || state.paused) {
+              clearInterval(progressTimer);
+              progressTimer = null;
+              scheduleNext(gen);
+            }
+          } else if (dur > 0 && lastPos > dur * 0.85 && pos < 1500 && !state.paused) {
+            clearInterval(progressTimer);
+            progressTimer = null;
+            scheduleNext(gen);
+          } else {
+            stuckNearEnd = 0;
+          }
+          lastPos = pos;
+        } catch (_) {}
+      }, 800);
+    }
+
+    function updateProgressFromState(state) {
+      if (!state) return;
+      const dur = state.duration || 0;
+      const pos = state.position || 0;
+      progressFill.style.width = dur ? Math.min(100, (pos / dur) * 100) + "%" : "0%";
+      timeCur.textContent = fmtTime(pos);
+      timeDur.textContent = fmtTime(dur);
+    }
+
+    /** Track finished or failed → out clip, then next random track */
+    async function scheduleNext(gen) {
+      if (gen !== sequenceGen) return;
+      setPlayerUI("warn", "Next track…");
+      stopAudioAndTimers();
+      // Keep gen so out isn't cancelled by stopAudio
+      const outOk = await playVinylOut(gen);
+      if (gen !== sequenceGen) return;
+      if (!outOk && gen !== sequenceGen) return;
+      if (activePlaylist && gen === sequenceGen) {
+        startSequence(activePlaylist);
+      }
+    }
+
+    /* ── Controls ───────────────────────────────────────────── */
+    pauseResumeBtn.addEventListener("click", async () => {
+      if (mode === "full" && spotifyPlayer) {
+        try {
+          const state = await spotifyPlayer.getCurrentState();
+          if (!state) {
+            toast("Nothing playing", "Pick a playlist first.", 2500);
+            return;
+          }
+          if (state.paused) {
+            await spotifyPlayer.resume();
+            pauseResumeBtn.textContent = "Pause";
+            isPaused = false;
+            resumeVinylVisual();
+          } else {
+            await spotifyPlayer.pause();
+            pauseResumeBtn.textContent = "Resume";
+            isPaused = true;
+            pauseVinylVisual();
+          }
+        } catch (e) {
+          toast("Control error", e.message || String(e), 3000, "err");
+        }
+      } else if (mode === "preview" && currentAudio) {
+        if (currentAudio.paused) {
+          try {
+            await currentAudio.play();
+            pauseResumeBtn.textContent = "Pause";
+            isPaused = false;
+            resumeVinylVisual();
+          } catch (e) {
+            toast("Play blocked", "Browser blocked audio resume.", 3000, "err");
+          }
+        } else {
+          currentAudio.pause();
+          pauseResumeBtn.textContent = "Resume";
+          isPaused = true;
+          pauseVinylVisual();
+        }
+      }
+    });
+
+    skipBtn.addEventListener("click", async () => {
+      if (skipLock) return;
+      if (!activePlaylist && !accessToken) {
+        toast("Pick a crate", "Choose English, Hindi, or Classical first.", 2500);
+        return;
+      }
+      if (!activePlaylist) {
+        toast("Pick a crate", "Choose English, Hindi, or Classical first.", 2500);
+        return;
+      }
+      skipLock = true;
+      skipBtn.disabled = true;
+      try {
+        // startSequence handles: stop audio → out (if needed) → in → loop → audio
+        await startSequence(activePlaylist);
+      } finally {
+        skipLock = false;
+        skipBtn.disabled = false;
+      }
+    });
+
+    stopBtn.addEventListener("click", async () => {
+      if (stopLock) return;
+      stopLock = true;
+      const gen = ++sequenceGen;
+      const pl = activePlaylist;
+      stopAudioAndTimers();
+      try {
+        if (vinylPhase === "loop" || vinylPhase === "in") {
+          await playVinylOut(gen);
+        }
+      } catch (_) {}
+      currentTrack = null;
+      activePlaylist = null;
+      nowCard.classList.remove("visible");
+      setActivePlaylistBtn(null);
+      showIdleStage();
+      setPlayerUI(playerReady ? "ok" : "", playerReady ? "Vinyl player ready" : "Player idle");
+      toast("Stopped", "Needle lifted · record resleeved.", 1800);
+      stopLock = false;
+      // silence unused
+      void pl;
+    });
+
+    playlistBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.playlist;
+        if (!key) return;
+        startSequence(key);
+      });
+    });
+
+    loginBtn.addEventListener("click", () => startLogin());
+    logoutBtn.addEventListener("click", () => {
+      logout();
+      toast("Disconnected", "Spotify session cleared.", 2200);
+    });
+    settingsBtn.addEventListener("click", () => openSetup(false));
+
+    // Spacebar pause when not typing
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "Space" && e.target === document.body) {
+        e.preventDefault();
+        pauseResumeBtn.click();
+      }
+      if (e.code === "ArrowRight" && e.target === document.body) {
+        e.preventDefault();
+        skipBtn.click();
+      }
+      if (e.code === "Escape" && setupModal.classList.contains("open")) {
+        closeSetup();
+      }
+    });
+
+    /* ── Boot ───────────────────────────────────────────────── */
+    (async function init() {
+      redirectDisplay.textContent = redirectUri();
+      preloadVinylClips();
+      showIdleStage();
+
+      if (window.location.protocol === "file:") {
+        toast(
+          "Serve over HTTP",
+          "Open via a local server (not file://) so Spotify redirect works.",
+          8000,
+          "err"
+        );
+        idleCopy.textContent = "Serve this folder over http://localhost — file:// breaks Spotify login.";
+      }
+
+      // Handle OAuth return first
+      await handleRedirect();
+
+      // Restore session
+      if (!accessToken && loadTokensFromStorage()) {
+        try {
+          if (Date.now() > expiresAt - 5000 && refreshToken) {
+            await refreshAccessToken();
+          }
+          await afterAuth();
+        } catch (e) {
+          console.warn("restore failed", e);
+          clearTokens();
+          setAuthUI("err", "Session expired");
+        }
+      } else if (accessToken) {
+        // already set by handleRedirect → afterAuth
+      } else if (!clientId) {
+        setAuthUI("warn", "Setup needed");
+        idleCopy.textContent = "Open Setup, paste your Spotify Client ID, then connect.";
+      }
+    })();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# Secrets & local state — never commit
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.kubeconfig
+.vault-token
+
+# Backups / OS junk
+*.bak
+*.bak.*
+*~
+.DS_Store
+Thumbs.db
+
+# Large local-only media (keep lean defaults in assets/)
+assets/wallpapers/extra/
+assets/wallpapers/Others/
+*.iso
+
+# Editor / tooling
+.idea/
+.vscode/
+*.swp
+.smartgit/
+.git/smartgit*
+
+# Install state (machine-local)
+.install-state/

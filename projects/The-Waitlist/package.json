@@ -1,0 +1,21 @@
+{
+  "name": "the-waitlist",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "dev": "echo 'Use two terminals: bun run dev:server  and  bun run dev:web'",
+    "dev:server": "bun run --filter @the-waitlist/server dev",
+    "dev:web": "bun run --filter @the-waitlist/web dev",
+    "build": "bun run --filter @the-waitlist/web build",
+    "start": "bun run apps/server/src/index.ts",
+    "prod": "bun run build && bun run start",
+    "test": "bun test packages/core/src",
+    "typecheck": "bun run --filter @the-waitlist/server typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "@types/bun": "latest"
+  }
+}

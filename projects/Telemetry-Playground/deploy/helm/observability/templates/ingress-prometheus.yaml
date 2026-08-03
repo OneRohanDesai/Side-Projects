@@ -1,0 +1,22 @@
+{{- if .Values.ingress.prometheus.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: prometheus
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingress.prometheus.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus
+                port:
+                  number: {{ .Values.service.prometheus.port }}
+{{- end }}

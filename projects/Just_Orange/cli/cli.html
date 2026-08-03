@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FF6B35" />
+  <title>Just Orange · CLI</title>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <style>
+    body {
+      background: #14110F;
+      color: #F7F0E8;
+    }
+    .bg-mesh {
+      background:
+        radial-gradient(ellipse 70% 50% at 20% -10%, rgba(255, 107, 53, 0.35), transparent 55%),
+        radial-gradient(ellipse 50% 40% at 100% 10%, rgba(255, 140, 66, 0.18), transparent 50%),
+        #14110F !important;
+    }
+    .nav {
+      background: rgba(20, 17, 15, 0.8);
+      border-bottom-color: rgba(255, 107, 53, 0.2);
+    }
+    .brand { color: #fff; }
+    .nav-links a { color: #C9B8A8; }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--orange);
+      background: rgba(255, 107, 53, 0.12);
+    }
+    .hero {
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      margin: 0.75rem 0;
+    }
+    .term {
+      background: #0C0A09;
+      border: 1px solid rgba(255, 107, 53, 0.35);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,107,53,0.08);
+      margin: 2rem auto;
+      max-width: 820px;
+      text-align: left;
+    }
+    .term-bar {
+      background: linear-gradient(90deg, var(--orange), var(--orange-soft));
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: white;
+    }
+    .dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+    .term pre {
+      margin: 0;
+      padding: 1.5rem 1.35rem 1.75rem;
+      font-family: var(--mono), ui-monospace, monospace;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: #E8DCD0;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    .term .c-orange { color: #FF8C42; }
+    .term .c-green { color: #8FDB8F; }
+    .term .c-dim { color: #8A7A6C; }
+    .term .c-cyan { color: #7DD3D3; }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 2.5rem 0;
+    }
+    .card {
+      background: #1C1815;
+      border-color: rgba(255, 107, 53, 0.18);
+      color: #E8DCD0;
+    }
+    .card h3 {
+      color: var(--orange-soft);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .card p, .card li { color: #B5A698; font-size: 0.95rem; }
+    .card ul { padding-left: 1.15rem; margin-top: 0.5rem; }
+    .card li { margin: 0.35rem 0; }
+    .site-footer {
+      border-top-color: rgba(255, 107, 53, 0.15);
+      color: #8A7A6C;
+    }
+    code.inline {
+      background: rgba(255, 107, 53, 0.12);
+      color: #FFB07A;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      font-family: var(--mono), monospace;
+      font-size: 0.88em;
+    }
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../justorange.html">
+        <span class="brand-mark">🍊</span>
+        Just Orange
+      </a>
+      <div class="nav-links">
+        <a href="../justorange.html">Home</a>
+        <a href="../live/live.html">Cook</a>
+        <a href="cli.html" class="active">CLI</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="../live/live.html">Web kitchen</a>
+    </div>
+  </nav>
+
+  <header class="hero wrap">
+    <span class="eyebrow">Terminal edition</span>
+    <h1 class="display">Just Orange CLI</h1>
+    <p style="color:#B5A698;max-width:520px;margin:0 auto;font-size:1.1rem;">
+      Zero idle cost · Runs on your machine · Cache, history, and one perfect dish per run.
+    </p>
+  </header>
+
+  <main class="wrap">
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span style="margin-left:0.5rem;">just-orange.sh</span>
+      </div>
+      <pre><span class="c-dim"># from the repo</span>
+<span class="c-cyan">cd</span> Just_Orange/cli
+<span class="c-green">./just-orange.sh</span>
+
+<span class="c-orange">Ingredients:</span> tomato, rice, onion, garlic
+<span class="c-orange">Taste:</span> spicy · Prep ≤20m · Eat ≤25m
+<span class="c-orange">Allergies:</span> none
+
+<span class="c-green">Tomato Garlic Rice</span>
+• 1 cup rice        • 3 tomatoes
+• 4 garlic cloves   • 1 onion
+• Chili flakes      • Olive oil
+
+1. Fry garlic + onion in oil until golden
+2. Add chopped tomatoes, cook 5 min
+3. Mix in rice + 2 cups water + chili
+4. Simmer 12 min. Done.
+
+<span class="c-dim">Cached · gpt-4o-mini · sqlite</span></pre>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Quick start</h3>
+        <p>Needs <code class="inline">bash</code>, <code class="inline">curl</code>, <code class="inline">jq</code>, <code class="inline">sqlite3</code>, and an OpenAI key for generative mode.</p>
+        <pre style="margin-top:1rem;background:#0C0A09;padding:1rem;border-radius:12px;font-size:0.85rem;overflow:auto;border:1px solid rgba(255,107,53,0.2);"><span class="c-cyan">export</span> OPENAI_API_KEY=sk-...
+<span class="c-green">./just-orange.sh</span></pre>
+      </div>
+      <div class="card">
+        <h3>What you get</h3>
+        <ul>
+          <li>Interactive menu — generate, view cache, stats</li>
+          <li>SQLite recipe cache (free, local, forever)</li>
+          <li>Allergy + exclusion filters</li>
+          <li>Token-capped <code class="inline">gpt-4o-mini</code> prompts</li>
+          <li>Retries, timeouts, clear errors</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Core engine</h3>
+        <p>Shared bash engine lives in <code class="inline">core/recipe_engine.sh</code>. Same prompt discipline as the Lambda path — cheap tokens, one recipe, strict format.</p>
+      </div>
+      <div class="card">
+        <h3>Prefer free & offline?</h3>
+        <p>Use the <a href="../live/live.html" style="color:var(--orange-soft);font-weight:700;">Live Kitchen</a> — 50+ curated recipes, pantry, timers, shopping list — no API key required.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:2rem 0 3rem;">
+      <a class="btn btn-primary" href="../justorange.html">← Back home</a>
+      <a class="btn btn-ghost" href="../live/live.html" style="margin-left:0.5rem;">Open web kitchen</a>
+    </div>
+  </main>
+
+  <footer class="site-footer wrap">
+    Just Orange · Terminal Edition · Orange on black, still family
+  </footer>
+</body>
+</html>

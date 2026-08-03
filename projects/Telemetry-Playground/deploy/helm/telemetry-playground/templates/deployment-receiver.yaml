@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: receiver
+  namespace: {{ include "telemetry.namespace" . }}
+  labels:
+    {{- include "telemetry.labels" . | nindent 4 }}
+    app: receiver
+spec:
+  replicas: {{ .Values.replicas.receiver }}
+  selector:
+    matchLabels:
+      app: receiver
+  template:
+    metadata:
+      labels:
+        app: receiver
+        {{- include "telemetry.selectorLabels" . | nindent 8 }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8000"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: receiver
+          image: {{ include "telemetry.image" (list .Values.image.receiver .Values.imageTag) }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          env:
+            - name: RECEIVER_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: REDIS_HOST
+              value: {{ .Values.config.redisHost | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.config.redisPort | quote }}
+            - name: OTEL_SERVICE_NAME
+              value: receiver
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: service.namespace=telemetry
+            {{- include "telemetry.otelEnv" . | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http
+            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
+            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
+            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
+          resources:
+            requests:
+              cpu: {{ .Values.resources.receiver.requests.cpu }}
+              memory: {{ .Values.resources.receiver.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.receiver.limits.cpu }}
+              memory: {{ .Values.resources.receiver.limits.memory }}

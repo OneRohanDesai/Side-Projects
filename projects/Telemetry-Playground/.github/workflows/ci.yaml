@@ -1,0 +1,129 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - "polish/**"
+      - "feature/**"
+      - "fix/**"
+  pull_request:
+    branches:
+      - main
+      - develop
+      - "polish/**"
+
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Ruff
+        run: ruff check .
+
+      - name: Pytest
+        run: pytest -q
+
+  helm-lint:
+    name: Helm Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.17.3
+
+      - name: Lint telemetry chart
+        run: |
+          helm lint deploy/helm/telemetry-playground
+          helm template tp deploy/helm/telemetry-playground \
+            -f deploy/helm/telemetry-playground/values.yaml \
+            -f deploy/helm/telemetry-playground/values-local.yaml \
+            > /tmp/tp.yaml
+          test -s /tmp/tp.yaml
+
+      - name: Lint observability chart
+        run: |
+          helm lint deploy/helm/observability
+          helm template obs deploy/helm/observability > /tmp/obs.yaml
+          # Guard against empty critical configs
+          grep -q "otlp/tempo" /tmp/obs.yaml
+          grep -q "Telemetry Overview" /tmp/obs.yaml
+          grep -q "health_check" /tmp/obs.yaml
+
+  build-and-scan:
+    name: Build & Scan (${{ matrix.component }})
+    runs-on: ubuntu-latest
+    needs: [lint-and-test]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - component: generator
+            dockerfile: docker/generator/Dockerfile
+          - component: receiver
+            dockerfile: docker/receiver/Dockerfile
+          - component: dashboard
+            dockerfile: docker/dashboard/Dockerfile
+          - component: nginx
+            dockerfile: docker/nginx/Dockerfile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          push: false
+          load: true
+          tags: telemetry-${{ matrix.component }}:ci
+          cache-from: type=gha,scope=${{ matrix.component }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.component }}
+
+      - name: Trivy scan
+        # Use a published action tag (0.30.0 does not exist). v0.36.0 is current latest.
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: telemetry-${{ matrix.component }}:ci
+          format: table
+          exit-code: "1"
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+          vuln-type: os,library
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: telemetry-${{ matrix.component }}:ci
+          artifact-name: ${{ matrix.component }}-sbom.spdx.json

@@ -1,0 +1,27 @@
+# i3 + Xorg (Debian/Ubuntu)
+xorg
+xserver-xorg
+xinit
+i3
+i3status
+suckless-tools
+rofi
+dunst
+kitty
+alacritty
+feh
+flameshot
+thunar
+xarchiver
+firefox
+mpv
+smplayer
+ranger
+sddm
+xss-lock
+arandr
+pavucontrol
+picom
+slock
+libnotify-bin
+nsxiv

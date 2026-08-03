@@ -1,0 +1,17 @@
+# Baby Linux — bash fallback
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias ll='ls -lah --color=auto'
+alias grep='grep --color=auto'
+alias v='nvim'
+alias k='kubectl'
+alias tf='terraform'
+
+PS1='[\u@\h \W]\$ '
+
+export PATH="$HOME/.local/bin:$PATH"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"

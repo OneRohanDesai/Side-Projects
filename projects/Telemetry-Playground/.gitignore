@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Python Tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment Variables
+.env
+.env.*
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Ansible
+*.retry
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Helm
+charts/*/charts/
+
+# Docker
+docker-data/
+
+# Local Monitoring Data
+prometheus-data/
+grafana-data/
+loki-data/
+tempo-data/
+
+# Future
+.velero/
+.opencost/
+
+# Misc
+tmp/
+cache/

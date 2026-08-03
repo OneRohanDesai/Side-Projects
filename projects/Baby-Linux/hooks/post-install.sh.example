@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Copy to post-install.sh and make executable for custom steps after install.
+# Example:
+#   git clone https://github.com/you/private-dotfiles.git ~/dotfiles-private
+#   npm install -g @bitwarden/cli
+echo "Baby Linux post-install hook (example) — no-op"

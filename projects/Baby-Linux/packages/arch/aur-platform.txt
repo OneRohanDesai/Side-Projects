@@ -1,0 +1,20 @@
+# ── AUR packages for extreme platform engineer setup ────────────────────────
+# Cloud CLIs (if not using official installers)
+# google-cloud-cli
+# azure-cli
+aws-session-manager-plugin
+aws-vault
+# IaC extras
+terraform-docs
+tflint
+tfsec
+checkov
+infracost-bin
+# Containers / k8s
+lens-bin
+# Secrets
+vault-bin
+# Misc quality of life
+# hadolint-bin
+# act-bin
+# trivy already in repos often

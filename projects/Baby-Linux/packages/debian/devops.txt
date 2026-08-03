@@ -1,0 +1,35 @@
+# DevOps (Debian/Ubuntu) — latest k8s/tf may need extra repos; binaries fill gaps
+docker.io
+docker-compose-v2
+docker-buildx
+kubectl
+helm
+terraform
+ansible
+ansible-lint
+git
+python3-pip
+pipx
+nodejs
+npm
+golang-go
+postgresql-client
+dnsutils
+socat
+netcat-openbsd
+cmake
+gh
+shellcheck
+jq
+yq
+direnv
+podman
+skopeo
+buildah
+rclone
+restic
+mtr-tiny
+iperf3
+nmap
+lazy-git
+# minikube / kind often snap or binary

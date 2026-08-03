@@ -1,0 +1,14 @@
+- hosts: k3s
+
+  become: true
+
+  roles:
+    - k3s
+
+---
+- hosts: telemetry
+
+  become: true
+
+  roles:
+    - k3s

@@ -1,0 +1,36 @@
+---
+- name: Ensure telemetry namespace exists
+  kubernetes.core.k8s:
+    name: telemetry
+    api_version: v1
+    kind: Namespace
+    state: present
+  ignore_errors: true
+
+- name: Deploy Telemetry Playground Helm chart
+  kubernetes.core.helm:
+    name: telemetry-playground
+    chart_ref: "{{ playbook_dir }}/../deploy/helm/telemetry-playground"
+    release_namespace: telemetry
+    create_namespace: true
+    values_files:
+      - "{{ playbook_dir }}/../deploy/helm/telemetry-playground/values.yaml"
+      - "{{ playbook_dir }}/../deploy/helm/telemetry-playground/values-dev.yaml"
+    wait: true
+    wait_timeout: 10m
+  # Fall back to shell when kubernetes.core collection is unavailable.
+  ignore_errors: true
+  register: helm_module
+
+- name: Deploy Telemetry Playground (shell fallback)
+  when: helm_module is failed
+  ansible.builtin.command: >
+    helm upgrade --install telemetry-playground
+    {{ playbook_dir }}/../deploy/helm/telemetry-playground
+    -n telemetry
+    --create-namespace
+    -f {{ playbook_dir }}/../deploy/helm/telemetry-playground/values.yaml
+    -f {{ playbook_dir }}/../deploy/helm/telemetry-playground/values-dev.yaml
+    --wait --timeout 10m
+  args:
+    chdir: "{{ playbook_dir }}/.."

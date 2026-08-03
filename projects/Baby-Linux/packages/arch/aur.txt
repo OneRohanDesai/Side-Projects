@@ -1,0 +1,12 @@
+# AUR packages (installed via yay) — optional extras
+google-chrome
+i3lock-color
+postman-bin
+spotify
+anydesk-bin
+lens-bin
+vault-bin
+terraform-docs
+neofetch
+wifitui
+smartgit

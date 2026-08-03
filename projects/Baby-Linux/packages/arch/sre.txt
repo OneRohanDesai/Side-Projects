@@ -1,0 +1,31 @@
+# ── SRE / Observability / Reliability (Arch) ────────────────────────────────
+# Metrics / scrape
+prometheus
+prometheus-node-exporter
+# Visualization
+grafana
+# Logs
+loki
+# Tracing (when packaged)
+# tempo — may be AUR
+# Load testing (k6 often via GitHub release in module)
+# Network diagnostics
+mtr
+iperf3
+nmap
+tcpdump
+traceroute
+bind
+whois
+# Process / system
+htop
+btop
+iotop
+sysstat
+lsof
+strace
+bpftrace
+# Storage / disaster recovery helpers
+restic
+rclone
+# k6 / pumba / chaos CLIs → binary installers in modules/41-sre.sh

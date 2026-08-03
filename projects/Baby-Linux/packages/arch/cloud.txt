@@ -1,0 +1,23 @@
+# ── Cloud-adjacent packages (Arch repos) ────────────────────────────────────
+# Full AWS/GCP/Azure CLIs installed via modules/50-cloud.sh (official)
+python-pip
+python-boto3
+helm
+kubectl
+terraform
+packer
+ansible
+sops
+age
+jq
+yq
+# Session / multi-account helpers may be AUR: aws-vault
+# Storage
+rclone
+# DNS / debug
+bind
+whois
+# SSL
+openssl
+# Extra
+github-cli

@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  repository: "637423188454.dkr.ecr.ap-south-1.amazonaws.com/nexu-demo-ffmpeg-streamer"
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+

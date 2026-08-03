@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-controller
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: event-controller
+
+  template:
+    metadata:
+      labels:
+        app: event-controller
+
+    spec:
+      serviceAccountName: event-controller
+
+      containers:
+      - name: controller
+        image: gaia/event-controller:latest
+        imagePullPolicy: IfNotPresent
+
+        command: ["python", "/controller/controller.py"]
+
+        volumeMounts:
+        - name: controller-code
+          mountPath: /controller
+
+      volumes:
+      - name: controller-code
+        configMap:
+          name: event-controller-code

@@ -1,0 +1,7 @@
+tlp
+acpi
+brightnessctl
+powertop
+lm-sensors
+smartmontools
+fwupd

@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: event-controller
+  namespace: default
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: event-controller
+
+rules:
+- apiGroups: ["gaia.io"]
+  resources: ["worldevents"]
+  verbs: ["get","list","watch","update","patch"]
+
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get","list","watch","update","patch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: event-controller
+
+subjects:
+- kind: ServiceAccount
+  name: event-controller
+  namespace: default
+
+roleRef:
+  kind: ClusterRole
+  name: event-controller
+  apiGroup: rbac.authorization.k8s.io

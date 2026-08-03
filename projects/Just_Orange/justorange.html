@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Just Orange — you name what’s in your kitchen, we name the one perfect dish. Free, beautiful, zero decision fatigue." />
+  <meta name="theme-color" content="#FF6B35" />
+  <title>Just Orange · One perfect dish</title>
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <style>
+    .hero {
+      padding: 5.5rem 0 3rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(3.6rem, 12vw, 7rem);
+      margin: 1rem 0 1.25rem;
+    }
+    .tagline {
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      font-weight: 450;
+      line-height: 1.55;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .float-oranges {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: 0.55;
+      animation: float 12s ease-in-out infinite;
+    }
+    .orb-1 {
+      width: 140px; height: 140px;
+      background: radial-gradient(circle at 30% 30%, #FFB07A, var(--orange));
+      top: 12%; left: 8%;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 90px; height: 90px;
+      background: radial-gradient(circle at 30% 30%, #FFD4B8, var(--orange-soft));
+      top: 28%; right: 12%;
+      animation-delay: -3s;
+    }
+    .orb-3 {
+      width: 60px; height: 60px;
+      background: radial-gradient(circle at 30% 30%, #FFE8D6, var(--orange));
+      bottom: 20%; left: 18%;
+      animation-delay: -6s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-18px) scale(1.04); }
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin: 2rem auto 4rem;
+    }
+    .feat {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.5rem 1.25rem;
+      text-align: left;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .feat:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .feat .ico {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--orange-mist), var(--cream-2));
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .feat h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.02em;
+    }
+    .feat p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 1rem 0 2rem;
+    }
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .section-title p {
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .variants {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .variant {
+      position: relative;
+      display: block;
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      color: inherit;
+      transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+    }
+    .variant:hover {
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+      color: inherit;
+    }
+    .variant-visual {
+      height: 200px;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.35), transparent 40%),
+        linear-gradient(135deg, var(--orange) 0%, var(--orange-soft) 55%, #FFB07A 100%);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .variant-visual span {
+      font-size: 4.5rem;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
+      animation: float 8s ease-in-out infinite;
+    }
+    .variant-visual.cli {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2), transparent 40%),
+        linear-gradient(135deg, #1A1A1A 0%, #2D2118 50%, #FF6B35 140%);
+    }
+    .variant .content {
+      padding: 1.75rem 1.75rem 2rem;
+    }
+    .variant h3 {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .variant p {
+      color: var(--ink-soft);
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+    }
+
+    .how {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+    .how-step {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+    }
+    .how-step .n {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--orange);
+      opacity: 0.25;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .how-step h3 {
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .how-step p { color: var(--muted); font-size: 0.95rem; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+    .fg {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 1.15rem 1.25rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+    .fg b {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    .fg span {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .donate {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 2.75rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .donate::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, var(--orange-mist), transparent 60%);
+      pointer-events: none;
+    }
+    .donate > * { position: relative; }
+    .status-open {
+      display: inline-block;
+      background: #2E7D32;
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 0.82rem;
+      margin: 1rem 0;
+      letter-spacing: 0.04em;
+    }
+
+    .demo-bar {
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-pill);
+      padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+      display: flex;
+      gap: 0.5rem;
+      box-shadow: var(--shadow);
+      align-items: center;
+    }
+    .demo-bar input {
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 0.65rem 0 !important;
+      flex: 1;
+      min-width: 0;
+    }
+    .demo-bar input:focus { box-shadow: none !important; }
+
+    @media (max-width: 960px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+      .how { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .features, .variants, .feature-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 3.5rem; }
+      .demo-bar { flex-direction: column; border-radius: var(--radius); padding: 0.75rem; }
+      .demo-bar .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="justorange.html">
+        <span class="brand-mark">🍊</span>
+        Just Orange
+      </a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="live/live.html">Cook</a>
+        <a href="cli/cli.html">CLI</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="live/live.html">Start cooking</a>
+    </div>
+  </nav>
+
+  <header class="hero wrap" style="position:relative;">
+    <div class="float-oranges" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <span class="eyebrow">Zero decision fatigue · Free forever local</span>
+    <h1 class="display">Just Orange</h1>
+    <p class="tagline">
+      You name what’s in your kitchen.<br />
+      I name the <em style="color:var(--orange);font-style:normal;font-weight:700;">one</em> perfect dish.<br />
+      No options. No confusion. Just dinner.
+    </p>
+
+    <form class="demo-bar" id="quickStart" action="live/live.html" method="get">
+      <input type="text" name="q" id="quickIng" placeholder="e.g. tomato, rice, egg, garlic…" aria-label="Ingredients" />
+      <button class="btn btn-primary" type="submit">Find my dish →</button>
+    </form>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="live/live.html">Open the kitchen</a>
+      <a class="btn btn-ghost" href="cli/cli.html">Terminal edition</a>
+    </div>
+  </header>
+
+  <section class="wrap features">
+    <article class="feat">
+      <div class="ico">🎯</div>
+      <h3>One perfect recipe</h3>
+      <p>No lists. No “choose your adventure”. Just the single best dish possible right now.</p>
+    </article>
+    <article class="feat">
+      <div class="ico">⏱️</div>
+      <h3>Time & allergy aware</h3>
+      <p>Tell me how long you have and what you can’t eat — both are hard constraints.</p>
+    </article>
+    <article class="feat">
+      <div class="ico">💸</div>
+      <h3>Free by default</h3>
+      <p>50+ curated recipes match offline. Zero API cost until you optionally turn on AI.</p>
+    </article>
+    <article class="feat">
+      <div class="ico">✨</div>
+      <h3>Actually delicious</h3>
+      <p>Real techniques, real tips, real pantry logic — not random ingredient mashups.</p>
+    </article>
+  </section>
+
+  <section class="wrap" id="how">
+    <div class="section-title">
+      <h2>Three steps. Dinner.</h2>
+      <p>Designed to end the “what should we eat?” loop in under a minute.</p>
+    </div>
+    <div class="how">
+      <div class="how-step">
+        <div class="n">01</div>
+        <h3>List what you have</h3>
+        <p>Type ingredients, load your pantry, or tap a quick combo. Allergies optional.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">02</div>
+        <h3>We pick exactly one</h3>
+        <p>Local engine scores taste, time, coverage, and exclusions — then commits.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">03</div>
+        <h3>Cook with confidence</h3>
+        <p>Timers, step checklist, shopping list, favorites, print & share. Done.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="editions">
+    <div class="section-title">
+      <h2>Pick your kitchen</h2>
+      <p>Same orange soul. Two beautiful ways to cook.</p>
+    </div>
+    <div class="variants">
+      <a href="live/live.html" class="variant">
+        <div class="variant-visual"><span>🍳</span></div>
+        <div class="content">
+          <h3>Live Kitchen</h3>
+          <p>Full app in the browser — pantry, history, favorites, cook mode, shopping list. Works offline for free.</p>
+          <span class="badge badge-solid">Free · Recommended</span>
+        </div>
+      </a>
+      <a href="cli/cli.html" class="variant">
+        <div class="variant-visual cli"><span>💻</span></div>
+        <div class="content">
+          <h3>CLI Edition</h3>
+          <p>Run in your terminal. Private, scriptable, cacheable. Bring your own API key for generative mode.</p>
+          <span class="badge">For geeks · Local</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" id="features">
+    <div class="section-title">
+      <h2>Everything you need. Nothing you don’t.</h2>
+      <p>Feature-rich, still opinionated — one recipe at a time.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="fg"><span>🧠</span><div><b>Free local brain</b><span>50+ recipes, smart synonym matching, allergy filters</span></div></div>
+      <div class="fg"><span>📦</span><div><b>Pantry mode</b><span>Save staples once, cook from them forever</span></div></div>
+      <div class="fg"><span>⭐</span><div><b>Favorites & history</b><span>Private in your browser, no account required</span></div></div>
+      <div class="fg"><span>🛒</span><div><b>Shopping list</b><span>Only the gaps between recipe and pantry</span></div></div>
+      <div class="fg"><span>⏲️</span><div><b>Cook mode + timer</b><span>Check off steps, time each stage</span></div></div>
+      <div class="fg"><span>🖨️</span><div><b>Print & share</b><span>Clean print view, Web Share, one-tap copy</span></div></div>
+      <div class="fg"><span>☁️</span><div><b>Optional cloud AI</b><span>Lambda + cache when you want wilder combos</span></div></div>
+      <div class="fg"><span>🔐</span><div><b>Privacy first</b><span>Local storage by default; keys stay yours</span></div></div>
+      <div class="fg"><span>💸</span><div><b>Cheapest path</b><span>Static files + free engine; AI only if you ask</span></div></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="donate">
+      <span class="eyebrow">Keep the lights warm</span>
+      <h2 style="font-size:1.75rem;font-weight:900;letter-spacing:-0.03em;margin:0.75rem 0;">
+        The kitchen is free. The AI brain isn’t always.
+      </h2>
+      <p class="text-muted" style="max-width:520px;margin:0 auto;">
+        Local recipes cost nothing. If cloud AI saved your dinner tonight, consider keeping the servers orange.
+      </p>
+      <div class="status-open">OPEN TO DONATIONS</div>
+      <div>
+        <a class="btn btn-primary" href="https://buymeacoffee.com/1ladybug" target="_blank" rel="noopener">
+          Donate for stress-free dinner
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer wrap">
+    <p><strong style="color:var(--orange);">Just Orange</strong> · 2025–2026 · Made because deciding what to eat is hard enough</p>
+    <p class="mt-1 text-sm">MIT License · Orange & white, forever</p>
+  </footer>
+
+  <script>
+    document.getElementById("quickStart").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const q = document.getElementById("quickIng").value.trim();
+      const url = "live/live.html" + (q ? ("#ing=" + encodeURIComponent(q)) : "");
+      location.href = url;
+    });
+  </script>
+  <script>
+    // Pass hash ingredients into live page via session for convenience
+    // live page can read location.hash
+  </script>
+</body>
+</html>

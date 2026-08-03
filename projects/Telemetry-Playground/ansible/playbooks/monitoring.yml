@@ -1,0 +1,14 @@
+- hosts: k3s
+
+  become: true
+
+  roles:
+    - monitoring
+
+---
+- hosts: telemetry
+
+  become: true
+
+  roles:
+    - monitoring

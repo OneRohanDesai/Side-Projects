@@ -1,0 +1,14 @@
+[Unit]
+Description=Lock screen before sleep (Baby Linux)
+Before=sleep.target
+
+[Service]
+User=@USER@
+Type=forking
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=@HOME@/.Xauthority
+Environment=BABY_HOME=@BABY_HOME@
+ExecStart=@HOME@/.config/i3/lock.sh
+
+[Install]
+WantedBy=sleep.target

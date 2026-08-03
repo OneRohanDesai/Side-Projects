@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>The Table — Restaurant OS</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>The Table <span>v3</span></h1>
+      <div class="meta"><span class="live-dot" id="live"></span> <span>LAN Restaurant OS</span></div>
+    </div>
+    <div class="meta" id="stats-mini">—</div>
+  </header>
+
+  <main class="container">
+    <p class="kicker">Pick a station for this tablet. Live over your Wi‑Fi. Optional full-restaurant simulation is off until you start it.</p>
+
+    <div class="stat-row" id="stats"></div>
+
+    <div class="hub-grid">
+      <a class="hub-card" href="/floor">
+        <div class="icon">🪑</div>
+        <h3>Floor Manager</h3>
+        <p>Seat guests, clear tables, live floor map across all zones.</p>
+      </a>
+      <a class="hub-card" href="/waiter">
+        <div class="icon">🧾</div>
+        <h3>Waiter</h3>
+        <p>Take orders, run food, bills for assigned tables.</p>
+      </a>
+      <a class="hub-card" href="/expeditor">
+        <div class="icon">👨‍🍳</div>
+        <h3>Expeditor / Head Chef</h3>
+        <p>Fire tickets, priority, QC pass, refire.</p>
+      </a>
+      <a class="hub-card" href="/station">
+        <div class="icon">🔥</div>
+        <h3>Kitchen Station</h3>
+        <p>Grill, sauté, fry, cold, pastry, bar — timers &amp; tickets.</p>
+      </a>
+      <a class="hub-card" href="/executive">
+        <div class="icon">📊</div>
+        <h3>Executive</h3>
+        <p>Menu, 86 items, staff, daily revenue &amp; throughput.</p>
+      </a>
+      <a class="hub-card" href="/simulation">
+        <div class="icon">🎬</div>
+        <h3>Simulation</h3>
+        <p>Run medium-pace full service — visible on every real page.</p>
+      </a>
+    </div>
+  </main>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    function render() {
+      const a = TT.state.analytics || {};
+      document.getElementById("stats").innerHTML = `
+        <div class="stat"><div class="label">Occupied</div><div class="value">${a.tables_occupied ?? "—"}</div></div>
+        <div class="stat"><div class="label">Active orders</div><div class="value">${a.orders_active ?? "—"}</div></div>
+        <div class="stat"><div class="label">Open tickets</div><div class="value">${a.tickets_open ?? "—"}</div></div>
+        <div class="stat"><div class="label">Today revenue</div><div class="value">${TT.fmtMoney(a.revenue)}</div></div>
+      `;
+      document.getElementById("stats-mini").textContent =
+        `${a.tables_occupied || 0} seated · ${a.orders_active || 0} live`;
+    }
+    TT.on("change", render);
+    TT.on("snapshot", render);
+    TT.bootstrap().then(async () => {
+      try { TT.state.analytics = await TT.api("/analytics"); render(); } catch {}
+      setInterval(async () => {
+        try { TT.state.analytics = await TT.api("/analytics"); render(); } catch {}
+      }, 15000);
+    });
+  </script>
+</body>
+</html>

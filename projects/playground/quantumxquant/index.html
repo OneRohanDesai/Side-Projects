@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Manwë | QuantumXQuant • Annara</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --text: #1a1a1a;
+    --accent: #c8102e;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #f8f5f0 0%, #f0e6d9 100%);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15.5px;
+    line-height: 1.72;
+    padding: 60px 20px;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Smooth animated gradient wave */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(200, 16, 46, 0.035) 0%,
+      rgba(255, 140, 0, 0.035) 25%,
+      rgba(0, 180, 140, 0.035) 50%,
+      rgba(100, 80, 255, 0.035) 75%,
+      rgba(200, 16, 46, 0.035) 100%
+    );
+    background-size: 400% 400%;
+    animation: wave 40s ease infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @keyframes wave {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 38px;
+    font-weight: 500;
+    letter-spacing: -1.4px;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #c8102e, #e67e22, #16a085);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .meta {
+    font-size: 14.8px;
+    color: #444;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .intro {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 80px;
+    font-size: 15.8px;
+    color: #555;
+  }
+
+  .entry {
+    margin-bottom: 78px;
+    position: relative;
+  }
+
+  .date {
+    font-size: 13.8px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .entry h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: -0.4px;
+  }
+
+  .books {
+    margin: 18px 0 0 0;
+  }
+
+  .books li {
+    padding: 8.5px 0;
+    border-bottom: 1px solid #e8e4dc;
+    font-size: 15px;
+  }
+
+  .books li:last-child {
+    border: none;
+  }
+
+  .annara {
+    margin-top: 24px;
+    padding-left: 18px;
+    border-left: 3px solid var(--accent);
+    font-size: 14.6px;
+    color: #444;
+    font-style: italic;
+  }
+
+  .apply {
+    margin: 60px 0;
+    padding: 26px 0 26px 28px;
+    border-left: 5px solid var(--accent);
+    background: rgba(255, 248, 240, 0.6);
+    font-size: 15.2px;
+  }
+
+  .further {
+    margin-top: 90px;
+    padding-top: 50px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .further h2 {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  footer {
+    margin-top: 110px;
+    text-align: center;
+    font-size: 13.4px;
+    color: #666;
+  }
+
+  @media (max-width: 640px) {
+    body { padding: 40px 18px; }
+    h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>Manwë's QuantumXQuant</h1>
+    <div class="meta">Annara Mastery Path • 16 focused hours every weekend • Books only</div>
+  </header>
+
+  <div class="intro">
+    A clean, continuous journey from math foundations to quant researcher level.<br>
+    Build Annara [Nenya, Vilya, Narya] one milestone at a time.
+  </div>
+
+  <div class="entry">
+    <div class="date">April – September 2026</div>
+    <h2>Core Foundations &amp; Derivatives</h2>
+    <ul class="books">
+      <li>Stefanica — A Primer for the Mathematics of Financial Engineering</li>
+      <li>Capinski &amp; Zastawniak — Mathematics for Finance</li>
+      <li>Hull — Options, Futures, and Other Derivatives (Chapters 1–20)</li>
+    </ul>
+    <div class="annara">Annara Milestone: Build Dramborleg — Open Market Simulator (LOB engine in Rust)</div>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 2026 – March 2027</div>
+    <h2>Pricing Theory &amp; Mathematical Finance</h2>
+    <ul class="books">
+      <li>Hull (complete the full book)</li>
+      <li>Joshi — The Concepts and Practice of Mathematical Finance (full)</li>
+    </ul>
+    <div class="annara">Annara Milestone: Angrist — Exotic Derivatives Foundry (path signatures + automatic hedging)</div>
+  </div>
+
+  <div class="entry">
+    <div class="date">April – September 2027</div>
+    <h2>Stochastic Calculus Core</h2>
+    <ul class="books">
+      <li>Shreve — Stochastic Calculus for Finance I (full)</li>
+      <li>Shreve — Stochastic Calculus for Finance II (full)</li>
+    </ul>
+    <div class="annara">Annara Milestone: Grond — Global Macro Oracle with continuous re-pricing</div>
+    <div class="apply">
+      <strong>Start applying to Quant Researcher roles from winter 2027</strong><br>
+      Keep building Annara while interviewing.
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 2027 – March 2028</div>
+    <h2>ML, Optimisation &amp; Interview Mastery</h2>
+    <ul class="books">
+      <li>López de Prado — Advances in Financial Machine Learning (full)</li>
+      <li>Grinold &amp; Kahn — Active Portfolio Management (full)</li>
+      <li>Crack — Heard on the Street (full)</li>
+      <li>Joshi — Quant Job Interview Questions and Answers</li>
+    </ul>
+    <div class="annara">Annara Milestone: Ringil (meta-solver) + The One Ring (picosecond arb engine)</div>
+  </div>
+
+  <div class="entry">
+    <div class="date">April – September 2028</div>
+    <h2>Quantum-Finance Applications</h2>
+    <ul class="books">
+      <li>Baaquie — Quantum Finance (full, quantum stochastic calculus focus)</li>
+    </ul>
+    <div class="annara">Annara Milestone: Full Narya quantum layers integrated into Nenya tools</div>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 2028 – March 2029</div>
+    <h2>Advanced Portfolio &amp; Risk Management</h2>
+    <ul class="books">
+      <li>Chincarini &amp; Kim — Quantitative Equity Portfolio Management</li>
+      <li>Meucci — Risk and Asset Allocation (full)</li>
+    </ul>
+    <div class="annara">Annara Milestone: Evolve Grond into self-funding macro oracle with live P&amp;L</div>
+  </div>
+
+  <div class="entry">
+    <div class="date">April – September 2029</div>
+    <h2>Convex Optimisation &amp; Advanced ML</h2>
+    <ul class="books">
+      <li>Boyd &amp; Vandenberghe — Convex Optimization (full)</li>
+      <li>López de Prado — Machine Learning for Asset Managers (deep dive)</li>
+    </ul>
+    <div class="annara">Annara Milestone: Scale Ringil optimisation + quantum kernels</div>
+  </div>
+
+  <div class="entry">
+    <div class="date">October 2029 – December 2030</div>
+    <h2>Quantum-Quant Integration &amp; Research Polish</h2>
+    <ul class="books">
+      <li>Dixon, Halperin, Bilokon — Machine Learning in Finance (targeted sections)</li>
+      <li>Targeted re-reads and exercises from core books</li>
+    </ul>
+    <div class="annara">Annara Milestone: Complete quantum-enhanced Nenya suite as production-grade research platform</div>
+  </div>
+
+</div>
+
+<div class="further">
+  <h2>Further Plan (2031 onward)</h2>
+  <p>Ongoing senior-level growth: <br> Read latest research papers, evolve Annara into a powerful open research platform, target Quant PM and lead researcher roles.<br>
+  Continue 16 focused hours per weekend indefinitely.</p>
+</div>
+
+<footer>
+  Books-only [No AI] • One milestone at a time • Execute weekly with consistency & discipline.
+</footer>
+
+</body>
+</html>

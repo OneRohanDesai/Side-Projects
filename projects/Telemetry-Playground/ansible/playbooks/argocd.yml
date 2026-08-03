@@ -1,0 +1,14 @@
+- hosts: k3s
+
+  become: true
+
+  roles:
+    - argocd
+
+---
+- hosts: telemetry
+
+  become: true
+
+  roles:
+    - argocd

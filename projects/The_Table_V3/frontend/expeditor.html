@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0f14" />
+  <title>Expeditor — The Table</title>
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Expeditor <span>Head Chef</span></h1>
+      <div class="meta"><span class="live-dot"></span> Fire · Priority · QC · Refire</div>
+    </div>
+    <nav class="role-nav">
+      <a href="/">Hub</a>
+      <a href="/floor">Floor</a>
+      <a href="/waiter">Waiter</a>
+      <a href="/expeditor" class="active">Expeditor</a>
+      <a href="/station">Kitchen</a>
+      <a href="/executive">Executive</a>
+      <a href="/simulation">Sim</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="stat-row" id="stats"></div>
+    <div class="grid grid-3">
+      <div class="panel">
+        <h2>New — fire to kitchen</h2>
+        <div id="col-new"></div>
+      </div>
+      <div class="panel">
+        <h2>In kitchen</h2>
+        <div id="col-kitchen"></div>
+      </div>
+      <div class="panel">
+        <h2>QC / Ready</h2>
+        <div id="col-ready"></div>
+      </div>
+    </div>
+  </main>
+
+  <audio id="ding" preload="auto"><source src="/static/sounds/ding.mp3" type="audio/mpeg" /></audio>
+
+  <script src="/static/js/core.js"></script>
+  <script>
+    let prevNew = 0;
+
+    async function fire(id) {
+      await TT.api(`/orders/${id}/fire`, { method: "POST" });
+      TT.toast("Fired to stations");
+    }
+    async function prio(id, on) {
+      await TT.api(`/orders/${id}/priority?on=${on}`, { method: "POST" });
+    }
+    async function qc(id) {
+      await TT.api(`/orders/${id}/qc`, { method: "POST" });
+      TT.toast("QC passed — waiters notified");
+    }
+    async function refire(id) {
+      const note = prompt("Refire note?", "Remake all") || "Remake";
+      await TT.api(`/orders/${id}/refire`, { method: "POST", body: { note } });
+      TT.toast("Refire tickets created");
+    }
+    async function cancel(id) {
+      if (!confirm("Cancel this order?")) return;
+      await TT.api(`/orders/${id}/cancel`, { method: "POST" });
+    }
+
+    function card(o) {
+      const tickets = o.tickets || [];
+      const done = tickets.filter((t) => t.status === "done").length;
+      const late = (() => {
+        const base = o.fired_at || o.created_at;
+        if (!base) return false;
+        return (Date.now() - new Date(base).getTime()) > 15 * 60 * 1000;
+      })();
+      return `
+        <div class="order-card ${o.priority ? "priority" : ""}">
+          <div class="head">
+            <strong>${o.table_number || o.table_id}</strong>
+            <span class="time-chip ${late ? "late" : ""}">${TT.timeAgo(o.created_at)}</span>
+          </div>
+          <span class="status-pill ${o.status}">${TT.statusLabel(o.status)}</span>
+          ${o.refire_note ? `<p style="color:var(--hot);font-size:.85rem;margin:.4rem 0">↻ ${o.refire_note}</p>` : ""}
+          <ul class="item-list">
+            ${(o.items || []).map((i) => `<li><span>${i.name}</span><span class="status-pill">${i.status}</span></li>`).join("")}
+          </ul>
+          ${tickets.length ? `<p style="color:var(--muted);font-size:.8rem">Tickets ${done}/${tickets.length}</p>` : ""}
+          <div class="actions">
+            ${o.status === "submitted" ? `<button class="primary" onclick="fire('${o.id}').catch(e=>TT.toast(e.message))">To kitchen</button>` : ""}
+            ${o.status === "ready" ? `<button class="good" onclick="qc('${o.id}').catch(e=>TT.toast(e.message))">QC pass</button>` : ""}
+            ${!["delivered","cancelled"].includes(o.status) ? `
+              <button onclick="prio('${o.id}', ${!o.priority}).catch(e=>TT.toast(e.message))">${o.priority ? "Unprioritize" : "Priority"}</button>
+              <button class="warn" onclick="refire('${o.id}').catch(e=>TT.toast(e.message))">Refire</button>
+              <button class="danger" onclick="cancel('${o.id}').catch(e=>TT.toast(e.message))">Cancel</button>
+            ` : ""}
+          </div>
+        </div>`;
+    }
+
+    function render() {
+      const orders = TT.state.orders || [];
+      const neu = orders.filter((o) => o.status === "submitted");
+      const kit = orders.filter((o) => o.status === "in_kitchen");
+      const ready = orders.filter((o) => ["ready", "ready_for_pickup", "delivering"].includes(o.status));
+
+      if (neu.length > prevNew) TT.play("ding");
+      prevNew = neu.length;
+
+      document.getElementById("stats").innerHTML = `
+        <div class="stat"><div class="label">New</div><div class="value">${neu.length}</div></div>
+        <div class="stat"><div class="label">Cooking</div><div class="value">${kit.length}</div></div>
+        <div class="stat"><div class="label">Pass / run</div><div class="value">${ready.length}</div></div>
+        <div class="stat"><div class="label">Priority</div><div class="value">${orders.filter(o=>o.priority && !["delivered","cancelled"].includes(o.status)).length}</div></div>
+      `;
+      document.getElementById("col-new").innerHTML = neu.map(card).join("") || `<div class="empty">Queue clear</div>`;
+      document.getElementById("col-kitchen").innerHTML = kit.map(card).join("") || `<div class="empty">Nothing cooking</div>`;
+      document.getElementById("col-ready").innerHTML = ready.map(card).join("") || `<div class="empty">Pass is clear</div>`;
+    }
+
+    TT.on("change", render);
+    TT.bootstrap();
+    setInterval(render, 10000); // refresh late timers
+  </script>
+</body>
+</html>

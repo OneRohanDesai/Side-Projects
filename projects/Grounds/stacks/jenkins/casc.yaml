@@ -1,0 +1,15 @@
+jenkins:
+  systemMessage: "Grounds Jenkins — local CI practice (no cloud required)"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "grounds"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  numExecutors: 2
+unclassified:
+  location:
+    url: "http://localhost:18080/"

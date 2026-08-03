@@ -1,0 +1,15 @@
+python3-pip
+python3-boto3
+helm
+kubectl
+terraform
+ansible
+jq
+yq
+rclone
+dnsutils
+whois
+openssl
+gh
+curl
+unzip

@@ -1,0 +1,50 @@
+# Baby Linux — i3status (paths rendered at install)
+general {
+    colors = true
+    interval = 5
+    color_good = "#a3be8c"
+    color_degraded = "#ebcb8b"
+    color_bad = "#bf616a"
+}
+
+order += "read_file quote"
+order += "volume master"
+order += "memory"
+order += "battery all"
+order += "wireless _first_"
+order += "tztime local"
+
+read_file quote {
+    format = "%content"
+    path = "@HOME@/.config/i3/quote.txt"
+}
+
+volume master {
+    format = "Vol: %volume"
+    format_muted = "muted"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+wireless _first_ {
+    format_up = "Wifi: %essid"
+    format_down = "no wifi"
+}
+
+battery all {
+    format = "%status %percentage"
+    format_down = "No battery"
+    status_chr = "Chr:"
+    status_bat = "Bat:"
+    status_full = "Full:"
+    last_full_capacity = true
+}
+
+tztime local {
+    format = "%Y-%m-%d %H:%M"
+}
+
+memory {
+    format = "RAM: %used"
+}

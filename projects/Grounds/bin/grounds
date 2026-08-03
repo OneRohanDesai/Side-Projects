@@ -1,0 +1,302 @@
+#!/usr/bin/env bash
+# Grounds — interactive practice arena for Cloud, DevOps & SRE
+set -euo pipefail
+
+# Resolve symlinks (e.g. ~/.local/bin/grounds → …/grounds/bin/grounds)
+_self="${BASH_SOURCE[0]}"
+if command -v readlink >/dev/null 2>&1; then
+  _self="$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || true)"
+  [[ -z "$_self" ]] && _self="${BASH_SOURCE[0]}"
+fi
+ROOT="$(cd "$(dirname "$_self")/.." && pwd)"
+unset _self
+# shellcheck source=/dev/null
+source "${ROOT}/lib/scenario.sh"
+
+usage() {
+  cat <<EOF
+${C_BOLD}grounds${C_RESET} — local Cloud / DevOps / SRE practice arena
+
+${C_BOLD}USAGE${C_RESET}
+  grounds                     Interactive menu
+  grounds list [track] [q]    List scenarios (tracks: aws|devops|sadservers)
+  grounds start <id>          Start a scenario (spins infra + setup)
+  grounds verify [id]         Verify your solution
+  grounds stop                Stop active scenario
+  grounds show <id>           Show scenario details
+  grounds hint [id] [level]   Progressive hints
+  grounds shell               Enter lab shell for active scenario
+  grounds status              Infra + active scenario status
+  grounds progress            Completion stats
+  grounds progress reset      Wipe progress
+  grounds infra up <need>     Start a stack (localstack|nimbus|linux|kind|jenkins|git|ansible)
+  grounds infra down [need]   Stop one stack or all
+  grounds doctor              Check dependencies
+  grounds env                 Print shell exports (eval "\$(grounds env)")
+  grounds help                This help
+
+${C_BOLD}TRACKS${C_RESET}
+  aws         50 Days of Cloud → LocalStack + Terraform + Nimbus
+  devops      100 Days of DevOps → Linux/Git/Docker/K8s/Jenkins/Ansible/TF
+  sadservers  Linux/SRE troubleshooting labs (sadservers.com style)
+
+${C_BOLD}EXAMPLES${C_RESET}
+  grounds list aws
+  grounds start aws-001
+  grounds verify
+  grounds list devops docker
+  grounds start devops-035
+EOF
+}
+
+doctor() {
+  header "Dependency check"
+  local cmds=(docker docker-compose kind kubectl terraform ansible jq yq python3 git curl)
+  local c
+  for c in "${cmds[@]}"; do
+    printf '  %-16s ' "$c"
+    if command -v "$c" >/dev/null 2>&1; then
+      ok "$(command -v "$c")"
+    else
+      warn "missing"
+    fi
+  done
+  printf '  %-16s ' "aws cli"
+  if command -v aws >/dev/null 2>&1; then ok "$(command -v aws)"; else dim "optional (docker fallback)"; fi
+  printf '  %-16s ' "docker daemon"
+  if docker info >/dev/null 2>&1; then ok "running"; else err "not running"; fi
+  printf '  %-16s ' "catalog"
+  if [[ -f "$GROUNDS_CATALOG" ]]; then
+    ok "$(jq '.scenarios|length' "$GROUNDS_CATALOG") scenarios"
+  else
+    err "missing — run tools/generate-catalog.py"
+  fi
+  echo
+}
+
+interactive_menu() {
+  banner
+  ensure_progress_file
+  ensure_catalog || true
+  progress_stats
+
+  while true; do
+    echo
+    title "Main menu"
+    cat <<EOF
+  ${C_CYAN}1${C_RESET}) List / start  — AWS (50 Days of Cloud)
+  ${C_CYAN}2${C_RESET}) List / start  — DevOps (100 Days)
+  ${C_CYAN}3${C_RESET}) List / start  — SadServers (troubleshooting)
+  ${C_CYAN}4${C_RESET}) Search scenarios
+  ${C_CYAN}5${C_RESET}) Active scenario status
+  ${C_CYAN}6${C_RESET}) Verify active scenario
+  ${C_CYAN}7${C_RESET}) Hint for active scenario
+  ${C_CYAN}8${C_RESET}) Enter lab shell
+  ${C_CYAN}9${C_RESET}) Progress
+  ${C_CYAN}i${C_RESET}) Infrastructure status / control
+  ${C_CYAN}d${C_RESET}) Doctor (deps)
+  ${C_CYAN}q${C_RESET}) Quit
+EOF
+    local choice
+    read -r -p "$(printf '%sgrounds>%s ' "$C_GREEN" "$C_RESET")" choice || exit 0
+    case "$choice" in
+      1) menu_pick_track aws ;;
+      2) menu_pick_track devops ;;
+      3) menu_pick_track sadservers ;;
+      4) menu_search ;;
+      5) infra_status; [[ -f "$GROUNDS_ACTIVE" ]] && scenario_show "$(json_get "$GROUNDS_ACTIVE" '.id')" ;;
+      6) scenario_verify || true ;;
+      7) scenario_hint || true ;;
+      8) scenario_shell || true ;;
+      9) progress_stats; pause ;;
+      i|I) menu_infra ;;
+      d|D) doctor; pause ;;
+      q|Q|exit) echo "Happy shipping."; exit 0 ;;
+      h|help) usage; pause ;;
+      *) warn "Unknown choice" ;;
+    esac
+  done
+}
+
+menu_pick_track() {
+  local track="$1"
+  local filter="" page=0 page_size=15
+  while true; do
+    clear 2>/dev/null || true
+    header "Track: $track"
+    progress_stats
+    local -a ids=()
+    local i=0 line id title
+    while IFS= read -r line; do
+      ids+=("$(echo "$line" | jq -r '.id')")
+    done < <(scenario_list "$track" "$filter")
+
+    local total=${#ids[@]}
+    if [[ $total -eq 0 ]]; then
+      warn "No scenarios match"
+      pause
+      return
+    fi
+    local start=$((page * page_size))
+    local end=$((start + page_size))
+    (( end > total )) && end=$total
+
+    printf '  Showing %d–%d of %d  %s\n\n' "$((start + 1))" "$end" "$total" \
+      "$([[ -n $filter ]] && echo "(filter: $filter)" || true)"
+
+    local n=1 idx
+    for ((idx = start; idx < end; idx++)); do
+      id="${ids[$idx]}"
+      local sc
+      sc="$(scenario_by_id "$id")"
+      printf '  %s%2d%s)' "$C_CYAN" "$n" "$C_RESET"
+      scenario_print_brief "$sc"
+      n=$((n + 1))
+    done
+
+    echo
+    dim "  #=start  n=next  p=prev  f=filter  s=show #  b=back"
+    local choice
+    read -r -p "$(printf '%sselect>%s ' "$C_GREEN" "$C_RESET")" choice || return
+    case "$choice" in
+      b|B|q) return ;;
+      n|N)
+        if (( end < total )); then page=$((page + 1)); fi
+        ;;
+      p|P)
+        if (( page > 0 )); then page=$((page - 1)); fi
+        ;;
+      f|F)
+        read -r -p "filter: " filter || true
+        page=0
+        ;;
+      s\ *|s*)
+        local num="${choice#s}"
+        num="${num// /}"
+        if [[ "$num" =~ ^[0-9]+$ ]] && (( num >= 1 && num < n )); then
+          scenario_show "${ids[$((start + num - 1))]}"
+          pause
+        fi
+        ;;
+      *)
+        if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice < n )); then
+          scenario_start "${ids[$((start + choice - 1))]}"
+          pause
+          return
+        else
+          # allow typing full id
+          if scenario_by_id "$choice" | grep -q .; then
+            scenario_start "$choice"
+            pause
+            return
+          fi
+          warn "Invalid selection"
+          sleep 1
+        fi
+        ;;
+    esac
+  done
+}
+
+menu_search() {
+  local q
+  read -r -p "search: " q || return
+  header "Results for '$q'"
+  local line count=0
+  while IFS= read -r line; do
+    scenario_print_brief "$line"
+    count=$((count + 1))
+  done < <(scenario_list "" "$q")
+  echo
+  info "$count matches — start with: grounds start <id>"
+  read -r -p "id to start (or empty): " id || true
+  [[ -n "${id:-}" ]] && scenario_start "$id"
+  pause
+}
+
+menu_infra() {
+  infra_status
+  cat <<EOF
+  ${C_CYAN}1${C_RESET}) Start LocalStack
+  ${C_CYAN}2${C_RESET}) Start Nimbus app
+  ${C_CYAN}3${C_RESET}) Start Linux lab
+  ${C_CYAN}4${C_RESET}) Start Kind K8s
+  ${C_CYAN}5${C_RESET}) Start Jenkins
+  ${C_CYAN}6${C_RESET}) Start Ansible targets
+  ${C_CYAN}7${C_RESET}) Stop ALL stacks
+  ${C_CYAN}b${C_RESET}) Back
+EOF
+  local c
+  read -r -p "infra> " c || return
+  case "$c" in
+    1) stack_localstack_up ;;
+    2) stack_nimbus_up ;;
+    3) stack_linux_up ;;
+    4) stack_kind_up ;;
+    5) stack_jenkins_up ;;
+    6) stack_ansible_up ;;
+    7) infra_stop_all ;;
+    *) ;;
+  esac
+  pause
+}
+
+# ── CLI dispatch ────────────────────────────────────────────────────────────
+main() {
+  local cmd="${1:-}"
+  shift || true
+  case "$cmd" in
+    ""|menu|i) interactive_menu ;;
+    list|ls)
+      local track="${1:-}" q="${2:-}"
+      # if first arg isn't a track, treat as filter
+      if [[ -n "$track" && "$track" != "aws" && "$track" != "devops" && "$track" != "sadservers" ]]; then
+        q="$track"; track=""
+      fi
+      while IFS= read -r line; do scenario_print_brief "$line"; done < <(scenario_list "$track" "$q")
+      ;;
+    start|run) scenario_start "${1:?id required}" ;;
+    verify|check|test) scenario_verify "${1:-}" ;;
+    stop|reset-active) scenario_stop ;;
+    show|info) scenario_show "${1:?id required}" ;;
+    hint|hints) scenario_hint "${1:-}" "${2:-1}" ;;
+    shell|sh|exec) scenario_shell ;;
+    status|st) infra_status ;;
+    progress)
+      if [[ "${1:-}" == "reset" ]]; then progress_reset; else progress_stats; fi
+      ;;
+    infra)
+      local sub="${1:-status}"; shift || true
+      case "$sub" in
+        up) infra_start_need "${1:?need required}" ;;
+        down)
+          if [[ -n "${1:-}" ]]; then infra_stop_need "$1"; else infra_stop_all; fi
+          ;;
+        status|*) infra_status ;;
+      esac
+      ;;
+    doctor|deps) doctor ;;
+    env)
+      export_localstack_env
+      cat <<EOF
+# Add Grounds CLI to PATH and point AWS tooling at LocalStack
+export PATH="${ROOT}/bin:\$PATH"
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_ENDPOINT_URL=http://localhost:4566
+export AWS_PAGER=""
+export GROUNDS_ROOT="${ROOT}"
+# usage: eval "\$(grounds env)"
+EOF
+      ;;
+    help|-h|--help) usage ;;
+    *)
+      err "Unknown command: $cmd"
+      usage
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"

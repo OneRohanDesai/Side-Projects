@@ -1,0 +1,21 @@
+services:
+  linux-lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grounds-linux-lab:latest
+    container_name: grounds-linux-lab
+    hostname: grounds-lab
+    privileged: true
+    ports:
+      - "2222:22"
+      - "8081:80"
+    volumes:
+      - ../../state/workspaces:/workspaces
+      - lab-data:/var/practice
+    environment:
+      - PRACTICE_HOME=/var/practice
+    command: ["/usr/local/bin/lab-init.sh"]
+
+volumes:
+  lab-data:

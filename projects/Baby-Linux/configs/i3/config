@@ -1,0 +1,154 @@
+# Baby Linux — i3 config (portable)
+# Mod4 = Super/Windows key
+
+set $mod Mod4
+font pango:JetBrainsMono Nerd Font 9
+
+# Autostart
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- @HOME@/.config/i3/lock.sh
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec_always --no-startup-id xwallpaper --zoom @BABY_HOME@/Wallpapers/fixed.jpg
+exec --no-startup-id dunst
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
+
+# Gaps & borders (comment out if you prefer stock i3 look)
+# gaps inner 6
+# gaps outer 2
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+# Colors (Nord-ish, matches theme_switcher "Zen")
+client.focused          #2e3440 #88c0d0 #2e3440 #88c0d0 #88c0d0
+client.focused_inactive #2e3440 #3b4252 #d8dee9 #3b4252 #3b4252
+client.unfocused        #2e3440 #3b4252 #d8dee9 #3b4252 #3b4252
+client.urgent           #2e3440 #bf616a #eceff4 #bf616a #bf616a
+client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+# Media / laptop keys
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym Print exec --no-startup-id flameshot gui
+
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# Launchers
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+q kill
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run
+bindsym $mod+Shift+s exec --no-startup-id @BABY_HOME@/Scripts/scripts_launcher.sh
+bindsym $mod+Shift+a exec --no-startup-id @BABY_HOME@/Scripts/audio_switcher.sh
+
+# Focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split / layout
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# System
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec --no-startup-id @HOME@/.config/rofi/powermenu.sh
+bindsym $mod+Escape exec --no-startup-id @HOME@/.config/i3/lock.sh
+
+# Resize mode
+mode "resize" {
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Status bar
+bar {
+        status_command i3status
+        position top
+        font pango:JetBrainsMono Nerd Font 9
+        colors {
+                background #2e3440
+                statusline #a3be8c
+                separator  #88c0d0
+                focused_workspace  #2e3440 #88c0d0 #2e3440
+                active_workspace   #2e3440 #a3be8c #2e3440
+                inactive_workspace #2e3440 #4c566a #2e3440
+                urgent_workspace   #ebcb8b #d08770 #ebcb8b
+        }
+}

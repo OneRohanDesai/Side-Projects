@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: generator
+  namespace: {{ include "telemetry.namespace" . }}
+  labels:
+    {{- include "telemetry.labels" . | nindent 4 }}
+    app: generator
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: generator
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+  clusterIP: None

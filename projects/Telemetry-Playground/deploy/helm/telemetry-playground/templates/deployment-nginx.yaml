@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: {{ include "telemetry.namespace" . }}
+  labels:
+    {{- include "telemetry.labels" . | nindent 4 }}
+    app: nginx
+spec:
+  replicas: {{ .Values.replicas.nginx }}
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        {{- include "telemetry.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: nginx
+          image: {{ include "telemetry.image" (list .Values.image.nginx .Values.imageTag) }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: {{ .Values.resources.nginx.requests.cpu }}
+              memory: {{ .Values.resources.nginx.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.nginx.limits.cpu }}
+              memory: {{ .Values.resources.nginx.limits.memory }}
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
