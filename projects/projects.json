@@ -23,7 +23,7 @@
       "blurb": "Cinematic listening gallery for curated Spotify playlists.",
       "link": "https://aesthete.rohandesai.in",
       "repo": "https://github.com/OneRohanDesai/Aesthete",
-      "root": "projects/Aesthete",
+      "root": "Aesthete",
       "fileCount": 32,
       "files": [
         {
@@ -234,7 +234,7 @@
       "blurb": "Original vinyl-first music explorer SPA \u2014 needle drop, crates, local vinyl clips.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Aesthete",
-      "root": "projects/Aesthete-Vinyl",
+      "root": "Aesthete-Vinyl",
       "fileCount": 7,
       "files": [
         {
@@ -295,7 +295,7 @@
       "blurb": "One input. One perfect dish. No decision paralysis.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Just_Orange",
-      "root": "projects/Just_Orange",
+      "root": "Just_Orange",
       "fileCount": 14,
       "files": [
         {
@@ -398,7 +398,7 @@
       "blurb": "Zero-internet restaurant operations OS for a private Wi-Fi LAN.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/The_Table_V3",
-      "root": "projects/The_Table_V3",
+      "root": "The_Table_V3",
       "fileCount": 42,
       "files": [
         {
@@ -669,7 +669,7 @@
       "blurb": "Dead-simple waitlist software with a rock-solid queue engine.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/The-Waitlist",
-      "root": "projects/The-Waitlist",
+      "root": "The-Waitlist",
       "fileCount": 71,
       "files": [
         {
@@ -1114,7 +1114,7 @@
       "blurb": "Distributed world population simulation on multi-cluster Kubernetes.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Gaia",
-      "root": "projects/Gaia",
+      "root": "Gaia",
       "fileCount": 305,
       "files": [
         {
@@ -2963,7 +2963,7 @@
       "blurb": "AWS-native DevOps & SRE infrastructure via Terraform, EKS, and CI/CD.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Nexu",
-      "root": "projects/Nexu",
+      "root": "Nexu",
       "fileCount": 38,
       "files": [
         {
@@ -3210,7 +3210,7 @@
       "blurb": "Experimental one-click AWS IaC deploy platform. Discontinued; patent filed.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/NyxCloud",
-      "root": "projects/NyxCloud",
+      "root": "NyxCloud",
       "fileCount": 4,
       "files": [
         {
@@ -3253,7 +3253,7 @@
       "blurb": "Base platform for DevOps, SRE, observability, and GitOps experiments.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Telemetry-Playground",
-      "root": "projects/Telemetry-Playground",
+      "root": "Telemetry-Playground",
       "fileCount": 141,
       "files": [
         {
@@ -4118,7 +4118,7 @@
       "blurb": "Local practice arena for cloud, DevOps, and sadservers-style labs.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Grounds",
-      "root": "projects/Grounds",
+      "root": "Grounds",
       "fileCount": 325,
       "files": [
         {
@@ -6087,7 +6087,7 @@
       "blurb": "One clone. One script. Entire Linux workstation bootstrap.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Baby-Linux",
-      "root": "projects/Baby-Linux",
+      "root": "Baby-Linux",
       "fileCount": 92,
       "files": [
         {
@@ -6657,7 +6657,7 @@
       "blurb": "Dark job-application tracker for companies and outreach.",
       "link": null,
       "repo": null,
-      "root": "projects/playground/companies",
+      "root": "playground/companies",
       "fileCount": 1,
       "files": [
         {
@@ -6681,7 +6681,7 @@
       "blurb": "Editorial landing for a quant persona under the Annara umbrella.",
       "link": null,
       "repo": null,
-      "root": "projects/playground/darkside",
+      "root": "playground/darkside",
       "fileCount": 1,
       "files": [
         {
@@ -6705,7 +6705,7 @@
       "blurb": "Personal quant profile page with animated gradient atmosphere.",
       "link": null,
       "repo": null,
-      "root": "projects/playground/quantumxquant",
+      "root": "playground/quantumxquant",
       "fileCount": 1,
       "files": [
         {
@@ -6729,7 +6729,7 @@
       "blurb": "Full-bleed image gallery \u2014 blur-to-sharp reveal on hover.",
       "link": null,
       "repo": null,
-      "root": "projects/playground/vogue",
+      "root": "playground/vogue",
       "fileCount": 11,
       "files": [
         {
@@ -6813,7 +6813,7 @@
       "blurb": "No-equipment fat-loss + face routine day planner.",
       "link": null,
       "repo": null,
-      "root": "projects/playground/yochico",
+      "root": "playground/yochico",
       "fileCount": 1,
       "files": [
         {

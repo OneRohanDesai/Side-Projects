@@ -1,0 +1,12 @@
+# Portfolio at /  ·  project browser SPA at /projects
+# Deploy: wrangler deploy
+name = "rohandesai-site"
+main = "worker.js"
+compatibility_date = "2025-08-01"
+
+[assets]
+directory = "."
+binding = "ASSETS"
+# Don't treat whole site as root SPA — worker handles /projects fallback
+not_found_handling = "none"
+html_handling = "auto-trailing-slash"
