@@ -3,10 +3,10 @@
     "title": "Side Projects",
     "author": "Rohan Desai",
     "email": "pro.rohandesai@gmail.com",
-    "github": "https://github.com/OneRohanDesai",
+    "github": "https://github.com/OneRohanDesai/Side-Projects",
     "linkedin": "https://www.linkedin.com/in/rohandesai01/",
     "portfolio": "https://rohandesai.in/",
-    "note": "Public projects are free to browse and clone. Private work stays sealed \u2014 ask if you need access."
+    "note": "Public projects are free to browse and clone. Private work stays sealed; ask if you need access."
   },
   "private": [
     {
@@ -18,13 +18,14 @@
         "Platform",
         "Cloudflare"
       ],
-      "blurb": "World's largest food database & multi-functionality platform.",
+      "blurb": "World's largest food database and multi functionality platform.",
       "link": "https://zyra.rohandesai.in",
       "visibility": "private",
       "hidden": false,
       "order": 1,
       "contact": true,
-      "browsable": false
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     },
     {
       "id": "film-connoisseur",
@@ -35,13 +36,14 @@
         "Ranking",
         "Cloudflare"
       ],
-      "blurb": "Unbiased film ranking by filmmaking craft \u2014 not popularity.",
+      "blurb": "Unbiased film ranking by filmmaking craft, not popularity.",
       "link": "https://film-connoisseur.rohandesai.in/",
       "visibility": "private",
       "hidden": false,
       "order": 2,
       "contact": true,
-      "browsable": false
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     },
     {
       "id": "annara",
@@ -52,13 +54,14 @@
         "Finance",
         "Tech"
       ],
-      "blurb": "Long-term project combining physics, finance, and technology.",
+      "blurb": "Long term project combining physics, finance, and technology.",
       "link": "https://annara.in",
       "visibility": "private",
       "hidden": false,
       "order": 3,
       "contact": true,
-      "browsable": false
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     },
     {
       "id": "ada-wong",
@@ -69,13 +72,14 @@
         "Python",
         "Ollama"
       ],
-      "blurb": "Local personal AI companion \u2014 memory, voice, timetable. On-device only.",
+      "blurb": "Local personal AI companion: memory, voice, timetable. On device only.",
       "link": null,
       "visibility": "private",
       "hidden": false,
       "order": 4,
       "contact": true,
-      "browsable": false
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     },
     {
       "id": "aesthete",
@@ -92,7 +96,8 @@
       "hidden": false,
       "order": 5,
       "contact": true,
-      "browsable": false
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     }
   ],
   "projects": [
@@ -108,7 +113,7 @@
       ],
       "blurb": "Base platform for DevOps, SRE, observability, and GitOps experiments.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Telemetry-Playground",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Telemetry-Playground",
       "visibility": "public",
       "hidden": false,
       "order": 1,
@@ -974,9 +979,9 @@
         "LocalStack",
         "Practice"
       ],
-      "blurb": "Local practice arena for cloud, DevOps, and sadservers-style labs.",
+      "blurb": "Local practice arena for cloud, DevOps, and sadservers style labs.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Grounds",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Grounds",
       "visibility": "public",
       "hidden": false,
       "order": 2,
@@ -2946,9 +2951,9 @@
         "SRE",
         "Simulation"
       ],
-      "blurb": "Distributed world population simulation on multi-cluster Kubernetes.",
+      "blurb": "Distributed world population simulation on multi cluster Kubernetes.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Gaia",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Gaia",
       "visibility": "public",
       "hidden": false,
       "order": 3,
@@ -4798,9 +4803,9 @@
         "Terraform",
         "EKS"
       ],
-      "blurb": "AWS-native DevOps & SRE infrastructure via Terraform, EKS, and CI/CD.",
+      "blurb": "AWS native DevOps and SRE infrastructure via Terraform, EKS, and CI/CD.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Nexu",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Nexu",
       "visibility": "public",
       "hidden": false,
       "order": 4,
@@ -5050,7 +5055,7 @@
       ],
       "blurb": "One clone. One script. Entire Linux workstation bootstrap.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Baby-Linux",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Baby-Linux",
       "visibility": "public",
       "hidden": false,
       "order": 5,
@@ -5622,9 +5627,9 @@
         "SQLite",
         "Realtime"
       ],
-      "blurb": "Dead-simple waitlist software with a rock-solid queue engine.",
+      "blurb": "Dead simple waitlist software with a rock solid queue engine.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/The-Waitlist",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The-Waitlist",
       "visibility": "public",
       "hidden": false,
       "order": 6,
@@ -6070,9 +6075,9 @@
         "AWS",
         "Patent"
       ],
-      "blurb": "Experimental one-click AWS IaC deploy platform. Discontinued; patent filed.",
+      "blurb": "Experimental one click AWS IaC deploy platform. Discontinued; patent filed.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/NyxCloud",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/NyxCloud",
       "visibility": "public",
       "hidden": false,
       "order": 7,
@@ -6118,7 +6123,7 @@
       ],
       "blurb": "One input. One perfect dish. No decision paralysis.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Just_Orange",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Just_Orange",
       "visibility": "public",
       "hidden": false,
       "order": 8,
@@ -6222,9 +6227,9 @@
         "LAN",
         "Ops"
       ],
-      "blurb": "Zero-internet restaurant operations OS for a private Wi-Fi LAN.",
+      "blurb": "Zero internet restaurant operations OS for a private WiFi LAN.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/The_Table_V3",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The_Table_V3",
       "visibility": "public",
       "hidden": false,
       "order": 9,
@@ -6496,9 +6501,9 @@
         "Spotify",
         "UX"
       ],
-      "blurb": "Original vinyl-first music explorer SPA \u2014 needle drop, crates, local vinyl clips.",
+      "blurb": "Original vinyl first music explorer SPA: needle drop, crates, local vinyl clips.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Aesthete",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Aesthete-Vinyl",
       "visibility": "public",
       "hidden": false,
       "order": 10,
@@ -6564,7 +6569,7 @@
       ],
       "blurb": "Base platform for DevOps, SRE, observability, and GitOps experiments.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Telemetry-Playground",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Telemetry-Playground",
       "visibility": "public",
       "hidden": false,
       "order": 1,
@@ -7430,9 +7435,9 @@
         "LocalStack",
         "Practice"
       ],
-      "blurb": "Local practice arena for cloud, DevOps, and sadservers-style labs.",
+      "blurb": "Local practice arena for cloud, DevOps, and sadservers style labs.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Grounds",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Grounds",
       "visibility": "public",
       "hidden": false,
       "order": 2,
@@ -9402,9 +9407,9 @@
         "SRE",
         "Simulation"
       ],
-      "blurb": "Distributed world population simulation on multi-cluster Kubernetes.",
+      "blurb": "Distributed world population simulation on multi cluster Kubernetes.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Gaia",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Gaia",
       "visibility": "public",
       "hidden": false,
       "order": 3,
@@ -11254,9 +11259,9 @@
         "Terraform",
         "EKS"
       ],
-      "blurb": "AWS-native DevOps & SRE infrastructure via Terraform, EKS, and CI/CD.",
+      "blurb": "AWS native DevOps and SRE infrastructure via Terraform, EKS, and CI/CD.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Nexu",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Nexu",
       "visibility": "public",
       "hidden": false,
       "order": 4,
@@ -11506,7 +11511,7 @@
       ],
       "blurb": "One clone. One script. Entire Linux workstation bootstrap.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Baby-Linux",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Baby-Linux",
       "visibility": "public",
       "hidden": false,
       "order": 5,
@@ -12078,9 +12083,9 @@
         "SQLite",
         "Realtime"
       ],
-      "blurb": "Dead-simple waitlist software with a rock-solid queue engine.",
+      "blurb": "Dead simple waitlist software with a rock solid queue engine.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/The-Waitlist",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The-Waitlist",
       "visibility": "public",
       "hidden": false,
       "order": 6,
@@ -12526,9 +12531,9 @@
         "AWS",
         "Patent"
       ],
-      "blurb": "Experimental one-click AWS IaC deploy platform. Discontinued; patent filed.",
+      "blurb": "Experimental one click AWS IaC deploy platform. Discontinued; patent filed.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/NyxCloud",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/NyxCloud",
       "visibility": "public",
       "hidden": false,
       "order": 7,
@@ -12574,7 +12579,7 @@
       ],
       "blurb": "One input. One perfect dish. No decision paralysis.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Just_Orange",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Just_Orange",
       "visibility": "public",
       "hidden": false,
       "order": 8,
@@ -12678,9 +12683,9 @@
         "LAN",
         "Ops"
       ],
-      "blurb": "Zero-internet restaurant operations OS for a private Wi-Fi LAN.",
+      "blurb": "Zero internet restaurant operations OS for a private WiFi LAN.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/The_Table_V3",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The_Table_V3",
       "visibility": "public",
       "hidden": false,
       "order": 9,
@@ -12952,9 +12957,9 @@
         "Spotify",
         "UX"
       ],
-      "blurb": "Original vinyl-first music explorer SPA \u2014 needle drop, crates, local vinyl clips.",
+      "blurb": "Original vinyl first music explorer SPA: needle drop, crates, local vinyl clips.",
       "link": null,
-      "repo": "https://github.com/OneRohanDesai/Archived_Projects/tree/main/Aesthete",
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Aesthete-Vinyl",
       "visibility": "public",
       "hidden": false,
       "order": 10,

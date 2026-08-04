@@ -46,7 +46,10 @@ The **View Project Details** button on the home page goes to `/projects/` (no po
 
 ## Project tiers (display order)
 
-1. **Private · code on request** — ZYRA, Film Connoisseur, Annara, Ada Wong, Aesthete. Names visible; source not in this repo. Email `pro.rohandesai@gmail.com`.
-2. **Public · free to clone** — Telemetry Playground, Grounds, Gaia, Nexu, Baby Linux, The Waitlist, Nyx Cloud, Just Orange, The Table V3, Aesthete Vinyl. Full browse + clone.
+1. **Private, code on request**: ZYRA, Film Connoisseur, Annara, Ada Wong, Aesthete. Names visible; source not in this repo. Email `pro.rohandesai@gmail.com`.
+2. **Public, free to clone**: Telemetry Playground, Grounds, Gaia, Nexu, Baby Linux, The Waitlist, Nyx Cloud, Just Orange, The Table V3, Aesthete Vinyl. Full browse + clone.
+
+Public project GitHub links point at folders under this repo:
+`https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/<Folder>`.
 
 Aesthete (current product) is private; **Aesthete Vinyl** (archived SPA) remains public.

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="color-scheme" content="dark" />
-  <meta name="description" content="Rohan Desai — side projects directory. Browse code without the git noise." />
+  <meta name="description" content="Rohan Desai, side projects directory. Browse code without the git noise." />
   <title>Side Projects · Rohan Desai</title>
   <style>
     :root {
@@ -506,10 +506,33 @@
       font-weight: 560;
       font-size: 0.9rem;
       color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .proj-item.active .n {
       color: var(--accent-bright);
+    }
+
+    .proj-item.is-private .n {
+      color: var(--private);
+    }
+
+    .proj-item.is-private.active {
+      box-shadow: inset 2px 0 0 var(--private);
+    }
+
+    .proj-item .pill {
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--private);
+      border: 1px solid rgba(184, 169, 217, 0.35);
+      border-radius: 999px;
+      padding: 1px 6px;
+      font-weight: 500;
+      flex-shrink: 0;
     }
 
     .proj-item .b {
@@ -581,7 +604,7 @@
       margin-bottom: 10px;
     }
 
-    /* File tree — collapsible folders */
+    /* File tree: collapsible folders */
     .tree { padding: 6px 6px 24px; }
 
     .tree-node { user-select: none; }
@@ -891,7 +914,8 @@
         <input id="search" type="search" placeholder="Search projects…" autocomplete="off" spellcheck="false" />
       </div>
       <div class="header-meta">
-        <a class="hide-sm" href="https://github.com/OneRohanDesai" target="_blank" rel="noopener">GitHub</a>
+        <a class="hide-sm" href="https://www.linkedin.com/in/rohandesai01/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="hide-sm" href="https://github.com/OneRohanDesai/Side-Projects" target="_blank" rel="noopener">GitHub</a>
         <a class="hide-sm" href="mailto:pro.rohandesai@gmail.com">Contact</a>
       </div>
     </header>
@@ -902,7 +926,7 @@
           <h2>Things I built.<br/>Code, not ceremony.</h2>
           <p id="heroNote">
             A quiet directory of side projects. Open anything, read the files,
-            skip the commit history. Private work is listed — ask if you want access.
+            skip the commit history. Private work is listed; ask if you want access.
           </p>
         </div>
 
@@ -913,7 +937,7 @@
       <section class="browser" id="browserView">
         <div class="pane pane-list" id="paneList">
           <div class="pane-head">
-            <button class="back-btn" id="backHome" type="button">← All</button>
+            <button class="back-btn" id="backHome" type="button">All</button>
             <span class="label">Projects</span>
           </div>
           <div class="pane-body proj-list" id="projList"></div>
@@ -922,14 +946,14 @@
         <div class="pane pane-detail" id="paneDetail">
           <div class="pane-head">
             <span class="label">About</span>
-            <span class="title" id="detailTitle">—</span>
+            <span class="title" id="detailTitle">···</span>
           </div>
           <div class="pane-body" id="detailBody"></div>
         </div>
 
         <div class="pane pane-tree" id="paneTree" style="display:none">
           <div class="pane-head">
-            <button class="back-btn" id="backDetail" type="button" style="display:none">← About</button>
+            <button class="back-btn" id="backDetail" type="button" style="display:none">About</button>
             <span class="label">Files</span>
             <span class="title" id="treeTitle"></span>
           </div>
@@ -938,7 +962,7 @@
 
         <div class="pane pane-code code-pane" id="paneCode" style="display:none">
           <div class="pane-head">
-            <button class="back-btn" id="backTree" type="button" style="display:none">← Files</button>
+            <button class="back-btn" id="backTree" type="button" style="display:none">Files</button>
             <span class="path-crumb" id="pathCrumb">Select a file</span>
             <div class="code-actions">
               <button class="ghost-btn" id="copyBtn" type="button" style="display:none">Copy</button>
@@ -1163,12 +1187,12 @@
         html = `<p class="loading">No projects match.</p>`;
       } else {
         if (privateItems.length) {
-          html += `<div class="section-label">Private · code on request</div><div class="ledger">`;
+          html += `<div class="section-label">Private, code on request</div><div class="ledger">`;
           html += privateItems.map((item) => ledgerRowHtml(item, n++)).join("");
           html += `</div>`;
         }
         if (publicItems.length) {
-          html += `<div class="section-label">Public · free to clone &amp; use</div><div class="ledger">`;
+          html += `<div class="section-label">Public, free to clone &amp; use</div><div class="ledger">`;
           html += publicItems.map((item) => ledgerRowHtml(item, n++)).join("");
           html += `</div>`;
         }
@@ -1210,6 +1234,24 @@
     }
 
     /* ── Browser ── */
+    function renderSidebar(activeId) {
+      const q = state.query.trim().toLowerCase();
+      // allItems is private then public in catalog order
+      const list = allItems().filter((p) => matchesQuery(p, q));
+      $("projList").innerHTML = list.map((p) => {
+        const isPriv = p.visibility === "private";
+        const active = p.id === activeId ? "active" : "";
+        const privClass = isPriv ? "is-private" : "";
+        const pill = isPriv ? `<span class="pill">Private</span>` : "";
+        const sub = isPriv ? "Source on request" : p.blurb;
+        return `
+          <button type="button" class="proj-item ${active} ${privClass}" data-open="${escapeHtml(p.id)}" data-visibility="${escapeHtml(p.visibility)}">
+            <span class="n">${escapeHtml(p.name)}${pill}</span>
+            <span class="b">${escapeHtml(sub)}</span>
+          </button>`;
+      }).join("");
+    }
+
     function showBrowser(id, filePath) {
       const project = findProject(id);
       const privateItem = findPrivate(id);
@@ -1220,17 +1262,12 @@
       const browser = $("browserView");
       browser.classList.add("open");
 
-      // Sidebar: public projects only (browsable code)
-      const q = state.query.trim().toLowerCase();
-      const pubList = (state.data.public || state.data.projects || []).filter((p) => matchesQuery(p, q));
-      $("projList").innerHTML = pubList.map((p) => `
-        <button type="button" class="proj-item ${p.id === id ? "active" : ""}" data-open="${escapeHtml(p.id)}">
-          <span class="n">${escapeHtml(p.name)}</span>
-          <span class="b">${escapeHtml(p.blurb)}</span>
-        </button>
-      `).join("");
+      // Sidebar: all 15 projects (private first, then public), same order as home
+      renderSidebar(id);
 
       if (privateItem && !project) {
+        state.projectId = id;
+        state.filePath = null;
         browser.classList.remove("mode-code");
         browser.classList.add("mode-browse");
         $("paneList").style.display = "";
@@ -1291,6 +1328,9 @@
       if (item.link) {
         links.push(`<a class="link-pill" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Visit site ↗</a>`);
       }
+      if (item.repo) {
+        links.push(`<a class="link-pill" href="${escapeHtml(item.repo)}" target="_blank" rel="noopener">GitHub ↗</a>`);
+      }
       links.push(`<a class="link-pill" href="mailto:${escapeHtml(email)}?subject=Access%20request%3A%20${encodeURIComponent(item.name)}">Request access</a>`);
 
       return `
@@ -1316,7 +1356,7 @@
       if (project.repo) {
         links.push(`<a class="link-pill" href="${escapeHtml(project.repo)}" target="_blank" rel="noopener">GitHub ↗</a>`);
       }
-      links.push(`<button type="button" class="link-pill" id="browseFilesBtn">Browse files →</button>`);
+      links.push(`<button type="button" class="link-pill" id="browseFilesBtn">Browse files</button>`);
 
       return `
         <div class="detail">
@@ -1561,13 +1601,13 @@
         return `<div class="code-line"><span class="ln">${i + 1}</span><span class="lc">${highlightLine(line, ext)}</span></div>`;
       }).join("");
       const more = lines.length > max
-        ? `<div class="code-line"><span class="ln">…</span><span class="lc t-c">// truncated — ${lines.length - max} more lines</span></div>`
+        ? `<div class="code-line"><span class="ln">…</span><span class="lc t-c">// truncated, ${lines.length - max} more lines</span></div>`
         : "";
       $("codePre").innerHTML = html + more;
     }
 
     function highlightLine(line, ext) {
-      // Very light highlighter — comments, strings, keywords
+      // Very light highlighter: comments, strings, keywords
       let escaped = escapeHtml(line);
 
       // comments
@@ -1576,7 +1616,7 @@
       }
       if (/^(py|yml|yaml|sh|bash|toml|rb)$/.test(ext)) {
         escaped = escaped.replace(/(#.*)$/g, (m, g1, offset, s) => {
-          // naive: if odd number of quotes before, skip — keep simple
+          // naive: if odd number of quotes before, skip; keep simple
           return `<span class="t-c">${g1}</span>`;
         });
       }
@@ -1608,7 +1648,7 @@
       };
       const k = map[ext];
       if (k && keywords[k]) {
-        // avoid replacing inside spans — rough: only run on plain segments
+        // avoid replacing inside spans; rough: only run on plain segments
         escaped = escaped.replace(keywords[k], `<span class="t-k">$1</span>`);
       }
 
@@ -1680,7 +1720,12 @@
       state.query = e.target.value;
       const route = parseRoute();
       if (route.view === "home") showHome();
-      else if (route.id) showBrowser(route.id, route.file);
+      else if (route.id) {
+        // refresh sidebar filter without full re-render thrash of code pane
+        renderSidebar(route.id);
+        // still re-render view if needed for consistency
+        showBrowser(route.id, route.file);
+      }
     }
 
     async function init() {
