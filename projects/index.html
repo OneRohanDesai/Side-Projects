@@ -1328,9 +1328,6 @@
       if (item.link) {
         links.push(`<a class="link-pill" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Visit site ↗</a>`);
       }
-      if (item.repo) {
-        links.push(`<a class="link-pill" href="${escapeHtml(item.repo)}" target="_blank" rel="noopener">GitHub ↗</a>`);
-      }
       links.push(`<a class="link-pill" href="mailto:${escapeHtml(email)}?subject=Access%20request%3A%20${encodeURIComponent(item.name)}">Request access</a>`);
 
       return `

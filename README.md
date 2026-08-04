@@ -1,55 +1,33 @@
-# Side Projects (rohandesai.in)
+# Side Projects
 
-Site structure for **rohandesai.in**:
+Hey. This is my little corner of the internet for things I build **for myself**.
 
-| URL | What |
-|-----|------|
-| `/` | Portfolio (`index.html` from Personal-sites) |
-| `/projects/` | Project directory UI |
-| `/projects/<id>` | Open a project (e.g. `/projects/gaia`, `/projects/zyra`) |
-| `/projects/<id>/f/<path>` | Open a file in the browser |
-| `/projects/<Folder>/…` | Raw source files served for the file viewer |
+Not the day job. Not client work. Just the ideas I chase because they make me curious, happy, or slightly obsessed.
 
-```
-index.html              ← portfolio
-worker.js               ← SPA fallback for /projects/*
-wrangler.toml
-projects/
-  index.html            ← project browser (black & gold UI)
-  projects.json         ← catalog + file trees
-  Gaia/  Aesthete/ …    ← browsable source copies
-```
+---
 
-## Local preview
+### What’s here
 
-```bash
-cd "~/Side Projects"
-python3 -m http.server 8765
-# Portfolio:  http://localhost:8765/
-# Projects:   http://localhost:8765/projects/
-```
+**`projects/`** holds my technical side work. Code, experiments, finished pieces, and a few things still cooking. Some you can open and play with. Some stay private because they are live or personal. That is okay. Not everything needs to be public to have mattered.
 
-Deep links like `/projects/gaia` need the Worker (or any server that falls back to `projects/index.html`). With plain `http.server`, use the in-app navigation after opening `/projects/`.
+---
 
-## Deploy (Cloudflare Worker + Assets)
+### What’s next
 
-```bash
-cd "~/Side Projects"
-wrangler deploy
-```
+This home will grow quietly over time.
 
-Point the custom domain **rohandesai.in** at this Worker.
+Maybe a folder for **architecture** things I sketch and love.  
+Maybe something for **films**, or **food**, or whatever pulls me next.  
+When those arrive, they will live here too, each with their own little room.
 
-## Portfolio → projects
+---
 
-The **View Project Details** button on the home page goes to `/projects/` (no popup).
+### A soft note
 
-## Project tiers (display order)
+Everything here was made with my own hands, on my own time, for no official reason at all.
 
-1. **Private, code on request**: ZYRA, Film Connoisseur, Annara, Ada Wong, Aesthete. Names visible; source not in this repo. Email `pro.rohandesai@gmail.com`.
-2. **Public, free to clone**: Telemetry Playground, Grounds, Gaia, Nexu, Baby Linux, The Waitlist, Nyx Cloud, Just Orange, The Table V3, Aesthete Vinyl. Full browse + clone.
+If something speaks to you, I am glad it found you.  
+If you want to talk about any of it, my door is open.
 
-Public project GitHub links point at folders under this repo:
-`https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/<Folder>`.
-
-Aesthete (current product) is private; **Aesthete Vinyl** (archived SPA) remains public.
+**Rohan Desai**  
+[rohandesai.in](https://rohandesai.in) · [pro.rohandesai@gmail.com](mailto:pro.rohandesai@gmail.com)
