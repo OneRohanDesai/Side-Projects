@@ -20,11 +20,11 @@ This repository serves as an archival snapshot of the project and includes two d
 
 ### 1. **Nyx Cloud Platform Dashboard**
 
-File: `Nyx_Platform_Demo.mp4`
+Link: https://youtu.be/RJv6BYK8QL4
 
 ### 2. **Nyx Cloud Admin Interface**
 
-File: `Nyx_Admin_Demo.mp4`
+Link: https://youtu.be/w8a6BXzewyM
 
 ---
 
