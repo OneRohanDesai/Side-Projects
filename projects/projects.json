@@ -6,88 +6,8 @@
     "github": "https://github.com/OneRohanDesai",
     "linkedin": "https://www.linkedin.com/in/rohandesai01/",
     "portfolio": "https://rohandesai.in/",
-    "note": "Public projects are free to browse and clone. Private and personal work stays sealed \u2014 ask if you need access."
+    "note": "Public projects are free to browse and clone. Private work stays sealed \u2014 ask if you need access."
   },
-  "personal": [
-    {
-      "id": "hidden-1",
-      "visibility": "personal",
-      "hidden": true,
-      "order": 1,
-      "name": "*********",
-      "blurb": "*********",
-      "status": "personal",
-      "tags": [],
-      "link": null,
-      "contact": false,
-      "browsable": false
-    },
-    {
-      "id": "hidden-2",
-      "visibility": "personal",
-      "hidden": true,
-      "order": 2,
-      "name": "*********",
-      "blurb": "*********",
-      "status": "personal",
-      "tags": [],
-      "link": null,
-      "contact": false,
-      "browsable": false
-    },
-    {
-      "id": "hidden-3",
-      "visibility": "personal",
-      "hidden": true,
-      "order": 3,
-      "name": "*********",
-      "blurb": "*********",
-      "status": "personal",
-      "tags": [],
-      "link": null,
-      "contact": false,
-      "browsable": false
-    },
-    {
-      "id": "hidden-4",
-      "visibility": "personal",
-      "hidden": true,
-      "order": 4,
-      "name": "*********",
-      "blurb": "*********",
-      "status": "personal",
-      "tags": [],
-      "link": null,
-      "contact": false,
-      "browsable": false
-    },
-    {
-      "id": "hidden-5",
-      "visibility": "personal",
-      "hidden": true,
-      "order": 5,
-      "name": "*********",
-      "blurb": "*********",
-      "status": "personal",
-      "tags": [],
-      "link": null,
-      "contact": false,
-      "browsable": false
-    },
-    {
-      "id": "hidden-6",
-      "visibility": "personal",
-      "hidden": true,
-      "order": 6,
-      "name": "*********",
-      "blurb": "*********",
-      "status": "personal",
-      "tags": [],
-      "link": null,
-      "contact": false,
-      "browsable": false
-    }
-  ],
   "private": [
     {
       "id": "zyra",

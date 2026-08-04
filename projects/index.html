@@ -390,38 +390,6 @@
       letter-spacing: 0.02em;
     }
 
-    .personal-card {
-      cursor: default;
-      opacity: 0.72;
-    }
-
-    .personal-card:hover {
-      background: transparent;
-      padding-left: 4px;
-    }
-
-    .personal-card:hover::before {
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .personal-card .ledger-name.masked,
-    .personal-card .ledger-blurb.masked {
-      font-family: var(--mono);
-      letter-spacing: 0.18em;
-      color: var(--dim);
-    }
-
-    .personal-card .ledger-name.masked {
-      font-size: 1rem;
-      color: var(--muted);
-    }
-
-    .personal-card .card-action {
-      color: var(--dim);
-      font-size: 0.75rem;
-    }
-
     @media (max-width: 640px) {
       .ledger-row {
         grid-template-columns: 36px 1fr;
@@ -1017,7 +985,6 @@
 
     const FILTERS = [
       { id: "all", label: "All" },
-      { id: "personal", label: "Personal" },
       { id: "private", label: "Private" },
       { id: "public", label: "Public" },
     ];
@@ -1032,7 +999,6 @@
       playground: "playground",
       private: "private",
       postponed: "private",
-      personal: "private",
     };
 
     const STATUS_LABEL = {
@@ -1045,7 +1011,6 @@
       playground: "Playground",
       private: "Private",
       postponed: "Postponed",
-      personal: "Hidden",
     };
 
     function toast(msg) {
@@ -1083,10 +1048,6 @@
 
     function matchesQuery(item, q) {
       if (!q) return true;
-      // Personal rows are fully masked — never match search by real identity
-      if (item.visibility === "personal" || item.hidden) {
-        return "*********".includes(q) || q === "*";
-      }
       const hay = [
         item.name,
         item.blurb,
@@ -1097,17 +1058,16 @@
       return hay.includes(q);
     }
 
-    /** Importance order: personal → private → public (each pre-sorted in JSON) */
+    /** Importance order: private → public (each pre-sorted in JSON) */
     function allItems() {
       if (!state.data) return [];
-      const personal = (state.data.personal || []).map((p) => ({ ...p, _kind: "personal" }));
       const priv = (state.data.private || []).map((p) => ({ ...p, _kind: "private" }));
       const pub = (state.data.public || state.data.projects || []).map((p) => ({
         ...p,
         _kind: "public",
         visibility: p.visibility || "public",
       }));
-      return [...personal, ...priv, ...pub];
+      return [...priv, ...pub];
     }
 
     function findProject(id) {
@@ -1192,8 +1152,7 @@
         (i) => matchesFilter(i, state.filter) && matchesQuery(i, q)
       );
 
-      // Preserve catalog order (personal → private → public)
-      const personalItems = items.filter((i) => i.visibility === "personal");
+      // Preserve catalog order (private → public)
       const privateItems = items.filter((i) => i.visibility === "private");
       const publicItems = items.filter((i) => i.visibility === "public");
 
@@ -1203,11 +1162,6 @@
       if (!items.length) {
         html = `<p class="loading">No projects match.</p>`;
       } else {
-        if (personalItems.length) {
-          html += `<div class="section-label">Personal · non-public</div><div class="ledger">`;
-          html += personalItems.map((item) => ledgerRowHtml(item, n++)).join("");
-          html += `</div>`;
-        }
         if (privateItems.length) {
           html += `<div class="section-label">Private · code on request</div><div class="ledger">`;
           html += privateItems.map((item) => ledgerRowHtml(item, n++)).join("");
@@ -1224,50 +1178,27 @@
     }
 
     function ledgerRowHtml(item, index) {
-      const isPersonal = item.visibility === "personal" || item.hidden;
       const isPrivate = item.visibility === "private";
       const isPublic = item.visibility === "public" || item.browsable;
-      const tags = isPersonal
-        ? ""
-        : (item.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+      const tags = (item.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
       const files = isPublic && item.fileCount != null
         ? `<span class="file-count">${item.fileCount} files</span>`
         : "";
-      const action = isPersonal
-        ? `<span class="card-action">Hidden</span>`
-        : isPrivate
-          ? `<span class="card-action">Email for source</span>`
-          : `<span class="card-action" style="color:var(--ok)">Browse</span>`;
+      const action = isPrivate
+        ? `<span class="card-action">Email for source</span>`
+        : `<span class="card-action" style="color:var(--ok)">Browse</span>`;
       const num = String(index + 1).padStart(2, "0");
-      const name = isPersonal ? "*********" : item.name;
-      const blurb = isPersonal ? "*********" : item.blurb;
       const rowClass = [
         "ledger-row",
-        isPersonal ? "personal-card" : "",
         isPrivate ? "private-card" : "",
       ].filter(Boolean).join(" ");
-
-      if (isPersonal) {
-        return `
-          <div class="${rowClass}" aria-hidden="true" title="Personal project — hidden">
-            <span class="ledger-idx">${num}</span>
-            <div class="ledger-main">
-              <span class="ledger-name masked">${escapeHtml(name)}</span>
-              <span class="ledger-blurb masked">${escapeHtml(blurb)}</span>
-            </div>
-            <div class="ledger-side">
-              ${statusBadge("personal")}
-              ${action}
-            </div>
-          </div>`;
-      }
 
       return `
         <button type="button" class="${rowClass}" data-open="${escapeHtml(item.id)}" data-visibility="${escapeHtml(item.visibility)}">
           <span class="ledger-idx">${num}</span>
           <div class="ledger-main">
-            <span class="ledger-name">${escapeHtml(name)}</span>
-            <span class="ledger-blurb">${escapeHtml(blurb)}</span>
+            <span class="ledger-name">${escapeHtml(item.name)}</span>
+            <span class="ledger-blurb">${escapeHtml(item.blurb)}</span>
             <div class="ledger-meta">${tags}</div>
           </div>
           <div class="ledger-side">

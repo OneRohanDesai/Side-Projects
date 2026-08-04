@@ -1,2 +1,0 @@
-The full platform demo video (Nyx_Platform_Demo.mp4, ~19MB) lives in the Archived_Projects repo:
-https://github.com/OneRohanDesai/Archived_Projects/tree/main/NyxCloud
