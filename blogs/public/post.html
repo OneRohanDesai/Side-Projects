@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Reading · Inkboard</title>
+  <link rel="stylesheet" href="./css/inkboard.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">
+      <strong>Inkboard</strong>
+      <span>Rohan Desai</span>
+    </a>
+    <div class="spacer"></div>
+    <a class="ghost" href="./">All pieces</a>
+    <a class="ghost" id="editLink" href="#" hidden>Edit</a>
+  </header>
+
+  <main class="wrap">
+    <article class="reader" id="reader">
+      <div class="empty">Opening the piece…</div>
+    </article>
+  </main>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/render.js"></script>
+  <script>
+    (async function () {
+      const slug = new URLSearchParams(location.search).get("slug");
+      const root = document.getElementById("reader");
+      if (!slug) {
+        root.innerHTML = `<div class="empty">Missing piece.</div>`;
+        return;
+      }
+      try {
+        const { post } = await InkAPI.post(slug);
+        document.title = post.title + " · Inkboard";
+        const label = InkRender.TOPIC_LABEL[post.topic] || post.topic;
+        const date = (post.publishedAt || post.updatedAt || "").slice(0, 10);
+        const cover = post.coverUrl
+          ? `<div class="cover"><img src="${InkRender.esc(post.coverUrl)}" alt="" /></div>`
+          : "";
+        root.innerHTML = `
+          <div class="crumb">
+            <a href="./">Inkboard</a>
+            <span>/</span>
+            <a href="./?topic=${encodeURIComponent(post.topic)}">${InkRender.esc(label)}</a>
+          </div>
+          <h1>${InkRender.esc(post.title)}</h1>
+          ${post.excerpt ? `<p class="lede">${InkRender.esc(post.excerpt)}</p>` : ""}
+          <div class="byline">
+            <span class="pill topic">${InkRender.esc(label)}</span>
+            <span>${InkRender.esc(date)}</span>
+            <span>${post.readingMinutes} min read</span>
+          </div>
+          ${cover}
+          <div class="prose">${InkRender.renderBody(post.body)}</div>
+        `;
+        const me = await InkAPI.me().catch(() => ({ admin: false }));
+        if (me.admin) {
+          const edit = document.getElementById("editLink");
+          edit.hidden = false;
+          edit.href = "./write.html?id=" + encodeURIComponent(post.id);
+        }
+      } catch (err) {
+        root.innerHTML = `<div class="empty">${InkRender.esc(err.message || "Not found")}</div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Inkboard · Rohan Desai</title>
+  <meta name="description" content="Rohan Desai writes on game theory, poker, and geopolitics." />
+  <link rel="stylesheet" href="./css/inkboard.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">
+      <strong>Inkboard</strong>
+      <span>Rohan Desai</span>
+    </a>
+    <nav>
+      <a class="nav-chip" data-topic="" href="./">All</a>
+      <a class="nav-chip" data-topic="game-theory" href="./?topic=game-theory">Game Theory</a>
+      <a class="nav-chip" data-topic="poker" href="./?topic=poker">Poker</a>
+      <a class="nav-chip" data-topic="geopolitics" href="./?topic=geopolitics">Geopolitics</a>
+    </nav>
+    <div class="spacer"></div>
+    <a class="ghost" href="../" style="display:none" id="siteHome">Site</a>
+    <a class="ghost" id="writeBtn" href="./write.html" hidden>Write</a>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Three rooms.<br/>One quiet mind.</h1>
+      <p>
+        Essays and notes on the games we play with each other, the cards we hold,
+        and the maps that still decide too much. Written slowly. Published only when ready.
+      </p>
+    </section>
+
+    <section class="worlds" aria-label="Topics">
+      <button type="button" class="world" data-topic="game-theory" data-glyph="◇">
+        <div class="glyph">◇</div>
+        <h2>Game Theory</h2>
+        <p>Incentives, equilibrium, and the quiet math of choice.</p>
+        <div class="count" data-count="game-theory">…</div>
+      </button>
+      <button type="button" class="world" data-topic="poker" data-glyph="♠">
+        <div class="glyph">♠</div>
+        <h2>Poker</h2>
+        <p>Ranges, pressure, and the honest theater of uncertainty.</p>
+        <div class="count" data-count="poker">…</div>
+      </button>
+      <button type="button" class="world" data-topic="geopolitics" data-glyph="⌖">
+        <div class="glyph">⌖</div>
+        <h2>Geopolitics</h2>
+        <p>Borders, power, and the long weather of nations.</p>
+        <div class="count" data-count="geopolitics">…</div>
+      </button>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h3>The ledger</h3>
+          <span>Newest first</span>
+        </div>
+        <input class="search" id="search" type="search" placeholder="Search titles…" autocomplete="off" />
+      </div>
+      <div class="feed" id="feed"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="./js/api.js"></script>
+  <script src="./js/render.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

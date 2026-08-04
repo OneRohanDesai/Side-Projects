@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Write · Inkboard</title>
+  <link rel="stylesheet" href="./css/inkboard.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">
+      <strong>Inkboard</strong>
+      <span>Studio</span>
+    </a>
+    <div class="spacer"></div>
+    <button type="button" class="ghost" id="logoutBtn" hidden>Log out</button>
+    <a class="ghost" href="./">View site</a>
+  </header>
+
+  <div id="loginView" class="login-box" hidden>
+    <h1>Studio door</h1>
+    <p>Only you write here. Enter the ink password.</p>
+    <div class="field">
+      <label>Password</label>
+      <input id="password" type="password" autocomplete="current-password" />
+    </div>
+    <button type="button" class="primary" id="loginBtn" style="width:100%;margin-top:8px">Enter</button>
+  </div>
+
+  <div id="studio" class="editor-shell" hidden>
+    <aside class="editor-side">
+      <h3>Piece</h3>
+      <div class="field">
+        <label>Topic</label>
+        <select id="topic">
+          <option value="game-theory">Game Theory</option>
+          <option value="poker">Poker</option>
+          <option value="geopolitics">Geopolitics</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Slug (url name)</label>
+        <input id="slug" placeholder="auto from title" />
+      </div>
+      <div class="field">
+        <label>Excerpt</label>
+        <textarea id="excerpt" placeholder="One soft line for the ledger"></textarea>
+      </div>
+      <div class="field">
+        <label>Cover image</label>
+        <input id="coverFile" type="file" accept="image/*" />
+        <div id="coverPreview" style="margin-top:8px;color:var(--dim);font-size:0.8rem"></div>
+      </div>
+      <div class="field">
+        <label>Status</label>
+        <select id="status">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+      </div>
+
+      <h3>Add block</h3>
+      <div class="block-palette" id="palette">
+        <button type="button" data-type="paragraph">Text</button>
+        <button type="button" data-type="heading">Heading</button>
+        <button type="button" data-type="quote">Quote</button>
+        <button type="button" data-type="callout">Callout</button>
+        <button type="button" data-type="symbol">Symbol</button>
+        <button type="button" data-type="image">Image</button>
+        <button type="button" data-type="gif">GIF</button>
+        <button type="button" data-type="video">Video</button>
+        <button type="button" data-type="list">List</button>
+        <button type="button" data-type="code">Code</button>
+        <button type="button" data-type="divider">Divider</button>
+      </div>
+
+      <div class="side-actions">
+        <button type="button" class="primary" id="saveBtn">Save</button>
+        <button type="button" class="ghost" id="newBtn">New piece</button>
+        <button type="button" class="ghost" id="deleteBtn" style="color:var(--danger)">Delete</button>
+      </div>
+
+      <h3>Your drafts</h3>
+      <div id="draftList" style="display:flex;flex-direction:column;gap:6px"></div>
+    </aside>
+
+    <main class="editor-main">
+      <div class="canvas-title" id="title" contenteditable="true" data-placeholder="Title of this piece"></div>
+      <div class="blocks" id="blocks"></div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="./js/api.js"></script>
+  <script src="./js/editor.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let editor;
+    let postId = new URLSearchParams(location.search).get("id") || null;
+    let coverKey = null;
+
+    function toast(m) { InkEditor.toast(m); }
+
+    async function boot() {
+      let admin = false;
+      try {
+        const me = await InkAPI.me();
+        admin = !!me.admin;
+      } catch (_) {}
+
+      if (!admin) {
+        $("loginView").hidden = false;
+        $("studio").hidden = true;
+        return;
+      }
+      enterStudio();
+    }
+
+    async function enterStudio() {
+      $("loginView").hidden = true;
+      $("studio").hidden = false;
+      $("logoutBtn").hidden = false;
+      editor = new InkEditor.Editor($("blocks"), {});
+      wire();
+      await refreshList();
+      if (postId) await loadPost(postId);
+    }
+
+    function wire() {
+      $("loginBtn").onclick = async () => {
+        try {
+          await InkAPI.login($("password").value);
+          toast("Welcome back");
+          enterStudio();
+        } catch (e) {
+          toast(e.message || "Login failed");
+        }
+      };
+      $("password").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") $("loginBtn").click();
+      });
+      $("logoutBtn").onclick = async () => {
+        await InkAPI.logout();
+        location.reload();
+      };
+      $("palette").onclick = (e) => {
+        const b = e.target.closest("[data-type]");
+        if (b) editor.add(b.dataset.type);
+      };
+      $("coverFile").onchange = async () => {
+        const f = $("coverFile").files[0];
+        if (!f) return;
+        try {
+          const res = await InkAPI.upload(f);
+          coverKey = res.key;
+          $("coverPreview").textContent = "Cover set · " + f.name;
+          toast("Cover uploaded");
+        } catch (e) {
+          toast(e.message);
+        }
+      };
+      $("saveBtn").onclick = save;
+      $("newBtn").onclick = () => {
+        postId = null;
+        coverKey = null;
+        $("title").textContent = "";
+        $("slug").value = "";
+        $("excerpt").value = "";
+        $("status").value = "draft";
+        $("topic").value = "game-theory";
+        $("coverPreview").textContent = "";
+        editor.setBlocks([]);
+        history.replaceState(null, "", "./write.html");
+      };
+      $("deleteBtn").onclick = async () => {
+        if (!postId) return toast("Nothing to delete");
+        if (!confirm("Delete this piece forever?")) return;
+        try {
+          await InkAPI.deletePost(postId);
+          toast("Deleted");
+          $("newBtn").click();
+          refreshList();
+        } catch (e) {
+          toast(e.message);
+        }
+      };
+    }
+
+    async function loadPost(id) {
+      try {
+        const { post } = await InkAPI.post(id);
+        postId = post.id;
+        $("title").textContent = post.title;
+        $("slug").value = post.slug;
+        $("excerpt").value = post.excerpt || "";
+        $("topic").value = post.topic;
+        $("status").value = post.status;
+        coverKey = post.coverKey;
+        $("coverPreview").textContent = coverKey ? "Cover attached" : "";
+        editor.setBlocks(post.body || []);
+        history.replaceState(null, "", "./write.html?id=" + encodeURIComponent(post.id));
+      } catch (e) {
+        toast(e.message);
+      }
+    }
+
+    async function save() {
+      const title = $("title").innerText.trim();
+      if (!title) return toast("Give it a title");
+      const body = {
+        title,
+        topic: $("topic").value,
+        excerpt: $("excerpt").value.trim(),
+        slug: $("slug").value.trim() || undefined,
+        coverKey,
+        body: editor.getBlocks(),
+        status: $("status").value,
+      };
+      try {
+        let post;
+        if (postId) {
+          ({ post } = await InkAPI.updatePost(postId, body));
+        } else {
+          ({ post } = await InkAPI.createPost(body));
+          postId = post.id;
+          history.replaceState(null, "", "./write.html?id=" + encodeURIComponent(post.id));
+        }
+        $("slug").value = post.slug;
+        toast(post.status === "published" ? "Published" : "Draft saved");
+        refreshList();
+      } catch (e) {
+        toast(e.message);
+      }
+    }
+
+    async function refreshList() {
+      const box = $("draftList");
+      try {
+        const { posts } = await InkAPI.posts({ status: "all" });
+        box.innerHTML = (posts || [])
+          .slice(0, 30)
+          .map(
+            (p) =>
+              `<button type="button" class="ghost" style="width:100%;text-align:left;height:auto;padding:8px 10px;line-height:1.35" data-id="${p.id}">
+                <div style="color:var(--gold);font-size:0.85rem">${escapeHtml(p.title)}</div>
+                <div style="color:var(--dim);font-size:0.72rem">${escapeHtml(p.status)} · ${escapeHtml(p.topic)}</div>
+              </button>`
+          )
+          .join("") || `<div style="color:var(--dim);font-size:0.8rem">No pieces yet</div>`;
+        box.onclick = (e) => {
+          const b = e.target.closest("[data-id]");
+          if (b) loadPost(b.dataset.id);
+        };
+      } catch (e) {
+        box.innerHTML = `<div style="color:var(--danger);font-size:0.8rem">${escapeHtml(e.message)}</div>`;
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    boot();
+  </script>
+</body>
+</html>

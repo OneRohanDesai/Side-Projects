@@ -6,7 +6,7 @@
 
 Welcome in.
 
-This is where I keep the technical things I build when nobody asked me to. Small products. Big infrastructure daydreams. Quiet tools. Loud experiments. Some still breathing. Some already sleeping.
+This is where I keep the technical things I build when nobody asked me to. Small products. Big infrastructure daydreams. Quiet tools. Loud experiments. Some still breathing. Some already sleeping. Making use of what i have got at it's highest limits.
 
 You can wander through them on the site: **[rohandesai.in/projects](https://rohandesai.in/projects)**
 
