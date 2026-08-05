@@ -17,15 +17,22 @@
   function showGate(err) {
     $("gate").hidden = false;
     $("studio").hidden = true;
+    $("gate").setAttribute("aria-hidden", "false");
+    $("studio").setAttribute("aria-hidden", "true");
     if (err) {
       $("gateErr").hidden = false;
       $("gateErr").textContent = err;
+    } else {
+      $("gateErr").hidden = true;
+      $("gateErr").textContent = "";
     }
   }
 
   function showStudio() {
     $("gate").hidden = true;
     $("studio").hidden = false;
+    $("gate").setAttribute("aria-hidden", "true");
+    $("studio").setAttribute("aria-hidden", "false");
     refreshList();
     resetForm();
   }

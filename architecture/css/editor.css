@@ -2,6 +2,14 @@
 
 .editor-body { min-height: 100vh; }
 
+/* Author `display` rules override the UA [hidden] stylesheet — force hide */
+.gate[hidden],
+.studio[hidden],
+#gateErr[hidden],
+#deleteBtn[hidden] {
+  display: none !important;
+}
+
 .gate {
   min-height: 100vh;
   display: grid;
