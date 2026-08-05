@@ -6,6 +6,170 @@
   <meta name="color-scheme" content="dark" />
   <title>Write · Inkboard</title>
   <link rel="stylesheet" href="../css/inkboard.css" />
+  <style>
+    /* Studio-only overlays */
+    .side-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .side-actions .primary,
+    .side-actions .ghost { width: 100%; height: 38px; }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+    }
+    .status-badge.published { color: var(--ok); border-color: rgba(125, 206, 160, 0.35); }
+    .status-badge.draft { color: var(--warn); border-color: rgba(232, 184, 109, 0.35); }
+    .status-badge.new { color: var(--muted); }
+
+    .modal-back {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+    .modal-back.open { display: flex; }
+    .modal-back.center { justify-content: center; align-items: center; }
+
+    .sheet {
+      width: min(420px, 100%);
+      background: var(--bg-2);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+      animation: slideIn 0.28s var(--ease);
+    }
+    .modal-back.center .sheet {
+      width: min(720px, calc(100% - 32px));
+      max-height: min(88vh, 900px);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      animation: rise 0.28s var(--ease);
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-12px); opacity: 0.7; }
+      to { transform: none; opacity: 1; }
+    }
+    @keyframes rise {
+      from { transform: translateY(10px); opacity: 0.7; }
+      to { transform: none; opacity: 1; }
+    }
+    .sheet-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sheet-head h2 {
+      font-family: var(--display, Georgia, serif);
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: var(--gold-bright);
+      letter-spacing: -0.02em;
+    }
+    .sheet-body {
+      flex: 1;
+      overflow: auto;
+      padding: 14px 16px 20px;
+    }
+    .sheet-foot {
+      padding: 12px 16px 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sheet-search {
+      width: 100%;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg);
+      padding: 0 12px;
+      outline: none;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .sheet-search:focus { border-color: rgba(212, 180, 131, 0.4); }
+    .pick-list { display: flex; flex-direction: column; gap: 6px; }
+    .pick {
+      text-align: left;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: var(--bg);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .pick:hover { border-color: var(--line); }
+    .pick.active {
+      border-color: rgba(212, 180, 131, 0.4);
+      background: var(--accent-dim, rgba(212, 180, 131, 0.1));
+    }
+    .pick .t { color: var(--gold); font-size: 0.92rem; font-weight: 500; }
+    .pick .m { color: var(--dim); font-size: 0.72rem; margin-top: 3px; font-family: var(--mono); }
+
+    .preview-frame {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+      padding: 18px 16px;
+    }
+    .preview-frame .crumb {
+      font-size: 0.75rem;
+      color: var(--dim);
+      margin-bottom: 10px;
+    }
+    .preview-frame h3 {
+      font-family: var(--display, Georgia, serif);
+      font-weight: 500;
+      font-size: 1.45rem;
+      color: var(--gold-bright);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .preview-frame .lede {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .preview-frame .byline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .preview-frame .prose {
+      max-height: 42vh;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .preview-frame .prose .p { font-size: 0.95rem; line-height: 1.7; color: #e8e4da; }
+    .hint-line {
+      font-size: 0.78rem;
+      color: var(--dim);
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -30,6 +194,8 @@
 
   <div id="studio" class="editor-shell" hidden>
     <aside class="editor-side">
+      <div class="status-badge new" id="statusBadge">New draft</div>
+
       <h3>Piece</h3>
       <div class="field">
         <label>Topic</label>
@@ -53,13 +219,6 @@
         <input id="coverFile" type="file" accept="image/*" />
         <div id="coverPreview" style="margin-top:8px;color:var(--dim);font-size:0.8rem"></div>
       </div>
-      <div class="field">
-        <label>Status</label>
-        <select id="status">
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
-      </div>
 
       <h3>Add block</h3>
       <div class="block-palette" id="palette">
@@ -78,12 +237,15 @@
 
       <div class="side-actions">
         <button type="button" class="primary" id="saveBtn">Save</button>
+        <button type="button" class="ghost" id="publishBtn">Publish…</button>
+        <button type="button" class="ghost" id="modifyBtn">Modify…</button>
         <button type="button" class="ghost" id="newBtn">New piece</button>
         <button type="button" class="ghost" id="deleteBtn" style="color:var(--danger)">Delete</button>
       </div>
-
-      <h3>Your drafts</h3>
-      <div id="draftList" style="display:flex;flex-direction:column;gap:6px"></div>
+      <p class="hint-line">
+        Save keeps status: drafts stay drafts; already published pieces save as published again.
+        Use Publish… to go live.
+      </p>
     </aside>
 
     <main class="editor-main">
@@ -92,10 +254,50 @@
     </main>
   </div>
 
+  <!-- Publish panel (left drawer) -->
+  <div class="modal-back" id="publishModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-label="Publish preview">
+      <div class="sheet-head">
+        <h2>Publish</h2>
+        <button type="button" class="ghost" id="publishClose">Close</button>
+      </div>
+      <div class="sheet-body">
+        <p class="hint-line" style="margin-bottom:12px">
+          Choose a draft (or the piece open now), preview how it will appear, then publish.
+        </p>
+        <div class="pick-list" id="publishDraftList"></div>
+        <div style="height:14px"></div>
+        <div class="preview-frame" id="publishPreview">
+          <div class="empty" style="color:var(--dim);font-size:0.9rem">Select a draft to preview.</div>
+        </div>
+      </div>
+      <div class="sheet-foot">
+        <button type="button" class="primary" id="publishConfirm" style="width:100%;height:40px" disabled>
+          Publish this piece
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modify panel -->
+  <div class="modal-back center" id="modifyModal" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-label="Modify pieces">
+      <div class="sheet-head">
+        <h2>Modify</h2>
+        <button type="button" class="ghost" id="modifyClose">Close</button>
+      </div>
+      <div class="sheet-body">
+        <input class="sheet-search" id="modifySearch" type="search" placeholder="Search all drafts and published…" autocomplete="off" />
+        <div class="pick-list" id="modifyList"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast"></div>
   <script src="../js/config.js"></script>
   <script src="../js/paths.js"></script>
   <script src="../js/api.js"></script>
+  <script src="../js/render.js"></script>
   <script src="../js/editor.js"></script>
   <script>
     const $ = (id) => document.getElementById(id);
@@ -103,10 +305,18 @@
     let studioWired = false;
     let postId = new URLSearchParams(location.search).get("id") || null;
     let coverKey = null;
+    /** @type {'new'|'draft'|'published'} */
+    let loadedStatus = "new";
+    let allPosts = [];
+    let publishTargetId = null;
 
     function toast(m) {
       if (window.InkEditor && InkEditor.toast) InkEditor.toast(m);
       else alert(m);
+    }
+
+    function writeBase() {
+      return window.InkPaths ? InkPaths.href("/write/") : "../write/";
     }
 
     function showLogin() {
@@ -119,6 +329,21 @@
       $("loginView").hidden = true;
       $("studio").hidden = false;
       $("logoutBtn").hidden = false;
+    }
+
+    function setStatusBadge() {
+      const el = $("statusBadge");
+      el.classList.remove("draft", "published", "new");
+      if (loadedStatus === "published") {
+        el.classList.add("published");
+        el.textContent = "Published · edits save live";
+      } else if (loadedStatus === "draft" && postId) {
+        el.classList.add("draft");
+        el.textContent = "Draft · save keeps draft";
+      } else {
+        el.classList.add("new");
+        el.textContent = "New draft";
+      }
     }
 
     function wireAuth() {
@@ -150,7 +375,6 @@
         const me = await InkAPI.me();
         admin = !!me.admin;
       } catch (_) {}
-
       if (!admin) {
         showLogin();
         return;
@@ -161,19 +385,34 @@
     async function enterStudio() {
       try {
         showStudioUi();
-        if (!editor) {
-          editor = new InkEditor.Editor($("blocks"), {});
-        }
+        if (!editor) editor = new InkEditor.Editor($("blocks"), {});
         if (!studioWired) {
           wireStudio();
           studioWired = true;
         }
-        await refreshList();
+        await refreshPostsCache();
         if (postId) await loadPost(postId);
+        else {
+          loadedStatus = "new";
+          setStatusBadge();
+        }
       } catch (e) {
         toast(e.message || "Could not open studio");
         console.error(e);
       }
+    }
+
+    function collectCurrentSnapshot() {
+      return {
+        id: postId,
+        title: $("title").innerText.trim(),
+        topic: $("topic").value,
+        excerpt: $("excerpt").value.trim(),
+        slug: $("slug").value.trim(),
+        coverKey,
+        body: editor ? editor.getBlocks() : [],
+        status: loadedStatus === "published" ? "published" : "draft",
+      };
     }
 
     function wireStudio() {
@@ -193,19 +432,38 @@
           toast(e.message);
         }
       };
-      $("saveBtn").onclick = save;
+      $("saveBtn").onclick = () => save({ asPublish: false });
+      $("publishBtn").onclick = () => openPublishModal();
+      $("modifyBtn").onclick = () => openModifyModal();
+      $("publishClose").onclick = () => closePublishModal();
+      $("modifyClose").onclick = () => closeModifyModal();
+      $("publishConfirm").onclick = () => confirmPublish();
+      $("modifySearch").oninput = () => renderModifyList();
+      $("publishModal").onclick = (e) => {
+        if (e.target === $("publishModal")) closePublishModal();
+      };
+      $("modifyModal").onclick = (e) => {
+        if (e.target === $("modifyModal")) closeModifyModal();
+      };
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closePublishModal();
+          closeModifyModal();
+        }
+      });
+
       $("newBtn").onclick = () => {
         postId = null;
         coverKey = null;
+        loadedStatus = "new";
         $("title").textContent = "";
         $("slug").value = "";
         $("excerpt").value = "";
-        $("status").value = "draft";
         $("topic").value = "game-theory";
         $("coverPreview").textContent = "";
         if (editor) editor.setBlocks([]);
-        const base = window.InkPaths ? InkPaths.href("/write/") : "../write/";
-        history.replaceState(null, "", base);
+        setStatusBadge();
+        history.replaceState(null, "", writeBase());
       };
       $("deleteBtn").onclick = async () => {
         if (!postId) return toast("Nothing to delete");
@@ -214,7 +472,7 @@
           await InkAPI.deletePost(postId);
           toast("Deleted");
           $("newBtn").click();
-          refreshList();
+          await refreshPostsCache();
         } catch (e) {
           toast(e.message);
         }
@@ -225,24 +483,36 @@
       try {
         const { post } = await InkAPI.post(id);
         postId = post.id;
+        loadedStatus = post.status === "published" ? "published" : "draft";
         $("title").textContent = post.title;
         $("slug").value = post.slug;
         $("excerpt").value = post.excerpt || "";
         $("topic").value = post.topic;
-        $("status").value = post.status;
         coverKey = post.coverKey;
         $("coverPreview").textContent = coverKey ? "Cover attached" : "";
         editor.setBlocks(post.body || []);
-        const base = window.InkPaths ? InkPaths.href("/write/") : "../write/";
-        history.replaceState(null, "", base + "?id=" + encodeURIComponent(post.id));
+        setStatusBadge();
+        history.replaceState(null, "", writeBase() + "?id=" + encodeURIComponent(post.id));
       } catch (e) {
         toast(e.message);
       }
     }
 
-    async function save() {
+    /**
+     * Save keeps status:
+     * - draft / new → draft
+     * - published → published
+     * Publish only via publish flow (asPublish: true)
+     */
+    async function save({ asPublish } = { asPublish: false }) {
       const title = $("title").innerText.trim();
       if (!title) return toast("Give it a title");
+
+      let status;
+      if (asPublish) status = "published";
+      else if (loadedStatus === "published") status = "published";
+      else status = "draft";
+
       const body = {
         title,
         topic: $("topic").value,
@@ -250,7 +520,7 @@
         slug: $("slug").value.trim() || undefined,
         coverKey,
         body: editor.getBlocks(),
-        status: $("status").value,
+        status,
       };
       try {
         let post;
@@ -259,45 +529,222 @@
         } else {
           ({ post } = await InkAPI.createPost(body));
           postId = post.id;
-          const base = window.InkPaths ? InkPaths.href("/write/") : "../write/";
-          history.replaceState(null, "", base + "?id=" + encodeURIComponent(post.id));
+          history.replaceState(null, "", writeBase() + "?id=" + encodeURIComponent(post.id));
         }
         $("slug").value = post.slug;
-        toast(post.status === "published" ? "Published" : "Draft saved");
-        refreshList();
+        loadedStatus = post.status === "published" ? "published" : "draft";
+        setStatusBadge();
+        if (asPublish) toast("Published");
+        else toast(loadedStatus === "published" ? "Saved (still published)" : "Draft saved");
+        await refreshPostsCache();
+        return post;
       } catch (e) {
         toast(e.message);
+        return null;
       }
     }
 
-    async function refreshList() {
-      const box = $("draftList");
+    async function refreshPostsCache() {
       try {
         const { posts } = await InkAPI.posts({ status: "all" });
-        box.innerHTML = (posts || [])
-          .slice(0, 30)
-          .map(
-            (p) =>
-              `<button type="button" class="ghost" style="width:100%;text-align:left;height:auto;padding:8px 10px;line-height:1.35" data-id="${p.id}">
-                <div style="color:var(--gold);font-size:0.85rem">${escapeHtml(p.title)}</div>
-                <div style="color:var(--dim);font-size:0.72rem">${escapeHtml(p.status)} · ${escapeHtml(p.topic)}</div>
-              </button>`
-          )
-          .join("") || `<div style="color:var(--dim);font-size:0.8rem">No pieces yet</div>`;
-        box.onclick = (e) => {
-          const b = e.target.closest("[data-id]");
-          if (b) loadPost(b.dataset.id);
-        };
+        allPosts = posts || [];
       } catch (e) {
-        box.innerHTML = `<div style="color:var(--danger);font-size:0.8rem">${escapeHtml(e.message)}</div>`;
+        allPosts = [];
+        console.error(e);
       }
+    }
+
+    /* ── Publish modal ── */
+    async function openPublishModal() {
+      await refreshPostsCache();
+      const drafts = allPosts.filter((p) => p.status === "draft");
+      const list = $("publishDraftList");
+
+      // Include current open piece if it's a draft or new with content
+      const current = collectCurrentSnapshot();
+      const picks = [];
+      if (current.title || (current.body && current.body.length)) {
+        picks.push({
+          id: current.id || "__current__",
+          title: current.title || "(untitled)",
+          topic: current.topic,
+          status: loadedStatus === "published" ? "published" : "draft",
+          isCurrent: true,
+          snapshot: current,
+        });
+      }
+      for (const d of drafts) {
+        if (current.id && d.id === current.id) continue;
+        picks.push(d);
+      }
+
+      if (!picks.length) {
+        list.innerHTML = `<div class="hint-line">No drafts to publish. Write something first, then Save as draft.</div>`;
+        $("publishPreview").innerHTML = `<div class="empty" style="color:var(--dim)">Nothing to preview.</div>`;
+        $("publishConfirm").disabled = true;
+        publishTargetId = null;
+      } else {
+        list.innerHTML = picks
+          .map(
+            (p) => `
+          <button type="button" class="pick" data-pub-id="${escapeHtml(p.id)}">
+            <div class="t">${escapeHtml(p.title)}${p.isCurrent ? " · open now" : ""}</div>
+            <div class="m">${escapeHtml(p.status)} · ${escapeHtml(p.topic)}${p.isCurrent ? " · this editor" : ""}</div>
+          </button>`
+          )
+          .join("");
+        list.onclick = (e) => {
+          const btn = e.target.closest("[data-pub-id]");
+          if (!btn) return;
+          selectPublishTarget(btn.dataset.pubId, picks);
+        };
+        // default select first
+        selectPublishTarget(picks[0].id, picks);
+      }
+
+      $("publishModal").classList.add("open");
+      $("publishModal").setAttribute("aria-hidden", "false");
+    }
+
+    function selectPublishTarget(id, picks) {
+      publishTargetId = id;
+      $("publishDraftList").querySelectorAll(".pick").forEach((el) => {
+        el.classList.toggle("active", el.dataset.pubId === id);
+      });
+      const pick = picks.find((p) => p.id === id);
+      if (!pick) return;
+      if (pick.snapshot) {
+        renderPublishPreview(pick.snapshot);
+        $("publishConfirm").disabled = !pick.snapshot.title;
+      } else {
+        // load full post for preview body
+        InkAPI.post(pick.id)
+          .then(({ post }) => {
+            renderPublishPreview(post);
+            $("publishConfirm").disabled = false;
+          })
+          .catch((e) => toast(e.message));
+      }
+    }
+
+    function renderPublishPreview(post) {
+      const label = (InkRender.TOPIC_LABEL && InkRender.TOPIC_LABEL[post.topic]) || post.topic;
+      const coverSrc = post.coverKey
+        ? InkAPI.mediaUrl(post.coverKey)
+        : post.coverUrl || null;
+      const cover = coverSrc
+        ? `<div class="cover" style="margin-bottom:12px;border-radius:8px;overflow:hidden"><img src="${escapeHtml(coverSrc)}" alt="" style="width:100%;max-height:160px;object-fit:cover" /></div>`
+        : "";
+      const body = post.body || [];
+      $("publishPreview").innerHTML = `
+        <div class="crumb">Public preview · ${escapeHtml(label)}</div>
+        <h3>${escapeHtml(post.title || "(untitled)")}</h3>
+        ${post.excerpt ? `<p class="lede">${escapeHtml(post.excerpt)}</p>` : ""}
+        <div class="byline">
+          <span class="pill topic">${escapeHtml(label)}</span>
+          <span class="pill">live after publish</span>
+        </div>
+        ${cover}
+        <div class="prose">${InkRender.renderBody(body)}</div>
+      `;
+    }
+
+    async function confirmPublish() {
+      if (!publishTargetId) return;
+      try {
+        $("publishConfirm").disabled = true;
+        if (publishTargetId === "__current__" || (postId && publishTargetId === postId)) {
+          // Publish what is open in the editor right now
+          const post = await save({ asPublish: true });
+          if (!post) return;
+        } else {
+          // Publish another draft from the list (server copy)
+          const { post: full } = await InkAPI.post(publishTargetId);
+          await InkAPI.updatePost(publishTargetId, {
+            title: full.title,
+            topic: full.topic,
+            excerpt: full.excerpt,
+            slug: full.slug,
+            coverKey: full.coverKey,
+            body: full.body,
+            status: "published",
+          });
+          await loadPost(publishTargetId);
+          toast("Published");
+          await refreshPostsCache();
+        }
+        closePublishModal();
+      } catch (e) {
+        toast(e.message);
+      } finally {
+        $("publishConfirm").disabled = false;
+      }
+    }
+
+    function closePublishModal() {
+      $("publishModal").classList.remove("open");
+      $("publishModal").setAttribute("aria-hidden", "true");
+      publishTargetId = null;
+    }
+
+    /* ── Modify modal ── */
+    async function openModifyModal() {
+      await refreshPostsCache();
+      $("modifySearch").value = "";
+      renderModifyList();
+      $("modifyModal").classList.add("open");
+      $("modifyModal").setAttribute("aria-hidden", "false");
+      $("modifySearch").focus();
+    }
+
+    function renderModifyList() {
+      const q = ($("modifySearch").value || "").trim().toLowerCase();
+      const list = allPosts.filter((p) => {
+        if (!q) return true;
+        return [p.title, p.topic, p.status, p.slug, p.excerpt]
+          .join(" ")
+          .toLowerCase()
+          .includes(q);
+      });
+      const box = $("modifyList");
+      if (!list.length) {
+        box.innerHTML = `<div class="hint-line">No pieces match.</div>`;
+        return;
+      }
+      // drafts first, then published
+      list.sort((a, b) => {
+        if (a.status !== b.status) return a.status === "draft" ? -1 : 1;
+        return (b.updatedAt || "").localeCompare(a.updatedAt || "");
+      });
+      box.innerHTML = list
+        .map(
+          (p) => `
+        <button type="button" class="pick" data-mod-id="${escapeHtml(p.id)}">
+          <div class="t">${escapeHtml(p.title)}</div>
+          <div class="m">${escapeHtml(p.status)} · ${escapeHtml(p.topic)} · ${(p.updatedAt || "").slice(0, 10)}</div>
+        </button>`
+        )
+        .join("");
+      box.onclick = async (e) => {
+        const btn = e.target.closest("[data-mod-id]");
+        if (!btn) return;
+        await loadPost(btn.dataset.modId);
+        closeModifyModal();
+        toast(loadedStatus === "published" ? "Editing published piece" : "Editing draft");
+      };
+    }
+
+    function closeModifyModal() {
+      $("modifyModal").classList.remove("open");
+      $("modifyModal").setAttribute("aria-hidden", "true");
     }
 
     function escapeHtml(s) {
-      return String(s)
+      return String(s ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
 
     boot();
