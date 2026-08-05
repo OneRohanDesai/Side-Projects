@@ -41,7 +41,12 @@ export function slugify(input: string): string {
 }
 
 export function isTopic(v: unknown): v is Topic {
-  return v === "game-theory" || v === "poker" || v === "geopolitics";
+  return (
+    v === "game-theory" ||
+    v === "poker" ||
+    v === "geopolitics" ||
+    v === "geography"
+  );
 }
 
 export function estimateReadingMinutes(blocks: Block[]): number {
@@ -68,6 +73,7 @@ export function mediaUrl(key: string | null | undefined): string | null {
   if (key.startsWith("http://") || key.startsWith("https://") || key.startsWith("data:")) {
     return key;
   }
+  // Relative path; static site rewrites via InkAPI.mediaUrl(coverKey) with Worker origin
   return `/api/media/${encodeURIComponent(key)}`;
 }
 

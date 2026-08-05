@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Inkboard · Rohan Desai</title>
+  <meta name="description" content="Rohan Desai writes on game theory, poker, geopolitics, and geography." />
+  <link rel="stylesheet" href="./css/inkboard.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" data-ink-href="/" href="./">
+      <strong>Inkboard</strong>
+      <span>Rohan Desai</span>
+    </a>
+    <nav>
+      <a class="nav-chip" data-topic="" data-ink-href="/" href="./">All</a>
+      <a class="nav-chip" data-topic="game-theory" data-ink-href="/game-theory/" href="./game-theory/">Game Theory</a>
+      <a class="nav-chip" data-topic="poker" data-ink-href="/poker/" href="./poker/">Poker</a>
+      <a class="nav-chip" data-topic="geopolitics" data-ink-href="/geopolitics/" href="./geopolitics/">Geopolitics</a>
+      <a class="nav-chip" data-topic="geography" data-ink-href="/geography/" href="./geography/">Geography</a>
+    </nav>
+    <div class="spacer"></div>
+    <a class="ghost" href="../">Site</a>
+    <a class="ghost" id="writeBtn" data-ink-href="/write/" href="./write/" hidden>Write</a>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Four rooms.<br/>One quiet mind.</h1>
+      <p>
+        Essays and notes on games of choice, the cards we hold, the maps of power,
+        and the land beneath it all. Written slowly. Published only when ready.
+      </p>
+    </section>
+
+    <section class="worlds worlds-4" aria-label="Topics">
+      <button type="button" class="world" data-topic="game-theory" data-glyph="◇">
+        <div class="glyph">◇</div>
+        <h2>Game Theory</h2>
+        <p>Incentives, equilibrium, and the quiet math of choice.</p>
+        <div class="count" data-count="game-theory">…</div>
+      </button>
+      <button type="button" class="world" data-topic="poker" data-glyph="♠">
+        <div class="glyph">♠</div>
+        <h2>Poker</h2>
+        <p>Ranges, pressure, and the honest theater of uncertainty.</p>
+        <div class="count" data-count="poker">…</div>
+      </button>
+      <button type="button" class="world" data-topic="geopolitics" data-glyph="⌖">
+        <div class="glyph">⌖</div>
+        <h2>Geopolitics</h2>
+        <p>Borders, power, and the long weather of nations.</p>
+        <div class="count" data-count="geopolitics">…</div>
+      </button>
+      <button type="button" class="world" data-topic="geography" data-glyph="◎">
+        <div class="glyph">◎</div>
+        <h2>Geography</h2>
+        <p>Land, water, climate, and the shapes that still steer us.</p>
+        <div class="count" data-count="geography">…</div>
+      </button>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h3>The ledger</h3>
+          <span>Newest first</span>
+        </div>
+        <input class="search" id="search" type="search" placeholder="Search titles…" autocomplete="off" />
+      </div>
+      <div class="feed" id="feed"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="./js/config.js"></script>
+  <script src="./js/paths.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/render.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

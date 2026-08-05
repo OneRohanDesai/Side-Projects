@@ -1,4 +1,4 @@
-export type Topic = "game-theory" | "poker" | "geopolitics";
+export type Topic = "game-theory" | "poker" | "geopolitics" | "geography";
 export type PostStatus = "draft" | "published";
 
 export type BlockType =
@@ -70,7 +70,6 @@ export interface Env {
   MEDIA: R2Bucket;
   SESSIONS: KVNamespace;
   CACHE: KVNamespace;
-  ASSETS: Fetcher;
   ADMIN_PASSWORD: string;
   PUBLIC_SITE_ORIGIN: string;
 }
@@ -96,5 +95,11 @@ export const TOPICS: Record<
     label: "Geopolitics",
     blurb: "Borders, power, and the long weather of nations.",
     glyph: "⌖",
+  },
+  geography: {
+    id: "geography",
+    label: "Geography",
+    blurb: "Land, water, climate, and the shapes that still steer us.",
+    glyph: "◎",
   },
 };

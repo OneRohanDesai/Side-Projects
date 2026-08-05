@@ -41,11 +41,8 @@ export default {
       return err(msg, 500, origin);
     }
 
-    // Static assets (Inkboard UI)
-    if (env.ASSETS) {
-      return env.ASSETS.fetch(request);
-    }
-    return err("Not found", 404, origin);
+    // API-only worker — static site is served from the main Side Projects deploy
+    return err("Not found. Use /api/* endpoints.", 404, origin);
   },
 };
 

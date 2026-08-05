@@ -14,7 +14,7 @@ Not the day job. Not client work. Just the ideas I chase because they make me cu
 
 **`mathematica/`** is under planning. Nothing decided yet.
 
-**`blogs/`** is **Inkboard**, barely written blogs around game theory, poker, and geopolitics.
+**`blogs/`** is **Inkboard** — essays in game theory, poker, geopolitics, and geography at `/blogs`.
 
 ---
 
