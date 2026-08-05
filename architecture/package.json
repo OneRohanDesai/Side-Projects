@@ -1,0 +1,20 @@
+{
+  "name": "vault-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vault API — plates metadata (D1) + images (R2) for architecture editorial",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "db:local": "wrangler d1 migrations apply vault-plates --local",
+    "db:remote": "wrangler d1 migrations apply vault-plates --remote",
+    "seed:remote": "wrangler d1 execute vault-plates --remote --file=./migrations/0002_seed.sql",
+    "seed:local": "wrangler d1 execute vault-plates --local --file=./migrations/0002_seed.sql",
+    "secret:password": "wrangler secret put ADMIN_PASSWORD"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "wrangler": "^4.118.0"
+  }
+}

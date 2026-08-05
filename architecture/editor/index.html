@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Vault editorial — password protected." />
+  <title>Vault · Editor</title>
+  <link rel="stylesheet" href="../css/vault.css" />
+  <link rel="stylesheet" href="../css/editor.css" />
+</head>
+<body class="editor-body">
+  <div id="gate" class="gate">
+    <div class="gate-card">
+      <div class="gate-mark">Vault</div>
+      <h1>Editorial</h1>
+      <p>Enter the studio password to add, edit, or remove plates.</p>
+      <label class="gate-label">Password</label>
+      <input id="password" type="password" autocomplete="current-password" />
+      <button type="button" class="gate-btn" id="loginBtn">Enter</button>
+      <p class="gate-err" id="gateErr" hidden></p>
+      <a class="gate-back" href="../">← Back to catalog</a>
+    </div>
+  </div>
+
+  <div id="studio" class="studio" hidden>
+    <header class="ed-bar">
+      <a class="ed-brand" href="../">Vault · Editorial</a>
+      <div class="ed-spacer"></div>
+      <button type="button" class="ed-ghost" id="newBtn">New plate</button>
+      <button type="button" class="ed-ghost" id="logoutBtn">Log out</button>
+      <a class="ed-ghost" href="../">View catalog</a>
+    </header>
+
+    <div class="ed-shell">
+      <aside class="ed-list">
+        <div class="ed-list-head">
+          <strong>Plates</strong>
+          <input id="listSearch" type="search" placeholder="Filter…" />
+        </div>
+        <div id="plateList" class="plate-list"></div>
+      </aside>
+
+      <main class="ed-form">
+        <div class="ed-form-head">
+          <h2 id="formTitle">New plate</h2>
+          <div class="ed-actions">
+            <button type="button" class="ed-danger" id="deleteBtn" hidden>Delete</button>
+            <button type="button" class="ed-primary" id="saveBtn">Save</button>
+          </div>
+        </div>
+
+        <div class="ed-grid">
+          <div class="f">
+            <label>Name</label>
+            <input id="fName" type="text" />
+          </div>
+          <div class="f">
+            <label>Year <span>(BCE negative, e.g. -2560)</span></label>
+            <input id="fYear" type="number" step="1" />
+          </div>
+          <div class="f">
+            <label>Era</label>
+            <input id="fEra" type="text" placeholder="Classical, Modern…" />
+          </div>
+          <div class="f">
+            <label>Kind</label>
+            <select id="fKind">
+              <option value="man-made">Man-made</option>
+              <option value="natural">Natural</option>
+            </select>
+          </div>
+          <div class="f">
+            <label>Place</label>
+            <input id="fPlace" type="text" />
+          </div>
+          <div class="f">
+            <label>Region</label>
+            <input id="fRegion" type="text" />
+          </div>
+          <div class="f full">
+            <label>Blurb</label>
+            <textarea id="fBlurb" rows="4"></textarea>
+          </div>
+          <div class="f">
+            <label>Tags <span>(comma separated)</span></label>
+            <input id="fTags" type="text" placeholder="temple, stone, sacred" />
+          </div>
+          <div class="f">
+            <label>Tone color</label>
+            <input id="fTone" type="color" value="#b56a45" />
+          </div>
+          <div class="f full">
+            <label>Image</label>
+            <div class="img-row">
+              <input id="fImageFile" type="file" accept="image/*" />
+              <button type="button" class="ed-ghost" id="clearImage">Clear image</button>
+            </div>
+            <div id="imgPreview" class="img-preview"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/editor.js"></script>
+</body>
+</html>
