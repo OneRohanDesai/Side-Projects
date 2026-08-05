@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif" width="220" alt="disco ball"/>
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTg1dGZ3NHF5Y3drN3U5YzlxeW12dm81bGE0a3lyeDZ5dTliYnJrYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ORjfgiG9ZtxcQQwZzv/giphy.gif" width="220" alt="disco ball"/>
 </p>
 
 <h1 align="center">Who I am when I am not working</h1>
 
 <p align="center">
-  <img src="https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" width="120" alt="neon pulse"/>
+  <img src="https://tenor.com/l1DLCpxptyc.gif" width="120" alt="neon pulse"/>
 </p>
 
 I'm **Rohan Desai**.  
@@ -18,7 +18,7 @@ I like systems that stay up, tools that feel kind, and ideas that can be visuali
 ---
 
 <p align="center">
-  <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" width="280" alt="dance floor"/>
+  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmR1cGE2MzhvcDd4cGV5cXZkcnh2MDMzb3hpMjliaGJ2dTA0M3l4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j3EefIlfYdszNjCsem/giphy.gif" width="280" alt="dance floor"/>
 </p>
 
 ### Side Projects
