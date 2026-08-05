@@ -719,11 +719,16 @@ img, video { max-width: 100%; display: block; }
   opacity: 0.9;
 }
 
-/* hidden attribute must win over author display rules */
+/* hidden attribute must win over author display rules (e.g. .editor-shell { display: grid }) */
 #loginView[hidden],
 #studio[hidden],
 #writeBtn[hidden],
 #logoutBtn[hidden],
 #editLink[hidden] {
   display: none !important;
+}
+
+/* When studio is shown, force the grid layout back on */
+#studio.editor-shell:not([hidden]) {
+  display: grid !important;
 }

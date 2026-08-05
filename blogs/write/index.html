@@ -100,12 +100,51 @@
   <script>
     const $ = (id) => document.getElementById(id);
     let editor;
+    let studioWired = false;
     let postId = new URLSearchParams(location.search).get("id") || null;
     let coverKey = null;
 
-    function toast(m) { InkEditor.toast(m); }
+    function toast(m) {
+      if (window.InkEditor && InkEditor.toast) InkEditor.toast(m);
+      else alert(m);
+    }
+
+    function showLogin() {
+      $("loginView").hidden = false;
+      $("studio").hidden = true;
+      $("logoutBtn").hidden = true;
+    }
+
+    function showStudioUi() {
+      $("loginView").hidden = true;
+      $("studio").hidden = false;
+      $("logoutBtn").hidden = false;
+    }
+
+    function wireAuth() {
+      $("loginBtn").onclick = async () => {
+        try {
+          await InkAPI.login($("password").value);
+          toast("Welcome back");
+          await enterStudio();
+        } catch (e) {
+          toast(e.message || "Login failed");
+        }
+      };
+      $("password").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          $("loginBtn").click();
+        }
+      });
+      $("logoutBtn").onclick = async () => {
+        await InkAPI.logout();
+        location.reload();
+      };
+    }
 
     async function boot() {
+      wireAuth();
       let admin = false;
       try {
         const me = await InkAPI.me();
@@ -113,43 +152,34 @@
       } catch (_) {}
 
       if (!admin) {
-        $("loginView").hidden = false;
-        $("studio").hidden = true;
+        showLogin();
         return;
       }
-      enterStudio();
+      await enterStudio();
     }
 
     async function enterStudio() {
-      $("loginView").hidden = true;
-      $("studio").hidden = false;
-      $("logoutBtn").hidden = false;
-      editor = new InkEditor.Editor($("blocks"), {});
-      wire();
-      await refreshList();
-      if (postId) await loadPost(postId);
+      try {
+        showStudioUi();
+        if (!editor) {
+          editor = new InkEditor.Editor($("blocks"), {});
+        }
+        if (!studioWired) {
+          wireStudio();
+          studioWired = true;
+        }
+        await refreshList();
+        if (postId) await loadPost(postId);
+      } catch (e) {
+        toast(e.message || "Could not open studio");
+        console.error(e);
+      }
     }
 
-    function wire() {
-      $("loginBtn").onclick = async () => {
-        try {
-          await InkAPI.login($("password").value);
-          toast("Welcome back");
-          enterStudio();
-        } catch (e) {
-          toast(e.message || "Login failed");
-        }
-      };
-      $("password").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") $("loginBtn").click();
-      });
-      $("logoutBtn").onclick = async () => {
-        await InkAPI.logout();
-        location.reload();
-      };
+    function wireStudio() {
       $("palette").onclick = (e) => {
         const b = e.target.closest("[data-type]");
-        if (b) editor.add(b.dataset.type);
+        if (b && editor) editor.add(b.dataset.type);
       };
       $("coverFile").onchange = async () => {
         const f = $("coverFile").files[0];
@@ -173,8 +203,9 @@
         $("status").value = "draft";
         $("topic").value = "game-theory";
         $("coverPreview").textContent = "";
-        editor.setBlocks([]);
-        history.replaceState(null, "", "../write/");
+        if (editor) editor.setBlocks([]);
+        const base = window.InkPaths ? InkPaths.href("/write/") : "../write/";
+        history.replaceState(null, "", base);
       };
       $("deleteBtn").onclick = async () => {
         if (!postId) return toast("Nothing to delete");
@@ -202,7 +233,8 @@
         coverKey = post.coverKey;
         $("coverPreview").textContent = coverKey ? "Cover attached" : "";
         editor.setBlocks(post.body || []);
-        history.replaceState(null, "", "../write/?id=" + encodeURIComponent(post.id));
+        const base = window.InkPaths ? InkPaths.href("/write/") : "../write/";
+        history.replaceState(null, "", base + "?id=" + encodeURIComponent(post.id));
       } catch (e) {
         toast(e.message);
       }
@@ -227,7 +259,8 @@
         } else {
           ({ post } = await InkAPI.createPost(body));
           postId = post.id;
-          history.replaceState(null, "", "../write/?id=" + encodeURIComponent(post.id));
+          const base = window.InkPaths ? InkPaths.href("/write/") : "../write/";
+          history.replaceState(null, "", base + "?id=" + encodeURIComponent(post.id));
         }
         $("slug").value = post.slug;
         toast(post.status === "published" ? "Published" : "Draft saved");

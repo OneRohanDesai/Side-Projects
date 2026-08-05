@@ -700,3 +700,35 @@ img, video { max-width: 100%; display: block; }
   .brand span { display: none; }
   .topbar { padding: 12px 14px; }
 }
+
+/* Four topic rooms */
+.worlds-4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 720px) {
+  .worlds-4 { grid-template-columns: 1fr; }
+}
+.world[data-topic="geography"] {
+  --topic: #e8b86d;
+  --topic-soft: rgba(232, 184, 109, 0.12);
+}
+.topic-glyph {
+  font-size: 1.6rem;
+  color: var(--topic, var(--gold));
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+/* hidden attribute must win over author display rules (e.g. .editor-shell { display: grid }) */
+#loginView[hidden],
+#studio[hidden],
+#writeBtn[hidden],
+#logoutBtn[hidden],
+#editLink[hidden] {
+  display: none !important;
+}
+
+/* When studio is shown, force the grid layout back on */
+#studio.editor-shell:not([hidden]) {
+  display: grid !important;
+}
