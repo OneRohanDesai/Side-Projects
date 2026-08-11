@@ -1,1223 +1,1463 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="description" content="Rohan Desai, side projects directory. Browse code without the git noise." />
-  <title>Side Projects · Rohan Desai</title>
-  <style>
-    :root {
-      --bg: #070708;
-      --bg-elev: #0e0e10;
-      --bg-soft: #141416;
-      --bg-hover: #1a1a1d;
-      --line: #2a2a2e;
-      --line-soft: #1c1c1f;
-      --text: #f2f0ea;
-      --muted: #9a968c;
-      --dim: #6a6660;
-      --accent: #d4b483;
-      --accent-bright: #f0d9a8;
-      --accent-dim: rgba(212, 180, 131, 0.14);
-      --accent-glow: rgba(212, 180, 131, 0.08);
-      --ok: #7dcea0;
-      --warn: #e8b86d;
-      --live: #e07a5f;
-      --private: #b8a9d9;
-      --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
-      --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --display: "Georgia", "Times New Roman", "Palatino Linotype", Palatino, serif;
-      --radius: 10px;
-      --header-h: 56px;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 14.5px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    ::selection {
-      background: var(--accent-dim);
-      color: var(--accent);
-    }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-    button {
-      font: inherit;
-      color: inherit;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* ── Shell ── */
-    .app {
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header.top {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      height: var(--header-h);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 0 20px;
-      background: rgba(10, 10, 11, 0.82);
-      backdrop-filter: blur(14px) saturate(1.2);
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .brand {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      min-width: 0;
-      flex-shrink: 0;
-    }
-
-    .brand h1 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      color: var(--accent-bright);
-    }
-
-    .brand span {
-      color: var(--dim);
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .brand:hover { text-decoration: none; }
-    .brand:hover h1 { color: var(--accent); }
-
-    .search-wrap {
-      flex: 1;
-      max-width: 420px;
-      position: relative;
-    }
-
-    .search-wrap input {
-      width: 100%;
-      height: 34px;
-      padding: 0 12px 0 34px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: var(--bg-elev);
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s var(--ease), background 0.2s;
-    }
-
-    .search-wrap input::placeholder { color: var(--dim); }
-    .search-wrap input:focus {
-      border-color: rgba(232, 213, 181, 0.35);
-      background: var(--bg-soft);
-    }
-
-    .search-wrap svg {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--dim);
-      pointer-events: none;
-    }
-
-    .header-meta {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .header-meta a { color: var(--muted); }
-    .header-meta a:hover { color: var(--accent); text-decoration: none; }
-
-    /* ── Views ── */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-    }
-
-    /* ── Home ── */
-    .home {
-      max-width: 1080px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
-
-    .hero {
-      margin-bottom: 36px;
-      max-width: 560px;
-    }
-
-    .hero h2 {
-      font-family: var(--display);
-      font-size: clamp(1.75rem, 4vw, 2.35rem);
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 14px;
-      color: var(--accent-bright);
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.65;
-    }
-
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .chip {
-      height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.01em;
-      transition: all 0.2s var(--ease);
-    }
-
-    .chip:hover { border-color: var(--dim); color: var(--text); }
-    .chip.active {
-      background: var(--accent-dim);
-      border-color: rgba(212, 180, 131, 0.4);
-      color: var(--accent-bright);
-    }
-
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 36px 0 8px;
-      color: var(--accent);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212, 180, 131, 0.35), transparent);
-    }
-
-    /* ── Index ledger (not a card grid) ── */
-    .ledger {
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid rgba(212, 180, 131, 0.18);
-    }
-
-    .ledger-row {
-      text-align: left;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 48px 1fr auto;
-      gap: 16px 20px;
-      align-items: start;
-      padding: 22px 8px 22px 4px;
-      border-bottom: 1px solid var(--line-soft);
-      position: relative;
-      transition: background 0.25s var(--ease), padding 0.25s var(--ease);
-    }
-
-    .ledger-row::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 18px;
-      bottom: 18px;
-      width: 1px;
-      background: transparent;
-      transition: background 0.25s var(--ease);
-    }
-
-    .ledger-row:hover {
-      background: linear-gradient(90deg, var(--accent-glow), transparent 70%);
-      padding-left: 12px;
-    }
-
-    .ledger-row:hover::before {
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(212, 180, 131, 0.35);
-    }
-
-    .ledger-row:hover .ledger-name {
-      color: var(--accent-bright);
-    }
-
-    .ledger-row.private-card:hover::before {
-      background: var(--private);
-      box-shadow: 0 0 12px rgba(184, 169, 217, 0.3);
-    }
-
-    .ledger-idx {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--accent);
-      opacity: 0.7;
-      padding-top: 8px;
-      letter-spacing: 0.04em;
-    }
-
-    .ledger-main {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .ledger-name {
-      font-family: var(--display);
-      font-size: clamp(1.2rem, 2.4vw, 1.55rem);
-      font-weight: 500;
-      letter-spacing: -0.015em;
-      color: var(--accent);
-      line-height: 1.25;
-      transition: color 0.2s var(--ease);
-    }
-
-    .ledger-blurb {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.55;
-      max-width: 52ch;
-    }
-
-    .ledger-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-      align-items: center;
-    }
-
-    .ledger-side {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
-      padding-top: 4px;
-      flex-shrink: 0;
-    }
-
-    .status {
-      flex-shrink: 0;
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--dim);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      border: 1px solid var(--line-soft);
-      background: var(--bg);
-      white-space: nowrap;
-    }
-
-    .status .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--dim);
-    }
-
-    .status.live .dot { background: var(--live); box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.18); }
-    .status.live { color: var(--live); border-color: rgba(224, 122, 95, 0.25); }
-    .status.active .dot { background: var(--ok); }
-    .status.active { color: var(--ok); border-color: rgba(125, 206, 160, 0.25); }
-    .status.private .dot { background: var(--private); }
-    .status.private { color: var(--private); border-color: rgba(184, 169, 217, 0.35); }
-    .status.playground .dot { background: var(--warn); }
-    .status.playground { color: var(--warn); border-color: rgba(232, 184, 109, 0.25); }
-
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--dim);
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: var(--bg);
-      border: 1px solid var(--line-soft);
-    }
-
-    .file-count {
-      font-size: 0.72rem;
-      color: var(--dim);
-      font-family: var(--mono);
-      white-space: nowrap;
-    }
-
-    .private-card .card-action {
-      font-size: 0.75rem;
-      color: var(--private);
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 640px) {
-      .ledger-row {
-        grid-template-columns: 36px 1fr;
-        gap: 8px 12px;
-      }
-      .ledger-side {
-        grid-column: 2;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-    }
-
-    /* ── Browser ── */
-    .browser {
-      display: none;
-      flex: 1;
-      min-height: 0;
-      height: calc(100vh - var(--header-h));
-    }
-
-    .browser.open { display: grid; }
-    .browser.mode-browse {
-      grid-template-columns: minmax(200px, 260px) minmax(240px, 320px) 1fr;
-    }
-    .browser.mode-code {
-      grid-template-columns: minmax(180px, 240px) minmax(200px, 280px) 1fr;
-    }
-
-    .pane {
-      min-height: 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid var(--line-soft);
-      background: var(--bg);
-    }
-
-    .pane:last-child { border-right: none; }
-
-    .pane-head {
-      height: 44px;
-      padding: 0 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid var(--line-soft);
-      flex-shrink: 0;
-      background: var(--bg-elev);
-    }
-
-    .pane-head .label {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    .pane-head .title {
-      font-size: 0.88rem;
-      font-weight: 520;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      height: 28px;
-      padding: 0 10px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.8rem;
-      transition: all 0.2s;
-    }
-
-    .back-btn:hover {
-      color: var(--text);
-      border-color: var(--dim);
-      background: var(--bg-soft);
-    }
-
-    .pane-body {
-      flex: 1;
-      overflow: auto;
-      min-height: 0;
-    }
-
-    /* Project list in browser */
-    .proj-list { padding: 8px; }
-
-    .proj-item {
-      width: 100%;
-      text-align: left;
-      padding: 10px 12px;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      transition: background 0.15s;
-    }
-
-    .proj-item:hover { background: var(--bg-hover); }
-    .proj-item.active {
-      background: var(--accent-glow);
-      box-shadow: inset 2px 0 0 var(--accent);
-    }
-
-    .proj-item .n {
-      font-weight: 560;
-      font-size: 0.9rem;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .proj-item.active .n {
-      color: var(--accent-bright);
-    }
-
-    .proj-item.is-private .n {
-      color: var(--private);
-    }
-
-    .proj-item.is-private.active {
-      box-shadow: inset 2px 0 0 var(--private);
-    }
-
-    .proj-item .pill {
-      font-size: 0.62rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--private);
-      border: 1px solid rgba(184, 169, 217, 0.35);
-      border-radius: 999px;
-      padding: 1px 6px;
-      font-weight: 500;
-      flex-shrink: 0;
-    }
-
-    .proj-item .b {
-      color: var(--dim);
-      font-size: 0.75rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Project detail panel */
-    .detail {
-      padding: 20px 18px;
-    }
-
-    .detail h2 {
-      font-family: var(--display);
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      color: var(--accent-bright);
-    }
-
-    .detail .blurb {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .detail-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .detail-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .link-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.8rem;
-      transition: all 0.2s;
-    }
-
-    .link-pill:hover {
-      color: var(--accent);
-      border-color: rgba(232, 213, 181, 0.3);
-      text-decoration: none;
-      background: var(--accent-dim);
-    }
-
-    .tree-hint {
-      font-size: 0.78rem;
-      color: var(--dim);
-      margin-bottom: 10px;
-    }
-
-    /* File tree: collapsible folders */
-    .tree { padding: 6px 6px 24px; }
-
-    .tree-node { user-select: none; }
-
-    .tree-item {
-      width: 100%;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 8px;
-      border-radius: 6px;
-      font-family: var(--mono);
-      font-size: 0.76rem;
-      color: var(--muted);
-      transition: background 0.12s, color 0.12s;
-      min-height: 28px;
-    }
-
-    .tree-item:hover { background: var(--bg-hover); color: var(--text); }
-    .tree-item.active {
-      background: var(--accent-dim);
-      color: var(--accent-bright);
-    }
-
-    .tree-item.dir {
-      color: var(--accent);
-      font-weight: 560;
-      cursor: pointer;
-    }
-
-    .tree-item.dir:hover {
-      color: var(--accent-bright);
-      background: var(--accent-glow);
-    }
-
-    .tree-item.dir.open {
-      color: var(--accent-bright);
-    }
-
-    .tree-item.disabled {
-      opacity: 0.45;
-      cursor: default;
-    }
-
-    .tree-item .chev {
-      width: 14px;
-      flex-shrink: 0;
-      font-size: 0.65rem;
-      color: var(--accent);
-      opacity: 0.85;
-      transition: transform 0.18s var(--ease);
-      display: inline-flex;
-      justify-content: center;
-    }
-
-    .tree-item.dir.open .chev {
-      transform: rotate(90deg);
-    }
-
-    .tree-item .ico {
-      width: 12px;
-      text-align: center;
-      flex-shrink: 0;
-      opacity: 0.55;
-      font-size: 0.7rem;
-    }
-
-    .tree-item .name {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .tree-item .sz {
-      margin-left: auto;
-      color: var(--dim);
-      font-size: 0.68rem;
-      flex-shrink: 0;
-      padding-left: 8px;
-    }
-
-    .tree-item .cnt {
-      margin-left: auto;
-      color: var(--dim);
-      font-size: 0.65rem;
-      flex-shrink: 0;
-      opacity: 0.75;
-    }
-
-    .tree-children {
-      display: none;
-      border-left: 1px solid rgba(212, 180, 131, 0.12);
-      margin-left: 12px;
-      padding-left: 2px;
-    }
-
-    .tree-children.open {
-      display: block;
-    }
-
-    .tree-actions {
-      display: flex;
-      gap: 6px;
-      padding: 6px 8px 4px;
-    }
-
-    .tree-actions .ghost-btn {
-      font-size: 0.7rem;
-      height: 24px;
-      padding: 0 8px;
-      color: var(--dim);
-    }
-
-    /* Code pane */
-    .code-pane .pane-head { justify-content: space-between; }
-
-    .code-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .ghost-btn {
-      height: 28px;
-      padding: 0 10px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.78rem;
-      transition: all 0.15s;
-    }
-
-    .ghost-btn:hover {
-      color: var(--text);
-      border-color: var(--dim);
-    }
-
-    .path-crumb {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 55vw;
-    }
-
-    .code-empty {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--dim);
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .code-empty strong {
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .code-wrap {
-      flex: 1;
-      overflow: auto;
-      min-height: 0;
-      display: none;
-    }
-
-    .code-wrap.show { display: block; }
-
-    pre.code {
-      margin: 0;
-      padding: 16px 0;
-      font-family: var(--mono);
-      font-size: 12.5px;
-      line-height: 1.65;
-      tab-size: 2;
-    }
-
-    .code-line {
-      display: flex;
-      min-width: max-content;
-    }
-
-    .ln {
-      flex: 0 0 52px;
-      text-align: right;
-      padding-right: 16px;
-      color: var(--dim);
-      user-select: none;
-      opacity: 0.55;
-    }
-
-    .lc {
-      flex: 1;
-      padding-right: 24px;
-      white-space: pre;
-      color: #d4d4d8;
-    }
-
-    /* lightweight token colors */
-    .t-c { color: #6a6a74; }
-    .t-s { color: #c4a882; }
-    .t-k { color: #9b8ec4; }
-    .t-n { color: #7dcea0; }
-    .t-f { color: #8eb4d4; }
-
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--bg-soft);
-      border: 1px solid var(--line);
-      color: var(--text);
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s var(--ease);
-      z-index: 100;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .loading {
-      color: var(--dim);
-      padding: 24px;
-      font-size: 0.85rem;
-    }
-
-    .error-box {
-      margin: 24px;
-      padding: 16px;
-      border: 1px solid rgba(224, 122, 95, 0.3);
-      border-radius: 8px;
-      color: var(--live);
-      background: rgba(224, 122, 95, 0.06);
-      font-size: 0.88rem;
-      line-height: 1.55;
-    }
-
-    footer.site {
-      border-top: 1px solid var(--line-soft);
-      padding: 28px 20px 40px;
-      text-align: center;
-      color: var(--dim);
-      font-size: 0.8rem;
-    }
-
-    footer.site a { color: var(--muted); }
-
-    /* Mobile */
-    @media (max-width: 900px) {
-      .browser.mode-browse,
-      .browser.mode-code {
-        grid-template-columns: 1fr;
-        height: auto;
-        min-height: calc(100vh - var(--header-h));
-      }
-
-      .browser .pane {
-        border-right: none;
-        border-bottom: 1px solid var(--line-soft);
-        max-height: none;
-      }
-
-      .browser .pane-list { display: none; }
-      .browser.show-list .pane-list { display: flex; }
-      .browser.show-list .pane-detail,
-      .browser.show-list .pane-tree,
-      .browser.show-list .pane-code { display: none; }
-
-      .header-meta .hide-sm { display: none; }
-
-      .home { padding-top: 28px; }
-    }
-
-    @media (max-width: 520px) {
-      header.top { padding: 0 12px; gap: 10px; }
-      .brand span { display: none; }
-      .search-wrap { max-width: none; }
-    }
-  </style>
-</head>
-<body>
-  <div class="app">
-    <header class="top">
-      <a class="brand" href="/projects/" id="brandLink">
-        <h1>Side Projects</h1>
-        <span>Rohan Desai</span>
-      </a>
-      <div class="search-wrap">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
-        </svg>
-        <input id="search" type="search" placeholder="Search projects…" autocomplete="off" spellcheck="false" />
-      </div>
-      <div class="header-meta">
-        <a class="hide-sm" href="https://www.linkedin.com/in/rohandesai01/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="hide-sm" href="https://github.com/OneRohanDesai/Side-Projects" target="_blank" rel="noopener">GitHub</a>
-        <a class="hide-sm" href="mailto:pro.rohandesai@gmail.com">Contact</a>
-      </div>
-    </header>
-
-    <main>
-      <section class="home" id="homeView">
-        <div class="hero">
-          <h2>Things I built.<br/>Code, not ceremony.</h2>
-          <p id="heroNote">
-            A quiet directory of side projects. Open anything, read the files,
-            skip the commit history. Private work is listed; ask if you want access.
-          </p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <meta name="color-scheme" content="dark" />
+        <meta
+            name="description"
+            content="Rohan Desai, side projects directory. Browse code without the git noise."
+        />
+        <title>Side Projects · Rohan Desai</title>
+        <style>
+            :root {
+                --bg: #070708;
+                --bg-elev: #0e0e10;
+                --bg-soft: #141416;
+                --bg-hover: #1a1a1d;
+                --line: #2a2a2e;
+                --line-soft: #1c1c1f;
+                --text: #f2f0ea;
+                --muted: #9a968c;
+                --dim: #6a6660;
+                --accent: #d4b483;
+                --accent-bright: #f0d9a8;
+                --accent-dim: rgba(212, 180, 131, 0.14);
+                --accent-glow: rgba(212, 180, 131, 0.08);
+                --ok: #7dcea0;
+                --warn: #e8b86d;
+                --live: #e07a5f;
+                --private: #b8a9d9;
+                --mono:
+                    ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono",
+                    Menlo, Consolas, monospace;
+                --sans:
+                    "Inter", ui-sans-serif, system-ui, -apple-system,
+                    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                --display:
+                    "Georgia", "Times New Roman", "Palatino Linotype", Palatino,
+                    serif;
+                --radius: 10px;
+                --header-h: 56px;
+                --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html,
+            body {
+                height: 100%;
+                background: var(--bg);
+                color: var(--text);
+                font-family: var(--sans);
+                font-size: 14.5px;
+                line-height: 1.5;
+                -webkit-font-smoothing: antialiased;
+                text-rendering: optimizeLegibility;
+            }
+
+            ::selection {
+                background: var(--accent-dim);
+                color: var(--accent);
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+                text-underline-offset: 3px;
+            }
+
+            button {
+                font: inherit;
+                color: inherit;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            /* ── Shell ── */
+            .app {
+                min-height: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            header.top {
+                position: sticky;
+                top: 0;
+                z-index: 40;
+                height: var(--header-h);
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 0 20px;
+                background: rgba(10, 10, 11, 0.82);
+                backdrop-filter: blur(14px) saturate(1.2);
+                border-bottom: 1px solid var(--line-soft);
+            }
+
+            .brand {
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                min-width: 0;
+                flex-shrink: 0;
+            }
+
+            .brand h1 {
+                font-size: 0.95rem;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                white-space: nowrap;
+                color: var(--accent-bright);
+            }
+
+            .brand span {
+                color: var(--dim);
+                font-size: 0.78rem;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+
+            .brand:hover {
+                text-decoration: none;
+            }
+            .brand:hover h1 {
+                color: var(--accent);
+            }
+
+            .search-wrap {
+                flex: 1;
+                max-width: 420px;
+                position: relative;
+            }
+
+            .search-wrap input {
+                width: 100%;
+                height: 34px;
+                padding: 0 12px 0 34px;
+                border-radius: 8px;
+                border: 1px solid var(--line);
+                background: var(--bg-elev);
+                color: var(--text);
+                outline: none;
+                transition:
+                    border-color 0.2s var(--ease),
+                    background 0.2s;
+            }
+
+            .search-wrap input::placeholder {
+                color: var(--dim);
+            }
+            .search-wrap input:focus {
+                border-color: rgba(232, 213, 181, 0.35);
+                background: var(--bg-soft);
+            }
+
+            .search-wrap svg {
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--dim);
+                pointer-events: none;
+            }
+
+            .header-meta {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                color: var(--muted);
+                font-size: 0.82rem;
+            }
+
+            .header-meta a {
+                color: var(--muted);
+            }
+            .header-meta a:hover {
+                color: var(--accent);
+                text-decoration: none;
+            }
+
+            /* ── Views ── */
+            main {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+            }
+
+            /* ── Home ── */
+            .home {
+                max-width: 1080px;
+                width: 100%;
+                margin: 0 auto;
+                padding: 40px 20px 80px;
+            }
+
+            .hero {
+                margin-bottom: 36px;
+                max-width: 560px;
+            }
+
+            .hero h2 {
+                font-family: var(--display);
+                font-size: clamp(1.75rem, 4vw, 2.35rem);
+                font-weight: 500;
+                letter-spacing: -0.02em;
+                line-height: 1.2;
+                margin-bottom: 14px;
+                color: var(--accent-bright);
+            }
+
+            .hero p {
+                color: var(--muted);
+                font-size: 0.98rem;
+                line-height: 1.65;
+            }
+
+            .filters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 20px;
+            }
+
+            .chip {
+                height: 30px;
+                padding: 0 12px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 0.8rem;
+                letter-spacing: 0.01em;
+                transition: all 0.2s var(--ease);
+            }
+
+            .chip:hover {
+                border-color: var(--dim);
+                color: var(--text);
+            }
+            .chip.active {
+                background: var(--accent-dim);
+                border-color: rgba(212, 180, 131, 0.4);
+                color: var(--accent-bright);
+            }
+
+            .section-label {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 36px 0 8px;
+                color: var(--accent);
+                font-size: 0.72rem;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+
+            .section-label::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background: linear-gradient(
+                    90deg,
+                    rgba(212, 180, 131, 0.35),
+                    transparent
+                );
+            }
+
+            /* ── Index ledger (not a card grid) ── */
+            .ledger {
+                display: flex;
+                flex-direction: column;
+                border-top: 1px solid rgba(212, 180, 131, 0.18);
+            }
+
+            .ledger-row {
+                text-align: left;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 48px 1fr auto;
+                gap: 16px 20px;
+                align-items: start;
+                padding: 22px 8px 22px 4px;
+                border-bottom: 1px solid var(--line-soft);
+                position: relative;
+                transition:
+                    background 0.25s var(--ease),
+                    padding 0.25s var(--ease);
+            }
+
+            .ledger-row::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 18px;
+                bottom: 18px;
+                width: 1px;
+                background: transparent;
+                transition: background 0.25s var(--ease);
+            }
+
+            .ledger-row:hover {
+                background: linear-gradient(
+                    90deg,
+                    var(--accent-glow),
+                    transparent 70%
+                );
+                padding-left: 12px;
+            }
+
+            .ledger-row:hover::before {
+                background: var(--accent);
+                box-shadow: 0 0 12px rgba(212, 180, 131, 0.35);
+            }
+
+            .ledger-row:hover .ledger-name {
+                color: var(--accent-bright);
+            }
+
+            .ledger-row.private-card:hover::before {
+                background: var(--private);
+                box-shadow: 0 0 12px rgba(184, 169, 217, 0.3);
+            }
+
+            .ledger-idx {
+                font-family: var(--mono);
+                font-size: 0.72rem;
+                color: var(--accent);
+                opacity: 0.7;
+                padding-top: 8px;
+                letter-spacing: 0.04em;
+            }
+
+            .ledger-main {
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .ledger-name {
+                font-family: var(--display);
+                font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+                font-weight: 500;
+                letter-spacing: -0.015em;
+                color: var(--accent);
+                line-height: 1.25;
+                transition: color 0.2s var(--ease);
+            }
+
+            .ledger-blurb {
+                color: var(--muted);
+                font-size: 0.9rem;
+                line-height: 1.55;
+                max-width: 52ch;
+            }
+
+            .ledger-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-top: 4px;
+                align-items: center;
+            }
+
+            .ledger-side {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 10px;
+                padding-top: 4px;
+                flex-shrink: 0;
+            }
+
+            .status {
+                flex-shrink: 0;
+                font-size: 0.68rem;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--dim);
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                padding: 3px 7px;
+                border-radius: 999px;
+                border: 1px solid var(--line-soft);
+                background: var(--bg);
+                white-space: nowrap;
+            }
+
+            .status .dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--dim);
+            }
+
+            .status.live .dot {
+                background: var(--live);
+                box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.18);
+            }
+            .status.live {
+                color: var(--live);
+                border-color: rgba(224, 122, 95, 0.25);
+            }
+            .status.active .dot {
+                background: var(--ok);
+            }
+            .status.active {
+                color: var(--ok);
+                border-color: rgba(125, 206, 160, 0.25);
+            }
+            .status.private .dot {
+                background: var(--private);
+            }
+            .status.private {
+                color: var(--private);
+                border-color: rgba(184, 169, 217, 0.35);
+            }
+            .status.playground .dot {
+                background: var(--warn);
+            }
+            .status.playground {
+                color: var(--warn);
+                border-color: rgba(232, 184, 109, 0.25);
+            }
+
+            .tag {
+                font-family: var(--mono);
+                font-size: 0.68rem;
+                color: var(--dim);
+                padding: 2px 6px;
+                border-radius: 4px;
+                background: var(--bg);
+                border: 1px solid var(--line-soft);
+            }
+
+            .file-count {
+                font-size: 0.72rem;
+                color: var(--dim);
+                font-family: var(--mono);
+                white-space: nowrap;
+            }
+
+            .private-card .card-action {
+                font-size: 0.75rem;
+                color: var(--private);
+                letter-spacing: 0.02em;
+            }
+
+            @media (max-width: 640px) {
+                .ledger-row {
+                    grid-template-columns: 36px 1fr;
+                    gap: 8px 12px;
+                }
+                .ledger-side {
+                    grid-column: 2;
+                    flex-direction: row;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                }
+            }
+
+            /* ── Browser ── */
+            .browser {
+                display: none;
+                flex: 1;
+                min-height: 0;
+                height: calc(100vh - var(--header-h));
+            }
+
+            .browser.open {
+                display: grid;
+            }
+            .browser.mode-browse {
+                grid-template-columns:
+                    minmax(200px, 260px) minmax(240px, 320px)
+                    1fr;
+            }
+            .browser.mode-code {
+                grid-template-columns:
+                    minmax(180px, 240px) minmax(200px, 280px)
+                    1fr;
+            }
+
+            .pane {
+                min-height: 0;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                border-right: 1px solid var(--line-soft);
+                background: var(--bg);
+            }
+
+            .pane:last-child {
+                border-right: none;
+            }
+
+            .pane-head {
+                height: 44px;
+                padding: 0 14px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                border-bottom: 1px solid var(--line-soft);
+                flex-shrink: 0;
+                background: var(--bg-elev);
+            }
+
+            .pane-head .label {
+                font-size: 0.72rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--dim);
+            }
+
+            .pane-head .title {
+                font-size: 0.88rem;
+                font-weight: 520;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .back-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                height: 28px;
+                padding: 0 10px;
+                border-radius: 6px;
+                border: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 0.8rem;
+                transition: all 0.2s;
+            }
+
+            .back-btn:hover {
+                color: var(--text);
+                border-color: var(--dim);
+                background: var(--bg-soft);
+            }
+
+            .pane-body {
+                flex: 1;
+                overflow: auto;
+                min-height: 0;
+            }
+
+            /* Project list in browser */
+            .proj-list {
+                padding: 8px;
+            }
+
+            .proj-item {
+                width: 100%;
+                text-align: left;
+                padding: 10px 12px;
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                transition: background 0.15s;
+            }
+
+            .proj-item:hover {
+                background: var(--bg-hover);
+            }
+            .proj-item.active {
+                background: var(--accent-glow);
+                box-shadow: inset 2px 0 0 var(--accent);
+            }
+
+            .proj-item .n {
+                font-weight: 560;
+                font-size: 0.9rem;
+                color: var(--accent);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .proj-item.active .n {
+                color: var(--accent-bright);
+            }
+
+            .proj-item.is-private .n {
+                color: var(--private);
+            }
+
+            .proj-item.is-private.active {
+                box-shadow: inset 2px 0 0 var(--private);
+            }
+
+            .proj-item .pill {
+                font-size: 0.62rem;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: var(--private);
+                border: 1px solid rgba(184, 169, 217, 0.35);
+                border-radius: 999px;
+                padding: 1px 6px;
+                font-weight: 500;
+                flex-shrink: 0;
+            }
+
+            .proj-item .b {
+                color: var(--dim);
+                font-size: 0.75rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Project detail panel */
+            .detail {
+                padding: 20px 18px;
+            }
+
+            .detail h2 {
+                font-family: var(--display);
+                font-size: 1.4rem;
+                font-weight: 500;
+                letter-spacing: -0.02em;
+                margin-bottom: 8px;
+                color: var(--accent-bright);
+            }
+
+            .detail .blurb {
+                color: var(--muted);
+                font-size: 0.92rem;
+                line-height: 1.6;
+                margin-bottom: 16px;
+            }
+
+            .detail-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 18px;
+            }
+
+            .detail-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .link-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                height: 30px;
+                padding: 0 12px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 0.8rem;
+                transition: all 0.2s;
+            }
+
+            .link-pill:hover {
+                color: var(--accent);
+                border-color: rgba(232, 213, 181, 0.3);
+                text-decoration: none;
+                background: var(--accent-dim);
+            }
+
+            .tree-hint {
+                font-size: 0.78rem;
+                color: var(--dim);
+                margin-bottom: 10px;
+            }
+
+            /* File tree: collapsible folders */
+            .tree {
+                padding: 6px 6px 24px;
+            }
+
+            .tree-node {
+                user-select: none;
+            }
+
+            .tree-item {
+                width: 100%;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 5px 8px;
+                border-radius: 6px;
+                font-family: var(--mono);
+                font-size: 0.76rem;
+                color: var(--muted);
+                transition:
+                    background 0.12s,
+                    color 0.12s;
+                min-height: 28px;
+            }
+
+            .tree-item:hover {
+                background: var(--bg-hover);
+                color: var(--text);
+            }
+            .tree-item.active {
+                background: var(--accent-dim);
+                color: var(--accent-bright);
+            }
+
+            .tree-item.dir {
+                color: var(--accent);
+                font-weight: 560;
+                cursor: pointer;
+            }
+
+            .tree-item.dir:hover {
+                color: var(--accent-bright);
+                background: var(--accent-glow);
+            }
+
+            .tree-item.dir.open {
+                color: var(--accent-bright);
+            }
+
+            .tree-item.disabled {
+                opacity: 0.45;
+                cursor: default;
+            }
+
+            .tree-item .chev {
+                width: 14px;
+                flex-shrink: 0;
+                font-size: 0.65rem;
+                color: var(--accent);
+                opacity: 0.85;
+                transition: transform 0.18s var(--ease);
+                display: inline-flex;
+                justify-content: center;
+            }
+
+            .tree-item.dir.open .chev {
+                transform: rotate(90deg);
+            }
+
+            .tree-item .ico {
+                width: 12px;
+                text-align: center;
+                flex-shrink: 0;
+                opacity: 0.55;
+                font-size: 0.7rem;
+            }
+
+            .tree-item .name {
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .tree-item .sz {
+                margin-left: auto;
+                color: var(--dim);
+                font-size: 0.68rem;
+                flex-shrink: 0;
+                padding-left: 8px;
+            }
+
+            .tree-item .cnt {
+                margin-left: auto;
+                color: var(--dim);
+                font-size: 0.65rem;
+                flex-shrink: 0;
+                opacity: 0.75;
+            }
+
+            .tree-children {
+                display: none;
+                border-left: 1px solid rgba(212, 180, 131, 0.12);
+                margin-left: 12px;
+                padding-left: 2px;
+            }
+
+            .tree-children.open {
+                display: block;
+            }
+
+            .tree-actions {
+                display: flex;
+                gap: 6px;
+                padding: 6px 8px 4px;
+            }
+
+            .tree-actions .ghost-btn {
+                font-size: 0.7rem;
+                height: 24px;
+                padding: 0 8px;
+                color: var(--dim);
+            }
+
+            /* Code pane */
+            .code-pane .pane-head {
+                justify-content: space-between;
+            }
+
+            .code-actions {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .ghost-btn {
+                height: 28px;
+                padding: 0 10px;
+                border-radius: 6px;
+                border: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 0.78rem;
+                transition: all 0.15s;
+            }
+
+            .ghost-btn:hover {
+                color: var(--text);
+                border-color: var(--dim);
+            }
+
+            .path-crumb {
+                font-family: var(--mono);
+                font-size: 0.75rem;
+                color: var(--muted);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 55vw;
+            }
+
+            .code-empty {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: var(--dim);
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .code-empty strong {
+                color: var(--muted);
+                font-weight: 500;
+            }
+
+            .code-wrap {
+                flex: 1;
+                overflow: auto;
+                min-height: 0;
+                display: none;
+            }
+
+            .code-wrap.show {
+                display: block;
+            }
+
+            pre.code {
+                margin: 0;
+                padding: 16px 0;
+                font-family: var(--mono);
+                font-size: 12.5px;
+                line-height: 1.65;
+                tab-size: 2;
+            }
+
+            .code-line {
+                display: flex;
+                min-width: max-content;
+            }
+
+            .ln {
+                flex: 0 0 52px;
+                text-align: right;
+                padding-right: 16px;
+                color: var(--dim);
+                user-select: none;
+                opacity: 0.55;
+            }
+
+            .lc {
+                flex: 1;
+                padding-right: 24px;
+                white-space: pre;
+                color: #d4d4d8;
+            }
+
+            /* lightweight token colors */
+            .t-c {
+                color: #6a6a74;
+            }
+            .t-s {
+                color: #c4a882;
+            }
+            .t-k {
+                color: #9b8ec4;
+            }
+            .t-n {
+                color: #7dcea0;
+            }
+            .t-f {
+                color: #8eb4d4;
+            }
+
+            .toast {
+                position: fixed;
+                bottom: 24px;
+                left: 50%;
+                transform: translateX(-50%) translateY(20px);
+                background: var(--bg-soft);
+                border: 1px solid var(--line);
+                color: var(--text);
+                padding: 10px 16px;
+                border-radius: 8px;
+                font-size: 0.85rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s var(--ease);
+                z-index: 100;
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            }
+
+            .toast.show {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .loading {
+                color: var(--dim);
+                padding: 24px;
+                font-size: 0.85rem;
+            }
+
+            .error-box {
+                margin: 24px;
+                padding: 16px;
+                border: 1px solid rgba(224, 122, 95, 0.3);
+                border-radius: 8px;
+                color: var(--live);
+                background: rgba(224, 122, 95, 0.06);
+                font-size: 0.88rem;
+                line-height: 1.55;
+            }
+
+            footer.site {
+                border-top: 1px solid var(--line-soft);
+                padding: 28px 20px 40px;
+                text-align: center;
+                color: var(--dim);
+                font-size: 0.8rem;
+            }
+
+            footer.site a {
+                color: var(--muted);
+            }
+
+            /* Mobile */
+            @media (max-width: 900px) {
+                .browser.mode-browse,
+                .browser.mode-code {
+                    grid-template-columns: 1fr;
+                    height: auto;
+                    min-height: calc(100vh - var(--header-h));
+                }
+
+                .browser .pane {
+                    border-right: none;
+                    border-bottom: 1px solid var(--line-soft);
+                    max-height: none;
+                }
+
+                .browser .pane-list {
+                    display: none;
+                }
+                .browser.show-list .pane-list {
+                    display: flex;
+                }
+                .browser.show-list .pane-detail,
+                .browser.show-list .pane-tree,
+                .browser.show-list .pane-code {
+                    display: none;
+                }
+
+                .header-meta .hide-sm {
+                    display: none;
+                }
+
+                .home {
+                    padding-top: 28px;
+                }
+            }
+
+            @media (max-width: 520px) {
+                header.top {
+                    padding: 0 12px;
+                    gap: 10px;
+                }
+                .brand span {
+                    display: none;
+                }
+                .search-wrap {
+                    max-width: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <header class="top">
+                <a class="brand" href="/projects/" id="brandLink">
+                    <h1>Side Projects</h1>
+                    <span>Rohan Desai</span>
+                </a>
+                <div class="search-wrap">
+                    <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="M20 20l-3.5-3.5" />
+                    </svg>
+                    <input
+                        id="search"
+                        type="search"
+                        placeholder="Search projects…"
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                </div>
+                <div class="header-meta">
+                    <a
+                        class="hide-sm"
+                        href="https://www.linkedin.com/in/rohandesai01/"
+                        target="_blank"
+                        rel="noopener"
+                        >LinkedIn</a
+                    >
+                    <a
+                        class="hide-sm"
+                        href="https://github.com/OneRohanDesai/Side-Projects"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub</a
+                    >
+                    <a class="hide-sm" href="mailto:pro.rohandesai@gmail.com"
+                        >Contact</a
+                    >
+                </div>
+            </header>
+
+            <main>
+                <section class="home" id="homeView">
+                    <div class="hero">
+                        <h2>Things I built.</h2>
+                        <p id="heroNote">
+                            A quiet directory of side projects. Open anything,
+                            read the files, skip the commit history. Private
+                            work is listed; ask if you want access.
+                        </p>
+                    </div>
+
+                    <div class="filters" id="filters"></div>
+                    <div id="homeContent" class="loading">
+                        Loading projects…
+                    </div>
+                </section>
+
+                <section class="browser" id="browserView">
+                    <div class="pane pane-list" id="paneList">
+                        <div class="pane-head">
+                            <button
+                                class="back-btn"
+                                id="backHome"
+                                type="button"
+                            >
+                                All
+                            </button>
+                            <span class="label">Projects</span>
+                        </div>
+                        <div class="pane-body proj-list" id="projList"></div>
+                    </div>
+
+                    <div class="pane pane-detail" id="paneDetail">
+                        <div class="pane-head">
+                            <span class="label">About</span>
+                            <span class="title" id="detailTitle">···</span>
+                        </div>
+                        <div class="pane-body" id="detailBody"></div>
+                    </div>
+
+                    <div
+                        class="pane pane-tree"
+                        id="paneTree"
+                        style="display: none"
+                    >
+                        <div class="pane-head">
+                            <button
+                                class="back-btn"
+                                id="backDetail"
+                                type="button"
+                                style="display: none"
+                            >
+                                About
+                            </button>
+                            <span class="label">Files</span>
+                            <span class="title" id="treeTitle"></span>
+                        </div>
+                        <div class="pane-body" id="treeBody"></div>
+                    </div>
+
+                    <div
+                        class="pane pane-code code-pane"
+                        id="paneCode"
+                        style="display: none"
+                    >
+                        <div class="pane-head">
+                            <button
+                                class="back-btn"
+                                id="backTree"
+                                type="button"
+                                style="display: none"
+                            >
+                                Files
+                            </button>
+                            <span class="path-crumb" id="pathCrumb"
+                                >Select a file</span
+                            >
+                            <div class="code-actions">
+                                <button
+                                    class="ghost-btn"
+                                    id="copyBtn"
+                                    type="button"
+                                    style="display: none"
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-empty" id="codeEmpty">
+                            <strong>Pick a file</strong>
+                            <span
+                                >Readable sources open here. Binaries stay as
+                                names only.</span
+                            >
+                        </div>
+                        <div class="code-wrap" id="codeWrap">
+                            <pre class="code" id="codePre"></pre>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site" id="siteFooter">
+                <p>
+                    <a
+                        href="https://rohandesai.in/"
+                        target="_blank"
+                        rel="noopener"
+                        >rohandesai.in</a
+                    >
+                    ·
+                    <a href="mailto:pro.rohandesai@gmail.com"
+                        >pro.rohandesai@gmail.com</a
+                    >
+                    · © <span id="year"></span> Rohan Desai
+                </p>
+            </footer>
         </div>
 
-        <div class="filters" id="filters"></div>
-        <div id="homeContent" class="loading">Loading projects…</div>
-      </section>
+        <div class="toast" id="toast"></div>
 
-      <section class="browser" id="browserView">
-        <div class="pane pane-list" id="paneList">
-          <div class="pane-head">
-            <button class="back-btn" id="backHome" type="button">All</button>
-            <span class="label">Projects</span>
-          </div>
-          <div class="pane-body proj-list" id="projList"></div>
-        </div>
+        <script>
+            (function () {
+                "use strict";
 
-        <div class="pane pane-detail" id="paneDetail">
-          <div class="pane-head">
-            <span class="label">About</span>
-            <span class="title" id="detailTitle">···</span>
-          </div>
-          <div class="pane-body" id="detailBody"></div>
-        </div>
+                const $ = (id) => document.getElementById(id);
+                const state = {
+                    data: null,
+                    filter: "all",
+                    query: "",
+                    projectId: null,
+                    filePath: null,
+                    codeCache: new Map(),
+                    /** @type {Set<string>} open folder paths per project (keyed as projectId::path) */
+                    treeOpen: new Set(),
+                };
 
-        <div class="pane pane-tree" id="paneTree" style="display:none">
-          <div class="pane-head">
-            <button class="back-btn" id="backDetail" type="button" style="display:none">About</button>
-            <span class="label">Files</span>
-            <span class="title" id="treeTitle"></span>
-          </div>
-          <div class="pane-body" id="treeBody"></div>
-        </div>
+                const FILTERS = [
+                    { id: "all", label: "All" },
+                    { id: "private", label: "Private" },
+                    { id: "public", label: "Public" },
+                ];
 
-        <div class="pane pane-code code-pane" id="paneCode" style="display:none">
-          <div class="pane-head">
-            <button class="back-btn" id="backTree" type="button" style="display:none">Files</button>
-            <span class="path-crumb" id="pathCrumb">Select a file</span>
-            <div class="code-actions">
-              <button class="ghost-btn" id="copyBtn" type="button" style="display:none">Copy</button>
-            </div>
-          </div>
-          <div class="code-empty" id="codeEmpty">
-            <strong>Pick a file</strong>
-            <span>Readable sources open here. Binaries stay as names only.</span>
-          </div>
-          <div class="code-wrap" id="codeWrap">
-            <pre class="code" id="codePre"></pre>
-          </div>
-        </div>
-      </section>
-    </main>
+                const STATUS_CLASS = {
+                    live: "live",
+                    "live-soon": "live",
+                    active: "active",
+                    public: "active",
+                    completed: "",
+                    archived: "",
+                    playground: "playground",
+                    private: "private",
+                    postponed: "private",
+                };
 
-    <footer class="site" id="siteFooter">
-      <p>
-        <a href="https://rohandesai.in/" target="_blank" rel="noopener">rohandesai.in</a>
-        ·
-        <a href="mailto:pro.rohandesai@gmail.com">pro.rohandesai@gmail.com</a>
-        · © <span id="year"></span> Rohan Desai
-      </p>
-    </footer>
-  </div>
+                const STATUS_LABEL = {
+                    live: "Live",
+                    "live-soon": "Live soon",
+                    active: "Active",
+                    public: "Public",
+                    completed: "Done",
+                    archived: "Archived",
+                    playground: "Playground",
+                    private: "Private",
+                    postponed: "Postponed",
+                };
 
-  <div class="toast" id="toast"></div>
+                function toast(msg) {
+                    const el = $("toast");
+                    el.textContent = msg;
+                    el.classList.add("show");
+                    clearTimeout(toast._t);
+                    toast._t = setTimeout(
+                        () => el.classList.remove("show"),
+                        1800,
+                    );
+                }
 
-  <script>
-  (function () {
-    "use strict";
+                function formatSize(n) {
+                    if (n < 1024) return n + " B";
+                    if (n < 1024 * 1024)
+                        return (
+                            (n / 1024).toFixed(n < 10 * 1024 ? 1 : 0) + " KB"
+                        );
+                    return (n / (1024 * 1024)).toFixed(1) + " MB";
+                }
 
-    const $ = (id) => document.getElementById(id);
-    const state = {
-      data: null,
-      filter: "all",
-      query: "",
-      projectId: null,
-      filePath: null,
-      codeCache: new Map(),
-      /** @type {Set<string>} open folder paths per project (keyed as projectId::path) */
-      treeOpen: new Set(),
-    };
+                function statusBadge(status) {
+                    const cls = STATUS_CLASS[status] || "";
+                    const label = STATUS_LABEL[status] || status;
+                    return `<span class="status ${cls}"><span class="dot"></span>${escapeHtml(label)}</span>`;
+                }
 
-    const FILTERS = [
-      { id: "all", label: "All" },
-      { id: "private", label: "Private" },
-      { id: "public", label: "Public" },
-    ];
+                function escapeHtml(s) {
+                    return String(s)
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;");
+                }
 
-    const STATUS_CLASS = {
-      live: "live",
-      "live-soon": "live",
-      active: "active",
-      public: "active",
-      completed: "",
-      archived: "",
-      playground: "playground",
-      private: "private",
-      postponed: "private",
-    };
+                function matchesFilter(item, filter) {
+                    if (filter === "all") return true;
+                    return item.visibility === filter;
+                }
 
-    const STATUS_LABEL = {
-      live: "Live",
-      "live-soon": "Live soon",
-      active: "Active",
-      public: "Public",
-      completed: "Done",
-      archived: "Archived",
-      playground: "Playground",
-      private: "Private",
-      postponed: "Postponed",
-    };
+                function matchesQuery(item, q) {
+                    if (!q) return true;
+                    const hay = [
+                        item.name,
+                        item.blurb,
+                        ...(item.tags || []),
+                        item.status,
+                        item.visibility,
+                    ]
+                        .join(" ")
+                        .toLowerCase();
+                    return hay.includes(q);
+                }
 
-    function toast(msg) {
-      const el = $("toast");
-      el.textContent = msg;
-      el.classList.add("show");
-      clearTimeout(toast._t);
-      toast._t = setTimeout(() => el.classList.remove("show"), 1800);
-    }
+                /** Importance order: private → public (each pre-sorted in JSON) */
+                function allItems() {
+                    if (!state.data) return [];
+                    const priv = (state.data.private || []).map((p) => ({
+                        ...p,
+                        _kind: "private",
+                    }));
+                    const pub = (
+                        state.data.public ||
+                        state.data.projects ||
+                        []
+                    ).map((p) => ({
+                        ...p,
+                        _kind: "public",
+                        visibility: p.visibility || "public",
+                    }));
+                    return [...priv, ...pub];
+                }
 
-    function formatSize(n) {
-      if (n < 1024) return n + " B";
-      if (n < 1024 * 1024) return (n / 1024).toFixed(n < 10 * 1024 ? 1 : 0) + " KB";
-      return (n / (1024 * 1024)).toFixed(1) + " MB";
-    }
+                function findProject(id) {
+                    const list = state.data.public || state.data.projects || [];
+                    return list.find((p) => p.id === id);
+                }
 
-    function statusBadge(status) {
-      const cls = STATUS_CLASS[status] || "";
-      const label = STATUS_LABEL[status] || status;
-      return `<span class="status ${cls}"><span class="dot"></span>${escapeHtml(label)}</span>`;
-    }
+                function findPrivate(id) {
+                    return (state.data.private || []).find((p) => p.id === id);
+                }
 
-    function escapeHtml(s) {
-      return String(s)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function matchesFilter(item, filter) {
-      if (filter === "all") return true;
-      return item.visibility === filter;
-    }
-
-    function matchesQuery(item, q) {
-      if (!q) return true;
-      const hay = [
-        item.name,
-        item.blurb,
-        ...(item.tags || []),
-        item.status,
-        item.visibility,
-      ].join(" ").toLowerCase();
-      return hay.includes(q);
-    }
-
-    /** Importance order: private → public (each pre-sorted in JSON) */
-    function allItems() {
-      if (!state.data) return [];
-      const priv = (state.data.private || []).map((p) => ({ ...p, _kind: "private" }));
-      const pub = (state.data.public || state.data.projects || []).map((p) => ({
-        ...p,
-        _kind: "public",
-        visibility: p.visibility || "public",
-      }));
-      return [...priv, ...pub];
-    }
-
-    function findProject(id) {
-      const list = state.data.public || state.data.projects || [];
-      return list.find((p) => p.id === id);
-    }
-
-    function findPrivate(id) {
-      return (state.data.private || []).find((p) => p.id === id);
-    }
-
-    /* ── Routing (path-based under /projects) ──
+                /* ── Routing (path-based under /projects) ──
        /projects/              → list
        /projects/:id           → project
        /projects/:id/f/:path…  → file in project
     */
-    const BASE = "/projects";
+                const BASE = "/projects";
 
-    function parseRoute() {
-      let path = location.pathname || "/";
-      // strip trailing slash except root
-      if (path.length > 1 && path.endsWith("/")) path = path.slice(0, -1);
+                function parseRoute() {
+                    let path = location.pathname || "/";
+                    // strip trailing slash except root
+                    if (path.length > 1 && path.endsWith("/"))
+                        path = path.slice(0, -1);
 
-      if (path === BASE || path === "" || path === "/") {
-        return { view: "home" };
-      }
+                    if (path === BASE || path === "" || path === "/") {
+                        return { view: "home" };
+                    }
 
-      if (!path.startsWith(BASE + "/")) {
-        return { view: "home" };
-      }
+                    if (!path.startsWith(BASE + "/")) {
+                        return { view: "home" };
+                    }
 
-      const rest = path.slice(BASE.length + 1); // after /projects/
-      const parts = rest.split("/").filter(Boolean).map(decodeURIComponent);
-      if (!parts.length) return { view: "home" };
+                    const rest = path.slice(BASE.length + 1); // after /projects/
+                    const parts = rest
+                        .split("/")
+                        .filter(Boolean)
+                        .map(decodeURIComponent);
+                    if (!parts.length) return { view: "home" };
 
-      const id = parts[0];
-      let file = null;
-      if (parts[1] === "f" && parts.length > 2) {
-        file = parts.slice(2).join("/");
-      }
-      return { view: "project", id, file };
-    }
+                    const id = parts[0];
+                    let file = null;
+                    if (parts[1] === "f" && parts.length > 2) {
+                        file = parts.slice(2).join("/");
+                    }
+                    return { view: "project", id, file };
+                }
 
-    function goHome() {
-      history.pushState(null, "", BASE + "/");
-      render();
-    }
+                function goHome() {
+                    history.pushState(null, "", BASE + "/");
+                    render();
+                }
 
-    function goProject(id, file) {
-      let url = BASE + "/" + encodeURIComponent(id);
-      if (file) {
-        url += "/f/" + file.split("/").map(encodeURIComponent).join("/");
-      }
-      history.pushState(null, "", url);
-      render();
-    }
+                function goProject(id, file) {
+                    let url = BASE + "/" + encodeURIComponent(id);
+                    if (file) {
+                        url +=
+                            "/f/" +
+                            file.split("/").map(encodeURIComponent).join("/");
+                    }
+                    history.pushState(null, "", url);
+                    render();
+                }
 
-    function render() {
-      const route = parseRoute();
-      if (route.view === "home") {
-        showHome();
-      } else {
-        showBrowser(route.id, route.file);
-      }
-    }
+                function render() {
+                    const route = parseRoute();
+                    if (route.view === "home") {
+                        showHome();
+                    } else {
+                        showBrowser(route.id, route.file);
+                    }
+                }
 
-    /* ── Home ── */
-    function renderFilters() {
-      $("filters").innerHTML = FILTERS.map((f) =>
-        `<button type="button" class="chip ${state.filter === f.id ? "active" : ""}" data-filter="${f.id}">${f.label}</button>`
-      ).join("");
-    }
+                /* ── Home ── */
+                function renderFilters() {
+                    $("filters").innerHTML = FILTERS.map(
+                        (f) =>
+                            `<button type="button" class="chip ${state.filter === f.id ? "active" : ""}" data-filter="${f.id}">${f.label}</button>`,
+                    ).join("");
+                }
 
-    function showHome() {
-      $("homeView").style.display = "";
-      $("browserView").classList.remove("open");
-      $("siteFooter").style.display = "";
-      renderFilters();
+                function showHome() {
+                    $("homeView").style.display = "";
+                    $("browserView").classList.remove("open");
+                    $("siteFooter").style.display = "";
+                    renderFilters();
 
-      const q = state.query.trim().toLowerCase();
-      const items = allItems().filter(
-        (i) => matchesFilter(i, state.filter) && matchesQuery(i, q)
-      );
+                    const q = state.query.trim().toLowerCase();
+                    const items = allItems().filter(
+                        (i) =>
+                            matchesFilter(i, state.filter) &&
+                            matchesQuery(i, q),
+                    );
 
-      // Preserve catalog order (private → public)
-      const privateItems = items.filter((i) => i.visibility === "private");
-      const publicItems = items.filter((i) => i.visibility === "public");
+                    // Preserve catalog order (private → public)
+                    const privateItems = items.filter(
+                        (i) => i.visibility === "private",
+                    );
+                    const publicItems = items.filter(
+                        (i) => i.visibility === "public",
+                    );
 
-      let html = "";
-      let n = 0;
+                    let html = "";
+                    let n = 0;
 
-      if (!items.length) {
-        html = `<p class="loading">No projects match.</p>`;
-      } else {
-        if (privateItems.length) {
-          html += `<div class="section-label">Private, code on request</div><div class="ledger">`;
-          html += privateItems.map((item) => ledgerRowHtml(item, n++)).join("");
-          html += `</div>`;
-        }
-        if (publicItems.length) {
-          html += `<div class="section-label">Public, free to clone &amp; use</div><div class="ledger">`;
-          html += publicItems.map((item) => ledgerRowHtml(item, n++)).join("");
-          html += `</div>`;
-        }
-      }
+                    if (!items.length) {
+                        html = `<p class="loading">No projects match.</p>`;
+                    } else {
+                        if (privateItems.length) {
+                            html += `<div class="section-label">Private, code on request</div><div class="ledger">`;
+                            html += privateItems
+                                .map((item) => ledgerRowHtml(item, n++))
+                                .join("");
+                            html += `</div>`;
+                        }
+                        if (publicItems.length) {
+                            html += `<div class="section-label">Public, free to clone &amp; use</div><div class="ledger">`;
+                            html += publicItems
+                                .map((item) => ledgerRowHtml(item, n++))
+                                .join("");
+                            html += `</div>`;
+                        }
+                    }
 
-      $("homeContent").innerHTML = html;
-    }
+                    $("homeContent").innerHTML = html;
+                }
 
-    function ledgerRowHtml(item, index) {
-      const isPrivate = item.visibility === "private";
-      const isPublic = item.visibility === "public" || item.browsable;
-      const tags = (item.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-      const files = isPublic && item.fileCount != null
-        ? `<span class="file-count">${item.fileCount} files</span>`
-        : "";
-      const action = isPrivate
-        ? `<span class="card-action">Email for source</span>`
-        : `<span class="card-action" style="color:var(--ok)">Browse</span>`;
-      const num = String(index + 1).padStart(2, "0");
-      const rowClass = [
-        "ledger-row",
-        isPrivate ? "private-card" : "",
-      ].filter(Boolean).join(" ");
+                function ledgerRowHtml(item, index) {
+                    const isPrivate = item.visibility === "private";
+                    const isPublic =
+                        item.visibility === "public" || item.browsable;
+                    const tags = (item.tags || [])
+                        .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
+                        .join("");
+                    const files =
+                        isPublic && item.fileCount != null
+                            ? `<span class="file-count">${item.fileCount} files</span>`
+                            : "";
+                    const action = isPrivate
+                        ? `<span class="card-action">Email for source</span>`
+                        : `<span class="card-action" style="color:var(--ok)">Browse</span>`;
+                    const num = String(index + 1).padStart(2, "0");
+                    const rowClass = [
+                        "ledger-row",
+                        isPrivate ? "private-card" : "",
+                    ]
+                        .filter(Boolean)
+                        .join(" ");
 
-      return `
+                    return `
         <button type="button" class="${rowClass}" data-open="${escapeHtml(item.id)}" data-visibility="${escapeHtml(item.visibility)}">
           <span class="ledger-idx">${num}</span>
           <div class="ledger-main">
@@ -1231,106 +1471,118 @@
             ${action}
           </div>
         </button>`;
-    }
+                }
 
-    /* ── Browser ── */
-    function renderSidebar(activeId) {
-      const q = state.query.trim().toLowerCase();
-      // allItems is private then public in catalog order
-      const list = allItems().filter((p) => matchesQuery(p, q));
-      $("projList").innerHTML = list.map((p) => {
-        const isPriv = p.visibility === "private";
-        const active = p.id === activeId ? "active" : "";
-        const privClass = isPriv ? "is-private" : "";
-        const pill = isPriv ? `<span class="pill">Private</span>` : "";
-        const sub = isPriv ? "Source on request" : p.blurb;
-        return `
+                /* ── Browser ── */
+                function renderSidebar(activeId) {
+                    const q = state.query.trim().toLowerCase();
+                    // allItems is private then public in catalog order
+                    const list = allItems().filter((p) => matchesQuery(p, q));
+                    $("projList").innerHTML = list
+                        .map((p) => {
+                            const isPriv = p.visibility === "private";
+                            const active = p.id === activeId ? "active" : "";
+                            const privClass = isPriv ? "is-private" : "";
+                            const pill = isPriv
+                                ? `<span class="pill">Private</span>`
+                                : "";
+                            const sub = isPriv ? "Source on request" : p.blurb;
+                            return `
           <button type="button" class="proj-item ${active} ${privClass}" data-open="${escapeHtml(p.id)}" data-visibility="${escapeHtml(p.visibility)}">
             <span class="n">${escapeHtml(p.name)}${pill}</span>
             <span class="b">${escapeHtml(sub)}</span>
           </button>`;
-      }).join("");
-    }
+                        })
+                        .join("");
+                }
 
-    function showBrowser(id, filePath) {
-      const project = findProject(id);
-      const privateItem = findPrivate(id);
+                function showBrowser(id, filePath) {
+                    const project = findProject(id);
+                    const privateItem = findPrivate(id);
 
-      $("homeView").style.display = "none";
-      $("siteFooter").style.display = "none";
+                    $("homeView").style.display = "none";
+                    $("siteFooter").style.display = "none";
 
-      const browser = $("browserView");
-      browser.classList.add("open");
+                    const browser = $("browserView");
+                    browser.classList.add("open");
 
-      // Sidebar: all projects (private first, then public), same order as home
-      renderSidebar(id);
+                    // Sidebar: all projects (private first, then public), same order as home
+                    renderSidebar(id);
 
-      if (privateItem && !project) {
-        state.projectId = id;
-        state.filePath = null;
-        browser.classList.remove("mode-code");
-        browser.classList.add("mode-browse");
-        $("paneList").style.display = "";
-        $("paneDetail").style.display = "";
-        $("paneTree").style.display = "none";
-        $("paneCode").style.display = "none";
-        $("detailTitle").textContent = privateItem.name;
-        $("detailBody").innerHTML = privateDetailHtml(privateItem);
-        return;
-      }
+                    if (privateItem && !project) {
+                        state.projectId = id;
+                        state.filePath = null;
+                        browser.classList.remove("mode-code");
+                        browser.classList.add("mode-browse");
+                        $("paneList").style.display = "";
+                        $("paneDetail").style.display = "";
+                        $("paneTree").style.display = "none";
+                        $("paneCode").style.display = "none";
+                        $("detailTitle").textContent = privateItem.name;
+                        $("detailBody").innerHTML =
+                            privateDetailHtml(privateItem);
+                        return;
+                    }
 
-      if (!project) {
-        $("detailBody").innerHTML = `<div class="error-box">Project not found.</div>`;
-        return;
-      }
+                    if (!project) {
+                        $("detailBody").innerHTML =
+                            `<div class="error-box">Project not found.</div>`;
+                        return;
+                    }
 
-      state.projectId = id;
-      state.filePath = filePath || null;
+                    state.projectId = id;
+                    state.filePath = filePath || null;
 
-      $("detailTitle").textContent = project.name;
-      $("detailBody").innerHTML = publicDetailHtml(project);
-      renderTree(project, filePath);
+                    $("detailTitle").textContent = project.name;
+                    $("detailBody").innerHTML = publicDetailHtml(project);
+                    renderTree(project, filePath);
 
-      if (filePath) {
-        enterCodeMode(project, filePath);
-      } else {
-        enterBrowseMode();
-      }
-    }
+                    if (filePath) {
+                        enterCodeMode(project, filePath);
+                    } else {
+                        enterBrowseMode();
+                    }
+                }
 
-    function enterBrowseMode() {
-      const browser = $("browserView");
-      browser.classList.add("mode-browse");
-      browser.classList.remove("mode-code");
-      $("paneList").style.display = "";
-      $("paneDetail").style.display = "";
-      $("paneTree").style.display = "";
-      $("paneCode").style.display = "none";
-      $("backTree").style.display = "none";
-    }
+                function enterBrowseMode() {
+                    const browser = $("browserView");
+                    browser.classList.add("mode-browse");
+                    browser.classList.remove("mode-code");
+                    $("paneList").style.display = "";
+                    $("paneDetail").style.display = "";
+                    $("paneTree").style.display = "";
+                    $("paneCode").style.display = "none";
+                    $("backTree").style.display = "none";
+                }
 
-    function enterCodeMode(project, filePath) {
-      const browser = $("browserView");
-      browser.classList.remove("mode-browse");
-      browser.classList.add("mode-code");
-      $("paneList").style.display = "";
-      $("paneDetail").style.display = "none";
-      $("paneTree").style.display = "";
-      $("paneCode").style.display = "";
-      $("backTree").style.display = "";
-      loadFile(project, filePath);
-    }
+                function enterCodeMode(project, filePath) {
+                    const browser = $("browserView");
+                    browser.classList.remove("mode-browse");
+                    browser.classList.add("mode-code");
+                    $("paneList").style.display = "";
+                    $("paneDetail").style.display = "none";
+                    $("paneTree").style.display = "";
+                    $("paneCode").style.display = "";
+                    $("backTree").style.display = "";
+                    loadFile(project, filePath);
+                }
 
-    function privateDetailHtml(item) {
-      const tags = (item.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-      const email = state.data.meta.email;
-      const links = [];
-      if (item.link) {
-        links.push(`<a class="link-pill" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Visit site ↗</a>`);
-      }
-      links.push(`<a class="link-pill" href="mailto:${escapeHtml(email)}?subject=Access%20request%3A%20${encodeURIComponent(item.name)}">Request access</a>`);
+                function privateDetailHtml(item) {
+                    const tags = (item.tags || [])
+                        .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
+                        .join("");
+                    const email = state.data.meta.email;
+                    const links = [];
+                    if (item.link) {
+                        links.push(
+                            `<a class="link-pill" href="${escapeHtml(item.link)}" target="_blank" rel="noopener">Visit site ↗</a>`,
+                        );
+                    }
+                    links.push(
+                        `<a class="link-pill" href="mailto:${escapeHtml(email)}?subject=Access%20request%3A%20${encodeURIComponent(item.name)}">Request access</a>`,
+                    );
 
-      return `
+                    return `
         <div class="detail">
           <h2>${escapeHtml(item.name)}</h2>
           <p class="blurb">${escapeHtml(item.blurb)}</p>
@@ -1342,20 +1594,28 @@
             and I'll share access when it makes sense.
           </p>
         </div>`;
-    }
+                }
 
-    function publicDetailHtml(project) {
-      const tags = (project.tags || []).map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
-      const links = [];
-      if (project.link) {
-        links.push(`<a class="link-pill" href="${escapeHtml(project.link)}" target="_blank" rel="noopener">Live site ↗</a>`);
-      }
-      if (project.repo) {
-        links.push(`<a class="link-pill" href="${escapeHtml(project.repo)}" target="_blank" rel="noopener">GitHub ↗</a>`);
-      }
-      links.push(`<button type="button" class="link-pill" id="browseFilesBtn">Browse files</button>`);
+                function publicDetailHtml(project) {
+                    const tags = (project.tags || [])
+                        .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
+                        .join("");
+                    const links = [];
+                    if (project.link) {
+                        links.push(
+                            `<a class="link-pill" href="${escapeHtml(project.link)}" target="_blank" rel="noopener">Live site ↗</a>`,
+                        );
+                    }
+                    if (project.repo) {
+                        links.push(
+                            `<a class="link-pill" href="${escapeHtml(project.repo)}" target="_blank" rel="noopener">GitHub ↗</a>`,
+                        );
+                    }
+                    links.push(
+                        `<button type="button" class="link-pill" id="browseFilesBtn">Browse files</button>`,
+                    );
 
-      return `
+                    return `
         <div class="detail">
           <h2>${escapeHtml(project.name)}</h2>
           <p class="blurb">${escapeHtml(project.blurb)}</p>
@@ -1363,392 +1623,471 @@
           <div class="detail-links">${links.join("")}</div>
           <p class="tree-hint">${project.fileCount} files · no history, just source</p>
         </div>`;
-    }
+                }
 
-    function treeKey(projectId, folderPath) {
-      return projectId + "::" + folderPath;
-    }
+                function treeKey(projectId, folderPath) {
+                    return projectId + "::" + folderPath;
+                }
 
-    function isFolderOpen(projectId, folderPath) {
-      return state.treeOpen.has(treeKey(projectId, folderPath));
-    }
+                function isFolderOpen(projectId, folderPath) {
+                    return state.treeOpen.has(treeKey(projectId, folderPath));
+                }
 
-    function setFolderOpen(projectId, folderPath, open) {
-      const k = treeKey(projectId, folderPath);
-      if (open) state.treeOpen.add(k);
-      else state.treeOpen.delete(k);
-    }
+                function setFolderOpen(projectId, folderPath, open) {
+                    const k = treeKey(projectId, folderPath);
+                    if (open) state.treeOpen.add(k);
+                    else state.treeOpen.delete(k);
+                }
 
-    /** Build nested { name, path, dirs: Map, files: [] } from flat file list */
-    function buildFileTree(files) {
-      const root = { name: "", path: "", dirs: new Map(), files: [] };
-      for (const f of files) {
-        const parts = f.path.split("/").filter(Boolean);
-        let node = root;
-        for (let i = 0; i < parts.length - 1; i++) {
-          const name = parts[i];
-          const path = parts.slice(0, i + 1).join("/");
-          if (!node.dirs.has(name)) {
-            node.dirs.set(name, { name, path, dirs: new Map(), files: [] });
-          }
-          node = node.dirs.get(name);
-        }
-        node.files.push(f);
-      }
-      return root;
-    }
+                /** Build nested { name, path, dirs: Map, files: [] } from flat file list */
+                function buildFileTree(files) {
+                    const root = {
+                        name: "",
+                        path: "",
+                        dirs: new Map(),
+                        files: [],
+                    };
+                    for (const f of files) {
+                        const parts = f.path.split("/").filter(Boolean);
+                        let node = root;
+                        for (let i = 0; i < parts.length - 1; i++) {
+                            const name = parts[i];
+                            const path = parts.slice(0, i + 1).join("/");
+                            if (!node.dirs.has(name)) {
+                                node.dirs.set(name, {
+                                    name,
+                                    path,
+                                    dirs: new Map(),
+                                    files: [],
+                                });
+                            }
+                            node = node.dirs.get(name);
+                        }
+                        node.files.push(f);
+                    }
+                    return root;
+                }
 
-    function countTree(node) {
-      let n = node.files.length;
-      for (const d of node.dirs.values()) n += countTree(d);
-      return n;
-    }
+                function countTree(node) {
+                    let n = node.files.length;
+                    for (const d of node.dirs.values()) n += countTree(d);
+                    return n;
+                }
 
-    /** Ensure folders leading to activePath are open */
-    function expandToFile(projectId, activePath) {
-      if (!activePath) return;
-      const parts = activePath.split("/").filter(Boolean);
-      let acc = "";
-      for (let i = 0; i < parts.length - 1; i++) {
-        acc = acc ? acc + "/" + parts[i] : parts[i];
-        setFolderOpen(projectId, acc, true);
-      }
-    }
+                /** Ensure folders leading to activePath are open */
+                function expandToFile(projectId, activePath) {
+                    if (!activePath) return;
+                    const parts = activePath.split("/").filter(Boolean);
+                    let acc = "";
+                    for (let i = 0; i < parts.length - 1; i++) {
+                        acc = acc ? acc + "/" + parts[i] : parts[i];
+                        setFolderOpen(projectId, acc, true);
+                    }
+                }
 
-    function renderTree(project, activePath) {
-      $("treeTitle").textContent = project.name;
-      const files = project.files || [];
-      const tree = buildFileTree(files);
+                function renderTree(project, activePath) {
+                    $("treeTitle").textContent = project.name;
+                    const files = project.files || [];
+                    const tree = buildFileTree(files);
 
-      // First visit: collapse all. When opening a file, expand its parents.
-      expandToFile(project.id, activePath);
+                    // First visit: collapse all. When opening a file, expand its parents.
+                    expandToFile(project.id, activePath);
 
-      const actions = `
+                    const actions = `
         <div class="tree-actions">
           <button type="button" class="ghost-btn" data-tree-expand="1">Expand all</button>
           <button type="button" class="ghost-btn" data-tree-collapse="1">Collapse all</button>
         </div>`;
 
-      $("treeBody").innerHTML = actions + `<div class="tree" id="fileTreeRoot">${renderTreeNode(project.id, tree, activePath, true)}</div>`;
-    }
+                    $("treeBody").innerHTML =
+                        actions +
+                        `<div class="tree" id="fileTreeRoot">${renderTreeNode(project.id, tree, activePath, true)}</div>`;
+                }
 
-    function sortedDirNames(dirs) {
-      return Array.from(dirs.keys()).sort((a, b) => a.localeCompare(b));
-    }
+                function sortedDirNames(dirs) {
+                    return Array.from(dirs.keys()).sort((a, b) =>
+                        a.localeCompare(b),
+                    );
+                }
 
-    function sortedFiles(files) {
-      return files.slice().sort((a, b) => {
-        const an = a.path.split("/").pop();
-        const bn = b.path.split("/").pop();
-        return an.localeCompare(bn);
-      });
-    }
+                function sortedFiles(files) {
+                    return files.slice().sort((a, b) => {
+                        const an = a.path.split("/").pop();
+                        const bn = b.path.split("/").pop();
+                        return an.localeCompare(bn);
+                    });
+                }
 
-    function renderTreeNode(projectId, node, activePath, isRoot) {
-      let html = "";
+                function renderTreeNode(projectId, node, activePath, isRoot) {
+                    let html = "";
 
-      // folders first
-      for (const name of sortedDirNames(node.dirs)) {
-        const dir = node.dirs.get(name);
-        const open = isFolderOpen(projectId, dir.path);
-        const cnt = countTree(dir);
-        html += `<div class="tree-node" data-folder-wrap="${escapeHtml(dir.path)}">`;
-        html += `<button type="button" class="tree-item dir ${open ? "open" : ""}" data-folder="${escapeHtml(dir.path)}" aria-expanded="${open}">
+                    // folders first
+                    for (const name of sortedDirNames(node.dirs)) {
+                        const dir = node.dirs.get(name);
+                        const open = isFolderOpen(projectId, dir.path);
+                        const cnt = countTree(dir);
+                        html += `<div class="tree-node" data-folder-wrap="${escapeHtml(dir.path)}">`;
+                        html += `<button type="button" class="tree-item dir ${open ? "open" : ""}" data-folder="${escapeHtml(dir.path)}" aria-expanded="${open}">
           <span class="chev">▸</span>
           <span class="name">${escapeHtml(dir.name)}</span>
           <span class="cnt">${cnt}</span>
         </button>`;
-        html += `<div class="tree-children ${open ? "open" : ""}" data-folder-children="${escapeHtml(dir.path)}">`;
-        html += renderTreeNode(projectId, dir, activePath, false);
-        html += `</div></div>`;
-      }
+                        html += `<div class="tree-children ${open ? "open" : ""}" data-folder-children="${escapeHtml(dir.path)}">`;
+                        html += renderTreeNode(
+                            projectId,
+                            dir,
+                            activePath,
+                            false,
+                        );
+                        html += `</div></div>`;
+                    }
 
-      // files in this folder
-      for (const f of sortedFiles(node.files)) {
-        const name = f.path.split("/").pop();
-        const active = activePath === f.path ? "active" : "";
-        const icon = f.binary || !f.viewable ? "○" : "·";
+                    // files in this folder
+                    for (const f of sortedFiles(node.files)) {
+                        const name = f.path.split("/").pop();
+                        const active = activePath === f.path ? "active" : "";
+                        const icon = f.binary || !f.viewable ? "○" : "·";
 
-        if (f.viewable) {
-          html += `<button type="button" class="tree-item ${active}" data-file="${escapeHtml(f.path)}">
+                        if (f.viewable) {
+                            html += `<button type="button" class="tree-item ${active}" data-file="${escapeHtml(f.path)}">
             <span class="ico">${icon}</span>
             <span class="name">${escapeHtml(name)}</span>
             <span class="sz">${formatSize(f.size)}</span>
           </button>`;
-        } else {
-          html += `<div class="tree-item disabled" title="Binary or too large to preview">
+                        } else {
+                            html += `<div class="tree-item disabled" title="Binary or too large to preview">
             <span class="ico">${icon}</span>
             <span class="name">${escapeHtml(name)}</span>
             <span class="sz">${formatSize(f.size)}</span>
           </div>`;
-        }
-      }
+                        }
+                    }
 
-      return html;
-    }
+                    return html;
+                }
 
-    function collectAllFolders(node, out) {
-      for (const dir of node.dirs.values()) {
-        out.push(dir.path);
-        collectAllFolders(dir, out);
-      }
-    }
+                function collectAllFolders(node, out) {
+                    for (const dir of node.dirs.values()) {
+                        out.push(dir.path);
+                        collectAllFolders(dir, out);
+                    }
+                }
 
-    function expandAllFolders(project) {
-      const tree = buildFileTree(project.files || []);
-      const paths = [];
-      collectAllFolders(tree, paths);
-      for (const p of paths) setFolderOpen(project.id, p, true);
-      renderTree(project, state.filePath);
-    }
+                function expandAllFolders(project) {
+                    const tree = buildFileTree(project.files || []);
+                    const paths = [];
+                    collectAllFolders(tree, paths);
+                    for (const p of paths) setFolderOpen(project.id, p, true);
+                    renderTree(project, state.filePath);
+                }
 
-    function collapseAllFolders(project) {
-      const tree = buildFileTree(project.files || []);
-      const paths = [];
-      collectAllFolders(tree, paths);
-      for (const p of paths) setFolderOpen(project.id, p, false);
-      // keep path to open file expanded if viewing one
-      expandToFile(project.id, state.filePath);
-      renderTree(project, state.filePath);
-    }
+                function collapseAllFolders(project) {
+                    const tree = buildFileTree(project.files || []);
+                    const paths = [];
+                    collectAllFolders(tree, paths);
+                    for (const p of paths) setFolderOpen(project.id, p, false);
+                    // keep path to open file expanded if viewing one
+                    expandToFile(project.id, state.filePath);
+                    renderTree(project, state.filePath);
+                }
 
-    function toggleFolder(projectId, folderPath) {
-      const open = !isFolderOpen(projectId, folderPath);
-      setFolderOpen(projectId, folderPath, open);
+                function toggleFolder(projectId, folderPath) {
+                    const open = !isFolderOpen(projectId, folderPath);
+                    setFolderOpen(projectId, folderPath, open);
 
-      const btnEl = findByDataAttr("data-folder", folderPath);
-      const kidsEl = findByDataAttr("data-folder-children", folderPath);
+                    const btnEl = findByDataAttr("data-folder", folderPath);
+                    const kidsEl = findByDataAttr(
+                        "data-folder-children",
+                        folderPath,
+                    );
 
-      if (btnEl) {
-        btnEl.classList.toggle("open", open);
-        btnEl.setAttribute("aria-expanded", open ? "true" : "false");
-      }
-      if (kidsEl) kidsEl.classList.toggle("open", open);
-    }
+                    if (btnEl) {
+                        btnEl.classList.toggle("open", open);
+                        btnEl.setAttribute(
+                            "aria-expanded",
+                            open ? "true" : "false",
+                        );
+                    }
+                    if (kidsEl) kidsEl.classList.toggle("open", open);
+                }
 
-    function findByDataAttr(attr, value) {
-      const all = document.querySelectorAll("[" + attr + "]");
-      for (const el of all) {
-        if (el.getAttribute(attr) === value) return el;
-      }
-      return null;
-    }
+                function findByDataAttr(attr, value) {
+                    const all = document.querySelectorAll("[" + attr + "]");
+                    for (const el of all) {
+                        if (el.getAttribute(attr) === value) return el;
+                    }
+                    return null;
+                }
 
-    async function loadFile(project, filePath) {
-      $("pathCrumb").textContent = filePath;
-      $("copyBtn").style.display = "none";
-      $("codeEmpty").style.display = "none";
-      $("codeWrap").classList.remove("show");
+                async function loadFile(project, filePath) {
+                    $("pathCrumb").textContent = filePath;
+                    $("copyBtn").style.display = "none";
+                    $("codeEmpty").style.display = "none";
+                    $("codeWrap").classList.remove("show");
 
-      const meta = (project.files || []).find((f) => f.path === filePath);
-      if (!meta || !meta.viewable) {
-        $("codeEmpty").style.display = "flex";
-        $("codeEmpty").innerHTML = `<strong>Can't preview</strong><span>Binary or oversized file.</span>`;
-        return;
-      }
+                    const meta = (project.files || []).find(
+                        (f) => f.path === filePath,
+                    );
+                    if (!meta || !meta.viewable) {
+                        $("codeEmpty").style.display = "flex";
+                        $("codeEmpty").innerHTML =
+                            `<strong>Can't preview</strong><span>Binary or oversized file.</span>`;
+                        return;
+                    }
 
-      // Files live under /projects/<folder>/...
-      const url = `${BASE}/${project.root.split("/").map(encodeURIComponent).join("/")}/${filePath.split("/").map(encodeURIComponent).join("/")}`;
-      const cacheKey = url;
+                    // Files live under /projects/<folder>/...
+                    const url = `${BASE}/${project.root.split("/").map(encodeURIComponent).join("/")}/${filePath.split("/").map(encodeURIComponent).join("/")}`;
+                    const cacheKey = url;
 
-      try {
-        let text;
-        if (state.codeCache.has(cacheKey)) {
-          text = state.codeCache.get(cacheKey);
-        } else {
-          $("codeEmpty").style.display = "flex";
-          $("codeEmpty").innerHTML = `<strong>Loading…</strong><span>${escapeHtml(filePath)}</span>`;
-          const res = await fetch(url);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          text = await res.text();
-          state.codeCache.set(cacheKey, text);
-        }
+                    try {
+                        let text;
+                        if (state.codeCache.has(cacheKey)) {
+                            text = state.codeCache.get(cacheKey);
+                        } else {
+                            $("codeEmpty").style.display = "flex";
+                            $("codeEmpty").innerHTML =
+                                `<strong>Loading…</strong><span>${escapeHtml(filePath)}</span>`;
+                            const res = await fetch(url);
+                            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                            text = await res.text();
+                            state.codeCache.set(cacheKey, text);
+                        }
 
-        renderCode(text, filePath);
-        $("codeEmpty").style.display = "none";
-        $("codeWrap").classList.add("show");
-        $("copyBtn").style.display = "";
-        $("copyBtn").onclick = async () => {
-          try {
-            await navigator.clipboard.writeText(text);
-            toast("Copied");
-          } catch {
-            toast("Copy failed");
-          }
-        };
-      } catch (err) {
-        $("codeEmpty").style.display = "flex";
-        $("codeEmpty").innerHTML = `
+                        renderCode(text, filePath);
+                        $("codeEmpty").style.display = "none";
+                        $("codeWrap").classList.add("show");
+                        $("copyBtn").style.display = "";
+                        $("copyBtn").onclick = async () => {
+                            try {
+                                await navigator.clipboard.writeText(text);
+                                toast("Copied");
+                            } catch {
+                                toast("Copy failed");
+                            }
+                        };
+                    } catch (err) {
+                        $("codeEmpty").style.display = "flex";
+                        $("codeEmpty").innerHTML = `
           <strong>Could not load file</strong>
           <span>${escapeHtml(String(err.message || err))}</span>
           <span style="margin-top:8px;max-width:320px">
             Serve this folder over HTTP (GitHub Pages or <code style="font-family:var(--mono)">python3 -m http.server</code>).
             <code style="font-family:var(--mono)">file://</code> blocks fetches.
           </span>`;
-      }
-    }
+                    }
+                }
 
-    function renderCode(text, filePath) {
-      const ext = (filePath.split(".").pop() || "").toLowerCase();
-      const lines = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
-      // Cap extremely long files for DOM safety
-      const max = 4000;
-      const slice = lines.slice(0, max);
-      const html = slice.map((line, i) => {
-        return `<div class="code-line"><span class="ln">${i + 1}</span><span class="lc">${highlightLine(line, ext)}</span></div>`;
-      }).join("");
-      const more = lines.length > max
-        ? `<div class="code-line"><span class="ln">…</span><span class="lc t-c">// truncated, ${lines.length - max} more lines</span></div>`
-        : "";
-      $("codePre").innerHTML = html + more;
-    }
+                function renderCode(text, filePath) {
+                    const ext = (filePath.split(".").pop() || "").toLowerCase();
+                    const lines = text
+                        .replace(/\r\n/g, "\n")
+                        .replace(/\r/g, "\n")
+                        .split("\n");
+                    // Cap extremely long files for DOM safety
+                    const max = 4000;
+                    const slice = lines.slice(0, max);
+                    const html = slice
+                        .map((line, i) => {
+                            return `<div class="code-line"><span class="ln">${i + 1}</span><span class="lc">${highlightLine(line, ext)}</span></div>`;
+                        })
+                        .join("");
+                    const more =
+                        lines.length > max
+                            ? `<div class="code-line"><span class="ln">…</span><span class="lc t-c">// truncated, ${lines.length - max} more lines</span></div>`
+                            : "";
+                    $("codePre").innerHTML = html + more;
+                }
 
-    function highlightLine(line, ext) {
-      // Very light highlighter: comments, strings, keywords
-      let escaped = escapeHtml(line);
+                function highlightLine(line, ext) {
+                    // Very light highlighter: comments, strings, keywords
+                    let escaped = escapeHtml(line);
 
-      // comments
-      if (/^(js|ts|tsx|jsx|java|c|cpp|h|go|rs|css|scss|java|kt|swift)$/.test(ext)) {
-        escaped = escaped.replace(/(\/\/.*)$/g, `<span class="t-c">$1</span>`);
-      }
-      if (/^(py|yml|yaml|sh|bash|toml|rb)$/.test(ext)) {
-        escaped = escaped.replace(/(#.*)$/g, (m, g1, offset, s) => {
-          // naive: if odd number of quotes before, skip; keep simple
-          return `<span class="t-c">${g1}</span>`;
-        });
-      }
-      if (ext === "html" || ext === "xml" || ext === "svg") {
-        escaped = escaped.replace(/(&lt;!--[\s\S]*?--&gt;)/g, `<span class="t-c">$1</span>`);
-      }
+                    // comments
+                    if (
+                        /^(js|ts|tsx|jsx|java|c|cpp|h|go|rs|css|scss|java|kt|swift)$/.test(
+                            ext,
+                        )
+                    ) {
+                        escaped = escaped.replace(
+                            /(\/\/.*)$/g,
+                            `<span class="t-c">$1</span>`,
+                        );
+                    }
+                    if (/^(py|yml|yaml|sh|bash|toml|rb)$/.test(ext)) {
+                        escaped = escaped.replace(
+                            /(#.*)$/g,
+                            (m, g1, offset, s) => {
+                                // naive: if odd number of quotes before, skip; keep simple
+                                return `<span class="t-c">${g1}</span>`;
+                            },
+                        );
+                    }
+                    if (ext === "html" || ext === "xml" || ext === "svg") {
+                        escaped = escaped.replace(
+                            /(&lt;!--[\s\S]*?--&gt;)/g,
+                            `<span class="t-c">$1</span>`,
+                        );
+                    }
 
-      // strings (simple)
-      escaped = escaped.replace(/(&quot;[^&]*?&quot;|&#39;[^&]*?&#39;|`[^`]*?`)/g, `<span class="t-s">$1</span>`);
-      // also plain quotes in escaped form already
-      escaped = escaped.replace(/(&quot;(?:[^&]|&(?!quot;))*&quot;)/g, `<span class="t-s">$1</span>`);
+                    // strings (simple)
+                    escaped = escaped.replace(
+                        /(&quot;[^&]*?&quot;|&#39;[^&]*?&#39;|`[^`]*?`)/g,
+                        `<span class="t-s">$1</span>`,
+                    );
+                    // also plain quotes in escaped form already
+                    escaped = escaped.replace(
+                        /(&quot;(?:[^&]|&(?!quot;))*&quot;)/g,
+                        `<span class="t-s">$1</span>`,
+                    );
 
-      const keywords = {
-        js: /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|typeof|try|catch|throw|switch|case|break|continue|default|of|in|extends|super|yield|null|undefined|true|false)\b/g,
-        ts: /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|typeof|try|catch|throw|interface|type|enum|implements|public|private|protected|readonly|as|null|undefined|true|false)\b/g,
-        py: /\b(def|class|return|if|elif|else|for|while|import|from|as|try|except|finally|with|yield|lambda|pass|break|continue|raise|True|False|None|and|or|not|in|is|async|await)\b/g,
-        go: /\b(func|return|if|else|for|range|package|import|var|const|type|struct|interface|map|chan|go|defer|select|case|switch|break|continue|true|false|nil)\b/g,
-        rs: /\b(fn|let|mut|const|return|if|else|for|while|loop|match|struct|enum|impl|trait|use|pub|mod|crate|self|super|async|await|true|false|Some|None)\b/g,
-        sh: /\b(if|then|else|fi|for|while|do|done|case|esac|function|return|export|local|readonly|source)\b/g,
-      };
+                    const keywords = {
+                        js: /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|typeof|try|catch|throw|switch|case|break|continue|default|of|in|extends|super|yield|null|undefined|true|false)\b/g,
+                        ts: /\b(const|let|var|function|return|if|else|for|while|class|import|export|from|async|await|new|this|typeof|try|catch|throw|interface|type|enum|implements|public|private|protected|readonly|as|null|undefined|true|false)\b/g,
+                        py: /\b(def|class|return|if|elif|else|for|while|import|from|as|try|except|finally|with|yield|lambda|pass|break|continue|raise|True|False|None|and|or|not|in|is|async|await)\b/g,
+                        go: /\b(func|return|if|else|for|range|package|import|var|const|type|struct|interface|map|chan|go|defer|select|case|switch|break|continue|true|false|nil)\b/g,
+                        rs: /\b(fn|let|mut|const|return|if|else|for|while|loop|match|struct|enum|impl|trait|use|pub|mod|crate|self|super|async|await|true|false|Some|None)\b/g,
+                        sh: /\b(if|then|else|fi|for|while|do|done|case|esac|function|return|export|local|readonly|source)\b/g,
+                    };
 
-      const map = {
-        js: "js", jsx: "js", mjs: "js", cjs: "js",
-        ts: "ts", tsx: "ts",
-        py: "py",
-        go: "go",
-        rs: "rs",
-        sh: "sh", bash: "sh", zsh: "sh",
-      };
-      const k = map[ext];
-      if (k && keywords[k]) {
-        // avoid replacing inside spans; rough: only run on plain segments
-        escaped = escaped.replace(keywords[k], `<span class="t-k">$1</span>`);
-      }
+                    const map = {
+                        js: "js",
+                        jsx: "js",
+                        mjs: "js",
+                        cjs: "js",
+                        ts: "ts",
+                        tsx: "ts",
+                        py: "py",
+                        go: "go",
+                        rs: "rs",
+                        sh: "sh",
+                        bash: "sh",
+                        zsh: "sh",
+                    };
+                    const k = map[ext];
+                    if (k && keywords[k]) {
+                        // avoid replacing inside spans; rough: only run on plain segments
+                        escaped = escaped.replace(
+                            keywords[k],
+                            `<span class="t-k">$1</span>`,
+                        );
+                    }
 
-      // numbers
-      escaped = escaped.replace(/\b(\d+\.?\d*)\b/g, `<span class="t-n">$1</span>`);
+                    // numbers
+                    escaped = escaped.replace(
+                        /\b(\d+\.?\d*)\b/g,
+                        `<span class="t-n">$1</span>`,
+                    );
 
-      return escaped;
-    }
+                    return escaped;
+                }
 
-    /* ── Events ── */
-    function onClick(e) {
-      const filterBtn = e.target.closest("[data-filter]");
-      if (filterBtn) {
-        state.filter = filterBtn.getAttribute("data-filter");
-        showHome();
-        return;
-      }
+                /* ── Events ── */
+                function onClick(e) {
+                    const filterBtn = e.target.closest("[data-filter]");
+                    if (filterBtn) {
+                        state.filter = filterBtn.getAttribute("data-filter");
+                        showHome();
+                        return;
+                    }
 
-      if (e.target.closest("[data-tree-expand]")) {
-        const project = findProject(state.projectId);
-        if (project) expandAllFolders(project);
-        return;
-      }
+                    if (e.target.closest("[data-tree-expand]")) {
+                        const project = findProject(state.projectId);
+                        if (project) expandAllFolders(project);
+                        return;
+                    }
 
-      if (e.target.closest("[data-tree-collapse]")) {
-        const project = findProject(state.projectId);
-        if (project) collapseAllFolders(project);
-        return;
-      }
+                    if (e.target.closest("[data-tree-collapse]")) {
+                        const project = findProject(state.projectId);
+                        if (project) collapseAllFolders(project);
+                        return;
+                    }
 
-      const folderBtn = e.target.closest("[data-folder]");
-      if (folderBtn && state.projectId) {
-        e.preventDefault();
-        toggleFolder(state.projectId, folderBtn.getAttribute("data-folder"));
-        return;
-      }
+                    const folderBtn = e.target.closest("[data-folder]");
+                    if (folderBtn && state.projectId) {
+                        e.preventDefault();
+                        toggleFolder(
+                            state.projectId,
+                            folderBtn.getAttribute("data-folder"),
+                        );
+                        return;
+                    }
 
-      const openBtn = e.target.closest("[data-open]");
-      if (openBtn) {
-        const id = openBtn.getAttribute("data-open");
-        goProject(id);
-        return;
-      }
+                    const openBtn = e.target.closest("[data-open]");
+                    if (openBtn) {
+                        const id = openBtn.getAttribute("data-open");
+                        goProject(id);
+                        return;
+                    }
 
-      if (e.target.closest("#browseFilesBtn")) {
-        const tree = $("paneTree");
-        if (tree) tree.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
+                    if (e.target.closest("#browseFilesBtn")) {
+                        const tree = $("paneTree");
+                        if (tree)
+                            tree.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start",
+                            });
+                        return;
+                    }
 
-      const fileBtn = e.target.closest("[data-file]");
-      if (fileBtn && state.projectId) {
-        goProject(state.projectId, fileBtn.getAttribute("data-file"));
-        return;
-      }
+                    const fileBtn = e.target.closest("[data-file]");
+                    if (fileBtn && state.projectId) {
+                        goProject(
+                            state.projectId,
+                            fileBtn.getAttribute("data-file"),
+                        );
+                        return;
+                    }
 
-      if (e.target.closest("#backHome")) {
-        goHome();
-        return;
-      }
+                    if (e.target.closest("#backHome")) {
+                        goHome();
+                        return;
+                    }
 
-      if (e.target.closest("#backDetail") || e.target.closest("#backTree")) {
-        if (state.projectId) goProject(state.projectId);
-        return;
-      }
-    }
+                    if (
+                        e.target.closest("#backDetail") ||
+                        e.target.closest("#backTree")
+                    ) {
+                        if (state.projectId) goProject(state.projectId);
+                        return;
+                    }
+                }
 
-    function onSearchInput(e) {
-      state.query = e.target.value;
-      const route = parseRoute();
-      if (route.view === "home") showHome();
-      else if (route.id) {
-        // refresh sidebar filter without full re-render thrash of code pane
-        renderSidebar(route.id);
-        // still re-render view if needed for consistency
-        showBrowser(route.id, route.file);
-      }
-    }
+                function onSearchInput(e) {
+                    state.query = e.target.value;
+                    const route = parseRoute();
+                    if (route.view === "home") showHome();
+                    else if (route.id) {
+                        // refresh sidebar filter without full re-render thrash of code pane
+                        renderSidebar(route.id);
+                        // still re-render view if needed for consistency
+                        showBrowser(route.id, route.file);
+                    }
+                }
 
-    async function init() {
-      $("year").textContent = new Date().getFullYear();
-      renderFilters();
+                async function init() {
+                    $("year").textContent = new Date().getFullYear();
+                    renderFilters();
 
-      document.addEventListener("click", onClick);
-      $("search").addEventListener("input", onSearchInput);
-      window.addEventListener("popstate", render);
+                    document.addEventListener("click", onClick);
+                    $("search").addEventListener("input", onSearchInput);
+                    window.addEventListener("popstate", render);
 
-      // Brand: stay on projects home (don't full-reload if already there)
-      $("brandLink").addEventListener("click", (e) => {
-        e.preventDefault();
-        goHome();
-      });
+                    // Brand: stay on projects home (don't full-reload if already there)
+                    $("brandLink").addEventListener("click", (e) => {
+                        e.preventDefault();
+                        goHome();
+                    });
 
-      try {
-        const res = await fetch(BASE + "/projects.json");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        state.data = await res.json();
-        if (state.data.meta && state.data.meta.note) {
-          $("heroNote").textContent = state.data.meta.note;
-        }
-        render();
-      } catch (err) {
-        $("homeContent").innerHTML = `
+                    try {
+                        const res = await fetch(BASE + "/projects.json");
+                        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                        state.data = await res.json();
+                        if (state.data.meta && state.data.meta.note) {
+                            $("heroNote").textContent = state.data.meta.note;
+                        }
+                        render();
+                    } catch (err) {
+                        $("homeContent").innerHTML = `
           <div class="error-box">
             <strong>Could not load projects.json</strong><br/><br/>
             ${escapeHtml(String(err.message || err))}<br/><br/>
@@ -1756,11 +2095,11 @@
             <code style="font-family:var(--mono)">cd "Side Projects" && python3 -m http.server 8765</code><br/>
             then visit <code style="font-family:var(--mono)">http://localhost:8765/projects/</code>
           </div>`;
-      }
-    }
+                    }
+                }
 
-    init();
-  })();
-  </script>
-</body>
+                init();
+            })();
+        </script>
+    </body>
 </html>
