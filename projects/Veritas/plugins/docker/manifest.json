@@ -1,0 +1,9 @@
+{
+  "id": "docker",
+  "name": "Docker",
+  "version": "0.1.0",
+  "capabilities": ["entities", "metrics"],
+  "edition": "free",
+  "status": "ready",
+  "description": "Container entity discovery and runtime metrics."
+}

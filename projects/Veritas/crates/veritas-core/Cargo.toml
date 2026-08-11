@@ -1,0 +1,13 @@
+[package]
+name = "veritas-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS domain types — entities, graph, intelligence contracts"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }

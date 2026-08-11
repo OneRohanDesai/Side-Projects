@@ -1,0 +1,13 @@
+{
+  "id": "prometheus",
+  "name": "Prometheus",
+  "version": "0.1.0",
+  "capabilities": ["metrics", "entities"],
+  "edition": "free",
+  "config_schema": {
+    "endpoints": { "type": "array", "items": "string" },
+    "scrape_interval_s": { "type": "integer", "default": 15 }
+  },
+  "status": "ready",
+  "description": "Prometheus metrics compatibility — scrape and remote-write path into the VERITAS data fabric."
+}

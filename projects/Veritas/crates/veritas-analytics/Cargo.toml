@@ -1,0 +1,20 @@
+[package]
+name = "veritas-analytics"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS Phase 3 analytics · DuckDB · Parquet · anomaly · forecast · SQL"
+
+[dependencies]
+veritas-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+duckdb = { version = "1.3", features = ["bundled"] }
+
+[dev-dependencies]
+veritas-storage = { workspace = true }

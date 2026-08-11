@@ -1,0 +1,9 @@
+{
+  "id": "linux",
+  "name": "Linux / eBPF",
+  "version": "0.1.0",
+  "capabilities": ["processes", "network", "syscalls", "filesystem", "scheduling"],
+  "edition": "pro",
+  "status": "planned",
+  "description": "Deep host visibility via eBPF without invasive app instrumentation."
+}

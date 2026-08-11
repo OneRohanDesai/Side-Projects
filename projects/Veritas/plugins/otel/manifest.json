@@ -1,0 +1,9 @@
+{
+  "id": "otel",
+  "name": "OpenTelemetry",
+  "version": "0.1.0",
+  "capabilities": ["metrics", "logs", "traces"],
+  "edition": "free",
+  "status": "ready",
+  "description": "Vendor-neutral telemetry ingestion. VERITAS does not invent another standard — OTel feeds the intelligence layer."
+}

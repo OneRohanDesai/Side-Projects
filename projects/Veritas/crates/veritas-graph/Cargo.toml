@@ -1,0 +1,18 @@
+[package]
+name = "veritas-graph"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS Phase 4 system intelligence graph · inference · blast radius"
+
+[dependencies]
+veritas-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+veritas-storage = { workspace = true }

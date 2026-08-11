@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ACME Shop</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <div class="brand">ACME Shop</div>
+        <div class="tag">Local demo project · watched by VERITAS</div>
+      </div>
+      <div class="status" id="status">connecting…</div>
+    </header>
+
+    <section class="hero card">
+      <div>
+        <h1>Small catalog. Real traffic. Live telemetry.</h1>
+        <p>
+          Browse items, add to cart, checkout. Each click hits the local API that VERITAS ingests —
+          metrics, logs, traces, graph.
+        </p>
+      </div>
+      <div class="kpi" id="kpi">
+        <div><span class="k">—</span><label>requests</label></div>
+        <div><span class="k">—</span><label>p99 ms</label></div>
+        <div><span class="k">—</span><label>errors</label></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <div class="row">
+          <h2>Catalog</h2>
+          <button type="button" class="btn ghost" id="btn-refresh">Refresh</button>
+        </div>
+        <div class="items" id="catalog">Loading…</div>
+      </section>
+
+      <section class="card cart">
+        <h2>Cart</h2>
+        <div id="cart-list" class="cart-list empty">Empty</div>
+        <div class="total row">
+          <span>Total</span>
+          <strong id="cart-total">$0.00</strong>
+        </div>
+        <button type="button" class="btn primary" id="btn-checkout" disabled>Checkout</button>
+        <div id="checkout-msg" class="msg"></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="row">
+        <h2>Orders</h2>
+        <button type="button" class="btn ghost" id="btn-orders">Reload</button>
+      </div>
+      <div id="orders" class="orders">—</div>
+    </section>
+
+    <footer>
+      API <code>http://127.0.0.1:8090</code>
+      · VERITAS <code>http://127.0.0.1:5173</code>
+    </footer>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+[package]
+name = "veritas-api"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS control plane HTTP API"
+default-run = "veritas-api"
+
+[[bin]]
+name = "veritas-api"
+path = "src/main.rs"
+
+[dependencies]
+veritas-core = { workspace = true }
+veritas-storage = { workspace = true }
+veritas-intelligence = { workspace = true }
+veritas-license = { workspace = true }
+veritas-ingest = { workspace = true }
+veritas-analytics = { workspace = true }
+veritas-graph = { workspace = true }
+veritas-ai = { workspace = true }
+veritas-enterprise = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+axum = { workspace = true }
+tokio = { workspace = true }
+tower-http = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+

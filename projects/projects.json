@@ -102,6 +102,712 @@
   ],
   "projects": [
     {
+      "id": "veritas",
+      "name": "Veritas",
+      "folder": "Veritas",
+      "status": "active",
+      "tags": [
+        "Rust",
+        "Observability",
+        "Local-first"
+      ],
+      "blurb": "Local-first engineering intelligence: ingest topology and telemetry, graph the system, answer what changed and what to do.",
+      "link": null,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Veritas",
+      "visibility": "public",
+      "hidden": false,
+      "order": 1,
+      "browsable": true,
+      "root": "Veritas",
+      "fileCount": 114,
+      "files": [
+        {
+          "path": ".gitignore",
+          "size": 339,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "agents/veritas-agent/go.mod",
+          "size": 70,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "agents/veritas-agent/main.go",
+          "size": 1975,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Cargo.lock",
+          "size": 69684,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Cargo.toml",
+          "size": 1527,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ai/Cargo.toml",
+          "size": 584,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ai/src/lib.rs",
+          "size": 16637,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-analytics/Cargo.toml",
+          "size": 584,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-analytics/src/lib.rs",
+          "size": 25058,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-api/Cargo.toml",
+          "size": 914,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-api/src/main.rs",
+          "size": 42632,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-core/Cargo.toml",
+          "size": 358,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-core/src/lib.rs",
+          "size": 10347,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/Cargo.toml",
+          "size": 604,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/audit.rs",
+          "size": 2817,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/auth.rs",
+          "size": 8265,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/fleet.rs",
+          "size": 2508,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/ha.rs",
+          "size": 2235,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/lib.rs",
+          "size": 3834,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/packs.rs",
+          "size": 5517,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/rbac.rs",
+          "size": 5211,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-graph/Cargo.toml",
+          "size": 488,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-graph/src/lib.rs",
+          "size": 20309,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ingest/Cargo.toml",
+          "size": 427,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ingest/src/lib.rs",
+          "size": 19664,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-intelligence/Cargo.toml",
+          "size": 381,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-intelligence/src/lib.rs",
+          "size": 10269,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-intelligence/src/phase5.rs",
+          "size": 18533,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-license/Cargo.toml",
+          "size": 447,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-license/src/lib.rs",
+          "size": 9525,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-storage/Cargo.toml",
+          "size": 391,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-storage/src/lib.rs",
+          "size": 8112,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/package.json",
+          "size": 378,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/README.md",
+          "size": 783,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/build.rs",
+          "size": 39,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/Cargo.toml",
+          "size": 438,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/src/lib.rs",
+          "size": 191,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/src/main.rs",
+          "size": 114,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/tauri.conf.json",
+          "size": 879,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "size": 4451,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/DATA_MODEL.md",
+          "size": 2467,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/DESIGN_SYSTEM.md",
+          "size": 2031,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/ENTERPRISE.md",
+          "size": 1108,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/ENTITY_MODEL.md",
+          "size": 1384,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/FREE_VS_PREMIUM.md",
+          "size": 1339,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/LICENSE_ARCHITECTURE.md",
+          "size": 1813,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/PHASE_PLAN.md",
+          "size": 1489,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/PLUGIN_ARCHITECTURE.md",
+          "size": 1874,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/PRODUCT.md",
+          "size": 4829,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/SECURITY_MODEL.md",
+          "size": 1266,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/UI_MODULES.md",
+          "size": 821,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "LICENSE",
+          "size": 1077,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Makefile",
+          "size": 466,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/docker/manifest.json",
+          "size": 216,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/kubernetes/manifest.json",
+          "size": 414,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/linux/manifest.json",
+          "size": 283,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/otel/manifest.json",
+          "size": 295,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/postgres/manifest.json",
+          "size": 264,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/prometheus/manifest.json",
+          "size": 417,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "README.md",
+          "size": 3804,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "sample-data/system.json",
+          "size": 837,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "scripts/dev.sh",
+          "size": 722,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/package.json",
+          "size": 510,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/public/app.js",
+          "size": 3722,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/public/index.html",
+          "size": 2152,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/public/styles.css",
+          "size": 3995,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/README.md",
+          "size": 2188,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/scripts/run-with-veritas.sh",
+          "size": 2297,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/src/server.js",
+          "size": 6835,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/config.js",
+          "size": 271,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/demo-incident.js",
+          "size": 1256,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/register.js",
+          "size": 3049,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/run-all.js",
+          "size": 723,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/ship.js",
+          "size": 4655,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/.env.example",
+          "size": 129,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/.gitignore",
+          "size": 253,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/.oxlintrc.json",
+          "size": 245,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/index.html",
+          "size": 611,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/package-lock.json",
+          "size": 43372,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/package.json",
+          "size": 565,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/public/favicon.svg",
+          "size": 9522,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/public/icons.svg",
+          "size": 5031,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/README.md",
+          "size": 314,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/api.ts",
+          "size": 17827,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/App.tsx",
+          "size": 4164,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/assets/hero.png",
+          "size": 13057,
+          "viewable": false,
+          "binary": true
+        },
+        {
+          "path": "ui/src/assets/vite.svg",
+          "size": 8709,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/components/HelpButton.tsx",
+          "size": 2542,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/components/LoadState.tsx",
+          "size": 773,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/help/content.ts",
+          "size": 9063,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/hooks/useApi.ts",
+          "size": 791,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/index.css",
+          "size": 15122,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/main.tsx",
+          "size": 324,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Actions.tsx",
+          "size": 1244,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Ai.tsx",
+          "size": 4488,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Analytics.tsx",
+          "size": 8652,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Archaeology.tsx",
+          "size": 3809,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/CommandDeck.tsx",
+          "size": 5218,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Cost.tsx",
+          "size": 1908,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Enterprise.tsx",
+          "size": 10989,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Entities.tsx",
+          "size": 2017,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Forecast.tsx",
+          "size": 2026,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Graph.tsx",
+          "size": 8799,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Intelligence.tsx",
+          "size": 7918,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Plugins.tsx",
+          "size": 1210,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Reports.tsx",
+          "size": 3726,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Settings.tsx",
+          "size": 2302,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Telemetry.tsx",
+          "size": 5993,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/WhatChanged.tsx",
+          "size": 4054,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/WhyEngine.tsx",
+          "size": 6102,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/tsconfig.app.json",
+          "size": 655,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/tsconfig.json",
+          "size": 119,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/tsconfig.node.json",
+          "size": 558,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/vite.config.ts",
+          "size": 289,
+          "viewable": true,
+          "binary": false
+        }
+      ]
+    },
+    {
       "id": "telemetry",
       "name": "Telemetry Playground",
       "folder": "Telemetry-Playground",
@@ -116,7 +822,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Telemetry-Playground",
       "visibility": "public",
       "hidden": false,
-      "order": 1,
+      "order": 2,
       "browsable": true,
       "root": "Telemetry-Playground",
       "fileCount": 141,
@@ -984,7 +1690,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Grounds",
       "visibility": "public",
       "hidden": false,
-      "order": 2,
+      "order": 3,
       "browsable": true,
       "root": "Grounds",
       "fileCount": 325,
@@ -2956,7 +3662,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Gaia",
       "visibility": "public",
       "hidden": false,
-      "order": 3,
+      "order": 4,
       "browsable": true,
       "root": "Gaia",
       "fileCount": 305,
@@ -4808,7 +5514,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Nexu",
       "visibility": "public",
       "hidden": false,
-      "order": 4,
+      "order": 5,
       "browsable": true,
       "root": "Nexu",
       "fileCount": 38,
@@ -5058,7 +5764,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Baby-Linux",
       "visibility": "public",
       "hidden": false,
-      "order": 5,
+      "order": 6,
       "browsable": true,
       "root": "Baby-Linux",
       "fileCount": 92,
@@ -5632,7 +6338,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The-Waitlist",
       "visibility": "public",
       "hidden": false,
-      "order": 6,
+      "order": 7,
       "browsable": true,
       "root": "The-Waitlist",
       "fileCount": 71,
@@ -6080,7 +6786,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/NyxCloud",
       "visibility": "public",
       "hidden": false,
-      "order": 7,
+      "order": 8,
       "browsable": true,
       "root": "NyxCloud",
       "fileCount": 4,
@@ -6126,7 +6832,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Just_Orange",
       "visibility": "public",
       "hidden": false,
-      "order": 8,
+      "order": 9,
       "browsable": true,
       "root": "Just_Orange",
       "fileCount": 14,
@@ -6232,7 +6938,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The_Table_V3",
       "visibility": "public",
       "hidden": false,
-      "order": 9,
+      "order": 10,
       "browsable": true,
       "root": "The_Table_V3",
       "fileCount": 42,
@@ -6506,7 +7212,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Aesthete-Vinyl",
       "visibility": "public",
       "hidden": false,
-      "order": 10,
+      "order": 11,
       "browsable": true,
       "root": "Aesthete-Vinyl",
       "fileCount": 7,
@@ -6558,6 +7264,712 @@
   ],
   "public": [
     {
+      "id": "veritas",
+      "name": "Veritas",
+      "folder": "Veritas",
+      "status": "active",
+      "tags": [
+        "Rust",
+        "Observability",
+        "Local-first"
+      ],
+      "blurb": "Local-first engineering intelligence: ingest topology and telemetry, graph the system, answer what changed and what to do.",
+      "link": null,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Veritas",
+      "visibility": "public",
+      "hidden": false,
+      "order": 1,
+      "browsable": true,
+      "root": "Veritas",
+      "fileCount": 114,
+      "files": [
+        {
+          "path": ".gitignore",
+          "size": 339,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "agents/veritas-agent/go.mod",
+          "size": 70,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "agents/veritas-agent/main.go",
+          "size": 1975,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Cargo.lock",
+          "size": 69684,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Cargo.toml",
+          "size": 1527,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ai/Cargo.toml",
+          "size": 584,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ai/src/lib.rs",
+          "size": 16637,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-analytics/Cargo.toml",
+          "size": 584,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-analytics/src/lib.rs",
+          "size": 25058,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-api/Cargo.toml",
+          "size": 914,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-api/src/main.rs",
+          "size": 42632,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-core/Cargo.toml",
+          "size": 358,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-core/src/lib.rs",
+          "size": 10347,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/Cargo.toml",
+          "size": 604,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/audit.rs",
+          "size": 2817,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/auth.rs",
+          "size": 8265,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/fleet.rs",
+          "size": 2508,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/ha.rs",
+          "size": 2235,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/lib.rs",
+          "size": 3834,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/packs.rs",
+          "size": 5517,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-enterprise/src/rbac.rs",
+          "size": 5211,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-graph/Cargo.toml",
+          "size": 488,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-graph/src/lib.rs",
+          "size": 20309,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ingest/Cargo.toml",
+          "size": 427,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-ingest/src/lib.rs",
+          "size": 19664,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-intelligence/Cargo.toml",
+          "size": 381,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-intelligence/src/lib.rs",
+          "size": 10269,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-intelligence/src/phase5.rs",
+          "size": 18533,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-license/Cargo.toml",
+          "size": 447,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-license/src/lib.rs",
+          "size": 9525,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-storage/Cargo.toml",
+          "size": 391,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "crates/veritas-storage/src/lib.rs",
+          "size": 8112,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/package.json",
+          "size": 378,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/README.md",
+          "size": 783,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/build.rs",
+          "size": 39,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/Cargo.toml",
+          "size": 438,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/src/lib.rs",
+          "size": 191,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/src/main.rs",
+          "size": 114,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "desktop/src-tauri/tauri.conf.json",
+          "size": 879,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/ARCHITECTURE.md",
+          "size": 4451,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/DATA_MODEL.md",
+          "size": 2467,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/DESIGN_SYSTEM.md",
+          "size": 2031,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/ENTERPRISE.md",
+          "size": 1108,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/ENTITY_MODEL.md",
+          "size": 1384,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/FREE_VS_PREMIUM.md",
+          "size": 1339,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/LICENSE_ARCHITECTURE.md",
+          "size": 1813,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/PHASE_PLAN.md",
+          "size": 1489,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/PLUGIN_ARCHITECTURE.md",
+          "size": 1874,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/PRODUCT.md",
+          "size": 4829,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/SECURITY_MODEL.md",
+          "size": 1266,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "docs/UI_MODULES.md",
+          "size": 821,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "LICENSE",
+          "size": 1077,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Makefile",
+          "size": 466,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/docker/manifest.json",
+          "size": 216,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/kubernetes/manifest.json",
+          "size": 414,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/linux/manifest.json",
+          "size": 283,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/otel/manifest.json",
+          "size": 295,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/postgres/manifest.json",
+          "size": 264,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "plugins/prometheus/manifest.json",
+          "size": 417,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "README.md",
+          "size": 3804,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "sample-data/system.json",
+          "size": 837,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "scripts/dev.sh",
+          "size": 722,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/package.json",
+          "size": 510,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/public/app.js",
+          "size": 3722,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/public/index.html",
+          "size": 2152,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/public/styles.css",
+          "size": 3995,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/README.md",
+          "size": 2188,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/scripts/run-with-veritas.sh",
+          "size": 2297,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/src/server.js",
+          "size": 6835,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/config.js",
+          "size": 271,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/demo-incident.js",
+          "size": 1256,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/register.js",
+          "size": 3049,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/run-all.js",
+          "size": 723,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "Test_Project/veritas/ship.js",
+          "size": 4655,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/.env.example",
+          "size": 129,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/.gitignore",
+          "size": 253,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/.oxlintrc.json",
+          "size": 245,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/index.html",
+          "size": 611,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/package-lock.json",
+          "size": 43372,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/package.json",
+          "size": 565,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/public/favicon.svg",
+          "size": 9522,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/public/icons.svg",
+          "size": 5031,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/README.md",
+          "size": 314,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/api.ts",
+          "size": 17827,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/App.tsx",
+          "size": 4164,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/assets/hero.png",
+          "size": 13057,
+          "viewable": false,
+          "binary": true
+        },
+        {
+          "path": "ui/src/assets/vite.svg",
+          "size": 8709,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/components/HelpButton.tsx",
+          "size": 2542,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/components/LoadState.tsx",
+          "size": 773,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/help/content.ts",
+          "size": 9063,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/hooks/useApi.ts",
+          "size": 791,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/index.css",
+          "size": 15122,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/main.tsx",
+          "size": 324,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Actions.tsx",
+          "size": 1244,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Ai.tsx",
+          "size": 4488,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Analytics.tsx",
+          "size": 8652,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Archaeology.tsx",
+          "size": 3809,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/CommandDeck.tsx",
+          "size": 5218,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Cost.tsx",
+          "size": 1908,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Enterprise.tsx",
+          "size": 10989,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Entities.tsx",
+          "size": 2017,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Forecast.tsx",
+          "size": 2026,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Graph.tsx",
+          "size": 8799,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Intelligence.tsx",
+          "size": 7918,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Plugins.tsx",
+          "size": 1210,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Reports.tsx",
+          "size": 3726,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Settings.tsx",
+          "size": 2302,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/Telemetry.tsx",
+          "size": 5993,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/WhatChanged.tsx",
+          "size": 4054,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/src/pages/WhyEngine.tsx",
+          "size": 6102,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/tsconfig.app.json",
+          "size": 655,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/tsconfig.json",
+          "size": 119,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/tsconfig.node.json",
+          "size": 558,
+          "viewable": true,
+          "binary": false
+        },
+        {
+          "path": "ui/vite.config.ts",
+          "size": 289,
+          "viewable": true,
+          "binary": false
+        }
+      ]
+    },
+    {
       "id": "telemetry",
       "name": "Telemetry Playground",
       "folder": "Telemetry-Playground",
@@ -6572,7 +7984,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Telemetry-Playground",
       "visibility": "public",
       "hidden": false,
-      "order": 1,
+      "order": 2,
       "browsable": true,
       "root": "Telemetry-Playground",
       "fileCount": 141,
@@ -7440,7 +8852,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Grounds",
       "visibility": "public",
       "hidden": false,
-      "order": 2,
+      "order": 3,
       "browsable": true,
       "root": "Grounds",
       "fileCount": 325,
@@ -9412,7 +10824,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Gaia",
       "visibility": "public",
       "hidden": false,
-      "order": 3,
+      "order": 4,
       "browsable": true,
       "root": "Gaia",
       "fileCount": 305,
@@ -11264,7 +12676,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Nexu",
       "visibility": "public",
       "hidden": false,
-      "order": 4,
+      "order": 5,
       "browsable": true,
       "root": "Nexu",
       "fileCount": 38,
@@ -11514,7 +12926,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Baby-Linux",
       "visibility": "public",
       "hidden": false,
-      "order": 5,
+      "order": 6,
       "browsable": true,
       "root": "Baby-Linux",
       "fileCount": 92,
@@ -12088,7 +13500,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The-Waitlist",
       "visibility": "public",
       "hidden": false,
-      "order": 6,
+      "order": 7,
       "browsable": true,
       "root": "The-Waitlist",
       "fileCount": 71,
@@ -12536,7 +13948,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/NyxCloud",
       "visibility": "public",
       "hidden": false,
-      "order": 7,
+      "order": 8,
       "browsable": true,
       "root": "NyxCloud",
       "fileCount": 4,
@@ -12582,7 +13994,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Just_Orange",
       "visibility": "public",
       "hidden": false,
-      "order": 8,
+      "order": 9,
       "browsable": true,
       "root": "Just_Orange",
       "fileCount": 14,
@@ -12688,7 +14100,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The_Table_V3",
       "visibility": "public",
       "hidden": false,
-      "order": 9,
+      "order": 10,
       "browsable": true,
       "root": "The_Table_V3",
       "fileCount": 42,
@@ -12962,7 +14374,7 @@
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Aesthete-Vinyl",
       "visibility": "public",
       "hidden": false,
-      "order": 10,
+      "order": 11,
       "browsable": true,
       "root": "Aesthete-Vinyl",
       "fileCount": 7,

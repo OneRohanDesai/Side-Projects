@@ -1,0 +1,18 @@
+[package]
+name = "veritas-ai"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS Phase 6 AI · facts first · deterministic · optional local/cloud"
+
+[dependencies]
+veritas-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+tokio = { workspace = true }

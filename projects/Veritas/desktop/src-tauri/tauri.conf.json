@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "VERITAS",
+  "version": "0.7.0",
+  "identifier": "com.veritas.desktop",
+  "build": {
+    "beforeDevCommand": "cd ../ui && npm run dev -- --host 127.0.0.1 --port 5173",
+    "devUrl": "http://127.0.0.1:5173",
+    "beforeBuildCommand": "cd ../ui && npm run build",
+    "frontendDist": "../../ui/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "VERITAS",
+        "width": 1440,
+        "height": 900,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [],
+    "category": "DeveloperTool",
+    "shortDescription": "Local first engineering intelligence",
+    "longDescription": "VERITAS · Vis Explorationis Rerum Intelligentia Technica Analytica Systematica"
+  }
+}

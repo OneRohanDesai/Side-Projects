@@ -1,0 +1,48 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/veritas-core",
+    "crates/veritas-storage",
+    "crates/veritas-intelligence",
+    "crates/veritas-license",
+    "crates/veritas-ingest",
+    "crates/veritas-analytics",
+    "crates/veritas-graph",
+    "crates/veritas-ai",
+    "crates/veritas-enterprise",
+    "crates/veritas-api",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["VERITAS"]
+repository = "https://github.com/OneRohanDesai/VERITAS"
+
+[workspace.dependencies]
+veritas-core = { path = "crates/veritas-core" }
+veritas-storage = { path = "crates/veritas-storage" }
+veritas-intelligence = { path = "crates/veritas-intelligence" }
+veritas-license = { path = "crates/veritas-license" }
+veritas-ingest = { path = "crates/veritas-ingest" }
+veritas-analytics = { path = "crates/veritas-analytics" }
+veritas-graph = { path = "crates/veritas-graph" }
+veritas-ai = { path = "crates/veritas-ai" }
+veritas-enterprise = { path = "crates/veritas-enterprise" }
+
+sha2 = "0.10"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+thiserror = "2"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+axum = { version = "0.8", features = ["macros"] }
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+hex = "0.4"

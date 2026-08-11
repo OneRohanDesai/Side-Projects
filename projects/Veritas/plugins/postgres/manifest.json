@@ -1,0 +1,9 @@
+{
+  "id": "postgres",
+  "name": "PostgreSQL",
+  "version": "0.1.0",
+  "capabilities": ["entities", "metrics", "queries"],
+  "edition": "free",
+  "status": "ready",
+  "description": "Database entities, pool stats, slow queries — attached to the service graph."
+}

@@ -1,0 +1,34 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock.bak
+
+# Node / UI
+ui/node_modules/
+ui/dist/
+ui/.vite/
+*.log
+npm-debug.log*
+
+# Go
+agents/**/veritas-agent
+agents/**/*.exe
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Local runtime
+.veritas/
+*.duckdb
+*.duckdb.wal
+**/parquet/*.parquet
+
+# Secrets (never commit)
+*.pem
+*.key
+license-private*
+.env
+.env.*

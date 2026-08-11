@@ -1,0 +1,16 @@
+{
+  "name": "veritas-desktop",
+  "private": true,
+  "version": "0.7.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config ../ui/vite.config.ts --host 127.0.0.1 --port 5173",
+    "build": "cd ../ui && npm run build",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.5.0"
+  }
+}

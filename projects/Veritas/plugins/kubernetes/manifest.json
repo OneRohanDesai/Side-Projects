@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes",
+  "name": "Kubernetes",
+  "version": "0.1.0",
+  "capabilities": ["entities", "relationships", "events"],
+  "edition": "free",
+  "config_schema": {
+    "kubeconfig": { "type": "string" },
+    "namespaces": { "type": "array", "items": "string" }
+  },
+  "status": "ready",
+  "description": "Cluster topology: nodes, pods, deployments, services — edges into the System Intelligence Graph."
+}

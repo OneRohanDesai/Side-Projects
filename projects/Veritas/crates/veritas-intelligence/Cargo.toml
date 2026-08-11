@@ -1,0 +1,13 @@
+[package]
+name = "veritas-intelligence"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS intelligence — What Changed, Why, Forecast, Archaeology"
+
+[dependencies]
+veritas-core = { workspace = true }
+veritas-storage = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }

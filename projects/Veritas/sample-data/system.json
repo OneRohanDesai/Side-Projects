@@ -1,0 +1,35 @@
+{
+  "generated_at": "1970-01-01T00:00:00Z",
+  "narrative": "Empty production snapshot template. Not loaded by default.",
+  "entities": [],
+  "edges": [],
+  "changes": [],
+  "signals": [],
+  "incidents": [],
+  "forecasts": [],
+  "cost_insights": [],
+  "actions": [],
+  "daily_report": {
+    "date": "1970-01-01",
+    "overall_health": 1.0,
+    "changes": {},
+    "anomalies_detected": 0,
+    "high_significance": 0,
+    "potential_incidents": 0,
+    "performance_degradation": "none",
+    "capacity_concern": "none",
+    "security_concern": "none",
+    "cost_opportunity_usd": 0.0,
+    "recommended_actions": [
+      "Connect a project or agent"
+    ]
+  },
+  "system_overview": {
+    "health": 1.0,
+    "entities": 0,
+    "active_incidents": 0,
+    "open_actions": 0,
+    "meaningful_changes_24h": 0,
+    "related_to_degradation": 0
+  }
+}

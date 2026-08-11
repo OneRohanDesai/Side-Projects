@@ -1,0 +1,15 @@
+[package]
+name = "veritas-ingest"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS Phase 2 telemetry fabric · OTel · Prometheus · discovery"
+
+[dependencies]
+veritas-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }

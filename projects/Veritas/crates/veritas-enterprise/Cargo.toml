@@ -1,0 +1,21 @@
+[package]
+name = "veritas-enterprise"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VERITAS Phase 7 enterprise · SSO · RBAC · audit · fleet · HA · packs"
+
+[dependencies]
+veritas-core = { workspace = true }
+veritas-license = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+uuid = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+ed25519-dalek = { workspace = true }
+hex = { workspace = true }
+sha2 = "0.10"
+base64 = "0.22"
