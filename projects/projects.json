@@ -98,6 +98,24 @@
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
+    },
+    {
+      "id": "in-a-nutshell",
+      "name": "In A Nutshell",
+      "status": "live",
+      "tags": [
+        "Cheatsheet",
+        "Design",
+        "Cloudflare"
+      ],
+      "blurb": "Design-first cheatsheet webapp. Name a thing, crack it, get the kernel.",
+      "link": "https://cheatsheet.rohandesai.in",
+      "visibility": "private",
+      "hidden": false,
+      "order": 6,
+      "contact": true,
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     }
   ],
   "projects": [
