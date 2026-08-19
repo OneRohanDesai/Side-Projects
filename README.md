@@ -4,10 +4,6 @@
 
 <h1 align="center">Who I am when I am not working</h1>
 
-<p align="center">
-  <img src="https://tenor.com/l1DLCpxptyc.gif" width="120" alt="neon pulse"/>
-</p>
-
 I'm **Rohan Desai**.  
 I like systems that stay up, tools that feel kind, and ideas that can be visualized.
 
@@ -18,7 +14,7 @@ I like systems that stay up, tools that feel kind, and ideas that can be visuali
 ---
 
 <p align="center">
-  <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmR1cGE2MzhvcDd4cGV5cXZkcnh2MDMzb3hpMjliaGJ2dTA0M3l4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/j3EefIlfYdszNjCsem/giphy.gif" width="280" alt="dance floor"/>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTBzMmc1aDgzZjVvaWR4Y3Z1YTN3MmpldjVmbHZsNmpnZ3FxemlodCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xZsLh7B3KMMyUptD9D/giphy.gif" width="280" alt="builder"/>
 </p>
 
 ### Side Projects
@@ -27,7 +23,7 @@ Hey. This is my little corner of the internet for things I build **for myself**.
 
 Not the day job. Not client work. Just the ideas I chase because they make me curious, happy, or slightly obsessed.
 
-This whole repository is that corner: **my entire side-work home**, one place for the non-official things I make on my own time.
+This whole repository is that corner: **my entire side-work home**, one place for the non-official things I make in my own time.
 
 ---
 
@@ -42,46 +38,26 @@ This whole repository is that corner: **my entire side-work home**, one place fo
 
 ---
 
-<p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXVzcTBpajJiN3lzcTdsenpmdXZxa2czMjh5bnVlaTJ5Ym81cmpxayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lD76yTC5zxZPG/giphy.gif" width="160" alt="lights"/>
-</p>
-
 ### What's next
 
 This home will grow quietly over time.  
 Maybe something for **films**, or **food**, or whatever pulls me next.  
 When those arrive, they will live here too, each with their own little room.
 
----
-
 <p align="center">
-
-<img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3Ym1wazJwbTdyejZmanpyOWN4dmJ1anFrNWd5dTdxM3dta3R5dGl0OSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/b1cfwAW8GMwOJhiJ7Q/giphy.gif" width="180" alt="monkey typing"/>
-
-<br/>
-
-<em>Don't judge, alright !</em>
-
-<a href="https://monkeytype.com/profile/ManweFromArda">
-
-<img src="https://img.shields.io/badge/MONKEYTYPE-%E2%98%85%20MY%20STATS-ff69b4?style=for-the-badge&logo=monkeytype&logoColor=white" alt="Monkeytype stats"/>
-
-</a>
-
-<br/>
-
-<sub>✦ occasionally typing like my life depends on it ✦</sub>
-
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXVzcTBpajJiN3lzcTdsenpmdXZxa2czMjh5bnVlaTJ5Ym81cmpxayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lD76yTC5zxZPG/giphy.gif" width="160" alt="lights"/>
 </p>
 
 ---
 
 ### A soft note
 
-Everything here was inspired by ideas that popped into my own head. I had the urge to visualize them and built those things on my own. I'm a DevOps / infrastructure engineer, so shipping full web apps (frontend, backend, and the rest) sits outside my usual craft; AI was used for that part in several projects.
+Everything here was inspired by ideas that popped into my own head. I had the urge to visualize them and built those things on my own. I'm a DevOps / Infrastructure / Reliability engineer, so shipping full web apps (frontend, backend, and the rest) sits outside my usual craft; AI was used for that part in several projects.
 
 If something speaks to you, I am glad it found you.  
 If you want to talk about any of it, my door is open.
+
+See ya.
 
 <p align="center">
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmd2eXp6d29lbHg0Y253ZjgxZjV4aGwxdHFndTE2bTd4aWxiNjJhZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/m9eG1qVjvN56H0MXt8/giphy.gif" width="180" alt="mic drop"/>
