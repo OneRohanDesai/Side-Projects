@@ -13,11 +13,7 @@
       "id": "zyra",
       "name": "ZYRA",
       "status": "live-soon",
-      "tags": [
-        "Food",
-        "Platform",
-        "Cloudflare"
-      ],
+      "tags": ["Food", "Platform", "Cloudflare"],
       "blurb": "World's largest food database and multi functionality platform.",
       "link": "https://zyra.rohandesai.in",
       "visibility": "private",
@@ -31,11 +27,7 @@
       "id": "film-connoisseur",
       "name": "Film Connoisseur",
       "status": "live",
-      "tags": [
-        "Films",
-        "Ranking",
-        "Cloudflare"
-      ],
+      "tags": ["Films", "Ranking", "Cloudflare"],
       "blurb": "Unbiased film ranking by filmmaking craft, not popularity.",
       "link": "https://film-connoisseur.rohandesai.in/",
       "visibility": "private",
@@ -49,11 +41,7 @@
       "id": "annara",
       "name": "Annara",
       "status": "postponed",
-      "tags": [
-        "Physics",
-        "Finance",
-        "Tech"
-      ],
+      "tags": ["Physics", "Finance", "Tech"],
       "blurb": "Long term project combining physics, finance, and technology.",
       "link": "https://annara.in",
       "visibility": "private",
@@ -67,11 +55,7 @@
       "id": "ada-wong",
       "name": "Ada Wong",
       "status": "private",
-      "tags": [
-        "Local AI",
-        "Python",
-        "Ollama"
-      ],
+      "tags": ["Local AI", "Python", "Ollama"],
       "blurb": "Local personal AI companion: memory, voice, timetable. On device only.",
       "link": null,
       "visibility": "private",
@@ -85,34 +69,12 @@
       "id": "aesthete",
       "name": "Aesthete",
       "status": "live",
-      "tags": [
-        "React",
-        "Spotify",
-        "Cloudflare"
-      ],
+      "tags": ["React", "Spotify", "Cloudflare"],
       "blurb": "Cinematic listening gallery for curated Spotify playlists.",
       "link": "https://aesthete.rohandesai.in",
       "visibility": "private",
       "hidden": false,
       "order": 5,
-      "contact": true,
-      "browsable": false,
-      "repo": "https://github.com/OneRohanDesai/Side-Projects"
-    },
-    {
-      "id": "in-a-nutshell",
-      "name": "In A Nutshell",
-      "status": "live",
-      "tags": [
-        "Cheatsheet",
-        "Design",
-        "Cloudflare"
-      ],
-      "blurb": "Design-first cheatsheet webapp. Name a thing, crack it, get the kernel.",
-      "link": "https://cheatsheet.rohandesai.in",
-      "visibility": "private",
-      "hidden": false,
-      "order": 6,
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
@@ -124,11 +86,7 @@
       "name": "Veritas",
       "folder": "Veritas",
       "status": "active",
-      "tags": [
-        "Rust",
-        "Observability",
-        "Local-first"
-      ],
+      "tags": ["Rust", "Observability", "Local-first"],
       "blurb": "Local-first engineering intelligence: ingest topology and telemetry, graph the system, answer what changed and what to do.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Veritas",
@@ -830,11 +788,7 @@
       "name": "Telemetry Playground",
       "folder": "Telemetry-Playground",
       "status": "active",
-      "tags": [
-        "Observability",
-        "GitOps",
-        "K8s"
-      ],
+      "tags": ["Observability", "GitOps", "K8s"],
       "blurb": "Base platform for DevOps, SRE, observability, and GitOps experiments.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Telemetry-Playground",
@@ -1698,11 +1652,7 @@
       "name": "Grounds",
       "folder": "Grounds",
       "status": "active",
-      "tags": [
-        "CLI",
-        "LocalStack",
-        "Practice"
-      ],
+      "tags": ["CLI", "LocalStack", "Practice"],
       "blurb": "Local practice arena for cloud, DevOps, and sadservers style labs.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Grounds",
@@ -3670,11 +3620,7 @@
       "name": "Gaia",
       "folder": "Gaia",
       "status": "completed",
-      "tags": [
-        "Kubernetes",
-        "SRE",
-        "Simulation"
-      ],
+      "tags": ["Kubernetes", "SRE", "Simulation"],
       "blurb": "Distributed world population simulation on multi cluster Kubernetes.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Gaia",
@@ -5522,11 +5468,7 @@
       "name": "Nexu",
       "folder": "Nexu",
       "status": "completed",
-      "tags": [
-        "AWS",
-        "Terraform",
-        "EKS"
-      ],
+      "tags": ["AWS", "Terraform", "EKS"],
       "blurb": "AWS native DevOps and SRE infrastructure via Terraform, EKS, and CI/CD.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Nexu",
@@ -5772,11 +5714,7 @@
       "name": "Baby Linux",
       "folder": "Baby-Linux",
       "status": "active",
-      "tags": [
-        "Arch",
-        "Bootstrap",
-        "i3"
-      ],
+      "tags": ["Arch", "Bootstrap", "i3"],
       "blurb": "One clone. One script. Entire Linux workstation bootstrap.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Baby-Linux",
@@ -6346,11 +6284,7 @@
       "name": "The Waitlist",
       "folder": "The-Waitlist",
       "status": "public",
-      "tags": [
-        "TypeScript",
-        "SQLite",
-        "Realtime"
-      ],
+      "tags": ["TypeScript", "SQLite", "Realtime"],
       "blurb": "Dead simple waitlist software with a rock solid queue engine.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The-Waitlist",
@@ -6794,11 +6728,7 @@
       "name": "Nyx Cloud",
       "folder": "NyxCloud",
       "status": "archived",
-      "tags": [
-        "IaC",
-        "AWS",
-        "Patent"
-      ],
+      "tags": ["IaC", "AWS", "Patent"],
       "blurb": "Experimental one click AWS IaC deploy platform. Discontinued; patent filed.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/NyxCloud",
@@ -6840,11 +6770,7 @@
       "name": "Just Orange",
       "folder": "Just_Orange",
       "status": "completed",
-      "tags": [
-        "Recipes",
-        "Serverless",
-        "CLI"
-      ],
+      "tags": ["Recipes", "Serverless", "CLI"],
       "blurb": "One input. One perfect dish. No decision paralysis.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Just_Orange",
@@ -6946,11 +6872,7 @@
       "name": "The Table V3",
       "folder": "The_Table_V3",
       "status": "completed",
-      "tags": [
-        "Python",
-        "LAN",
-        "Ops"
-      ],
+      "tags": ["Python", "LAN", "Ops"],
       "blurb": "Zero internet restaurant operations OS for a private WiFi LAN.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The_Table_V3",
@@ -7220,11 +7142,7 @@
       "name": "Aesthete Vinyl",
       "folder": "Aesthete-Vinyl",
       "status": "archived",
-      "tags": [
-        "HTML",
-        "Spotify",
-        "UX"
-      ],
+      "tags": ["HTML", "Spotify", "UX"],
       "blurb": "Original vinyl first music explorer SPA: needle drop, crates, local vinyl clips.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Aesthete-Vinyl",
@@ -7286,11 +7204,7 @@
       "name": "Veritas",
       "folder": "Veritas",
       "status": "active",
-      "tags": [
-        "Rust",
-        "Observability",
-        "Local-first"
-      ],
+      "tags": ["Rust", "Observability", "Local-first"],
       "blurb": "Local-first engineering intelligence: ingest topology and telemetry, graph the system, answer what changed and what to do.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Veritas",
@@ -7992,11 +7906,7 @@
       "name": "Telemetry Playground",
       "folder": "Telemetry-Playground",
       "status": "active",
-      "tags": [
-        "Observability",
-        "GitOps",
-        "K8s"
-      ],
+      "tags": ["Observability", "GitOps", "K8s"],
       "blurb": "Base platform for DevOps, SRE, observability, and GitOps experiments.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Telemetry-Playground",
@@ -8860,11 +8770,7 @@
       "name": "Grounds",
       "folder": "Grounds",
       "status": "active",
-      "tags": [
-        "CLI",
-        "LocalStack",
-        "Practice"
-      ],
+      "tags": ["CLI", "LocalStack", "Practice"],
       "blurb": "Local practice arena for cloud, DevOps, and sadservers style labs.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Grounds",
@@ -10832,11 +10738,7 @@
       "name": "Gaia",
       "folder": "Gaia",
       "status": "completed",
-      "tags": [
-        "Kubernetes",
-        "SRE",
-        "Simulation"
-      ],
+      "tags": ["Kubernetes", "SRE", "Simulation"],
       "blurb": "Distributed world population simulation on multi cluster Kubernetes.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Gaia",
@@ -12684,11 +12586,7 @@
       "name": "Nexu",
       "folder": "Nexu",
       "status": "completed",
-      "tags": [
-        "AWS",
-        "Terraform",
-        "EKS"
-      ],
+      "tags": ["AWS", "Terraform", "EKS"],
       "blurb": "AWS native DevOps and SRE infrastructure via Terraform, EKS, and CI/CD.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Nexu",
@@ -12934,11 +12832,7 @@
       "name": "Baby Linux",
       "folder": "Baby-Linux",
       "status": "active",
-      "tags": [
-        "Arch",
-        "Bootstrap",
-        "i3"
-      ],
+      "tags": ["Arch", "Bootstrap", "i3"],
       "blurb": "One clone. One script. Entire Linux workstation bootstrap.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Baby-Linux",
@@ -13508,11 +13402,7 @@
       "name": "The Waitlist",
       "folder": "The-Waitlist",
       "status": "public",
-      "tags": [
-        "TypeScript",
-        "SQLite",
-        "Realtime"
-      ],
+      "tags": ["TypeScript", "SQLite", "Realtime"],
       "blurb": "Dead simple waitlist software with a rock solid queue engine.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The-Waitlist",
@@ -13956,11 +13846,7 @@
       "name": "Nyx Cloud",
       "folder": "NyxCloud",
       "status": "archived",
-      "tags": [
-        "IaC",
-        "AWS",
-        "Patent"
-      ],
+      "tags": ["IaC", "AWS", "Patent"],
       "blurb": "Experimental one click AWS IaC deploy platform. Discontinued; patent filed.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/NyxCloud",
@@ -14002,11 +13888,7 @@
       "name": "Just Orange",
       "folder": "Just_Orange",
       "status": "completed",
-      "tags": [
-        "Recipes",
-        "Serverless",
-        "CLI"
-      ],
+      "tags": ["Recipes", "Serverless", "CLI"],
       "blurb": "One input. One perfect dish. No decision paralysis.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Just_Orange",
@@ -14108,11 +13990,7 @@
       "name": "The Table V3",
       "folder": "The_Table_V3",
       "status": "completed",
-      "tags": [
-        "Python",
-        "LAN",
-        "Ops"
-      ],
+      "tags": ["Python", "LAN", "Ops"],
       "blurb": "Zero internet restaurant operations OS for a private WiFi LAN.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/The_Table_V3",
@@ -14382,11 +14260,7 @@
       "name": "Aesthete Vinyl",
       "folder": "Aesthete-Vinyl",
       "status": "archived",
-      "tags": [
-        "HTML",
-        "Spotify",
-        "UX"
-      ],
+      "tags": ["HTML", "Spotify", "UX"],
       "blurb": "Original vinyl first music explorer SPA: needle drop, crates, local vinyl clips.",
       "link": null,
       "repo": "https://github.com/OneRohanDesai/Side-Projects/tree/main/projects/Aesthete-Vinyl",

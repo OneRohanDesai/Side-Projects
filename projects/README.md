@@ -18,8 +18,6 @@ The easiest way to browse them (and the code in each one) is the project viewer:
 
 **Private** ones have names you can see, but their code stays close. They are live, in progress, or simply not ready for the open world. If you need a look, write to me and we will talk.
 
-**In A Nutshell** is one of those: a cheatsheet webapp I obsessed over the design of. Live at [cheatsheet.rohandesai.in](https://cheatsheet.rohandesai.in). Source on request.
-
 **Public** ones are open. Clone them. Break them. Learn from them. Use them however you like.
 
 ---
