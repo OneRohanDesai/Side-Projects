@@ -10,6 +10,20 @@
   },
   "private": [
     {
+      "id": "zyra",
+      "name": "ZYRA",
+      "status": "live-soon",
+      "tags": ["Food", "Platform", "Cloudflare"],
+      "blurb": "World's largest food database and multi functionality platform.",
+      "link": "https://zyra.rohandesai.in",
+      "visibility": "private",
+      "hidden": false,
+      "order": 1,
+      "contact": true,
+      "browsable": false,
+      "repo": "https://github.com/OneRohanDesai/Side-Projects"
+    },
+    {
       "id": "film-connoisseur",
       "name": "Film Connoisseur",
       "status": "live",
@@ -18,7 +32,7 @@
       "link": "https://film-connoisseur.rohandesai.in/",
       "visibility": "private",
       "hidden": false,
-      "order": 1,
+      "order": 2,
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
@@ -32,7 +46,7 @@
       "link": "https://annara.in",
       "visibility": "private",
       "hidden": false,
-      "order": 2,
+      "order": 3,
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
@@ -46,7 +60,7 @@
       "link": null,
       "visibility": "private",
       "hidden": false,
-      "order": 3,
+      "order": 4,
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
@@ -60,7 +74,7 @@
       "link": "https://aesthete.rohandesai.in",
       "visibility": "private",
       "hidden": false,
-      "order": 4,
+      "order": 5,
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
