@@ -33,7 +33,6 @@ This whole repository is that corner: **my entire side-work home**, one place fo
 |--------|------------------|
 | **`projects/`** | Technical side work: code, experiments, finished pieces, and a few still cooking. Some are open to explore; some stay private because they are live. Feel free to use the public ones. |
 | **`architecture/`** | **Vault** — a quiet timeline of man-made and natural structures across deep time. From awe-inspiring works to darker monuments, this vault has room for all of it. |
-| **`mathematica/`** | Under planning. Nothing decided yet. |
 | **`blogs/`** | **Inkboard** — essays on game theory, poker, geopolitics, and geography at [`/blogs`](https://rohandesai.in/blogs). |
 
 ---
