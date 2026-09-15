@@ -23,7 +23,9 @@ Hey. This is my little corner of the internet for things I build **for myself**.
 
 Not the day job. Not client work. Just the ideas I chase because they make me curious, happy, or slightly obsessed.
 
-This whole repository is that corner: **my entire side-work home**, one place for the non-official things I make in my own time.
+This whole repository is that corner: **my entire side-work home**, one place for the non-official things I made in my own time.
+
+Even the live projects aren’t fully secured by design 😅 I know cloud security pretty well, but there’s no point paying 24/7 for heavy protection when basically no one uses these sites except me haha. The basics are covered though!
 
 ---
 
@@ -32,16 +34,14 @@ This whole repository is that corner: **my entire side-work home**, one place fo
 | Folder | What lives there |
 |--------|------------------|
 | **`projects/`** | Technical side work: code, experiments, finished pieces, and a few still cooking. Some are open to explore; some stay private because they are live. Feel free to use the public ones. |
-| **`architecture/`** | **Vault** — a quiet timeline of man-made and natural structures across deep time. From awe-inspiring works to darker monuments, this vault has room for all of it. |
-| **`blogs/`** | **Inkboard** — essays on game theory, poker, geopolitics, and geography at [`/blogs`](https://rohandesai.in/blogs). |
+| **`architecture/`** | **Vault** - a quiet timeline of man-made and natural structures across deep time. From awe-inspiring works to darker monuments, this vault has room for all of it. |
+| **`blogs/`** | **Inkboard** - essays on game theory, poker, geopolitics, and geography at [`/blogs`](https://rohandesai.in/blogs). |
 
 ---
 
 ### What's next
 
-This home will grow quietly over time.  
-Maybe something for **films**, or **food**, or whatever pulls me next.  
-When those arrive, they will live here too, each with their own little room.
+Honestly, probably nothing new. Project “Annara” is planned, but it’s postponed indefinitely since it needs more people, money, time, and compute that I cannot manage alone. I still have ideas, but I don’t think I’ll be building new personal projects anymore. I’ll just rarely tweak the existing ones and keep adding data to the live platforms.
 
 <p align="center">
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXVzcTBpajJiN3lzcTdsenpmdXZxa2czMjh5bnVlaTJ5Ym81cmpxayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lD76yTC5zxZPG/giphy.gif" width="160" alt="lights"/>
@@ -51,7 +51,7 @@ When those arrive, they will live here too, each with their own little room.
 
 ### A soft note
 
-Everything here was inspired by ideas that popped into my own head. I had the urge to visualize them and built those things on my own. I'm a DevOps / Infrastructure / Reliability engineer, so shipping full web apps (frontend, backend, and the rest) sits outside my usual craft; AI was used for that part in several projects.
+Everything here was inspired by ideas that popped into my own head. I had the urge to visualize them and built those things on my own. I'm a DevOps / Infrastructure / Reliability engineer, so shipping full web apps (frontend, backend, and the rest) sits outside my usual craft; AI was used for that part in several projects, if you find any dashes then close your eyes hehe.
 
 If something speaks to you, I am glad it found you.  
 If you want to talk about any of it, my door is open.
@@ -59,5 +59,5 @@ If you want to talk about any of it, my door is open.
 See ya.
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmd2eXp6d29lbHg0Y253ZjgxZjV4aGwxdHFndTE2bTd4aWxiNjJhZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/m9eG1qVjvN56H0MXt8/giphy.gif" width="180" alt="mic drop"/>
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcThpbTdqZmtwOHR2eXJlcXAybDZhdXpuY3JuZ2x5aXlqZmwzZGx6YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/w89ak63KNl0nJl80ig/giphy.gif" width="180" alt="mic drop"/>
 </p>

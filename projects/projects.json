@@ -12,7 +12,7 @@
     {
       "id": "zyra",
       "name": "ZYRA",
-      "status": "live-soon",
+      "status": "live",
       "tags": ["Food", "Platform", "Cloudflare"],
       "blurb": "World's largest food database and multi functionality platform.",
       "link": "https://zyra.rohandesai.in",
