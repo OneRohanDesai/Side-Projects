@@ -59,5 +59,5 @@ If you want to talk about any of it, my door is open.
 See ya.
 
 <p align="center">
-  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcThpbTdqZmtwOHR2eXJlcXAybDZhdXpuY3JuZ2x5aXlqZmwzZGx6YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/w89ak63KNl0nJl80ig/giphy.gif" width="180" alt="mic drop"/>
+  <img src="https://tenor.com/7Ac3.gif" width="180" alt="mic drop"/>
 </p>
