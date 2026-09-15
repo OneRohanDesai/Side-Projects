@@ -58,4 +58,6 @@ If you want to talk about any of it, my door is open.
 
 See ya.
 
-<p align="center"> <a href="https://media.tenor.com/xgidAEKZi2IAAAPo/raining-dog.mp4"> 🎬 <strong>bye</strong> </a> </p>
+<p align="center">
+  <img src="raining-dog.gif" width="180" alt="mic drop"/>
+</p>
