@@ -78,20 +78,6 @@
       "contact": true,
       "browsable": false,
       "repo": "https://github.com/OneRohanDesai/Side-Projects"
-    },
-    {
-      "id": "archives",
-      "name": "Archives",
-      "status": "live",
-      "tags": ["Personal R&D"],
-      "blurb": "Something Something. Will be made public later on.",
-      "link": "https://archives.rohandesai.in",
-      "visibility": "private",
-      "hidden": false,
-      "order": 6,
-      "contact": true,
-      "browsable": false,
-      "repo": "https://github.com/OneRohanDesai/Side-Projects"
     }
   ],
   "projects": [
