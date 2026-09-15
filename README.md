@@ -51,7 +51,7 @@ Honestly, probably nothing new. Project “Annara” is planned, but it’s post
 
 ### A soft note
 
-Everything here was inspired by ideas that popped into my own head. I had the urge to visualize them and built those things on my own. I'm a DevOps / Infrastructure / Reliability engineer, so shipping full web apps (frontend, backend, and the rest) sits outside my usual craft; AI was used for that part in several projects, if you find any dashes then close your eyes hehe.
+Everything here was inspired by ideas that popped into my own head. I had the urge to visualize them and built those things on my own. I'm a DevOps / Infrastructure / Reliability engineer, so shipping full web apps (frontend, backend, and the rest) sits outside my usual craft; AI was used for that part in several projects (if you find any dashes then close your eyes hehe).
 
 If something speaks to you, I am glad it found you.  
 If you want to talk about any of it, my door is open.
@@ -59,5 +59,5 @@ If you want to talk about any of it, my door is open.
 See ya.
 
 <p align="center">
-  <img src="https://tenor.com/7Ac3.gif" width="180" alt="mic drop"/>
+  <img src="https://media1.tenor.com/m/xgidAEKZi2IAAAAd/raining-dog.gif" width="180" alt="mic drop"/>
 </p>
