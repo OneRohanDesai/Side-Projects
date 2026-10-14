@@ -7,8 +7,8 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "types": "wrangler types",
-    "db:local": "wrangler d1 migrations apply inkboard-blogs --local",
-    "db:remote": "wrangler d1 migrations apply inkboard-blogs --remote",
+    "db:local": "wrangler d1 migrations apply vault-plates --local",
+    "db:remote": "wrangler d1 migrations apply vault-plates --remote",
     "secret:password": "wrangler secret put ADMIN_PASSWORD"
   },
   "devDependencies": {

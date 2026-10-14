@@ -18,12 +18,14 @@ Push the Side Projects repo — no Wrangler for static HTML.
 
 ## API Worker (Wrangler · D1 + R2 + KV)
 
-Existing resources kept. Deploy API only:
+Inkboard uses the shared `vault-plates` D1 database. Its Worker, R2 bucket, and KV namespaces remain separate. Shared D1 migrations live in `../architecture/migrations`; the old `migrations/` files record the original Inkboard database history and are no longer applied.
+
+Deploy API only:
 
 ```bash
 cd "~/Side Projects/blogs"
 npm install
-npm run db:remote    # applies migrations (incl. geography topic)
+npm run db:remote    # applies shared vault-plates migrations
 npm run deploy
 npm run secret:password   # if needed
 ```

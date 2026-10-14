@@ -13,7 +13,7 @@ No Wrangler needed for HTML/CSS/JS.
 
 ## API (Wrangler only)
 
-Metadata (D1) + images (R2) + sessions (KV) live on a separate Worker:
+Metadata (D1) + images (R2) + sessions (KV) live on a separate Worker. The `vault-plates` D1 database also contains Inkboard's `posts` and `events` tables. Both projects use the migrations in this folder; add future D1 migrations here with unique filenames.
 
 ```bash
 cd "~/Side Projects/architecture"
